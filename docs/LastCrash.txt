@@ -1,0 +1,24 @@
+Crash Message:
+
+   Couldn't create output file C:\Users\MAINRIG\Dropbox\Game\Geraldo\awiderworld\docs\index.html.
+
+Natural Docs version 1.52
+Perl version 5.16.3 on MSWin32
+
+Command Line:
+
+   -i C:\Users\MAINRIG\Dropbox\Game\Geraldo\awiderworld -p C:\Users\MAINRIG\Dropbox\Game\Geraldo\awiderworld\docs -o HTML C:\Users\MAINRIG\Dropbox\Game\Geraldo\awiderworld\docs -xi C:\Users\MAINRIG\Dropbox\Game\Geraldo\awiderworld\pl -xi C:\Users\MAINRIG\Dropbox\Game\Geraldo\awiderworld\zoetrope
+
+Stack Trace:
+
+   NaturalDocs::Error::CatchDeath, called from
+   Encode::decode, line 176 of C:/Perl64/lib/Encode.pm, called from
+   (eval), line 100 of C:/Users/MAINRIG/Desktop/naturaldocs/Modules/NaturalDocs/LineReader.pm, called from
+   NaturalDocs::LineReader::New, line 100, called from
+   NaturalDocs::ConfigFile::Open, line 163, called from
+   NaturalDocs::Menu::LoadMenuFile, line 685, called from
+   NaturalDocs::Menu::LoadAndUpdate, line 388, called from
+   (eval), line 334 of NaturalDocs   NaturalDocs::Error::CatchDeath, called from
+   NaturalDocs::Builder::HTML::UpdateMenu, line 290, called from
+   NaturalDocs::Builder::Run, line 268, called from
+   (eval), line 340 of NaturalDocs
