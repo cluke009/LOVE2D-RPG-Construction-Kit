@@ -1,0 +1,45 @@
+Save X,Y of hero instead of entry spawn.
+Confirmation box for dialog
+Inventory screen
+Multiple heros
+Status effects
+level scaling
+Gold
+walk cycles
+
+trapped chest
+locked chests
+Junk is an item which has no use other than to be sold to a merchant for money.
+
+
+quest items/unsellable
+shops
+inn
+
+overworld
+
+
+Enemy Encounter
+
+Patterns of encountering hostile NPCs in a single location.
+
+    Ambush
+    Boss Battle
+    Reinforcements
+    Spawn Point
+    Standard Encounter
+    Unwinnable Fight
+
+
+
+
+
+vehicles
+
+    HUD(Heads-up Display) System
+    EXP/Leveling System
+    Combat and Navigation System
+    Character Controller System
+    Skill System
+    Monsters and NPC (AI)
+    Levels (Missions) System

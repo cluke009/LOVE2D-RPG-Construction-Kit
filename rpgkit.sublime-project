@@ -1,0 +1,25 @@
+{
+	"folders":
+	[
+		{
+			"path": "/C/Users/MAINRIG/Dropbox/Game/Geraldo/awiderworld",
+            "folder_exclude_patterns": ["docs"],
+            "file_exclude_patterns": ["*.sublime*"]
+		}
+	],
+  "settings":
+  {
+    "tab_size": 4
+  },
+  "build_systems":
+  [
+  {
+      "selector": "source.lua",
+      "cmd": ["love", "$project_path"]
+  }
+
+
+  ]
+
+
+}
