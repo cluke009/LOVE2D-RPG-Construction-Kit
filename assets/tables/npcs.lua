@@ -1,7 +1,7 @@
 --[[
     File: NPCs
-    NOT YET IMPLEMENTED:
-    NPCs are referenced in tiled by there numerical ID
+    NPCs are referenced in tiled by there numerical ID.
+    NPCs inherit the properties of Objs and can trigger Dialog and Cutscenes in Tiled.
 
     Properties:
         name - Name of NPC

@@ -1,6 +1,5 @@
 --[[
     File: Equipment
-    NOT YET IMPLEMENTED:
     Equipment is referenced in tiled by there numerical ID.
 
     Effects apply to hero stats of the same name.
@@ -10,12 +9,19 @@
     Properties:
         name - Name of equipment
         image - Location of image
+            -- Not currently implemented.
         width - Width of image
+            -- Not currently implemented.
         height - Height of image
-        kind - The type of equipment
+            -- Not currently implemented.
+        kind - The type of equipment.
+            This property can be anything and will be updated in game.
+            Only one of any kind of item can be equipped.
         desc - Text that describes the equipment
-        effect - Buffs the equipment has on characters
+        effect - Buffs the equipment has on characters.
+            These will only apply if stats of the same name are found on the heroes.
         use - The id or ids of the characters that can use this equipment
+            -- Not currently implemented.
 
     Example code:
     (begin code)
@@ -27,8 +33,8 @@
         kind = 'Boots',
         desc = 'Speed + 30, Defense + 10',
         effect = {
-            {'spd', 30},
-            {'def', 10},
+            def = 10,
+            mdef = 20,
         },
         use = {1},
     },

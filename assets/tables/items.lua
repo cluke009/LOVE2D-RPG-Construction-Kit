@@ -9,8 +9,11 @@
     Properties:
         name - Name of item
         image - Location of image
+            -- Not currently implemented.
         width - Width of image
+            -- Not currently implemented.
         height - Height of image
+            -- Not currently implemented.
         desc - Text that describes the item
         effect - Buffs the item has on characters
 

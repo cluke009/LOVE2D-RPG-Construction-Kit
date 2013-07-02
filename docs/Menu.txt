@@ -1,4 +1,4 @@
-﻿Format: 1.52
+Format: 1.52
 
 
 Title: LÖVE RPG
@@ -49,7 +49,6 @@ Group: Config  {
    File: Items  (assets\tables\items.lua)
    File: NPCs  (assets\tables\npcs.lua)
    File: OBJ  (assets\tables\obj.lua)
-   File: Weapons  (assets\tables\weapons.lua)
    }  # Group: Config
 
 Group: Classes  {

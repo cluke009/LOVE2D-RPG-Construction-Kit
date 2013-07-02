@@ -9,6 +9,7 @@
         width - Width of image
         height - Height of image
         stats - Enemy stats like hp & mp
+            Not currently implemented.
 
     Example code:
     (begin code)
