@@ -12,7 +12,7 @@ STATE = {
     heroes = require 'assets.tables.heroes',
     inventory = {
         item = {},
-        equipment = {},
+        equipment = {[2]=1,[3]=1,[5]=1},
     },
     equip = {},
     menu = {
@@ -25,6 +25,18 @@ STATE = {
 
 
 
+-- Get all unique type of equipment
+local unique = {}
+local equipment = require 'assets.tables.equipment'
+for i,v in ipairs(equipment) do
+    unique[v.kind] = true
+end
 
-
+-- Add equippable types to STATE
+for i,v in ipairs(STATE.heroes) do
+    STATE.equip[i] = {}
+    for k,v in pairs(unique) do
+        STATE.equip[i][k] = false
+    end
+end
 

@@ -1,3 +1,8 @@
+init function to inject config data into state table
+
+
+
+
 Save X,Y of hero instead of entry spawn.
 Confirmation box for dialog
 Inventory screen

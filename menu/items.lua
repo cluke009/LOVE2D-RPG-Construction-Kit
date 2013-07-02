@@ -37,7 +37,6 @@ Items = Subview:new
                         end,
                         action = function()
                             Select.item = items[k]
-                            Select.item.kind = 'item'
                             Select.item.key = k
                             Select:activate()
                         end
@@ -86,7 +85,6 @@ Select = Subview:new
                 table.insert(links, {
                     name = '',
                     action = function()
-                        local kind   = self.item.kind
                         local effect = self.item.effect
                         local key    = self.item.key
                         -- Apply effects
@@ -109,12 +107,12 @@ Select = Subview:new
                         -- TODO: Equip/remove item
 
                         -- Update inventory
-                        if STATE.inventory[kind][key] == 1 then
-                            STATE.inventory[kind][key] = nil
-                        elseif STATE.inventory[kind][key] == nil then
+                        if STATE.inventory['item'][key] == 1 then
+                            STATE.inventory['item'][key] = nil
+                        elseif STATE.inventory['item'][key] == nil then
                             self:deactivate()
                         else
-                            STATE.inventory[kind][key] = STATE.inventory[kind][key] - 1
+                            STATE.inventory['item'][key] = STATE.inventory['item'][key] - 1
                         end
 
                         STATE.menu.update = true
@@ -124,7 +122,6 @@ Select = Subview:new
                 })
             end
         end
-
 
         self.m = Menu:new{
             x = 350,
