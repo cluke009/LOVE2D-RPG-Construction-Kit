@@ -3,7 +3,6 @@ local dialog    = require 'assets.tables.dialog'
 local enemies   = require 'assets.tables.enemies'
 local items     = require 'assets.tables.items'
 local equipment = require 'assets.tables.equipment'
-local weapons   = require 'assets.tables.weapons'
 local obj       = require 'assets.tables.obj'
 local npc       = require 'assets.tables.npcs'
 
@@ -213,8 +212,6 @@ Chest = Tile:extend
                             d = string.gsub(dialog.items, '$item', items[self.id].name)
                         elseif self.equipment then
                             d = string.gsub(dialog.items, '$item', equipment[self.id].name)
-                        elseif self.weapon then
-                            d = string.gsub(dialog.items, '$item', weapons[self.id].name)
                         end
                         d = {d}
                     end
