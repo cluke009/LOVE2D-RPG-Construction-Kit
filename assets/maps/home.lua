@@ -280,33 +280,7 @@ return {
           height = 32,
           visible = true,
           properties = {
-            ["weapon"] = "1"
-          }
-        },
-        {
-          name = "Chest",
-          type = "",
-          shape = "rectangle",
-          x = 544,
-          y = 576,
-          width = 32,
-          height = 32,
-          visible = true,
-          properties = {
-            ["weapon"] = "1"
-          }
-        },
-        {
-          name = "Chest",
-          type = "",
-          shape = "rectangle",
-          x = 608,
-          y = 576,
-          width = 32,
-          height = 32,
-          visible = true,
-          properties = {
-            ["weapon"] = "1"
+            ["equipment"] = "4"
           }
         },
         {
@@ -320,19 +294,6 @@ return {
           visible = true,
           properties = {
             ["id"] = "2"
-          }
-        },
-        {
-          name = "Chest",
-          type = "",
-          shape = "rectangle",
-          x = 480,
-          y = 576,
-          width = 32,
-          height = 32,
-          visible = true,
-          properties = {
-            ["weapon"] = "2"
           }
         },
         {
@@ -358,7 +319,7 @@ return {
           height = 32,
           visible = true,
           properties = {
-            ["equipment"] = "2"
+            ["equipment"] = "3"
           }
         },
         {
@@ -371,7 +332,7 @@ return {
           height = 32,
           visible = true,
           properties = {
-            ["equipment"] = "1"
+            ["equipment"] = "2"
           }
         },
         {
@@ -385,6 +346,45 @@ return {
           visible = true,
           properties = {
             ["equipment"] = "1"
+          }
+        },
+        {
+          name = "Chest",
+          type = "",
+          shape = "rectangle",
+          x = 480,
+          y = 576,
+          width = 32,
+          height = 32,
+          visible = true,
+          properties = {
+            ["equipment"] = "4"
+          }
+        },
+        {
+          name = "Chest",
+          type = "",
+          shape = "rectangle",
+          x = 544,
+          y = 576,
+          width = 32,
+          height = 32,
+          visible = true,
+          properties = {
+            ["equipment"] = "4"
+          }
+        },
+        {
+          name = "Chest",
+          type = "",
+          shape = "rectangle",
+          x = 608,
+          y = 576,
+          width = 32,
+          height = 32,
+          visible = true,
+          properties = {
+            ["equipment"] = "5"
           }
         }
       }

@@ -44,7 +44,7 @@ return
         kind = 'Armor',
         desc = 'Defense + 50',
         effect = {
-            {'def', 50},
+            def = 50,
         },
         use = {1},
     },
@@ -56,8 +56,8 @@ return
         kind = 'Armor',
         desc = 'Defense + 10, Magic Defense + 20',
         effect = {
-            {'def', 10},
-            {'mdef', 20},
+            def = 10,
+            mdef = 20,
         },
         use = {2},
     },
@@ -69,9 +69,36 @@ return
         kind = 'Boots',
         desc = 'Speed + 30, Defense + 10',
         effect = {
-            {'spd', 30},
-            {'def', 10},
+            spd = 30,
+            def = 10,
         },
         use = {1},
+    },
+    [4] = {
+        name = 'Rifle',
+        image = 'assets/img/rifle.png',
+        width = 64,
+        height = 64,
+        desc = 'Attack + 50',
+        kind = 'Weapon',
+        effect = {
+            atk = 50,
+        },
+        use = {1},
+    },
+    [5] = {
+        name = 'Machete',
+        image = 'assets/img/machete.png',
+        width = 64,
+        height = 64,
+        desc = 'Attack + 50',
+        kind = 'Weapon',
+        effect = {
+            atk = 10,
+            mag = 20,
+            def = 30,
+            mdef = 40,
+        },
+        use = {2},
     },
 }

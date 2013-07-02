@@ -1,13 +1,13 @@
 local pretty = require 'pl.pretty'
 
 local Items  = require 'menu.items'
+local Equip  = require 'menu.equip'
+
 local Menu   = require 'menu.menu'
 local Party  = require 'menu.party'
-local Select = require 'menu.select'
-local List   = require 'menu.list'
 
 
-local Launch = Subview:new
+Launch = Subview:new
 {
     party = Party:new(),
     menu = Menu:new{
@@ -23,43 +23,7 @@ local Launch = Subview:new
             }, {
                 name = 'Equip',
                 action = function()
-                    Subview:new
-                    {
-                        onActivate = function ( self )
-
-                            local links = {}
-
-                            for k, hero in pairs(STATE.heroes) do
-                                if hero['active'] then
-                                    table.insert(links, {
-                                        name = '',
-                                        action = function()
-                                                List.data.hero = k
-                                                List.data.kind = 'equipment'
-                                                List:activate()
-                                        end
-                                    })
-                                end
-                            end
-
-
-                            self.m = Menu:new{
-                                x = 350,
-                                y = 20,
-                                width = 10,
-                                step = 100,
-                                items = links
-                            }
-                            self:add(self.m)
-
-                        end,
-                        onUpdate = function ( self )
-                            if the.keys:justPressed('escape') then
-                                self:remove(self.m)
-                                self:deactivate()
-                            end
-                        end
-                    }:activate()
+                    Equip:activate()
                 end,
             },
         }
@@ -83,5 +47,6 @@ local Launch = Subview:new
         end
     end
 }
+
 
 return Launch

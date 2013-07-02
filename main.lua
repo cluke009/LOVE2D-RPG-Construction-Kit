@@ -5,8 +5,6 @@
 --------------------------------------------------------------------------------
 ]]------------------------------------------------------------------------------
 
-
-
 require 'globals'
 require 'zoetrope'
 require 'map'
@@ -16,8 +14,7 @@ require 'dialog'
 menu =  require 'menu'
 pretty =  require 'pl.pretty'
 
-STATE = {}
-pretty.dump(STATE)
+-- pretty.dump(STATE)
 
 the.app = App:new
 {

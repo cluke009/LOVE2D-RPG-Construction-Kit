@@ -991,27 +991,12 @@
   </object>
   <object name="Chest" x="416" y="576" width="32" height="32">
    <properties>
-    <property name="weapon" value="1"/>
-   </properties>
-  </object>
-  <object name="Chest" x="544" y="576" width="32" height="32">
-   <properties>
-    <property name="weapon" value="1"/>
-   </properties>
-  </object>
-  <object name="Chest" x="608" y="576" width="32" height="32">
-   <properties>
-    <property name="weapon" value="1"/>
+    <property name="equipment" value="4"/>
    </properties>
   </object>
   <object name="Obj" x="352" y="576" width="32" height="32">
    <properties>
     <property name="id" value="2"/>
-   </properties>
-  </object>
-  <object name="Chest" x="480" y="576" width="32" height="32">
-   <properties>
-    <property name="weapon" value="2"/>
    </properties>
   </object>
   <object name="Obj" x="768" y="352" width="32" height="32">
@@ -1021,17 +1006,32 @@
   </object>
   <object name="Chest" x="768" y="544" width="32" height="32">
    <properties>
-    <property name="equipment" value="2"/>
+    <property name="equipment" value="3"/>
    </properties>
   </object>
   <object name="Chest" x="768" y="480" width="32" height="32">
    <properties>
-    <property name="equipment" value="1"/>
+    <property name="equipment" value="2"/>
    </properties>
   </object>
   <object name="Chest" x="768" y="416" width="32" height="32">
    <properties>
     <property name="equipment" value="1"/>
+   </properties>
+  </object>
+  <object name="Chest" x="480" y="576" width="32" height="32">
+   <properties>
+    <property name="equipment" value="4"/>
+   </properties>
+  </object>
+  <object name="Chest" x="544" y="576" width="32" height="32">
+   <properties>
+    <property name="equipment" value="4"/>
+   </properties>
+  </object>
+  <object name="Chest" x="608" y="576" width="32" height="32">
+   <properties>
+    <property name="equipment" value="5"/>
    </properties>
   </object>
  </objectgroup>
