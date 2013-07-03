@@ -5,20 +5,34 @@
 --------------------------------------------------------------------------------
 ]]------------------------------------------------------------------------------
 
+
+STRICT = true
+DEBUG = true
+io.stdout:setvbuf("no")
+
+pretty =  require 'pl.pretty'
+
 require 'globals'
+require 'state'
+
 require 'zoetrope'
+
 require 'map'
 require 'objects'
 require 'dialog'
 
 menu =  require 'menu'
-pretty =  require 'pl.pretty'
+
 
 -- pretty.dump(STATE)
 
 the.app = App:new
 {
     onRun = function (self)
+
+        -- Reload clean game state every time
+        initializeSTATE()
+
         -- Setup save state
         self.save = Storage:new{ filename = 'save.dat' }
 
@@ -48,9 +62,7 @@ the.app = App:new
         if the.keys:justPressed('l') then
             -- Load data into state if exists
             self.save:load()
-            if next(self.save.data) then
-                STATE = self.save.data
-            end
+            STATE = self.save.data
 
             -- Reload view
             self.view = MapView:new()
@@ -64,6 +76,7 @@ the.app = App:new
 
             -- Load data into state
             self.save:load()
+            STATE = self.save.data
 
             -- Reload view
             self.view = MapView:new()

@@ -1,5 +1,4 @@
 -- Require needed stuff locally
-local pretty = require 'pl.pretty'
 local Menu      = require 'menu.menu'
 local equipment = require 'assets.tables.equipment'
 
@@ -12,17 +11,6 @@ local localHero, localItem, localItemType
 -- Extend subview with our ready trigger
 Subview = Subview:extend { ready = true }
 Group   = Group:extend { ready = true }
-
-
-function table.copy(t)
-  local t2 = {}
-  for k,v in pairs(t) do
-    t2[k] = v
-  end
-  return t2
-end
-
-
 
 -- Some helper functions to delegate object update/removal
 local subviewRemove = function ( this )
@@ -115,13 +103,6 @@ Equipped = Subview:new
             height = 600,
             fill = {255, 255, 255, 255}
         }
-        self:add(self.fill)
-
-
-
-
-
-
 
         -- Get kinds of equipment
         local unique = {}
@@ -158,6 +139,7 @@ Equipped = Subview:new
             width = 300,
             items = links
         }
+        self:add(self.fill)
         self:add(self.menu)
         self:add(EquipHero)
 
@@ -290,7 +272,6 @@ EquipHero = Group:new
         for i,v in ipairs(equipment) do
             unique[v.kind] = true
         end
-
 
 
         -- Get stat totals with equiped items
