@@ -52,7 +52,7 @@ local Trigger = Class:extend
                         self.count = self.count + 1
                         self.dcount = 1
 
-                        if #scene > self.count then
+                        if #scene >= self.count then
                             self.img:die()
                             self.fill:die()
 

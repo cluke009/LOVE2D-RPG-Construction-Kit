@@ -34,6 +34,7 @@ return
         image = 'assets/img/cutscene1_5.png',
         dialog = {
             'Text 11',
+            'Text 12',
         }
     }
 }
