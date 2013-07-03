@@ -104,8 +104,6 @@ Select = Subview:new
 
                         end
 
-                        -- TODO: Equip/remove item
-
                         -- Update inventory
                         if STATE.inventory['item'][key] == 1 then
                             STATE.inventory['item'][key] = nil

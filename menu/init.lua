@@ -1,5 +1,3 @@
-local pretty = require 'pl.pretty'
-
 local Items  = require 'menu.items'
 local Equip  = require 'menu.equip'
 
