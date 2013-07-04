@@ -117,7 +117,7 @@ Equipped = Subview:new
             local itemID = STATE.equip[heroID][k]
             local ename = ''
 
-            if itemID then
+            if itemID  and itemID ~= 0 then
                 ename = equipment[itemID].name
             end
 
@@ -194,6 +194,14 @@ EquipList = Subview:new
                 end
             end
 
+            -- Add remove to list
+            ofType[0] = {
+                effect = {},
+                key = 0,
+                name = "Remove",
+                amount = 0
+            }
+
             -- Remove already equipped items from available items
             for k,v in pairs(STATE.equip) do
                 local typeID = v[localItemType]
@@ -209,6 +217,8 @@ EquipList = Subview:new
             -- TODO: Check if hero can use item
 
         end
+
+       -- table.sort(ofType)
 
 
         -- If we have any items availible to equip display them
@@ -281,7 +291,7 @@ EquipHero = Group:new
                     local heroID = localHero.key
                     local itemID = STATE.equip[heroID][k]
 
-            if itemID then
+            if itemID and itemID ~= 0 then
                 local effect = equipment[itemID].effect
                 for k,v in pairs(effect) do
                     print(k,v)
