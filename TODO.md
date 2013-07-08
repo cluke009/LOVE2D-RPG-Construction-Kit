@@ -5,6 +5,8 @@ All the stuff I haven't implemented yet
 General
 -------------
 * Save X,Y of hero instead of entry spawn.
+* Sort item lists
+* Page/Scroll item list
 * Confirm/Deny action for dialog boxes.
 * Gold system.
 * Mini-map
