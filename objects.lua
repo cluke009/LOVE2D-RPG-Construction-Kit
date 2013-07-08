@@ -1,4 +1,5 @@
 local Trigger   = require 'triggers'
+local Battle    = require 'battle'
 local dialog    = require 'assets.tables.dialog'
 local enemies   = require 'assets.tables.enemies'
 local items     = require 'assets.tables.items'
@@ -112,6 +113,7 @@ Enemy = Tile:extend
 
             if math.abs(otherX - selfX) <= offsetX and math.abs(otherY - selfY) <= offsetY then
                 if the.keys:justPressed('return') then
+
                     -- Display dialog
                     local d = ''
                     if self.dialog then
@@ -124,6 +126,8 @@ Enemy = Tile:extend
                     Dialog:new{
                         text = d
                     }:activate()
+                    Battle.enemyInit = self.id
+                    Battle:activate(self.id)
                 end
             end
         end
