@@ -22,6 +22,8 @@
             These will only apply if stats of the same name are found on the heroes.
         use - The id or ids of the characters that can use this equipment
             -- Not currently implemented.
+        value - Cost to buy
+            -- Not currently implemented.
 
     Example code:
     (begin code)
@@ -75,8 +77,8 @@ return
         kind = 'Boots',
         desc = 'Speed + 30, Defense + 10',
         effect = {
-            spd = 30,
-            def = 10,
+            spd = 10,
+            def = 5,
         },
         use = {1},
     },
@@ -100,10 +102,7 @@ return
         desc = 'Attack + 50',
         kind = 'Weapon',
         effect = {
-            atk = 10,
-            mag = 20,
-            def = 30,
-            mdef = 40,
+            atk = 170,
         },
         use = {2},
     },
