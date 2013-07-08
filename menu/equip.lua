@@ -294,9 +294,7 @@ EquipHero = Group:new
             if itemID and itemID ~= 0 then
                 local effect = equipment[itemID].effect
                 for k,v in pairs(effect) do
-                    print(k,v)
                     equipmentEffect[k] = equipmentEffect[k] + v
-                    print(equipmentEffect[k])
                 end
             end
         end
@@ -323,7 +321,7 @@ EquipHero = Group:new
             width = 100,
             tint = {0,0,0},
             font = 20,
-            text = self.text.atk
+            text = 'ATK ' .. equipmentEffect.atk
         }
 
         self.def = Text:new{

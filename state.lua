@@ -2,7 +2,7 @@
 -- Game State
 --
 STATE = {
-    map = 'home',
+    map = 'east',
     hud = true,
     init = true,
     heroStartX = 480,
