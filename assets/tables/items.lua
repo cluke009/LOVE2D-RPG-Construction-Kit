@@ -45,8 +45,8 @@ return
         height = 64,
         desc = 'Max HP + 20, HP + 10',
         effect = {
-            {'hpmax', 20},
-            {'hp', 50},
+            { 'hpmax', 20 },
+            { 'hp', 50 },
         }
     },
     [2] = {
@@ -56,7 +56,7 @@ return
         height = 64,
         desc = 'MP + 20',
         effect = {
-            {'mp', 20},
+            { 'mp', 20 },
         }
     },
     [3] = {
@@ -66,7 +66,7 @@ return
         height = 64,
         desc = 'A tasty shake that restores 20 MP',
         effect = {
-            {'mp', 20},
+            { 'mp', 20 },
         }
     },
     [4] = {
@@ -75,7 +75,7 @@ return
         width = 64,
         height = 64,
         effect = {
-            {'mp', 20},
+            { 'mp', 20 },
         }
     },
     [5] = {
@@ -84,7 +84,7 @@ return
         width = 64,
         height = 64,
         effect = {
-            {'mp', 20},
+            { 'mp', 20 },
         }
     },
 }

@@ -61,24 +61,24 @@ return
             con = 24,
             int = 24,
             wis = 14,
-            spd = 5,
+            spd = 25,
         },
         exp = 300,
-        group = {2,2,2,2},
+        group = { 2, 1 },
         img = {
             idle = {
                 image = 'assets/img/water_dragon.png',
-                frames = {1,2,3,},
+                frames = { 1, 2, 3, },
                 fps = 5
             },
             attack = {
                 image = 'assets/img/water_dragon.png',
-                frames = {1,2,3,},
+                frames = { 1, 2, 3, },
                 fps = 5
             },
             dmg = {
                 image = 'assets/img/water_dragon.png',
-                frames = {1,2,3,},
+                frames = { 1, 2, 3, },
                 fps = 5
             },
         }
@@ -100,21 +100,21 @@ return
             spd = 5,
         },
         exp = 300,
-        group = {1,2},
+        group = { 1, 2 },
         img = {
             idle = {
                 image = 'assets/img/panda_dragon_idle.png',
-                frames = {1,2,3,},
+                frames = { 1, 2, 3, },
                 fps = 5
             },
             attack = {
                 image = 'assets/img/panda_dragon_attack.png',
-                frames = {1,2,3,},
+                frames = { 1, 2, 3, },
                 fps = 5
             },
             dmg = {
                 image = 'assets/img/panda_dragon_dmg.png',
-                frames = {1,2,3,},
+                frames = { 1, 2, 3, },
                 fps = 5
             },
         }
@@ -139,17 +139,17 @@ return
             spd = 30,
         },
         exp = 300,
-        group = {1,2},
-        skills = {'heal', 'water1'},
+        group = { 1, 2 },
+        skills = { 'heal', 'water1' },
         img = {
             idle = {
                 path = 'assets/img/panda_dragon.png',
-                frames = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20},
+                frames = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20 },
                 fps = 15
             },
             attack = {
                 path = 'path/',
-                frames = {17,19,18,19,17,19,18,19,17,19,18,19,17,19,18,19,17,19,},
+                frames = { 17, 19, 18, 19, 17, 19, 18, 19, 17, 19, 18, 19, 17, 19, 18, 19, 17, 19, },
                 fps = 5
             },
             heal = {
@@ -189,12 +189,12 @@ return
             spd = 5,
         },
         exp = 300,
-        group = {1,2},
-        skills = {'heal', 'water1'},
+        group = { 1, 2 },
+        skills = { 'heal', 'water1' },
         img = {
             idle = {
                 path = 'assets/img/water_dragon.png',
-                frames = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,},
+                frames = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, },
                 fps = 15
             },
             attack = {

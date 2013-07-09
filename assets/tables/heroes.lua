@@ -45,8 +45,8 @@ return
         height = 32,
         stats = {
             level = 1,
-            hp = 400,
-            hpmax = 400,
+            hp = 1000000200,
+            hpmax = 1000000200,
             mp = 60,
             mpmax = 70,
             exp = 50,

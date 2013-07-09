@@ -54,7 +54,7 @@ return
         effect = {
             def = 50,
         },
-        use = {1},
+        use = { 1 },
     },
     [2] = {
         name = 'Hoody',
@@ -67,7 +67,7 @@ return
             def = 10,
             mdef = 20,
         },
-        use = {2},
+        use = { 2 },
     },
     [3] = {
         name = 'Speed Boots',
@@ -80,7 +80,7 @@ return
             spd = 10,
             def = 5,
         },
-        use = {1},
+        use = { 1 },
     },
     [4] = {
         name = 'Rifle',
@@ -92,7 +92,7 @@ return
         effect = {
             atk = 50,
         },
-        use = {1},
+        use = { 1 },
     },
     [5] = {
         name = 'Machete',
@@ -104,6 +104,6 @@ return
         effect = {
             atk = 170,
         },
-        use = {2},
+        use = { 2 },
     },
 }
