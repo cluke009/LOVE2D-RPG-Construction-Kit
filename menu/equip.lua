@@ -1,6 +1,6 @@
 -- Require needed stuff locally
-local Menu      = require 'menu.menu'
-local equipment = require 'assets.tables.equipment'
+local Menu = require'menu.menu'
+local equipment = require'assets.tables.equipment'
 
 -- Make our classes available to each other
 local Equip, Equipped, EquipList, EquipHero
@@ -9,24 +9,24 @@ local Equip, Equipped, EquipList, EquipHero
 local localHero, localItem, localItemType
 
 -- Extend subview with our ready trigger
-Subview = Subview:extend { ready = true }
-Group   = Group:extend { ready = true }
+Subview = Subview:extend{ ready = true }
+Group = Group:extend{ ready = true }
 
 -- Some helper functions to delegate object update/removal
-local subviewRemove = function ( this )
+local subviewRemove = function(this)
     if the.keys:justPressed('escape') then
         this:deactivate()
     end
 end
 
-local subviewRedraw = function ( this, ...)
+local subviewRedraw = function(this, ...)
     if arg[2] then
         this.ready = true
     end
     if this.ready == true then
         this:onReady()
         this.ready = false
-        the.app.view:flash({255, 255, 255}, 1.5)
+        the.app.view:flash({ 255, 255, 255 }, 1.5)
     end
 end
 
@@ -43,10 +43,9 @@ end
 --  - localHero
 -- Activates
 --  - Equipped
---]]----------------------------------------------------------------------------
-Equip = Subview:new
-{
-    onNew = function ( self )
+--]] ----------------------------------------------------------------------------
+Equip = Subview:new{
+    onNew = function(self)
 
         local links = {}
 
@@ -71,13 +70,11 @@ Equip = Subview:new
             step = 100,
             items = links
         })
-
     end,
-    onDeactivate = function ( self )
-        -- spriteRemove(self)
+    onDeactivate = function(self)
+    -- spriteRemove(self)
     end,
-
-    onUpdate = function ( self )
+    onUpdate = function(self)
         subviewRemove(self)
     end
 }
@@ -89,10 +86,9 @@ Equip = Subview:new
 --  - localItemType
 -- Activates
 --  - EquipList
---]]----------------------------------------------------------------------------
-Equipped = Subview:new
-{
-    onReady = function ( self )
+--]] ----------------------------------------------------------------------------
+Equipped = Subview:new{
+    onReady = function(self)
         self:remove(self.fill)
         self:remove(self.menu)
         self:remove(EquipHero)
@@ -101,23 +97,23 @@ Equipped = Subview:new
             width = 600,
             x = 360,
             height = 600,
-            fill = {255, 255, 255, 255}
+            fill = { 255, 255, 255, 255 }
         }
 
         -- Get kinds of equipment
         local unique = {}
-        for i,v in ipairs(equipment) do
+        for i, v in ipairs(equipment) do
             unique[v.kind] = true
         end
 
         -- Create menu
         local links = {}
-        for k,v in pairs(unique) do
+        for k, v in pairs(unique) do
             local heroID = localHero.key
             local itemID = STATE.equip[heroID][k]
             local ename = ''
 
-            if itemID  and itemID ~= 0 then
+            if itemID and itemID ~= 0 then
                 ename = equipment[itemID].name
             end
 
@@ -134,7 +130,8 @@ Equipped = Subview:new
 
         -- Add menu to stage
         self.menu = Menu:new{
-            x = 20, y = 80,
+            x = 20,
+            y = 80,
             step = 24,
             width = 300,
             items = links
@@ -142,19 +139,18 @@ Equipped = Subview:new
         self:add(self.fill)
         self:add(self.menu)
         self:add(EquipHero)
-
     end,
-    onActivate = function ( self )
+    onActivate = function(self)
         self.ready = true
     end,
-    onDeactivate = function ( self )
+    onDeactivate = function(self)
         self:remove(self.fill)
         self:remove(self.menu)
         self:remove(EquipHero)
     end,
-    onNew = function ( self )
+    onNew = function(self)
     end,
-    onUpdate = function ( self )
+    onUpdate = function(self)
         subviewRedraw(self)
         subviewRemove(self)
     end
@@ -166,16 +162,15 @@ Equipped = Subview:new
 --  -
 -- Activates
 --  -
---]]----------------------------------------------------------------------------
-EquipList = Subview:new
-{
-    onReady = function ( self )
+--]] ----------------------------------------------------------------------------
+EquipList = Subview:new{
+    onReady = function(self)
 
-        -- Add background
+    -- Add background
         self.fill = Fill:new{
             width = 300,
             height = 600,
-            fill = {255, 255, 255, 255}
+            fill = { 255, 255, 255, 255 }
         }
         self:add(self.fill)
 
@@ -186,7 +181,7 @@ EquipList = Subview:new
         if next(STATE.inventory.equipment) then
 
             -- Get equipment of specified type from master equipment list
-            for k,v in pairs(STATE.inventory.equipment) do
+            for k, v in pairs(STATE.inventory.equipment) do
                 if equipment[k].kind == localItemType then
                     ofType[k] = equipment[k]
                     ofType[k].amount = v
@@ -203,7 +198,7 @@ EquipList = Subview:new
             }
 
             -- Remove already equipped items from available items
-            for k,v in pairs(STATE.equip) do
+            for k, v in pairs(STATE.equip) do
                 local typeID = v[localItemType]
 
                 if typeID and typeID == ofType[typeID].key then
@@ -215,21 +210,20 @@ EquipList = Subview:new
             end
 
             -- TODO: Check if hero can use item
-
         end
 
-       -- table.sort(ofType)
+        -- table.sort(ofType)
 
 
         -- If we have any items availible to equip display them
         if next(ofType) then
 
             local links = {}
-            for k,v in pairs(ofType) do
+            for k, v in pairs(ofType) do
                 table.insert(links, {
                     name = ofType[k].name .. ' x' .. ofType[k].amount,
                     hover = function()
-                        -- self.text.text = ofType[k].desc
+                    -- self.text.text = ofType[k].desc
                     end,
                     action = function()
                         STATE.equip[localHero.key][localItemType] = k
@@ -240,7 +234,8 @@ EquipList = Subview:new
 
             -- Add menu
             self.menu = Menu:new{
-                x = 20, y = 80,
+                x = 20,
+                y = 80,
                 step = 24,
                 width = 300,
                 items = links
@@ -248,27 +243,26 @@ EquipList = Subview:new
             self:add(self.menu)
         end
     end,
-    onActivate = function ( self )
+    onActivate = function(self)
         self.ready = true
     end,
-    onDeactivate = function ( self )
+    onDeactivate = function(self)
         Equipped.ready = true
         EquipHero.ready = true
         self:remove(self.menu)
         self:remove(self.fill)
     end,
-    onNew = function ( self )
+    onNew = function(self)
     end,
-    onUpdate = function ( self )
+    onUpdate = function(self)
         subviewRedraw(self)
         subviewRemove(self)
     end
 }
 
-EquipHero = Group:new
-{
+EquipHero = Group:new{
     text = {},
-    onReady = function ( self )
+    onReady = function(self)
         self:remove(self.image)
         self:remove(self.name)
         self:remove(self.atk)
@@ -279,21 +273,21 @@ EquipHero = Group:new
 
         -- Get kinds of equipment
         local unique = {}
-        for i,v in ipairs(equipment) do
+        for i, v in ipairs(equipment) do
             unique[v.kind] = true
         end
 
 
         -- Get stat totals with equiped items
         local equipmentEffect = table.copy(STATE.heroes[localHero.key].stats)
-        for k,v in pairs(unique) do
+        for k, v in pairs(unique) do
 
-                    local heroID = localHero.key
-                    local itemID = STATE.equip[heroID][k]
+            local heroID = localHero.key
+            local itemID = STATE.equip[heroID][k]
 
             if itemID and itemID ~= 0 then
                 local effect = equipment[itemID].effect
-                for k,v in pairs(effect) do
+                for k, v in pairs(effect) do
                     equipmentEffect[k] = equipmentEffect[k] + v
                 end
             end
@@ -311,7 +305,7 @@ EquipHero = Group:new
             x = 32 + 370,
             y = 0 + 40,
             width = 100,
-            tint = {0,0,0},
+            tint = { 0, 0, 0 },
             font = 24,
             text = hero.name
         }
@@ -319,7 +313,7 @@ EquipHero = Group:new
             x = 32 + 370,
             y = 32 + 80,
             width = 100,
-            tint = {0,0,0},
+            tint = { 0, 0, 0 },
             font = 20,
             text = 'ATK ' .. equipmentEffect.atk
         }
@@ -328,7 +322,7 @@ EquipHero = Group:new
             x = 32 + 370,
             y = 32 + 120,
             width = 100,
-            tint = {0,0,0},
+            tint = { 0, 0, 0 },
             font = 20,
             text = 'DEF ' .. equipmentEffect.def
         }
@@ -336,7 +330,7 @@ EquipHero = Group:new
             x = 32 + 370,
             y = 32 + 160,
             width = 100,
-            tint = {0,0,0},
+            tint = { 0, 0, 0 },
             font = 20,
             text = 'MAG ' .. equipmentEffect.mag
         }
@@ -344,7 +338,7 @@ EquipHero = Group:new
             x = 32 + 370,
             y = 32 + 200,
             width = 100,
-            tint = {0,0,0},
+            tint = { 0, 0, 0 },
             font = 20,
             text = 'MDEF ' .. equipmentEffect.mdef
         }
@@ -352,7 +346,7 @@ EquipHero = Group:new
             x = 32 + 370,
             y = 32 + 240,
             width = 100,
-            tint = {0,0,0},
+            tint = { 0, 0, 0 },
             font = 20,
             text = 'SPD ' .. equipmentEffect.spd
         }
@@ -364,7 +358,7 @@ EquipHero = Group:new
         self:add(self.mdef)
         self:add(self.spd)
     end,
-    onUpdate = function ( self )
+    onUpdate = function(self)
         subviewRedraw(self)
     end
 }

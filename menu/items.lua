@@ -1,35 +1,35 @@
-local items = require 'assets.tables.items'
-local Menu  = require 'menu.menu'
-local Party = require 'menu.party'
+local items = require'assets.tables.items'
+local Menu = require'menu.menu'
+local Party = require'menu.party'
 
 local Select, Items
 
-Items = Subview:new
-{
+Items = Subview:new{
     ready = true,
     party = Party:new(),
     fill = Fill:new{
         width = 800,
         height = 600,
-        fill = {255, 255, 255, 255}
+        fill = { 255, 255, 255, 255 }
     },
     text = Text:new{
-        x = 20, y = 40,
+        x = 20,
+        y = 40,
         width = 480,
-        tint = {0,0,0},
+        tint = { 0, 0, 0 },
         font = 24,
         text = 'No items.'
     },
-    onNew = function ( self )
+    onNew = function(self)
         self:add(self.fill)
         self:add(self.party)
     end,
-    onUpdate = function ( self )
+    onUpdate = function(self)
         if self.ready == true then
 
             if next(STATE.inventory.item) then
                 local links = {}
-                for k,v in pairs(STATE.inventory.item) do
+                for k, v in pairs(STATE.inventory.item) do
                     table.insert(links, {
                         name = items[k].name .. ' x' .. v,
                         hover = function()
@@ -44,7 +44,8 @@ Items = Subview:new
                 end
 
                 self.menu = Menu:new{
-                    x = 20, y = 80,
+                    x = 20,
+                    y = 80,
                     step = 24,
                     width = 300,
                     items = links
@@ -74,9 +75,8 @@ Items = Subview:new
     end
 }
 
-Select = Subview:new
-{
-    onActivate = function ( self )
+Select = Subview:new{
+    onActivate = function(self)
 
         local links = {}
 
@@ -86,11 +86,11 @@ Select = Subview:new
                     name = '',
                     action = function()
                         local effect = self.item.effect
-                        local key    = self.item.key
+                        local key = self.item.key
                         -- Apply effects
                         for i = 1, #effect do
 
-                            local stat  = effect[i][1]
+                            local stat = effect[i][1]
                             local value = effect[i][2]
                             local sHero = STATE.heroes[k].stats[stat]
 
@@ -101,7 +101,6 @@ Select = Subview:new
                             else
                                 STATE.heroes[k].stats[stat] = sHero + value
                             end
-
                         end
 
                         -- Update inventory
@@ -129,9 +128,8 @@ Select = Subview:new
             items = links
         }
         self:add(self.m)
-
     end,
-    onUpdate = function ( self )
+    onUpdate = function(self)
         if the.keys:justPressed('escape') then
             self:remove(self.m)
             self:deactivate()

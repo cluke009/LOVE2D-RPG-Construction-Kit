@@ -1,11 +1,13 @@
-local Trigger   = require 'triggers'
-local Battle    = require 'battle'
-local dialog    = require 'assets.tables.dialog'
-local enemies   = require 'assets.tables.enemies'
-local items     = require 'assets.tables.items'
-local equipment = require 'assets.tables.equipment'
-local obj       = require 'assets.tables.obj'
-local npc       = require 'assets.tables.npcs'
+local Trigger = require'triggers'
+-- local Battle    = require 'battle'
+local Battle = require'battleView'
+
+local dialog = require'assets.tables.dialog'
+local enemies = require'assets.tables.enemies'
+local items = require'assets.tables.items'
+local equipment = require'assets.tables.equipment'
+local obj = require'assets.tables.obj'
+local npc = require'assets.tables.npcs'
 
 --[[----------------------------------------------------------------------------
 --------------------------------------------------------------------------------
@@ -13,16 +15,15 @@ local npc       = require 'assets.tables.npcs'
     DOOR - Where you leave a room.
 
 --------------------------------------------------------------------------------
-]]------------------------------------------------------------------------------
-Door = Tile:extend
-{
-    onCollide = function (self, other)
+]] ------------------------------------------------------------------------------
+Door = Tile:extend{
+    onCollide = function(self, other)
         if other:instanceOf(Hero) then
             STATE.prevmap = STATE.map
             STATE.map = self.to
 
             the.app.view = MapView:new()
-            the.app.view:flash({0, 0, 0}, .75)
+            the.app.view:flash({ 0, 0, 0 }, .75)
         end
     end
 }
@@ -33,10 +34,9 @@ Door = Tile:extend
     SPAWN - Where you enter a room
 
 --------------------------------------------------------------------------------
-]]------------------------------------------------------------------------------
-Spawn = Tile:extend
-{
-    onNew = function ( self )
+]] ------------------------------------------------------------------------------
+Spawn = Tile:extend{
+    onNew = function(self)
         if STATE.prevmap and self.from == STATE.prevmap then
             STATE.heroStartX = self.x
             STATE.heroStartY = self.y
@@ -50,15 +50,13 @@ Spawn = Tile:extend
     HERO - Player sprite
 
 --------------------------------------------------------------------------------
-]]------------------------------------------------------------------------------
-Hero = Animation:extend
-{
+]] ------------------------------------------------------------------------------
+Hero = Animation:extend{
     -- TODO: add config
-    width  = 32,
+    width = 32,
     height = 32,
-    image  = 'assets/img/hero.png',
-
-    onUpdate = function (self)
+    image = 'assets/img/hero.png',
+    onUpdate = function(self)
         self.velocity.x = 0
         self.velocity.y = 0
 
@@ -73,7 +71,6 @@ Hero = Animation:extend
             self.velocity.x = 300
         end
     end
-
 }
 
 --[[----------------------------------------------------------------------------
@@ -82,34 +79,33 @@ Hero = Animation:extend
     ENEMY
 
 --------------------------------------------------------------------------------
-]]------------------------------------------------------------------------------
-Enemy = Tile:extend
-{
+]] ------------------------------------------------------------------------------
+Enemy = Tile:extend{
     onNew = function(self)
-        -- TODO: add config
-        self.id     = tonumber(self.id)
+    -- TODO: add config
+        self.id = tonumber(self.id)
         self.dialog = tonumber(self.dialog)
-        self.image  = enemies[self.id]['image']
-        self.width  = enemies[self.id]['width']
+        self.image = enemies[self.id]['image']
+        self.width = enemies[self.id]['width']
         self.height = enemies[self.id]['height']
     end,
-    onCollide = function (self, other)
+    onCollide = function(self, other)
         if other:instanceOf(Hero) then
             self.other = other
             self:displace(other)
         end
     end,
-    onUpdate = function (self)
+    onUpdate = function(self)
         if self.other then
 
-            local otherX = self.other.x + (self.other.width/2)
-            local otherY = self.other.y + (self.other.height/2)
+            local otherX = self.other.x + (self.other.width / 2)
+            local otherY = self.other.y + (self.other.height / 2)
 
-            local selfX = self.x + (self.width/2)
-            local selfY = self.y + (self.height/2)
+            local selfX = self.x + (self.width / 2)
+            local selfY = self.y + (self.height / 2)
 
-            local offsetX = (self.width/2) + (self.other.width/2)
-            local offsetY = (self.height/2) + (self.other.height/2)
+            local offsetX = (self.width / 2) + (self.other.width / 2)
+            local offsetY = (self.height / 2) + (self.other.height / 2)
 
             if math.abs(otherX - selfX) <= offsetX and math.abs(otherY - selfY) <= offsetY then
                 if the.keys:justPressed('return') then
@@ -120,14 +116,16 @@ Enemy = Tile:extend
                         d = dialog[self.dialog]
                     else
                         d = string.gsub(dialog.enemies, '$enemy', enemies[self.id].name)
-                        d = {d}
+                        d = { d }
                     end
 
                     Dialog:new{
                         text = d
                     }:activate()
                     Battle.enemyInit = self.id
+                    TEMP['objects.Enemy.onUpdate.enemyID'] = self.id
                     Battle:activate(self.id)
+                    TEMP['objects.Enemy.onUpdate.enemyID'] = nil
                 end
             end
         end
@@ -140,12 +138,11 @@ Enemy = Tile:extend
     CHEST
 
 --------------------------------------------------------------------------------
-]]------------------------------------------------------------------------------
-Chest = Tile:extend
-{
-    onNew = function ( self )
+]] ------------------------------------------------------------------------------
+Chest = Tile:extend{
+    onNew = function(self)
 
-        -- Get item type
+    -- Get item type
         if self.item then
             self.kind = 'item'
         elseif self.equipment then
@@ -155,11 +152,11 @@ Chest = Tile:extend
         end
 
         -- Add params
-        self.uid       = tonumber(self.x .. self.y)
-        self.item      = tonumber(self.item)
+        self.uid = tonumber(self.x .. self.y)
+        self.item = tonumber(self.item)
         self.equipment = tonumber(self.equipment)
-        self.weapon    = tonumber(self.weapon)
-        self.id        = self[self.kind]
+        self.weapon = tonumber(self.weapon)
+        self.id = self[self.kind]
 
         -- Set state of chest
         if STATE[STATE.map] == nil then
@@ -173,25 +170,24 @@ Chest = Tile:extend
             self.open = 1
             self.image = 'assets/img/chestopen.gif'
         end
-
     end,
-    onCollide = function (self, other)
+    onCollide = function(self, other)
         if other:instanceOf(Hero) then
             self.other = other
             self:displace(other)
         end
     end,
-    onUpdate = function (self)
+    onUpdate = function(self)
         if self.other then
 
-            local otherX = self.other.x + (self.other.width/2)
-            local otherY = self.other.y + (self.other.height/2)
+            local otherX = self.other.x + (self.other.width / 2)
+            local otherY = self.other.y + (self.other.height / 2)
 
-            local selfX = self.x + (self.width/2)
-            local selfY = self.y + (self.height/2)
+            local selfX = self.x + (self.width / 2)
+            local selfY = self.y + (self.height / 2)
 
-            local offsetX = (self.width/2) + (self.other.width/2)
-            local offsetY = (self.height/2) + (self.other.height/2)
+            local offsetX = (self.width / 2) + (self.other.width / 2)
+            local offsetY = (self.height / 2) + (self.other.height / 2)
 
             if math.abs(otherX - selfX) <= offsetX and math.abs(otherY - selfY) <= offsetY then
                 if the.keys:justPressed('return') and self.open == 0 then
@@ -217,11 +213,10 @@ Chest = Tile:extend
                         elseif self.equipment then
                             d = string.gsub(dialog.items, '$item', equipment[self.id].name)
                         end
-                        d = {d}
+                        d = { d }
                     end
 
-                    Dialog:new{text = d}:activate()
-
+                    Dialog:new{ text = d }:activate()
                 end
             end
         end
@@ -234,34 +229,33 @@ Chest = Tile:extend
     Obj
 
 --------------------------------------------------------------------------------
-]]------------------------------------------------------------------------------
-Obj = Tile:extend
-{
+]] ------------------------------------------------------------------------------
+Obj = Tile:extend{
     onNew = function(self)
-        -- TODO: add config
-        self.id     = tonumber(self.id)
+    -- TODO: add config
+        self.id = tonumber(self.id)
         self.dialog = tonumber(self.dialog)
-        self.image  = obj[self.id]['image']
-        self.width  = obj[self.id]['width']
+        self.image = obj[self.id]['image']
+        self.width = obj[self.id]['width']
         self.height = obj[self.id]['height']
     end,
-    onCollide = function (self, other)
+    onCollide = function(self, other)
         self.other = other
         if other:instanceOf(Hero) and self.solid ~= 'false' then
             self:displace(other)
         end
     end,
-    onUpdate = function (self)
+    onUpdate = function(self)
         if self.other then
 
-            local otherX = self.other.x + (self.other.width/2)
-            local otherY = self.other.y + (self.other.height/2)
+            local otherX = self.other.x + (self.other.width / 2)
+            local otherY = self.other.y + (self.other.height / 2)
 
-            local selfX = self.x + (self.width/2)
-            local selfY = self.y + (self.height/2)
+            local selfX = self.x + (self.width / 2)
+            local selfY = self.y + (self.height / 2)
 
-            local offsetX = (self.width/2) + (self.other.width/2)
-            local offsetY = (self.height/2) + (self.other.height/2)
+            local offsetX = (self.width / 2) + (self.other.width / 2)
+            local offsetY = (self.height / 2) + (self.other.height / 2)
 
             if math.abs(otherX - selfX) <= offsetX and math.abs(otherY - selfY) <= offsetY then
                 if the.keys:justPressed('return') then
@@ -271,7 +265,7 @@ Obj = Tile:extend
                         }:activate()
                     end
                     if self.trigger then
-                        Trigger[self.trigger]( )
+                        Trigger[self.trigger]()
                     end
                     if self.scene then
                         Trigger:scene(self.scene)
@@ -289,15 +283,13 @@ Obj = Tile:extend
     NPC
 
 --------------------------------------------------------------------------------
-]]------------------------------------------------------------------------------
-NPC = Obj:extend
-{
+]] ------------------------------------------------------------------------------
+NPC = Obj:extend{
     onNew = function(self)
-        self.id     = tonumber(self.id)
+        self.id = tonumber(self.id)
         self.dialog = tonumber(self.dialog)
-        self.image  = npc[self.id]['image']
-        self.width  = npc[self.id]['width']
+        self.image = npc[self.id]['image']
+        self.width = npc[self.id]['width']
         self.height = npc[self.id]['height']
     end,
-
 }

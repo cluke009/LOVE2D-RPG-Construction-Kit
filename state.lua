@@ -9,29 +9,33 @@ STATE = {
     heroStartY = 480,
     inventory = {
         item = {},
-        equipment = {[2]=1,[3]=1,[5]=1},
+        equipment = { [2] = 1, [3] = 1, [5] = 1 },
     },
     -----------------------------------------
     -- not configurable beyond this point
     -----------------------------------------
-    heroes = require 'assets.tables.heroes',
+    heroes = require'assets.tables.heroes',
     equip = {},
     menu = {
         update = false
     },
 }
+--
+-- For table that can be immediately destroyed
+-- Current convention TEMP[<filename>.<class>.<method>.<property>]
+TEMP = {}
 
 -- Get all unique type of equipment
 local unique = {}
-local equipment = require 'assets.tables.equipment'
-for i,v in ipairs(equipment) do
+local equipment = require'assets.tables.equipment'
+for i, v in ipairs(equipment) do
     unique[v.kind] = true
 end
 
 -- Add equippable types to STATE
-for i,v in ipairs(STATE.heroes) do
+for i, v in ipairs(STATE.heroes) do
     STATE.equip[i] = {}
-    for k,v in pairs(unique) do
+    for k, v in pairs(unique) do
         STATE.equip[i][k] = false
     end
 end
@@ -45,7 +49,7 @@ if STATE.init then
 end
 
 -- Load clean game state
-function initializeSTATE( )
+function initializeSTATE()
     print('INIT')
     STATE = table.copy(stateCopy)
 end

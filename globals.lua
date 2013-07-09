@@ -1,8 +1,8 @@
 function table.copy(t)
     local t2 = {}
-        for k,v in pairs(t) do
-            t2[k] = v
-        end
+    for k, v in pairs(t) do
+        t2[k] = v
+    end
     return t2
 end
 
@@ -12,13 +12,13 @@ function table.deepcopy(t)
     end
     local mt = getmetatable(t)
     local res = {}
-    for k,v in pairs(t) do
+    for k, v in pairs(t) do
         if type(v) == 'table' then
             v = table.deepcopy(v)
         end
         res[k] = v
     end
-    setmetatable(res,mt)
+    setmetatable(res, mt)
     return res
 end
 
@@ -37,17 +37,19 @@ function math.round(v, p)
     if v < 0 then
         res = -res;
     end;
--- return rounded value
+    -- return rounded value
     return res;
-end;
+end
+
+;
 
 
 -- https://love2d.org/forums/viewtopic.php?f=4&t=10301#p62273
 function random(min, max, precision)
-   local precision = precision or 0
-   local num = math.random()
-   local range = math.abs(max - min)
-   local offset = range * num
-   local randomnum = min + offset
-   return math.floor(randomnum * math.pow(10, precision) + 0.5) / math.pow(10, precision)
+    local precision = precision or 0
+    local num = math.random()
+    local range = math.abs(max - min)
+    local offset = range * num
+    local randomnum = min + offset
+    return math.floor(randomnum * math.pow(10, precision) + 0.5) / math.pow(10, precision)
 end
