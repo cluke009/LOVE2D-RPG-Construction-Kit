@@ -1,11 +1,30 @@
-local BattleModel = require'battleModel'
-local formula = require'formula'
+local BattleModel = require 'battleModel'
+local Formula     = require 'formula'
 
+--
+-- Class: BattleController
+-- Communicate between the model and view
+--
+-- Require:
+-- - battleModel
+-- - formula
+--
 local BattleController = {
+    --
+    -- Method: init
+    -- Copy data from BattleModel
+    --
     init = function(self)
         self.data = BattleModel:init()
-    -- pretty.dump(self.data)
     end,
+    --
+    -- Method: updateQueue
+    -- Update BattleModel.data.queue
+    --
+    -- Arguments:
+    --      kind - The type of player hero/enemy
+    --      ID - ID to use
+    --
     updateQueue = function(self, kind, ID)
     -- Move first item to last item
         local size = #self.data.queue
@@ -31,18 +50,30 @@ local BattleController = {
             self.data.queue[k] = nil
             i = i + 1
         end
-
-    -- pretty.dump(self.data.queue)
     end,
+    --
+    -- Method: enemyTurn
+    -- Run AI and take enemy turn.
+    --
+    -- Returns:
+    --      dmg - dmg done
+    --      heroID - ID of hero being attacked
+    --
     enemyTurn = function(self)
-    -- TODO: handle total party death
-        local heroID = formula.enemyAI(self.data.hero)
+        local heroID = Formula.enemyAI(self.data.hero)
         local enemyID = self.data.queue[1].key
         local dmg
-        dmg, _ = formula.attack(self.data.enemy[enemyID], self.data.hero[heroID])
+        dmg, _ = Formula.attack(self.data.enemy[enemyID], self.data.hero[heroID])
 
         return dmg, heroID
     end,
+    --
+    -- Method: win
+    -- Checks to see if either side has won yet.
+    --
+    -- Returns:
+    --      boolean
+    --
     win = function(self, ID)
         local hero = {}
         local enemy = {}
@@ -60,12 +91,31 @@ local BattleController = {
             return false, 'enemy dead'
         end
     end,
+    --
+    -- Method: heroTurn
+    -- Complete "action" from hero turn.
+    --
+    -- Returns:
+    --      ... - variable
+    --
     heroTurn = function(self)
         if self.arg.action == 'attack' then
-            dmg, _ = formula.attack(self.arg[1], self.arg[2])
+            dmg, _ = Formula.attack(self.arg[1], self.arg[2])
             return dmg, self.arg.args[2]
         end
     end,
+    --
+    -- Method: action
+    -- Puts hero action into a queue to be completed with heroTurn.
+    -- This works as a pass thru for actions in formula.lua
+    --
+    -- Arguments:
+    --      action - The type of action to be taken
+    --      ... - The arguments for said action
+    --
+    -- Returns:
+    --      ... - variable
+    --
     action = function(self, action, ...)
         self.arg = {
             self.data.hero[arg[1]],
@@ -76,6 +126,10 @@ local BattleController = {
         local dmg = 0
         return dmg, arg[2]
     end,
+    --
+    -- Method: write
+    -- Write any permanent changes made to the heroes back to the state object.
+    --
     write = function(self)
     -- onDeactive write changes to STATE
     end,

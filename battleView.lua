@@ -1,5 +1,15 @@
 local BattleController = require'battleController'
 
+--
+-- Class: BattleView
+-- Display code for battles
+--
+-- Extends:
+--      <Subview>
+--
+-- Require:
+-- - battleController
+--
 local BattleView = Subview:new{
     onActivate = function(self)
         BattleController:init()

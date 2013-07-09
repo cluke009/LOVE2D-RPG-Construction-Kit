@@ -1,17 +1,31 @@
---[[
-    Class: Trigger
-    Custom callbacks to use within Tiled.
-
-    Extends:
-         <Class>
-
-    Method:
-        scene - triggers cutscene
---]]
+--
+-- Class: Trigger
+-- Custom callbacks to use within Tiled.
+--
+-- Extends:
+--      <Class>
+--
 local Trigger = Class:extend{
+    --
+    -- Method: test
+    -- A testing function for triggers.
+    --
+    -- Returns:
+    --      Prints test to the console.
+    --
     test = function(self)
-        print('trigger test')
+        print('test')
     end,
+    --
+    -- Method: scene
+    -- Triggers cutscene from Tiled. Replaces "the.app.view" with scene.
+    --
+    -- Arguments:
+    --      scene - Filename of scene to load.
+    --
+    -- Require:
+    -- - 'assets.cutscenes.' .. scene
+    --
     scene = function(self, scene)
         scene = require('assets.cutscenes.' .. scene)
         local myView = View:extend{

@@ -1,20 +1,14 @@
---[[----------------------------------------------------------------------------
---------------------------------------------------------------------------------
+--
+-- Title: HUD / Mapview
+--
 
-    Initialize any empty game data that needs to be present before we load.
-    Set init to false so it isn't loaded more than once
-
---------------------------------------------------------------------------------
-]] ------------------------------------------------------------------------------
-
-
---[[----------------------------------------------------------------------------
---------------------------------------------------------------------------------
-
-    HUD - Displays currently loaded map.
-
---------------------------------------------------------------------------------
-]] ------------------------------------------------------------------------------
+--
+-- Class: HUD
+-- Display the currently loaded map.
+--
+-- Extends:
+--      <Group>
+--
 local Hud = Group:new{
     onNew = function(self)
         self.translateScale.x = 0
@@ -37,19 +31,18 @@ local Hud = Group:new{
     end
 }
 
---[[
-    Class: MapView
-    Our main maploader.
-
-    Extends:
-         <View>
-
-    Example code:
-        (begin code)
-        self.view = MapView:new()
-        (end code)
---]]
-
+--
+-- Class: MapView
+-- Our main maploader.
+--
+-- Extends:
+--      <View>
+--
+-- Example code:
+--     (begin code)
+--     self.view = MapView:new()
+--     (end code)
+--
 MapView = View:extend{
     onNew = function(self)
 

@@ -1,9 +1,20 @@
-local t         = require 'tableController'
-local Enemy     = t.Enemy
-local Equipment = t.Equipment
-local Item      = t.Item
+local assets    = require 'assets'
+local Enemy     = assets.Enemy
+local Equipment = assets.Equipment
+local Item      = assets.Item
 
+--
+-- Class: BattleModel
+-- Prepare local data table for modification
+--
+-- Require:
+-- - assets
+--
 local BattleModel = {
+    --
+    -- Method: init
+    -- Create empty data table. Run functions to fill it.
+    --
     init = function ( self )
         self.data = {
             hero = {},
@@ -13,9 +24,14 @@ local BattleModel = {
         self:hero()
         self:enemy()
         self:queue()
-        -- pretty.dump(self.data)
+
         return self.data
     end,
+    --
+    -- Method: hero
+    -- Fill hero data table.
+    -- Copies active heroes and applies equipment boosts.
+    --
     hero = function ( self )
         -- Merge hero data
         for k, v in pairs(STATE.heroes) do
@@ -35,6 +51,11 @@ local BattleModel = {
         end
         -- pretty.dump(self.data.hero[1])
     end,
+    --
+    -- Method: enemy
+    -- Fill enemy data table with 1-5 enemies from the group.
+    -- Stats are randomized by +/- 10% for each enemy.
+    --
     enemy = function ( self )
         local array = {}
         local e = TEMP['objects.Enemy.onUpdate.enemyID']
@@ -61,12 +82,15 @@ local BattleModel = {
 
         self.data.enemy = array
     end,
+    --
+    -- Method: queue
+    -- Creates a queue for turn order. Sorted by spd, highest first.
+    --
     queue = function ( self )
         -- Queue
         for k, v in pairs(self.data.hero) do
             table.insert(self.data.queue, {kind='hero',key=k,spd = v.stats.spd})
         end
-
         for k, v in pairs(self.data.enemy) do
             table.insert(self.data.queue, {kind='enemy',key=k,spd = v.stats.spd})
         end
