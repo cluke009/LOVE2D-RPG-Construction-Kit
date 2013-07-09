@@ -1,9 +1,7 @@
-
 --
 -- Class: formula
 --
 local formula = {
-
     --
     -- Method: attack
     -- calculate attack dmg
@@ -16,11 +14,11 @@ local formula = {
     --      string - dmg done
     --      object - updated object after dmg \ passed by reference
     --
-    attack = function ( offense, defense )
-        -- pretty.dump(offense)
+    attack = function(offense, defense)
+    -- pretty.dump(offense)
 
-        local oRand = (offense.stats.str * 4) * (random(-10, 10)/100)
-        local dRand = (defense.stats.def * 2) * (random(-10, 10)/100)
+        local oRand = (offense.stats.str * 4) * (random(-10, 10) / 100)
+        local dRand = (defense.stats.def * 2) * (random(-10, 10) / 100)
 
         local def = math.round(defense.stats.def * 2 + dRand)
         local str = math.round(offense.stats.str * 4 + oRand)
@@ -35,29 +33,36 @@ local formula = {
     -- Method: dodge
     -- calculate dodge %
     --
-    dodge = function (  )
-        -- body
+    dodge = function()
+    -- body
     end,
     --
     -- Method: defend
     -- if defending improve defense constant to 3
     --
-    defend = function (  )
-        -- body
+    defend = function()
+    -- body
+    end,
+    --
+    -- Method: run
+    -- calculate if party can run from battle
+    --
+    run = function()
+    -- body
     end,
     --
     -- Method: special
     -- calculate any non-basic attack
     --
-    special = function (  )
-        -- body
+    special = function()
+    -- body
     end,
     --
     -- Method: level
     -- calculate stats by level
     --
-    level = function (  )
-        -- body
+    level = function()
+    -- body
     end,
     --
     -- Method: enemyAI
@@ -65,14 +70,14 @@ local formula = {
     --
     -- Arguments:
     --      party - object of available targets
-     -- Returns:
+    -- Returns:
     --      integer - id of party member to attack
     --
-    enemyAI = function ( party )
+    enemyAI = function(party)
         local p = {}
-        for k,v in pairs(party) do
+        for k, v in pairs(party) do
             -- if not v.dead then
-                table.insert(p, k)
+            table.insert(p, k)
             -- end
         end
 

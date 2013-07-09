@@ -1,4 +1,3 @@
-
 --[[----------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 
@@ -6,7 +5,7 @@
     Set init to false so it isn't loaded more than once
 
 --------------------------------------------------------------------------------
-]]------------------------------------------------------------------------------
+]] ------------------------------------------------------------------------------
 
 
 --[[----------------------------------------------------------------------------
@@ -15,10 +14,9 @@
     HUD - Displays currently loaded map.
 
 --------------------------------------------------------------------------------
-]]------------------------------------------------------------------------------
-local Hud = Group:new
-{
-    onNew = function (self)
+]] ------------------------------------------------------------------------------
+local Hud = Group:new{
+    onNew = function(self)
         self.translateScale.x = 0
         self.translateScale.y = 0
         self:add(Fill:new{
@@ -26,12 +24,14 @@ local Hud = Group:new
             y = 10,
             width = 200,
             height = 50,
-            fill = {255, 255, 255, 100},
-            border = {0, 0, 0, 255}
+            fill = { 255, 255, 255, 100 },
+            border = { 0, 0, 0, 255 }
         })
-        self.text = Text:new {
-             x = 20, y = 20, tint={255,0,0},
-             font = { 24 }
+        self.text = Text:new{
+            x = 20,
+            y = 20,
+            tint = { 255, 0, 0 },
+            font = { 24 }
         }
         self:add(self.text)
     end
@@ -50,10 +50,8 @@ local Hud = Group:new
         (end code)
 --]]
 
-MapView = View:extend
-{
-
-    onNew = function (self)
+MapView = View:extend{
+    onNew = function(self)
 
 
         self.hero = Hero:new()
@@ -80,10 +78,8 @@ MapView = View:extend
             Hud.text.text = STATE.map
             self:add(Hud)
         end
-
     end,
-
-    onUpdate = function (self)
+    onUpdate = function(self)
         self.map:displace(self.hero)
         self.objects:collide(self.hero)
 

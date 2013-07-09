@@ -8,25 +8,22 @@
     Method:
         scene - triggers cutscene
 --]]
-local Trigger = Class:extend
-{
-    test = function ( self )
+local Trigger = Class:extend{
+    test = function(self)
         print('trigger test')
     end,
-
-    scene = function (self, scene)
+    scene = function(self, scene)
         scene = require('assets.cutscenes.' .. scene)
-        local myView = View:extend
-        {
+        local myView = View:extend{
             count = 1,
             dcount = 1,
-            onNew = function (self)
+            onNew = function(self)
                 self.fill = Fill:new{
                     x = 10,
                     y = 440,
                     width = 780,
                     height = 150,
-                    fill = {255, 255, 255, 200}
+                    fill = { 255, 255, 255, 200 }
                 }
                 self.img = Tile:new{
                     image = scene[1]['image'],
@@ -35,7 +32,7 @@ local Trigger = Class:extend
                     x = 20,
                     y = 450,
                     width = 760,
-                    tint = {0,0,0},
+                    tint = { 0, 0, 0 },
                     font = 24,
                     text = scene[1]['dialog'][1]
                 }
@@ -43,7 +40,7 @@ local Trigger = Class:extend
                 self:add(self.fill)
                 self:add(self.text)
             end,
-            onUpdate = function (self)
+            onUpdate = function(self)
                 if the.keys:justPressed('return') then
 
                     self.dcount = self.dcount + 1
@@ -64,7 +61,7 @@ local Trigger = Class:extend
                                 y = 440,
                                 width = 780,
                                 height = 150,
-                                fill = {255, 255, 255, 200}
+                                fill = { 255, 255, 255, 200 }
                             }
 
                             self:add(self.img)
@@ -77,7 +74,7 @@ local Trigger = Class:extend
                             x = 20,
                             y = 450,
                             width = 760,
-                            tint = {0,0,0},
+                            tint = { 0, 0, 0 },
                             font = 24,
                             text = scene[self.count]['dialog'][self.dcount]
                         }
@@ -87,7 +84,6 @@ local Trigger = Class:extend
                 elseif #scene < self.count then
                     the.app.view = MapView:new()
                 end
-
             end
         }
         the.app.view = myView:new()

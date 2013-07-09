@@ -1,8 +1,7 @@
-local Party = Group:extend
-{
+local Party = Group:extend{
     text = 'test',
     ready = true,
-    onUpdate = function (self)
+    onUpdate = function(self)
 
         if self.ready == true then
             print('ready')
@@ -20,7 +19,7 @@ local Party = Group:extend
                         x = 32 + 370,
                         y = 0 + 40 + (i - 1) * 100,
                         width = 100,
-                        tint = {0,0,0},
+                        tint = { 0, 0, 0 },
                         font = 24,
                         text = hero.name
                     }
@@ -28,7 +27,7 @@ local Party = Group:extend
                         x = 150 + 370,
                         y = 0 + 40 + (i - 1) * 100,
                         width = 100,
-                        tint = {0,0,0},
+                        tint = { 0, 0, 0 },
                         font = 24,
                         text = 'Level ' .. hero.stats.level
                     }
@@ -36,7 +35,7 @@ local Party = Group:extend
                         x = 32 + 370,
                         y = 32 + 40 + (i - 1) * 100,
                         width = 100,
-                        tint = {0,0,0},
+                        tint = { 0, 0, 0 },
                         font = 24,
                         text = 'HP ' .. hero.stats.hp .. '/' .. hero.stats.hpmax
                     }
@@ -44,7 +43,7 @@ local Party = Group:extend
                         x = 150 + 370,
                         y = 32 + 40 + (i - 1) * 100,
                         width = 100,
-                        tint = {0,0,0},
+                        tint = { 0, 0, 0 },
                         font = 24,
                         text = 'MP ' .. hero.stats.mp .. '/' .. hero.stats.mpmax
                     }
@@ -52,7 +51,7 @@ local Party = Group:extend
                         x = 268 + 370,
                         y = 32 + 40 + (i - 1) * 100,
                         width = 100,
-                        tint = {0,0,0},
+                        tint = { 0, 0, 0 },
                         font = 24,
                         text = 'EXP ' .. hero.stats.exp .. '/' .. hero.stats.expmax
                     }
@@ -67,7 +66,6 @@ local Party = Group:extend
             end
 
             self.ready = false
-
         end
 
 
@@ -88,7 +86,6 @@ local Party = Group:extend
 
             self.ready = true
         end
-
     end,
 }
 return Party

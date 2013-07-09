@@ -3,34 +3,33 @@
 
 
 --------------------------------------------------------------------------------
-]]------------------------------------------------------------------------------
+]] ------------------------------------------------------------------------------
 
 
 STRICT = true
 DEBUG = true
 io.stdout:setvbuf("no")
 
-pretty =  require 'pl.pretty'
+pretty = require'pl.pretty'
 
-require 'globals'
-require 'state'
+require'globals'
+require'state'
 
-require 'zoetrope'
+require'zoetrope'
 
-require 'map'
-require 'objects'
-require 'dialog'
+require'map'
+require'objects'
+require'dialog'
 
-menu =  require 'menu'
+menu = require'menu'
 
 
 -- pretty.dump(STATE)
 
-the.app = App:new
-{
-    onRun = function (self)
+the.app = App:new{
+    onRun = function(self)
 
-        -- Reload clean game state every time
+    -- Reload clean game state every time
         initializeSTATE()
 
         -- Setup save state
@@ -39,14 +38,13 @@ the.app = App:new
         -- Set view to our map loader.
         self.view = MapView:new()
     end,
+    onUpdate = function(self)
 
-    onUpdate = function (self)
-
---[[----------------------------------------------------------------------------
---------------------------------------------------------------------------------
-    GLOBAL CONTROLS
---------------------------------------------------------------------------------
-]]------------------------------------------------------------------------------
+    --[[----------------------------------------------------------------------------
+    --------------------------------------------------------------------------------
+        GLOBAL CONTROLS
+    --------------------------------------------------------------------------------
+    ]] ------------------------------------------------------------------------------
 
         if the.keys:justPressed(' ') and menu.activated ~= true then
             menu:activate()
@@ -66,7 +64,7 @@ the.app = App:new
 
             -- Reload view
             self.view = MapView:new()
-            the.app.view:flash({0, 0, 0}, .75)
+            the.app.view:flash({ 0, 0, 0 }, .75)
         end
 
         if the.keys:justPressed('d') then
@@ -80,7 +78,7 @@ the.app = App:new
 
             -- Reload view
             self.view = MapView:new()
-            the.app.view:flash({0, 0, 0}, .75)
+            the.app.view:flash({ 0, 0, 0 }, .75)
         end
     end
 }
