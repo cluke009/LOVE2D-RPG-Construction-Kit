@@ -4,19 +4,19 @@ local Equipment = t.Equipment
 local Item      = t.Item
 
 local BattleModel = {
-init = function ( self )
-self.data = {
-hero = {},
-enemy = {},
-queue = {}
-}
-self:hero()
-self:enemy()
-self:queue()
+    init = function ( self )
+        self.data = {
+            hero = {},
+            enemy = {},
+            queue = {}
+        }
+        self:hero()
+        self:enemy()
+        self:queue()
         -- pretty.dump(self.data)
         return self.data
-        end,
-        hero = function ( self )
+    end,
+    hero = function ( self )
         -- Merge hero data
         for k, v in pairs(STATE.heroes) do
             if v.active then
@@ -34,8 +34,8 @@ self:queue()
             end
         end
         -- pretty.dump(self.data.hero[1])
-        end,
-        enemy = function ( self )
+    end,
+    enemy = function ( self )
         local array = {}
         local e = TEMP['objects.Enemy.onUpdate.enemyID']
         local enemyGroup = Enemy:get(e, 'group')
@@ -56,11 +56,12 @@ self:queue()
                 local randStats = v + math.round(v * (random(-10, 10)/100))
                 array[i]['stats'][k] = randStats
             end
+            array[i]['stats']['hpmax'] = array[i]['stats']['hp']
         end
 
         self.data.enemy = array
-        end,
-        queue = function ( self )
+    end,
+    queue = function ( self )
         -- Queue
         for k, v in pairs(self.data.hero) do
             table.insert(self.data.queue, {kind='hero',key=k,spd = v.stats.spd})

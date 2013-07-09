@@ -82,7 +82,7 @@ local BattleView = Subview:new{
                 y = 168,
                 tint = { 0, 0, 0 },
                 font = 12,
-                text = BattleController.data.enemy[k].stats.hp .. '/' .. BattleController.data.enemy[k].stats.hp
+                text = BattleController.data.enemy[k].stats.hp .. '/' .. BattleController.data.enemy[k].stats.hpmax
             }
 
             self:add(self['enemyImg' .. k])
@@ -123,8 +123,8 @@ local BattleView = Subview:new{
         local turnKey = queue[1].key
         local bcEnemy = BattleController.data.enemy
         local bcHero = BattleController.data.hero
+        local battle, battleText  = BattleController:win()
 
-        -- TEMP['battleView.onUpdate.enemyID'] = self.enemyID
         local heroID, dmg
 
         -- Start enemy idle animations
@@ -187,9 +187,7 @@ local BattleView = Subview:new{
 
         -- Stop enemy damage animations
         if self.animDmg ~= nil and self.counter.enemyDmg >= self.animDmg then
-
             local k = self.enemyID
-
 
             -- Update animation
             self['enemyImg' .. k].image = bcEnemy[k].img.idle.image
@@ -197,6 +195,14 @@ local BattleView = Subview:new{
 
             -- Update queue
             BattleController:updateQueue('enemy', self.enemyID)
+
+            -- Remove enemy sprite if dead
+            if self.enemyID and bcEnemy[self.enemyID].dead ~= nil then
+                local k = self.enemyID
+                self['enemyImg' .. k].visible = false
+                self['enemyText' .. k].visible = false
+            end
+
             self.enemyID = nil
             self.counter.enemyDmg = 1
         end
@@ -214,33 +220,39 @@ local BattleView = Subview:new{
 
         -- Update health bars
         for k, v in pairs(BattleController.data.enemy) do
-            self['enemyText' .. k].text = BattleController.data.enemy[k].stats.hp .. '/' .. BattleController.data.enemy[k].stats.hp
+            self['enemyText' .. k].text = BattleController.data.enemy[k].stats.hp .. '/' .. BattleController.data.enemy[k].stats.hpmax
         end
         for k, v in pairs(BattleController.data.hero) do
             self['heroText' .. k].text = BattleController.data.hero[k].stats.hp .. '/' .. BattleController.data.hero[k].stats.hpmax
         end
 
         -- Controls
-        if the.keys:justPressed('1') then
-            -- self.enemyID = 1
-            _, self.enemyID = BattleController:action('attack', 1, 1)
-        elseif the.keys:justPressed('2') then
-            -- self.enemyID = 2
-            _, self.enemyID = BattleController:action('attack', 1, 2)
-        elseif the.keys:justPressed('3') then
-            -- self.enemyID = 3
-            _, self.enemyID = BattleController:action('attack', 1, 3)
-        elseif the.keys:justPressed('4') then
-            -- self.enemyID = 4
-            _, self.enemyID = BattleController:action('attack', 1, 4)
-        elseif the.keys:justPressed('5') then
-            -- self.enemyID = 5
-            _, self.enemyID = BattleController:action('attack', 1, 5)
-        elseif the.keys:justPressed('rshift') then
-            _, self.enemyID = BattleController:defend(1)
-        elseif the.keys:justPressed('escape') then
-            self:deactivate()
+        if turnKind == 'hero' then
+            if the.keys:justPressed('1') then
+                _, self.enemyID = BattleController:action('attack', 1, 1)
+            elseif the.keys:justPressed('2') then
+                _, self.enemyID = BattleController:action('attack', 1, 2)
+            elseif the.keys:justPressed('3') then
+                _, self.enemyID = BattleController:action('attack', 1, 3)
+            elseif the.keys:justPressed('4') then
+                _, self.enemyID = BattleController:action('attack', 1, 4)
+            elseif the.keys:justPressed('5') then
+                _, self.enemyID = BattleController:action('attack', 1, 5)
+            elseif the.keys:justPressed('rshift') then
+                _, self.enemyID = BattleController:defend(1)
+            elseif the.keys:justPressed('escape') then
+                self:deactivate()
+            end
         end
+
+        -- -- Win/Lose screen
+        -- if battle ~= nil and battle == true then
+        --     -- self.text.text = battleText
+        --     self:deactivate()
+        -- elseif battle == false then
+        --     -- self.text.text = battleText
+        --     self:deactivate()
+        -- end
     end
 }
 
