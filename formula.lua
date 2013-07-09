@@ -24,7 +24,13 @@ local formula = {
         local str = math.round(offense.stats.str * 4 + oRand)
         local dmg = str - def
 
-        defense.stats.hp = defense.stats.hp - dmg
+        local hp = defense.stats.hp - dmg
+        if hp < 0 then
+            defense.stats.hp = 0
+        else
+            defense.stats.hp = hp
+        end
+
         -- print(atk, def, atk - def)
 
         return dmg, defense

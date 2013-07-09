@@ -43,7 +43,22 @@ local BattleController = {
 
         return dmg, heroID
     end,
-    isDead = function(self, ID)
+    win = function(self, ID)
+        local hero = {}
+        local enemy = {}
+        for i,v in ipairs(self.data.queue) do
+            if v.kind == 'hero' then
+                table.insert(hero, i)
+            else
+                table.insert(enemy, i)
+            end
+        end
+
+        if #hero == 0 then
+            return true, 'heroes dead'
+        elseif #enemy == 0 then
+            return false, 'enemy dead'
+        end
     end,
     heroTurn = function(self)
         if self.arg.action == 'attack' then
@@ -67,3 +82,4 @@ local BattleController = {
 }
 
 return BattleController
+
