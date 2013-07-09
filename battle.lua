@@ -154,7 +154,7 @@ BattleController = {
     heroTurn = function ( self )
         if self.arg.action == 'attack' then
             dmg, _ = formula.attack(self.arg[1], self.arg[2])
-            local enemyID = 1
+            local enemyID = Battle.enemyID
             return dmg, enemyID
         end
 
@@ -164,7 +164,7 @@ BattleController = {
         self.arg = arg
         self.arg.action = action
         local dmg = 0
-        local enemyID = 1
+        local enemyID = Battle.enemyID
         return dmg, enemyID
     end,
 
@@ -358,7 +358,7 @@ Battle = Subview:new
             local k = self.enemyID
 
             if self.counter.enemyDmg == 1 then
-                self.dmg, enemyID = BattleController:heroTurn()
+                self.dmg, self.enemyID = BattleController:heroTurn()
             end
 
             -- Display damage
@@ -388,7 +388,6 @@ Battle = Subview:new
             self.enemyID = nil
         end
 
-
         -- Update selector
         if turnKind == 'enemy' then
             local k = turnKey
@@ -409,8 +408,21 @@ Battle = Subview:new
         end
 
         -- Controls
-        if the.keys:justPressed('return') then
-            _, self.enemyID = BattleController:action('attack', BattleController.data.hero[1], BattleController.data.enemy[1])
+        if the.keys:justPressed('1') then
+            self.enemyID = 1
+            BattleController:action('attack', BattleController.data.hero[1], BattleController.data.enemy[1])
+        elseif the.keys:justPressed('2') then
+            self.enemyID = 2
+            BattleController:action('attack', BattleController.data.hero[1], BattleController.data.enemy[2])
+        elseif the.keys:justPressed('3') then
+            self.enemyID = 3
+            BattleController:action('attack', BattleController.data.hero[1], BattleController.data.enemy[3])
+        elseif the.keys:justPressed('4') then
+            self.enemyID = 4
+            BattleController:action('attack', BattleController.data.hero[1], BattleController.data.enemy[4])
+        elseif the.keys:justPressed('5') then
+            self.enemyID = 5
+            BattleController:action('attack', BattleController.data.hero[1], BattleController.data.enemy[5])
         elseif the.keys:justPressed('rshift') then
             BattleController:defend(1)
         elseif the.keys:justPressed('escape') then
