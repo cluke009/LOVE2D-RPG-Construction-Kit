@@ -53,7 +53,14 @@ Group: Config  {
 
 Group: Classes  {
 
+   File: Assets  (assets.lua)
+   File: BattleController  (battleController.lua)
+   File: BattleModel  (battleModel.lua)
+   File: BattleView  (battleView.lua)
    File: Dialog  (dialog.lua)
+   File: Formula  (formula.lua)
+   File: Globals  (globals.lua)
+   File: HUD / Mapview  (map.lua)
    File: Trigger  (triggers.lua)
    }  # Group: Classes
 
@@ -62,5 +69,6 @@ Group: Index  {
    Index: Everything
    Class Index: Classes
    File Index: Files
+   Function Index: Functions
    }  # Group: Index
 
