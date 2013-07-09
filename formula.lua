@@ -1,7 +1,7 @@
 --
--- Class: formula
+-- Class: Formula
 --
-local formula = {
+local Formula = {
     --
     -- Method: attack
     -- calculate attack dmg
@@ -10,6 +10,7 @@ local formula = {
     -- Arguments:
     --      offense - character making attack
     --      defense - character being attacked
+    --
     -- Returns:
     --      string - dmg done
     --      object - updated object after dmg \ passed by reference
@@ -76,6 +77,7 @@ local formula = {
     --
     -- Arguments:
     --      party - object of available targets
+    --
     -- Returns:
     --      integer - id of party member to attack
     --
@@ -92,4 +94,4 @@ local formula = {
 }
 
 
-return formula
+return Formula

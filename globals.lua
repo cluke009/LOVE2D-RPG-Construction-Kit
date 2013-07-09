@@ -1,3 +1,16 @@
+--
+-- File: Globals
+--
+
+--
+-- Function: table.copy
+--
+-- Arguments:
+--      t - Table to copy
+--
+-- Returns:
+--      table
+--
 function table.copy(t)
     local t2 = {}
     for k, v in pairs(t) do
@@ -6,6 +19,15 @@ function table.copy(t)
     return t2
 end
 
+--
+-- Function: table.deepcopy
+--
+-- Arguments:
+--      t - Table to copy
+--
+-- Returns:
+--      table
+--
 function table.deepcopy(t)
     if type(t) ~= 'table' then
         return t
@@ -26,25 +48,46 @@ end
 -- I suck at math
 --
 
+
+--
+-- Function: math.round
+--
 -- https://love2d.org/forums/viewtopic.php?f=4&t=146#p1508
 -- Round 'v' to 'p' decimal places
+--
+-- Arguments:
+--      v - value
+--      p - precision
+--
+-- Returns:
+--      rounded value
+--
 function math.round(v, p)
     -- figure out scaling factor for number of decimal points, or 0 if 'p' not supplied
-    local scale = math.pow(10, p or 0);
+    local scale = math.pow(10, p or 0)
     -- calculate result ignoring sign
-    local res = math.floor(math.abs(v) * scale + 0.5) / scale;
+    local res = math.floor(math.abs(v) * scale + 0.5) / scale
     -- if 'v' was negative return value should be too
     if v < 0 then
-        res = -res;
-    end;
-    -- return rounded value
-    return res;
+        res = -res
+    end
+
+    return res
 end
 
-;
 
-
+--
+-- Function: random
 -- https://love2d.org/forums/viewtopic.php?f=4&t=10301#p62273
+--
+-- Arguments:
+--      min - Lowest number.
+--      max - Highest number.
+--      precision - Precision in decimal places.
+--
+-- Returns:
+--      number
+--
 function random(min, max, precision)
     local precision = precision or 0
     local num = math.random()

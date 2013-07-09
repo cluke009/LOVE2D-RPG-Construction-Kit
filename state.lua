@@ -1,5 +1,25 @@
+--[[----------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+
+
+
+--------------------------------------------------------------------------------
+]] -----------------------------------------------------------------------------
+
 --
--- Game State
+-- Class: State
+-- Initialize any empty game data that needs to be present before we load.
+-- Set init to false so it isn't loaded more than once
+--
+-- Properties:
+--
+--     map - Map to load when game starts.
+--     hud - Boolean to display hud.
+--     heroStartX - Starting X position.
+--     heroStartY - Starting Y position.
+--     inventory -
+--         - item - Array of items in inventory
+--         - equipment - Array of equipment in inventory
 --
 STATE = {
     map = 'east',
@@ -21,8 +41,10 @@ STATE = {
     },
 }
 --
--- For table that can be immediately destroyed
+-- Class: TEMP
+-- For table data that can be immediately destroyed
 -- Current convention TEMP[<filename>.<class>.<method>.<property>]
+--
 TEMP = {}
 
 -- Get all unique type of equipment
