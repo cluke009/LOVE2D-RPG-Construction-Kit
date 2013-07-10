@@ -8,6 +8,8 @@ Things that happened.
 * Refined battle system now supports exp/gold
 * Test out MVC pattern for Love2D
 * Dialog system now more configurable
+* New assets class to perform queries against conf tables
+
 
 7/3/13
 -------------
