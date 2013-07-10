@@ -2,6 +2,13 @@ RELEASE NOTES
 =============
 
 Things that happened.
+
+7/10/13
+-------------
+* Refined battle system now supports exp/gold
+* Test out MVC pattern for Love2D
+* Dialog system now more configurable
+
 7/3/13
 -------------
 * Fix state loading when resetting love(ctr+alt+r)
