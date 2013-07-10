@@ -51,19 +51,20 @@ return
         name = 'Water Dragon',
         image = 'assets/img/water_dragon.gif',
         width = 128,
-        height = 128,
+        height = 74,
         stats = {
             def = 24,
             ----------------------
-            hp = 500,
+            hp = 34,
             mp = 60,
             str = 24,
             con = 24,
             int = 24,
             wis = 14,
-            spd = 25,
+            spd = 22,
         },
         exp = 300,
+        gold = 100,
         group = { 2, 1 },
         img = {
             idle = {
@@ -91,15 +92,16 @@ return
         stats = {
             def = 24,
             ----------------------
-            hp = 100,
+            hp = 44,
             mp = 60,
             str = 24,
             con = 24,
             int = 24,
             wis = 14,
-            spd = 5,
+            spd = 25,
         },
         exp = 300,
+        gold = 120,
         group = { 1, 2 },
         img = {
             idle = {

@@ -8,7 +8,6 @@
 
 STRICT = true
 DEBUG = true
-io.stdout:setvbuf("no")
 
 pretty = require'pl.pretty'
 
@@ -37,6 +36,10 @@ the.app = App:new{
 
         -- Set view to our map loader.
         self.view = MapView:new()
+
+    -- l = love.graphics.newPixelEffect([[]])
+    -- love.graphics.setPixelEffect(l)
+
     end,
     onUpdate = function(self)
 

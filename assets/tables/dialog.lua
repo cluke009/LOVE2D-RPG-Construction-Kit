@@ -22,6 +22,8 @@ return
         'It can even span multiple dialog boxes.\n You can add dialog by assigning a dialog property with the ID of your text.\n Edit "assets/tables/dialog.lua"'
     },
     [3] = { 'Even enemies can have custom dialog. \nLike this panda dragon here.' },
-    [4] = { 'You can even trigger cutscenes from tiled. Just add the property "scene" and the filename.\nEdit: "assets/cutscenes/<filename>" ' },
+    [4] = { 'You can even trigger cutscenes from tiled.',
+         'Just add the property "scene" and the filename.',
+         '\nEdit: "assets/cutscenes/<filename>" ' },
     [5] = { 'I\'m an NPC I can do all the things Obj can do' },
 }
