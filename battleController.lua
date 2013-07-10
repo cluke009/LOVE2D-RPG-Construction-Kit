@@ -86,9 +86,14 @@ local BattleController = {
         end
 
         if #hero == 0 then
-            return true, 'heroes dead'
+            return false, 'heroes dead'
         elseif #enemy == 0 then
-            return false, 'enemy dead'
+            -- TODO: Calculate exp and notify if new level
+            for k,v in pairs(self.data.enemy) do
+                self.data.gold = self.data.gold + v.gold
+                self.data.exp = self.data.exp + v.exp
+            end
+            return true, { gold = self.data.gold, exp = self.data.exp }
         end
     end,
     --
@@ -128,10 +133,21 @@ local BattleController = {
     end,
     --
     -- Method: write
-    -- Write any permanent changes made to the heroes back to the state object.
+    -- Write any permanent changes made to the heroes back to the STATE object.
+    -- Gives half EXP if dead. Writes - exp, gold, hp, mana
+    -- TODO: Track status effects
     --
     write = function(self)
-    -- onDeactive write changes to STATE
+        STATE.gold = STATE.gold + self.data.gold
+        for k, v in pairs(self.data.hero) do
+            STATE.heroes[k]['stats']['hp'] = v.stats.hp
+            STATE.heroes[k]['stats']['mp'] = v.stats.mp
+            if v.dead then
+                STATE.heroes[k]['stats']['exp'] = v.stats.exp + ( self.data.exp / 2 )
+            else
+                STATE.heroes[k]['stats']['exp'] = v.stats.exp + self.data.exp
+            end
+        end
     end,
 }
 

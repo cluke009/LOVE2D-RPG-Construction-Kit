@@ -14,10 +14,12 @@ local BattleView = Subview:new{
     onActivate = function(self)
         BattleController:init()
         -- Create misc
-        self.fill = Fill:new{
-            width = 800,
-            height = 600,
-            fill = { 255, 255, 255, 255 }
+        self.fill = Tile:new{
+            x = 0,
+            y = 0,
+            width = 480,
+            height = 270,
+            image = 'assets/img/bgtest.png'
         }
         self.text = Text:new{
             x = 20,
@@ -42,12 +44,21 @@ local BattleView = Subview:new{
             font = 18,
             text = 'test'
         }
+        self.menuTest = Tile:new{
+            x = 0,
+            y = 0,
+            width = 480,
+            height = 270,
+            image = 'assets/img/menutest2.png'
+        }
 
         -- Add misc
         self:add(self.fill)
-        self:add(self.text)
+        -- self:add(self.text)
+        -- self:add(self.menuTest)
         self:add(self.indicator)
         self:add(self.dmgText)
+
 
         -- Draw heroes
         for k, v in pairs(BattleController.data.hero) do
@@ -57,11 +68,11 @@ local BattleView = Subview:new{
                 height = BattleController.data.hero[k].height,
                 width = BattleController.data.hero[k].width,
                 x = 40 + (128 * (k - 1)),
-                y = 340,
+                y = 128,
             }
             self['heroText' .. k] = Text:new{
                 x = 60 + (128 * (k - 1)),
-                y = 368,
+                y = 160,
                 tint = { 0, 0, 0 },
                 font = 12,
                 text = BattleController.data.hero[k].stats.hp .. '/' .. BattleController.data.hero[k].stats.hpmax
@@ -84,12 +95,12 @@ local BattleView = Subview:new{
                 },
                 height = BattleController.data.enemy[k].height,
                 width = BattleController.data.enemy[k].width,
-                x = 40 + (128 * (k - 1)),
-                y = 40,
+                x = 10 + (128 * (k - 1)),
+                y = 0,
             }
             self['enemyText' .. k] = Text:new{
                 x = 60 + (128 * (k - 1)),
-                y = 168,
+                y = 80,
                 tint = { 0, 0, 0 },
                 font = 12,
                 text = BattleController.data.enemy[k].stats.hp .. '/' .. BattleController.data.enemy[k].stats.hpmax
@@ -100,11 +111,14 @@ local BattleView = Subview:new{
         end
     end,
     onDeactivate = function(self)
-    -- Remove misc
+        -- Update any important data that changed
+        BattleController:write()
+
+        -- Remove misc
         self:remove(self.indicator)
         self:remove(self.dmgText)
         self:remove(self.fill)
-        self:remove(self.text)
+        -- self:remove(self.text)
 
         -- Remove heroes
         for k, v in pairs(BattleController.data.hero) do
@@ -118,7 +132,9 @@ local BattleView = Subview:new{
             self:remove(self['enemyText' .. k])
         end
 
-        BattleController.data = nil
+
+        -- Zero out existing data
+        -- BattleController.data = nil
     end,
     onNew = function(self)
     end,
@@ -250,19 +266,45 @@ local BattleView = Subview:new{
                 _, self.enemyID = BattleController:action('attack', 1, 5)
             elseif the.keys:justPressed('rshift') then
                 _, self.enemyID = BattleController:defend(1)
-            elseif the.keys:justPressed('escape') then
-                self:deactivate()
             end
+
+        end
+        if the.keys:justPressed('escape') then
+            self:deactivate()
         end
 
-        -- -- Win/Lose screen
-        -- if battle ~= nil and battle == true then
-        --     -- self.text.text = battleText
-        --     self:deactivate()
-        -- elseif battle == false then
-        --     -- self.text.text = battleText
-        --     self:deactivate()
-        -- end
+        -- Win/Lose screen
+        if battle ~= nil and battle == true then
+            battle = nil
+            local d = Dialog:new()
+            d.fill.x = 10
+            d.fill.y = 10
+            d.dialog = {
+                'EXP: ' .. battleText.exp,
+                'Gold: ' .. battleText.gold
+            }
+            d.text.x = 20
+            d.text.y = 20
+
+            d.onDeactivate = function()
+                self:deactivate()
+            end
+            d:activate()
+
+        elseif battle == false then
+            battle = nil
+            local d = Dialog:new()
+            d.fill.x = 10
+            d.fill.y = 10
+            d.dialog = { 'You suck dead guy.!' }
+            d.text.x = 20
+            d.text.y = 20
+
+            d.onDeactivate = function()
+                self:deactivate()
+            end
+            d:activate()
+        end
     end
 }
 
