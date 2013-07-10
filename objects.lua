@@ -120,7 +120,7 @@ Enemy = Tile:extend{
                     end
 
                     Dialog:new{
-                        text = d
+                        dialog = d
                     }:activate()
                     Battle.enemyInit = self.id
                     TEMP['objects.Enemy.onUpdate.enemyID'] = self.id
@@ -216,7 +216,7 @@ Chest = Tile:extend{
                         d = { d }
                     end
 
-                    Dialog:new{ text = d }:activate()
+                    Dialog:new{ dialog = d }:activate()
                 end
             end
         end
@@ -261,7 +261,7 @@ Obj = Tile:extend{
                 if the.keys:justPressed('return') then
                     if self.dialog then
                         Dialog:new{
-                            text = dialog[self.dialog]
+                            dialog = dialog[self.dialog]
                         }:activate()
                     end
                     if self.trigger then
