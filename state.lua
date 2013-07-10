@@ -36,6 +36,7 @@ STATE = {
     -----------------------------------------
     heroes = require'assets.tables.heroes',
     equip = {},
+    gold = 300,
     menu = {
         update = false
     },
