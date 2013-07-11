@@ -60,10 +60,10 @@ local BattleController = {
     --      heroID - ID of hero being attacked
     --
     enemyTurn = function(self)
-        local heroID = Formula.enemyAI(self.data.hero)
+        local heroID = Formula:enemyAI(self.data.hero)
         local enemyID = self.data.queue[1].key
         local dmg
-        dmg, _ = Formula.attack(self.data.enemy[enemyID], self.data.hero[heroID])
+        dmg, _ = Formula:attack(self.data.enemy[enemyID], self.data.hero[heroID])
 
         return dmg, heroID
     end,
@@ -105,7 +105,7 @@ local BattleController = {
     --
     heroTurn = function(self)
         if self.arg.action == 'attack' then
-            dmg, _ = Formula.attack(self.arg[1], self.arg[2])
+            dmg, _ = Formula:attack(self.arg[1], self.arg[2])
             return dmg, self.arg.args[2]
         end
     end,

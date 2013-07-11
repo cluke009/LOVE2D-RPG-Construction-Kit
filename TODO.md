@@ -12,6 +12,10 @@ General
 * Mini-map
 * Proper save points
 * Status effects
+* Calculate monster dimensions to determine max number on screen
+* Enemy item drops / drop rate
+* Steal
+
 
 Systems
 -------------
