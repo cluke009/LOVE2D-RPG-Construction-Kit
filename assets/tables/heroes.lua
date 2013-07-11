@@ -15,21 +15,67 @@
     Example code:
     (begin code)
     [1] = {
-        name = 'Hero 1',
-        image = 'assets/img/water_dragon.gif',
-        width = 128,
-        height = 128,
+        name = 'Fighter',
+        image = 'assets/img/hero.png',
+        width = 32,
+        height = 32,
         stats = {
-            level = 1,
-            hp = 275,
-            hpmax = 280,
-            mp = 60,
-            mpmax = 70,
-            exp = 50,
-            expmax = 100,
-            def = 20,
-            mdef = 10,
-            spd = 10,
+            spd = 14,
+            str = 24,
+            con = 24,
+            int = 24,
+            wis = 14,
+        },
+        special = {name1,name2},
+        img = {
+            -- Walk
+            left = {
+                image = 'assets/img/panda_dragon_idle.png',
+                frames = { 1, 2, 3, },
+                fps = 5
+            },
+            right = {
+                image = 'assets/img/panda_dragon_idle.png',
+                frames = { 1, 2, 3, },
+                fps = 5
+            },
+            up = {
+                image = 'assets/img/panda_dragon_idle.png',
+                frames = { 1, 2, 3, },
+                fps = 5
+            },
+            down = {
+                image = 'assets/img/panda_dragon_idle.png',
+                frames = { 1, 2, 3, },
+                fps = 5
+            },
+            -- Battle
+            idle = {
+                image = 'assets/img/panda_dragon_idle.png',
+                frames = { 1, 2, 3, },
+                fps = 5
+            },
+            attack = {
+                image = 'assets/img/panda_dragon_attack.png',
+                frames = { 1, 2, 3, },
+                fps = 5
+            },
+            dmg = {
+                image = 'assets/img/panda_dragon_dmg.png',
+                frames = { 1, 2, 3, },
+                fps = 5
+            },
+            -- Specials
+            name1 = {
+                image = 'assets/img/panda_dragon_dmg.png',
+                frames = { 1, 2, 3, },
+                fps = 5
+            },
+            name2 = {
+                image = 'assets/img/panda_dragon_dmg.png',
+                frames = { 1, 2, 3, },
+                fps = 5
+            },
         },
         active = true
     },
@@ -45,8 +91,8 @@ return
         height = 32,
         stats = {
             level = 1,
-            hp = 22,
-            hpmax = 22,
+            hp = 222222,
+            hpmax = 222222,
             mp = 60,
             mpmax = 70,
             exp = 50,

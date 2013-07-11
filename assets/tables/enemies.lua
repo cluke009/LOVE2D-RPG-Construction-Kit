@@ -25,22 +25,38 @@
         width = 128,
         height = 128,
         stats = {
-            level = 1,
-            hp = 275,
-            hpmax = 280,
+            hp = 34,
             mp = 60,
-            mpmax = 70,
-            exp = 50,
-            expmax = 100,
-            def = 20,
-            mdef = 10,
-            spd = 10,
+            str = 24,
+            con = 24,
+            int = 24,
+            wis = 14,
+            spd = 22,
         },
         exp = 100,
         gold = 99,
+        group = { 2, 1 },
+        specials = { 1, 2, 3 }
         drops = {
             equipment = {1,2,3,4},
             items = {1,2}
+        },
+        img = {
+            idle = {
+                image = 'assets/img/water_dragon.png',
+                frames = { 1, 2, 3, },
+                fps = 5
+            },
+            attack = {
+                image = 'assets/img/water_dragon.png',
+                frames = { 1, 2, 3, },
+                fps = 5
+            },
+            dmg = {
+                image = 'assets/img/water_dragon.png',
+                frames = { 1, 2, 3, },
+                fps = 5
+            },
         }
     }
     (end code)
@@ -53,9 +69,7 @@ return
         width = 128,
         height = 74,
         stats = {
-            def = 24,
-            ----------------------
-            hp = 34,
+            hp = 222222,
             mp = 60,
             str = 24,
             con = 24,
@@ -90,9 +104,7 @@ return
         width = 64,
         height = 64,
         stats = {
-            def = 24,
-            ----------------------
-            hp = 44,
+            hp = 222222,
             mp = 60,
             str = 24,
             con = 24,
@@ -118,101 +130,6 @@ return
                 image = 'assets/img/panda_dragon_dmg.png',
                 frames = { 1, 2, 3, },
                 fps = 5
-            },
-        }
-    },
-    [3] = {
-        name = 'Panda Dragon',
-        image = 'assets/img/panda_dragon.gif',
-        width = 64,
-        height = 64,
-        stats = {
-            level = 1,
-            hp = 280,
-            hpmax = 280,
-            mp = 60,
-            mpmax = 70,
-            exp = 50,
-            expmax = 100,
-            atk = 24,
-            mag = 24,
-            def = 24,
-            mdef = 14,
-            spd = 30,
-        },
-        exp = 300,
-        group = { 1, 2 },
-        skills = { 'heal', 'water1' },
-        img = {
-            idle = {
-                path = 'assets/img/panda_dragon.png',
-                frames = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20 },
-                fps = 15
-            },
-            attack = {
-                path = 'path/',
-                frames = { 17, 19, 18, 19, 17, 19, 18, 19, 17, 19, 18, 19, 17, 19, 18, 19, 17, 19, },
-                fps = 5
-            },
-            heal = {
-                path = 'path/',
-                frames = {},
-                fps = 30
-            },
-            water1 = {
-                path = 'path/',
-                frames = {},
-                fps = 30
-            },
-            dmg = {
-                path = 'path/',
-                frames = {},
-                fps = 30
-            },
-        }
-    },
-    [4] = {
-        name = 'Water Dragon',
-        image = 'assets/img/water_dragon.gif',
-        width = 128,
-        height = 128,
-        stats = {
-            level = 1,
-            hp = 280,
-            hpmax = 280,
-            mp = 60,
-            mpmax = 70,
-            exp = 50,
-            expmax = 100,
-            atk = 24,
-            mag = 24,
-            def = 24,
-            mdef = 14,
-            spd = 5,
-        },
-        exp = 300,
-        group = { 1, 2 },
-        skills = { 'heal', 'water1' },
-        img = {
-            idle = {
-                path = 'assets/img/water_dragon.png',
-                frames = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, },
-                fps = 15
-            },
-            attack = {
-                path = 'path/',
-                frames = {},
-                fps = 30
-            },
-            heal = {
-                path = 'path/',
-                frames = {},
-                fps = 30
-            },
-            water1 = {
-                path = 'path/',
-                frames = {},
-                fps = 30
             },
         }
     },
