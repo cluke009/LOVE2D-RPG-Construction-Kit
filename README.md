@@ -66,7 +66,10 @@ Controls
 * "esc" - cancel action / close game
 
 ----------
+In battle
+* "1-5" - chooses which enemy to attack
 
+----------
 * "ctr+alt+r" - reloads game
 * "tab" - shows console
 
