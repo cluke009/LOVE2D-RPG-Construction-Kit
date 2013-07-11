@@ -1,4 +1,6 @@
-local items = require'assets.tables.items'
+local assets    = require 'assets'
+local Item      = assets.Item
+
 local Menu = require'menu.menu'
 local Party = require'menu.party'
 
@@ -31,12 +33,12 @@ Items = Subview:new{
                 local links = {}
                 for k, v in pairs(STATE.inventory.item) do
                     table.insert(links, {
-                        name = items[k].name .. ' x' .. v,
+                        name = Item:get(k, 'name') .. ' x' .. v,
                         hover = function()
-                            self.text.text = items[k].desc
+                            self.text.text = Item:get(k, 'desc')
                         end,
                         action = function()
-                            Select.item = items[k]
+                            Select.item = Item:get(k)
                             Select.item.key = k
                             Select:activate()
                         end
@@ -69,7 +71,9 @@ Items = Subview:new{
             self.ready = true
             STATE.menu.update = true
             self:remove(self.text)
-            self:remove(self.menu)
+            if self.menu then
+                self:remove(self.menu)
+            end
             self:deactivate()
         end
     end
@@ -104,13 +108,7 @@ Select = Subview:new{
                         end
 
                         -- Update inventory
-                        if STATE.inventory['item'][key] == 1 then
-                            STATE.inventory['item'][key] = nil
-                        elseif STATE.inventory['item'][key] == nil then
-                            self:deactivate()
-                        else
-                            STATE.inventory['item'][key] = STATE.inventory['item'][key] - 1
-                        end
+                        Item:use(key)
 
                         STATE.menu.update = true
                         self:remove(self.m)

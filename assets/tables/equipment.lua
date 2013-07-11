@@ -52,7 +52,7 @@ return
         kind = 'Armor',
         desc = 'Defense + 50',
         effect = {
-            def = 50,
+            con = 50,
         },
         use = { 1 },
     },
@@ -64,8 +64,8 @@ return
         kind = 'Armor',
         desc = 'Defense + 10, Magic Defense + 20',
         effect = {
-            def = 10,
-            mdef = 20,
+            con = 10,
+            wis = 20,
         },
         use = { 2 },
     },
@@ -78,7 +78,7 @@ return
         desc = 'Speed + 30, Defense + 10',
         effect = {
             spd = 10,
-            def = 5,
+            con = 5,
         },
         use = { 1 },
     },
@@ -90,7 +90,7 @@ return
         desc = 'Attack + 50',
         kind = 'Weapon',
         effect = {
-            atk = 50,
+            str = 50,
         },
         use = { 1 },
     },
@@ -102,7 +102,7 @@ return
         desc = 'Attack + 50',
         kind = 'Weapon',
         effect = {
-            atk = 170,
+            str = 170,
         },
         use = { 2 },
     },

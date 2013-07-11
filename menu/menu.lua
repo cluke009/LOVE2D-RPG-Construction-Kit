@@ -18,14 +18,15 @@ local Menu = Group:extend{
         }
         self:add(self.h)
         for i, value in ipairs(self.items) do
-            self:add(Text:new{
+            self['text' .. i] = Text:new{
                 x = self.x + 10,
                 y = self.y + 10 + (i - 1) * self.step,
                 width = self.width - 20,
                 tint = { 0, 0, 0 },
                 font = 24,
                 text = self.items[i]['name']
-            })
+            }
+            self:add(self['text' .. i])
         end
         self:highlight()
     end,

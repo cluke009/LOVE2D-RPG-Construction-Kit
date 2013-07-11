@@ -140,7 +140,7 @@ Assets.Item = {
     -- Returns:
     --      string or table
     --
-    get = function(self, itemID)
+    get = function(self, itemID, ...)
         local ret = nil
         local item = items[itemID][arg[1]]
 
@@ -158,6 +158,36 @@ Assets.Item = {
         end
 
         return ret
+    end,
+    --
+    -- Method: inventory
+    -- STATE.inventory
+    --
+    -- Returns:
+    --      inventory object
+    --
+    inventory = function(self, itemID, ...)
+
+    end,
+    --
+    -- Method: use
+    -- Use item and update STATE.inventory
+    --
+    -- Arguments:
+    --      itemID - The ID of the object to use.
+    --      ... - The property to use
+    --
+    -- Returns:
+    --      nothing
+    --
+    use = function(self, itemID, ...)
+        if STATE.inventory['item'][itemID] == 1 then
+            STATE.inventory['item'][itemID] = nil
+        elseif STATE.inventory['item'][itemID] == nil then
+            self:deactivate()
+        else
+            STATE.inventory['item'][itemID] = STATE.inventory['item'][itemID] - 1
+        end
     end,
 }
 

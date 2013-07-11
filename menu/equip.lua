@@ -19,24 +19,6 @@ local subviewRemove = function(this)
     end
 end
 
-local subviewRedraw = function(this, ...)
-    if arg[2] then
-        this.ready = true
-    end
-    if this.ready == true then
-        this:onReady()
-        this.ready = false
-        the.app.view:flash({ 255, 255, 255 }, 1.5)
-    end
-end
-
--- local spriteRemove = function ( this )
---     for i, v in ipairs(this.sprites) do
---         table.remove(this.sprites, i)
---     end
--- end
-
-
 --[[----------------------------------------------------------------------------
 -- Our starting point when selecting the equip option
 -- Updates
@@ -45,8 +27,7 @@ end
 --  - Equipped
 --]] ----------------------------------------------------------------------------
 Equip = Subview:new{
-    onNew = function(self)
-
+    onActivate = function(self)
         local links = {}
 
         for k, v in pairs(STATE.heroes) do
@@ -56,23 +37,23 @@ Equip = Subview:new{
                     action = function()
                         localHero = v
                         localHero.key = k
-                        EquipHero.ready = true
                         Equipped:activate()
                     end
                 })
             end
         end
 
-        self:add(Menu:new{
+        self.menu = Menu:new{
             x = 350,
             y = 20,
             width = 10,
             step = 100,
             items = links
-        })
+        }
+        self:add(self.menu)
     end,
-    onDeactivate = function(self)
-    -- spriteRemove(self)
+    onDeactivate = function ( self )
+        self:remove(self.menu)
     end,
     onUpdate = function(self)
         subviewRemove(self)
@@ -88,18 +69,7 @@ Equip = Subview:new{
 --  - EquipList
 --]] ----------------------------------------------------------------------------
 Equipped = Subview:new{
-    onReady = function(self)
-        self:remove(self.fill)
-        self:remove(self.menu)
-        self:remove(EquipHero)
-
-        self.fill = Fill:new{
-            width = 600,
-            x = 360,
-            height = 600,
-            fill = { 255, 255, 255, 255 }
-        }
-
+    equipped = function (self)
         -- Get kinds of equipment
         local unique = {}
         for i, v in ipairs(equipment) do
@@ -128,30 +98,48 @@ Equipped = Subview:new{
             })
         end
 
+        return links
+    end,
+    onActivate = function(self)
+        self.fill = Fill:new{
+            width = 600,
+            x = 360,
+            height = 600,
+            fill = { 255, 255, 255, 255 }
+        }
         -- Add menu to stage
         self.menu = Menu:new{
             x = 20,
             y = 80,
             step = 24,
             width = 300,
-            items = links
+            items = self:equipped()
         }
         self:add(self.fill)
         self:add(self.menu)
         self:add(EquipHero)
-    end,
-    onActivate = function(self)
-        self.ready = true
     end,
     onDeactivate = function(self)
         self:remove(self.fill)
         self:remove(self.menu)
         self:remove(EquipHero)
     end,
-    onNew = function(self)
-    end,
     onUpdate = function(self)
-        subviewRedraw(self)
+        -- TODO: Re-examine menu class
+        -- Maybe we should do updates there
+        if self.ready then
+            self:remove(self.menu)
+            self.menu = Menu:new{
+                x = 20,
+                y = 80,
+                step = 24,
+                width = 300,
+                items = self:equipped()
+            }
+            self:add(self.menu)
+            self.ready = false
+        end
+
         subviewRemove(self)
     end
 }
@@ -164,16 +152,14 @@ Equipped = Subview:new{
 --  -
 --]] ----------------------------------------------------------------------------
 EquipList = Subview:new{
-    onReady = function(self)
-
-    -- Add background
+    onActivate = function(self)
+        -- Add background
         self.fill = Fill:new{
             width = 300,
             height = 600,
             fill = { 255, 255, 255, 255 }
         }
         self:add(self.fill)
-
 
         local ofType = {}
 
@@ -212,12 +198,8 @@ EquipList = Subview:new{
             -- TODO: Check if hero can use item
         end
 
-        -- table.sort(ofType)
-
-
         -- If we have any items availible to equip display them
         if next(ofType) then
-
             local links = {}
             for k, v in pairs(ofType) do
                 table.insert(links, {
@@ -243,9 +225,6 @@ EquipList = Subview:new{
             self:add(self.menu)
         end
     end,
-    onActivate = function(self)
-        self.ready = true
-    end,
     onDeactivate = function(self)
         Equipped.ready = true
         EquipHero.ready = true
@@ -255,51 +234,18 @@ EquipList = Subview:new{
     onNew = function(self)
     end,
     onUpdate = function(self)
-        subviewRedraw(self)
         subviewRemove(self)
     end
 }
 
 EquipHero = Group:new{
     text = {},
-    onReady = function(self)
-        self:remove(self.image)
-        self:remove(self.name)
-        self:remove(self.atk)
-        self:remove(self.def)
-        self:remove(self.mag)
-        self:remove(self.mdef)
-        self:remove(self.spd)
-
-        -- Get kinds of equipment
-        local unique = {}
-        for i, v in ipairs(equipment) do
-            unique[v.kind] = true
-        end
-
-
-        -- Get stat totals with equiped items
-        local equipmentEffect = table.copy(STATE.heroes[localHero.key].stats)
-        for k, v in pairs(unique) do
-
-            local heroID = localHero.key
-            local itemID = STATE.equip[heroID][k]
-
-            if itemID and itemID ~= 0 then
-                local effect = equipment[itemID].effect
-                for k, v in pairs(effect) do
-                    equipmentEffect[k] = equipmentEffect[k] + v
-                end
-            end
-        end
-
-        local hero = STATE.heroes[localHero.key]
+    onNew = function(self)
         self.image = Tile:new{
             x = 0 + 370,
             y = 0 + 40,
             width = 32,
             height = 32,
-            image = hero.image
         }
         self.name = Text:new{
             x = 32 + 370,
@@ -307,7 +253,7 @@ EquipHero = Group:new{
             width = 100,
             tint = { 0, 0, 0 },
             font = 24,
-            text = hero.name
+            text = ''
         }
         self.atk = Text:new{
             x = 32 + 370,
@@ -315,7 +261,7 @@ EquipHero = Group:new{
             width = 100,
             tint = { 0, 0, 0 },
             font = 20,
-            text = 'ATK ' .. equipmentEffect.atk
+            text = ''
         }
 
         self.def = Text:new{
@@ -324,7 +270,7 @@ EquipHero = Group:new{
             width = 100,
             tint = { 0, 0, 0 },
             font = 20,
-            text = 'DEF ' .. equipmentEffect.def
+            text = ''
         }
         self.mag = Text:new{
             x = 32 + 370,
@@ -332,7 +278,7 @@ EquipHero = Group:new{
             width = 100,
             tint = { 0, 0, 0 },
             font = 20,
-            text = 'MAG ' .. equipmentEffect.mag
+            text = ''
         }
         self.mdef = Text:new{
             x = 32 + 370,
@@ -340,7 +286,7 @@ EquipHero = Group:new{
             width = 100,
             tint = { 0, 0, 0 },
             font = 20,
-            text = 'MDEF ' .. equipmentEffect.mdef
+            text = ''
         }
         self.spd = Text:new{
             x = 32 + 370,
@@ -348,7 +294,7 @@ EquipHero = Group:new{
             width = 100,
             tint = { 0, 0, 0 },
             font = 20,
-            text = 'SPD ' .. equipmentEffect.spd
+            text = ''
         }
         self:add(self.image)
         self:add(self.name)
@@ -359,7 +305,39 @@ EquipHero = Group:new{
         self:add(self.spd)
     end,
     onUpdate = function(self)
-        subviewRedraw(self)
+        if self.ready then
+            local equipmentEffect = table.copy(STATE.heroes[localHero.key].stats)
+            local hero = STATE.heroes[localHero.key]
+
+            -- Get kinds of equipment
+            local unique = {}
+            for i, v in ipairs(equipment) do
+                unique[v.kind] = true
+            end
+
+            -- Get stat totals with equiped items
+            for k, v in pairs(unique) do
+                local heroID = localHero.key
+                local itemID = STATE.equip[heroID][k]
+
+                if itemID and itemID ~= 0 then
+                    local effect = equipment[itemID].effect
+                    for k, v in pairs(effect) do
+                        equipmentEffect[k] = equipmentEffect[k] + v
+                    end
+                end
+            end
+
+            self.image.image = hero.image
+            self.name.text   = hero.name
+            self.atk.text    = 'ATK '  .. equipmentEffect.str
+            self.def.text    = 'DEF '  .. equipmentEffect.con
+            self.mag.text    = 'MAG '  .. equipmentEffect.int
+            self.mdef.text   = 'MDEF ' .. equipmentEffect.wis
+            self.spd.text    = 'SPD '  .. equipmentEffect.spd
+
+            self.ready = false
+        end
     end
 }
 

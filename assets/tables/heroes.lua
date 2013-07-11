@@ -91,23 +91,19 @@ return
         height = 32,
         stats = {
             level = 1,
-            hp = 222222,
-            hpmax = 222222,
+            hp = 200,
+            hpmax = 200,
             mp = 60,
             mpmax = 70,
             exp = 50,
             expmax = 100,
-            atk = 24,
-            mag = 24,
-            def = 24,
-            mdef = 14,
             -- -- -- -- -- -- -- --
             -- -- -- -- -- -- -- --
-            spd = 14,
+            spd = 24,
             str = 24,
             con = 24,
             int = 24,
-            wis = 14,
+            wis = 24,
         },
         active = true
     },
