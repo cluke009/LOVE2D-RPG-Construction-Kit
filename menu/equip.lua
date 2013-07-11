@@ -341,6 +341,4 @@ EquipHero = Group:new{
     end
 }
 
-
-
 return Equip

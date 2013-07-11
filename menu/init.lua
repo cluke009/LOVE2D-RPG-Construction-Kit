@@ -41,11 +41,7 @@ Launch = Subview:new{
         if the.keys:justPressed('escape') then
             self:deactivate()
         end
-        if STATE.menu.update == true then
-            STATE.menu.update = false
-        end
     end
 }
-
 
 return Launch

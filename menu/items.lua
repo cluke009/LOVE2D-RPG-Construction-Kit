@@ -22,54 +22,63 @@ Items = Subview:new{
         font = 24,
         text = 'No items.'
     },
+    inventory = function (self)
+        if next(STATE.inventory.item) then
+            local links = {}
+            for k, v in pairs(STATE.inventory.item) do
+                table.insert(links, {
+                    name = Item:get(k, 'name') .. ' x' .. v,
+                    hover = function()
+                        self.text.text = Item:get(k, 'desc')
+                    end,
+                    action = function()
+                        Select.item = Item:get(k)
+                        Select.item.key = k
+                        Select:activate()
+                    end
+                })
+            end
+        else
+            self.text.text = 'No items.'
+        end
+        return links
+    end,
+    onActivate = function(self)
+        local links = self:inventory()
+        if next(links) then
+            self.menu = Menu:new{
+                x = 20,
+                y = 80,
+                step = 24,
+                width = 300,
+                items = links
+            }
+            self:add(self.menu)
+        end
+        self:add(self.text)
+    end,
     onNew = function(self)
         self:add(self.fill)
         self:add(self.party)
     end,
     onUpdate = function(self)
         if self.ready == true then
-
-            if next(STATE.inventory.item) then
-                local links = {}
-                for k, v in pairs(STATE.inventory.item) do
-                    table.insert(links, {
-                        name = Item:get(k, 'name') .. ' x' .. v,
-                        hover = function()
-                            self.text.text = Item:get(k, 'desc')
-                        end,
-                        action = function()
-                            Select.item = Item:get(k)
-                            Select.item.key = k
-                            Select:activate()
-                        end
-                    })
-                end
-
+            if self.menu then
+                self:remove(self.menu)
                 self.menu = Menu:new{
                     x = 20,
                     y = 80,
                     step = 24,
                     width = 300,
-                    items = links
+                    items = self:inventory()
                 }
                 self:add(self.menu)
-            else
-                self.text.text = 'No items.'
             end
-            self:add(self.text)
             self.ready = false
-        end
-
-        if STATE.menu.update == true then
-            self.ready = true
-            self:remove(self.text)
-            self:remove(self.menu)
-            STATE.menu.update = false
         end
 
         if the.keys:justPressed('escape') then
             self.ready = true
-            STATE.menu.update = true
             self:remove(self.text)
             if self.menu then
                 self:remove(self.menu)
