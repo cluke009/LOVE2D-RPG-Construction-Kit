@@ -84,11 +84,32 @@ local Formula = {
     -- body
     end,
     --
-    -- Method: level
-    -- calculate stats by level
+    -- Method: stats
+    -- Calculate stats for level
     --
-    level = function(self)
-    -- body
+    stats = function(self, level)
+        local r = math.random(42,50) / 100
+        local s = math.ceil((stat*r*(level)) * stat)
+        local g = s - math.ceil((stat*r*(level - 1)) * stat)
+    end,
+    --
+    -- Method: level
+    -- Get experience to next level
+    -- http://disgaea.wikia.com/wiki/Experience
+    -- X = Level
+    -- .04 * X^3 + .8 * X^2 + 2 * X,
+    --
+    level = function(self, level)
+        local prevLevel = level - 1
+
+        local totalExp = 0.04 * math.pow(level, 3) + 0.8 * math.pow(level, 2) * level
+        totalExp = math.floor(totalExp)
+
+        local prevExp = 0.04 * math.pow(prevLevel, 3) + 0.8 * math.pow(prevLevel, 2) * prevLevel
+        prevExp = math.floor(prevExp)
+
+        local nextLevel = totalExp - prevExp
+        return totalExp, nextLevel
     end,
     --
     -- Method: enemyAI
