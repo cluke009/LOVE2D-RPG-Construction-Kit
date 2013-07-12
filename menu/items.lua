@@ -23,8 +23,8 @@ Items = Subview:new{
         text = 'No items.'
     },
     inventory = function (self)
+        local links = {}
         if next(STATE.inventory.item) then
-            local links = {}
             for k, v in pairs(STATE.inventory.item) do
                 table.insert(links, {
                     name = Item:get(k, 'name') .. ' x' .. v,
@@ -90,7 +90,6 @@ Items = Subview:new{
 
 Select = Subview:new{
     onActivate = function(self)
-
         local links = {}
 
         for k, hero in pairs(STATE.heroes) do
@@ -102,7 +101,6 @@ Select = Subview:new{
                         local key = self.item.key
                         -- Apply effects
                         for i = 1, #effect do
-
                             local stat = effect[i][1]
                             local value = effect[i][2]
                             local sHero = STATE.heroes[k].stats[stat]
@@ -118,8 +116,6 @@ Select = Subview:new{
 
                         -- Update inventory
                         Item:use(key)
-
-                        STATE.menu.update = true
                         self:remove(self.m)
                         self:deactivate()
                     end
