@@ -96,3 +96,33 @@ function random(min, max, precision)
     local randomnum = min + offset
     return math.floor(randomnum * math.pow(10, precision) + 0.5) / math.pow(10, precision)
 end
+
+
+local srep = string.rep
+
+-- all of these functions return their result and a boolean
+-- to notify the caller if the string was even changed
+
+-- pad the left side
+string.lpad = function (s, l, c)
+    s = tostring(s)
+    local res = srep(c or ' ', l - #s) .. s
+    return res, res ~= s
+end
+
+-- pad the right side
+string.rpad = function (s, l, c)
+    s = tostring(s)
+    local res = s .. srep(c or ' ', l - #s)
+    return res, res ~= s
+end
+
+-- pad on both sides (centering with left justification)
+string.pad = function (s, l, c)
+    c = c or ' '
+    s = tostring(s)
+    local res1, stat1 = rpad(s, (l / 2) + #s, c) -- pad to half-length + the length of s
+    local res2, stat2 = lpad(res1, l, c) -- right-pad our left-padded string to the full length
+
+    return res2, stat1 or stat2
+end
