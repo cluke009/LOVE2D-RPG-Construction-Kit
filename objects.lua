@@ -53,25 +53,43 @@ Spawn = Tile:extend{
 ]] ------------------------------------------------------------------------------
 Hero = Animation:extend{
     -- TODO: add config
-    width = 32,
-    height = 32,
-    image = 'assets/img/hero.png',
+    width = STATE.heroes[1].img.width,
+    height = STATE.heroes[1].img.height,
+    image = STATE.heroes[1].img.down.image,
+    sequences = {
+        right = { frames = STATE.heroes[1].img.right.frames, fps = STATE.heroes[1].img.right.fps },
+        left = { frames = STATE.heroes[1].img.left.frames, fps = STATE.heroes[1].img.left.fps },
+        up = { frames = STATE.heroes[1].img.up.frames, fps = STATE.heroes[1].img.up.fps },
+        down = { frames = STATE.heroes[1].img.down.frames, fps = STATE.heroes[1].img.down.fps },
+    },
     onUpdate = function(self)
         self.velocity.x = 0
         self.velocity.y = 0
 
         if the.keys:pressed('up') then
             self.velocity.y = -300
+            self.image = STATE.heroes[1].img.up.image
+            self:play('up')
         elseif the.keys:pressed('down') then
             self.velocity.y = 300
+            self.image = STATE.heroes[1].img.down.image
+            self:play('down')
         end
         if the.keys:pressed('left') then
             self.velocity.x = -300
+            self.image = STATE.heroes[1].img.left.image
+            self:play('left')
         elseif the.keys:pressed('right') then
             self.velocity.x = 300
+            self.image = STATE.heroes[1].img.right.image
+            self:play('right')
+        end
+        if self.velocity.x == 0 and self.velocity.y == 0 then
+            self:freeze()
         end
     end
 }
+
 
 --[[----------------------------------------------------------------------------
 --------------------------------------------------------------------------------

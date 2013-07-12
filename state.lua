@@ -22,7 +22,7 @@
 --         - equipment - Array of equipment in inventory
 --
 STATE = {
-    map = 'east',
+    map = 'home',
     hud = true,
     init = true,
     heroStartX = 480,
