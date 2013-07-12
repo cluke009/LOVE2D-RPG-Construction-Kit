@@ -69,7 +69,7 @@ return
         width = 128,
         height = 74,
         stats = {
-            hp = 222222,
+            hp = 34,
             mp = 60,
             str = 24,
             con = 24,
