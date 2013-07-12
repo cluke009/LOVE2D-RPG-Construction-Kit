@@ -20,11 +20,12 @@
         width = 32,
         height = 32,
         stats = {
-            spd = 14,
-            str = 24,
-            con = 24,
-            int = 24,
-            wis = 14,
+            lvl = 1,
+            spd = 9,
+            str = 8,
+            con = 7,
+            int = 6,
+            wis = 5,
         },
         special = {name1,name2},
         img = {
@@ -86,9 +87,6 @@ return
 {
     [1] = {
         name = 'Fighter',
-        image = 'assets/img/hero.png',
-        width = 32,
-        height = 32,
         stats = {
             level = 1,
             hp = 200,
@@ -104,6 +102,32 @@ return
             con = 24,
             int = 24,
             wis = 24,
+        },
+        img = {
+            width = 64,
+            height = 64,
+            -- Walk
+            left = {
+                image = 'assets/img/hero1_walk_left.png',
+                frames = { 1, 2, 3, 4, 5, 6, 7, 8, 9, },
+                fps = 15
+            },
+            right = {
+                image = 'assets/img/hero1_walk_right.png',
+                frames = { 1, 2, 3, 4, 5, 6, 7, 8, 9, },
+                fps = 15
+            },
+            up = {
+                image = 'assets/img/hero1_walk_up.png',
+                frames = { 1, 2, 3, 4, 5, 6, 7, 8, 9, },
+                fps = 15
+            },
+            down = {
+                image = 'assets/img/hero1_walk_down.png',
+                frames = { 1, 2, 3, 4, 5, 6, 7, 8, 9, },
+                fps = 15
+            },
+
         },
         active = true
     },

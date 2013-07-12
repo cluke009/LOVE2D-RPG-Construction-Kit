@@ -923,7 +923,7 @@
     <property name="to" value="home"/>
    </properties>
   </object>
-  <object name="Spawn" x="890" y="334" width="32" height="301">
+  <object name="Spawn" x="859" y="332" width="32" height="301">
    <properties>
     <property name="from" value="home"/>
    </properties>

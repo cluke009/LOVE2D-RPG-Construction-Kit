@@ -943,17 +943,17 @@
     <property name="from" value="north"/>
    </properties>
   </object>
-  <object name="Spawn" x="331" y="889" width="298" height="24">
+  <object name="Spawn" x="338" y="800" width="298" height="24">
    <properties>
     <property name="from" value="south"/>
    </properties>
   </object>
-  <object name="Spawn" x="894" y="326" width="25" height="307">
+  <object name="Spawn" x="863" y="326" width="25" height="307">
    <properties>
     <property name="from" value="east"/>
    </properties>
   </object>
-  <object name="Spawn" x="38" y="330" width="25" height="307">
+  <object name="Spawn" x="55" y="333" width="25" height="307">
    <properties>
     <property name="from" value="west"/>
    </properties>
@@ -984,24 +984,9 @@
     <property name="item" value="1"/>
    </properties>
   </object>
-  <object name="Obj" x="352" y="352" width="32" height="32">
-   <properties>
-    <property name="id" value="3"/>
-   </properties>
-  </object>
   <object name="Chest" x="416" y="576" width="32" height="32">
    <properties>
     <property name="equipment" value="4"/>
-   </properties>
-  </object>
-  <object name="Obj" x="352" y="576" width="32" height="32">
-   <properties>
-    <property name="id" value="2"/>
-   </properties>
-  </object>
-  <object name="Obj" x="768" y="352" width="32" height="32">
-   <properties>
-    <property name="id" value="4"/>
    </properties>
   </object>
   <object name="Chest" x="768" y="544" width="32" height="32">
