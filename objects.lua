@@ -98,14 +98,21 @@ Hero = Animation:extend{
 
 --------------------------------------------------------------------------------
 ]] ------------------------------------------------------------------------------
-Enemy = Tile:extend{
+Enemy = Animation:extend{
     onNew = function(self)
     -- TODO: add config
         self.id = tonumber(self.id)
         self.dialog = tonumber(self.dialog)
-        self.image = enemies[self.id]['image']
-        self.width = enemies[self.id]['width']
-        self.height = enemies[self.id]['height']
+        self.image = enemies[self.id]['img']['idle']['image']
+        self.width = enemies[self.id]['img']['width']
+        self.height = enemies[self.id]['img']['height']
+        self.sequences = {
+            down = {
+                frames = enemies[self.id].img.idle.frames,
+                fps = enemies[self.id].img.idle.fps
+            },
+        }
+        self:play('down')
     end,
     onCollide = function(self, other)
         if other:instanceOf(Hero) then

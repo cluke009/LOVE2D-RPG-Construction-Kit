@@ -126,17 +126,6 @@ return {
             ["dialog"] = "5",
             ["id"] = "1"
           }
-        },
-        {
-          name = "",
-          type = "",
-          shape = "rectangle",
-          x = 720,
-          y = 71,
-          width = 0,
-          height = 0,
-          visible = true,
-          properties = {}
         }
       }
     }

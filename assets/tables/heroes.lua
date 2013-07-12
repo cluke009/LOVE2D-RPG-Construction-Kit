@@ -86,7 +86,7 @@
 return
 {
     [1] = {
-        name = 'Fighter',
+        name = 'Hero',
         stats = {
             level = 1,
             hp = 200,
@@ -108,90 +108,162 @@ return
             height = 64,
             -- Walk
             left = {
-                image = 'assets/img/hero1_walk_left.png',
-                frames = { 1, 2, 3, 4, 5, 6, 7, 8, 9, },
-                fps = 15
+                image = 'assets/img/baldric.png',
+                frames = { 10,11,12,13,14,15,16,17,18, },
+                fps = 25
             },
             right = {
-                image = 'assets/img/hero1_walk_right.png',
-                frames = { 1, 2, 3, 4, 5, 6, 7, 8, 9, },
-                fps = 15
+                image = 'assets/img/baldric.png',
+                frames = { 28,29,30,31,32,33,34,35,36 },
+                fps = 25
             },
             up = {
-                image = 'assets/img/hero1_walk_up.png',
+                image = 'assets/img/baldric.png',
                 frames = { 1, 2, 3, 4, 5, 6, 7, 8, 9, },
-                fps = 15
+                fps = 25
             },
             down = {
-                image = 'assets/img/hero1_walk_down.png',
-                frames = { 1, 2, 3, 4, 5, 6, 7, 8, 9, },
-                fps = 15
+                image = 'assets/img/baldric.png',
+                frames = { 19,20,21,22,23,24,25,26,27 },
+                fps = 25
             },
 
         },
         active = true
     },
     [2] = {
-        name = 'Mage',
-        image = 'assets/img/npc.png',
-        width = 32,
-        height = 32,
+        name = 'Tank',
         stats = {
             level = 1,
-            hp = 280,
-            hpmax = 280,
+            hp = 200,
+            hpmax = 200,
             mp = 60,
             mpmax = 70,
             exp = 50,
             expmax = 100,
-            atk = 24,
-            mag = 24,
-            def = 24,
-            mdef = 14,
-            spd = 14,
+            -- -- -- -- -- -- -- --
+            -- -- -- -- -- -- -- --
+            spd = 24,
+            str = 24,
+            con = 24,
+            int = 24,
+            wis = 24,
         },
-        active = false
+        img = {
+            width = 64,
+            height = 64,
+            -- Walk
+            left = {
+                image = 'assets/img/goldarmor.png',
+                frames = { 10,11,12,13,14,15,16,17,18, },
+                fps = 25
+            },
+            right = {
+                image = 'assets/img/goldarmor.png',
+                frames = { 28,29,30,31,32,33,34,35,36 },
+                fps = 25
+            },
+            up = {
+                image = 'assets/img/goldarmor.png',
+                frames = { 1, 2, 3, 4, 5, 6, 7, 8, 9, },
+                fps = 25
+            },
+            down = {
+                image = 'assets/img/goldarmor.png',
+                frames = { 19,20,21,22,23,24,25,26,27 },
+                fps = 25
+            },
+        },
+        active = true
     },
     [3] = {
-        name = 'Tank',
-        image = 'assets/img/goblin_not_shitty.png',
-        width = 32,
-        height = 32,
+        name = 'Mage',
         stats = {
             level = 1,
-            hp = 280,
-            hpmax = 280,
+            hp = 200,
+            hpmax = 200,
             mp = 60,
             mpmax = 70,
             exp = 50,
             expmax = 100,
-            atk = 24,
-            mag = 24,
-            def = 24,
-            mdef = 14,
-            spd = 14,
+            -- -- -- -- -- -- -- --
+            -- -- -- -- -- -- -- --
+            spd = 24,
+            str = 24,
+            con = 24,
+            int = 24,
+            wis = 24,
         },
-        active = false
+        img = {
+            width = 64,
+            height = 64,
+            -- Walk
+            left = {
+                image = 'assets/img/mage.png',
+                frames = { 10,11,12,13,14,15,16,17,18, },
+                fps = 25
+            },
+            right = {
+                image = 'assets/img/mage.png',
+                frames = { 28,29,30,31,32,33,34,35,36 },
+                fps = 25
+            },
+            up = {
+                image = 'assets/img/mage.png',
+                frames = { 1, 2, 3, 4, 5, 6, 7, 8, 9, },
+                fps = 25
+            },
+            down = {
+                image = 'assets/img/mage.png',
+                frames = { 19,20,21,22,23,24,25,26,27 },
+                fps = 25
+            },
+        },
+        active = true
     },
     [4] = {
-        name = 'Hero 4',
-        image = 'assets/img/some_fag.gif',
-        width = 32,
-        height = 32,
+        name = 'Princess',
         stats = {
             level = 1,
-            hp = 280,
-            hpmax = 280,
+            hp = 200,
+            hpmax = 200,
             mp = 60,
             mpmax = 70,
             exp = 50,
             expmax = 100,
-            atk = 24,
-            mag = 24,
-            def = 24,
-            mdef = 14,
-            spd = 14,
+            -- -- -- -- -- -- -- --
+            -- -- -- -- -- -- -- --
+            spd = 24,
+            str = 24,
+            con = 24,
+            int = 24,
+            wis = 24,
         },
-        active = false
+        img = {
+            width = 64,
+            height = 64,
+            -- Walk
+            left = {
+                image = 'assets/img/princess.png',
+                frames = { 10,11,12,13,14,15,16,17,18, },
+                fps = 25
+            },
+            right = {
+                image = 'assets/img/princess.png',
+                frames = { 28,29,30,31,32,33,34,35,36 },
+                fps = 25
+            },
+            up = {
+                image = 'assets/img/princess.png',
+                frames = { 1, 2, 3, 4, 5, 6, 7, 8, 9, },
+                fps = 25
+            },
+            down = {
+                image = 'assets/img/princess.png',
+                frames = { 19,20,21,22,23,24,25,26,27 },
+                fps = 25
+            },
+        },
+        active = true
     },
 }
