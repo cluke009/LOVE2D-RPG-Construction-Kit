@@ -42,7 +42,7 @@ Group = Class:extend
 	-- This table's x and y properties shift member sprites' positions when drawn.
 	-- To draw sprites at their normal position, set both x and y to 0.
 	translate = { x = 0, y = 0 },
-	
+
 	-- Property: translateScale
 	-- This table's x and y properties multiply member sprites'
 	-- positions, which you can use to simulate parallax scrolling. To draw
@@ -61,7 +61,7 @@ Group = Class:extend
 	add = function (self, sprite)
 		assert(sprite, 'asked to add nil to a group')
 		assert(sprite ~= self, "can't add a group to itself")
-	
+
 		if STRICT and self:contains(sprite) then
 			local info = debug.getinfo(2, 'Sl')
 			print('Warning: adding a sprite to a group it already belongs to (' ..
@@ -74,10 +74,10 @@ Group = Class:extend
 	-- Method: remove
 	-- Removes a sprite from the group. If the sprite is
 	-- not in the group, this does nothing.
-	-- 
+	--
 	-- Arguments:
 	-- 		sprite - <Sprite> to remove
-	-- 
+	--
 	-- Returns:
 	-- 		nothing
 
@@ -88,7 +88,7 @@ Group = Class:extend
 				return
 			end
 		end
-		
+
 		if STRICT then
 			local info = debug.getinfo(2, 'Sl')
 			print('Warning: asked to remove a sprite from a group it was not a member of (' ..
@@ -129,7 +129,7 @@ Group = Class:extend
 	--
 	-- Returns:
 	--		nothing
-	
+
 	moveToBack = function (self, sprite)
 		for i, spr in ipairs(self.sprites) do
 			if spr == sprite then
@@ -169,7 +169,7 @@ Group = Class:extend
 	-- Arguments:
 	-- 		... - any number of <Sprite>s or <Group>s to collide with. If none
 	--			  are specified, the group collides with itself.
-	-- 
+	--
 	-- Returns:
 	--		nothing
 	--
@@ -232,10 +232,10 @@ Group = Class:extend
 
 	-- Method: count
 	-- Counts how many sprites are in this group.
-	-- 
+	--
 	-- Arguments:
 	--		subgroups - include subgroups?
-	-- 
+	--
 	-- Returns:
 	--		integer count
 
@@ -332,19 +332,27 @@ Group = Class:extend
 	--		nothing
 
 	loadLayers = function (self, file, tileClass)
-		local ok, data = pcall(loadstring(Cached:text(file)))
-		local _, _, directory = string.find(file, '^(.*[/\\])')
-		directory = directory or ''
+		local ok, data, directory
+
+		if type(file) == 'table' then
+			ok, data = true, file
+			directory = ''
+		else
+			ok, data = pcall(loadstring(Cached:text(file)))
+			_, _, directory = string.find(file, '^(.*[/\\])')
+			pretty.dump(directory)
+			directory = directory or ''
+		end
 
 		if ok then
 			-- store tile properties by gid
-			
+
 			local tileProtos = {}
 
 			for _, tileset in pairs(data.tilesets) do
 				for _, tile in pairs(tileset.tiles) do
 					local id = tileset.firstgid + tile.id
-					
+
 					for key, value in pairs(tile.properties) do
 						tile.properties[key] = tovalue(value)
 					end
@@ -463,7 +471,7 @@ Group = Class:extend
 	startFrame = function (self, elapsed)
 		if not self.active then return end
 		elapsed = elapsed * self.timeScale
-		
+
 		for _, spr in pairs(self.sprites) do
 			if spr.active then spr:startFrame(elapsed) end
 		end
@@ -508,7 +516,7 @@ Group = Class:extend
 		if not self.visible then return end
 		x = x or self.translate.x
 		y = y or self.translate.y
-		
+
 		local scrollX = x * self.translateScale.x
 		local scrollY = y * self.translateScale.y
 		local appWidth = the.app.width
@@ -523,8 +531,8 @@ Group = Class:extend
 				love.graphics.setPixelEffect(self.effect)
 			end
 		end
-		
-		for _, spr in pairs(self.sprites) do	
+
+		for _, spr in pairs(self.sprites) do
 			if spr.visible then
 				if spr.translate then
 					spr:draw(spr.translate.x + scrollX, spr.translate.y + scrollY)
@@ -541,7 +549,7 @@ Group = Class:extend
 				end
 			end
 		end
-			
+
 		if self.effect then
 			if self.effectType == 'screen' then
 				love.graphics.setPixelEffect(self.effect)
