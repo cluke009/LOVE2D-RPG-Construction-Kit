@@ -10,9 +10,9 @@ Launch = Subview:new{
     menu = Menu:new{
         x = 20,
         y = 200,
-        width = 300,
-        height = 24,
-        step = 24,
+        width = 22,
+        height = 23,
+        step = 23,
         items = {
             {
                 name = 'Items',
@@ -25,20 +25,24 @@ Launch = Subview:new{
                     Equip:activate()
                 end,
             },
-        }
+        },
+
     },
     fill = Fill:new{
-        width = 800,
-        height = 600,
-        fill = { 255, 255, 255, 200 }
+        x = 10,     width  = 780,
+        y = 10,     height = 580,
+        fill = { 0, 0, 255, 200 },
+        border = { 255, 255, 255, 255 },
     },
     onNew = function(self)
+
         self:add(self.fill)
         self:add(self.menu)
         self:add(self.party)
     end,
     onUpdate = function(self)
         if the.keys:justPressed('escape') then
+            self.party.ready = true
             self:deactivate()
         end
     end

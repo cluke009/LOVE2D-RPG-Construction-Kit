@@ -72,7 +72,7 @@ return
             con = 24,
             int = 24,
             wis = 14,
-            spd = 22,
+            spd = 35,
         },
         exp = 300,
         gold = 100,

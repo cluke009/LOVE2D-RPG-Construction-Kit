@@ -134,7 +134,7 @@ return
     [2] = {
         name = 'Tank',
         stats = {
-            level = 1,
+            level = 2,
             hp = 200,
             hpmax = 200,
             mp = 60,
@@ -219,7 +219,7 @@ return
                 fps = 25
             },
         },
-        active = true
+        active = false
     },
     [4] = {
         name = 'Princess',
@@ -264,6 +264,6 @@ return
                 fps = 25
             },
         },
-        active = true
+        active = false
     },
 }

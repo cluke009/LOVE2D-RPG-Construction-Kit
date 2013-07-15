@@ -957,5 +957,12 @@
     <property name="scene" value="scene1"/>
    </properties>
   </object>
+  <object name="Obj" x="425" y="407" width="96" height="76">
+   <properties>
+    <property name="id" value="1"/>
+    <property name="scene" value="scene1"/>
+    <property name="solid" value="false"/>
+   </properties>
+  </object>
  </objectgroup>
 </map>

@@ -45,7 +45,7 @@
 return
 {
     [1] = {
-        name = 'Sweater',
+        name = 'Mandalorian Armor',
         image = 'assets/img/sweater.png',
         width = 64,
         height = 64,
@@ -100,7 +100,7 @@ return
         width = 64,
         height = 64,
         desc = 'Attack + 50',
-        kind = 'Weapon',
+        kind = 'gauntlets',
         effect = {
             str = 170,
         },

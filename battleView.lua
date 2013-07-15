@@ -53,6 +53,7 @@ local BattleView = Subview:new{
             },
             height = 130,
             width = 139,
+            visible = false,
         }
         -- Add misc
         self:add(self.fill)
@@ -97,7 +98,7 @@ local BattleView = Subview:new{
                 image = BattleController.data.enemy[k].img.idle.image,
                 sequences = {
                     anim = {
-                        frames = { 1 },
+                        frames = BattleController.data.enemy[k].img.idle.frames,
                         fps = BattleController.data.enemy[k].img.idle.fps
                     },
                 },
@@ -124,6 +125,7 @@ local BattleView = Subview:new{
             self:add(self['enemyImg' .. k])
             self:add(self['enemyText' .. k .. 'shadow'])
             self:add(self['enemyText' .. k])
+            self['enemyImg' .. k]:play('anim')
         end
 
         --  Print enemy names
@@ -200,12 +202,12 @@ local BattleView = Subview:new{
         local heroID, dmg
 
         -- Start enemy idle animations
-        if queue[2] and queue[2].kind == 'enemy' then
-            local k = queue[2].key
-            self['enemyImg' .. k].image = bcEnemy[k].img.idle.image
-            self['enemyImg' .. k].sequences.anim.frames = bcEnemy[k].img.idle.frames
-            self['enemyImg' .. k]:play('anim')
-        end
+        -- if queue[2] and queue[2].kind == 'enemy' then
+        --     local k = queue[2].key
+        --     self['enemyImg' .. k].image = bcEnemy[k].img.idle.image
+        --     self['enemyImg' .. k].sequences.anim.frames = bcEnemy[k].img.idle.frames
+
+        -- end
 
         -- Start enemy attack animations
         if turnKind == 'enemy' then
@@ -225,7 +227,8 @@ local BattleView = Subview:new{
 
             -- Update animation
             self['enemyImg' .. k].image = bcEnemy[k].img.idle.image
-            self['enemyImg' .. k]:freeze(1)
+            self['enemyImg' .. k].sequences.anim.frames = bcEnemy[k].img.idle.frames
+            -- self['enemyImg' .. k]:freeze(1)
             -- Display damage
             self.dmgText.text = dmg
             self.dmgText.x = self['heroImg' .. heroID].x + self['heroImg' .. heroID].width
@@ -274,7 +277,8 @@ local BattleView = Subview:new{
 
             -- Update animation
             self['enemyImg' .. k].image = bcEnemy[k].img.idle.image
-            self['enemyImg' .. k]:freeze(1)
+            self['enemyImg' .. k].sequences.anim.frames = bcEnemy[k].img.idle.frames
+            -- self['enemyImg' .. k]:freeze(1)
 
             -- Update queue
             BattleController:updateQueue('enemy', self.enemyID)

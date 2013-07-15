@@ -50,6 +50,8 @@ MapView = View:extend{
         self.hero = Hero:new()
 
         self:loadLayers('assets/maps/' .. STATE.map .. '.lua')
+        -- local MapGen = require 'mapGen'
+        -- self:loadLayers(MapGen:init())
 
         if STATE.prevmap then
             -- Coordinates upon entering new room.

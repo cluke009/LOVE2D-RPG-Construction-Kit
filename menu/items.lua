@@ -117,6 +117,7 @@ Select = Subview:new{
                         -- Update inventory
                         Item:use(key)
                         self:remove(self.m)
+
                         self:deactivate()
                     end
                 })

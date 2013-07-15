@@ -22,9 +22,10 @@
 --         - equipment - Array of equipment in inventory
 --
 STATE = {
-    map = 'east',
+    map = 'home',
     hud = true,
     init = true,
+    font = {'assets/font/PressStart2P.ttf', 16},
     heroStartX = 480,
     heroStartY = 480,
     inventory = {
