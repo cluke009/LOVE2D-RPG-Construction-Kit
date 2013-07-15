@@ -3,29 +3,36 @@ local Menu = Group:extend{
     selected = 1,
     active = true,
     highlight = function(self)
-        self.h.y = self.y + 10 + (self.selected - 1) * self.step
+        self.h.y = self.y  + (self.selected - 1) * self.step
         if self.items[self.selected].hover then
             self.items[self.selected]:hover()
         end
     end,
     onNew = function(self)
-        self.h = Fill:new{
-            x = self.x,
-            y = self.y + 10,
-            width = self.width,
-            height = self.step,
-            fill = { 0, 255, 255, 100 }
+        self.h = Tile:new{
+            x = self.x - 14,        width = 22,
+            y = self.y - 5,   height = 23,
+            image = 'assets/img/arrow.png'
         }
         self:add(self.h)
         for i, value in ipairs(self.items) do
+            self['textShadow' .. i] = Text:new{
+                x = self.x + 12,
+                y = self.y + 12 + (i - 1) * self.step,
+                width = self.width - 20,
+                tint = { 0, 0, 0 },
+                font = STATE.font,
+                text = self.items[i]['name']
+            }
             self['text' .. i] = Text:new{
                 x = self.x + 10,
                 y = self.y + 10 + (i - 1) * self.step,
                 width = self.width - 20,
-                tint = { 0, 0, 0 },
-                font = 24,
+                tint = { 1, 1, 1 },
+                font = STATE.font,
                 text = self.items[i]['name']
             }
+            self:add(self['textShadow' .. i])
             self:add(self['text' .. i])
         end
         self:highlight()

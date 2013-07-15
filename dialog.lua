@@ -22,22 +22,30 @@ Dialog = Subview:new{
     count = 1,
     text = Text:new{
         x = 20,
-        y = 190,
-        width = 440,
+        y = 480,
+        width = 780,
+        tint = { 1, 1, 1 },
+        font = STATE.font,
+        text = ''
+    },
+    textShadow = Text:new{
+        x = 22,
+        y = 482,
+        width = 780,
         tint = { 0, 0, 0 },
-        font = {'assets/font/PressStart2P.ttf', 16},
+        font = STATE.font,
         text = ''
     },
     fill = Fill:new{
-        x = 10,
-        y = 180,
-        width = 460,
-        height = 80,
-        fill = { 255, 255, 255, 200 }
+        x = 10,     width  = 780,
+        y = 470,    height = 120,
+        fill = { 0, 0, 255, 200 },
+        border = { 255, 255, 255, 255 },
     },
     onActivate = function(self)
         -- Add sprites
         self:add(self.fill)
+        self:add(self.textShadow)
         self:add(self.text)
     end,
     onDeactivate = function(self)
@@ -46,10 +54,12 @@ Dialog = Subview:new{
     end,
     onUpdate = function(self)
         if self.count == 1 then
+            self.textShadow.text = self.dialog[1]
             self.text.text = self.dialog[1]
         end
         if the.keys:justPressed('return') then
             if #self.dialog > self.count then
+                self.textShadow.text = self.dialog[self.count + 1]
                 self.text.text = self.dialog[self.count + 1]
                 self.count = self.count + 1
             else

@@ -46,7 +46,7 @@ Equip = Subview:new{
         self.menu = Menu:new{
             x = 350,
             y = 20,
-            width = 10,
+            width = 22,
             step = 100,
             items = links
         }
@@ -102,10 +102,10 @@ Equipped = Subview:new{
     end,
     onActivate = function(self)
         self.fill = Fill:new{
-            width = 600,
-            x = 360,
-            height = 600,
-            fill = { 255, 255, 255, 255 }
+            x = 320,     width  = 430,
+            y = 20,    height = 560,
+            fill = { 0, 0, 255, 255 },
+            border = { 255, 255, 255, 255 },
         }
         -- Add menu to stage
         self.menu = Menu:new{
@@ -120,6 +120,7 @@ Equipped = Subview:new{
         self:add(EquipHero)
     end,
     onDeactivate = function(self)
+        EquipHero.ready = true
         self:remove(self.fill)
         self:remove(self.menu)
         self:remove(EquipHero)
@@ -155,9 +156,10 @@ EquipList = Subview:new{
     onActivate = function(self)
         -- Add background
         self.fill = Fill:new{
-            width = 300,
-            height = 600,
-            fill = { 255, 255, 255, 255 }
+            x = 20,     width  = 300,
+            y = 20,    height = 300,
+            fill = { 0, 0, 255, 255 },
+            border = { 255, 255, 255, 255 },
         }
         self:add(self.fill)
 
