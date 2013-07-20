@@ -22,7 +22,7 @@
 --         - equipment - Array of equipment in inventory
 --
 STATE = {
-    map = 'home',
+    map = 'west',
     hud = true,
     init = true,
     font = {'assets/font/PressStart2P.ttf', 16},
@@ -71,6 +71,5 @@ end
 
 -- Load clean game state
 function initializeSTATE()
-    print('INIT')
     STATE = table.copy(stateCopy)
 end
