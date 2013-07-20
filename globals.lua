@@ -126,3 +126,8 @@ string.pad = function (s, l, c)
 
     return res2, stat1 or stat2
 end
+
+
+function string.trim(s)
+  return s:match'^%s*(.*%S)' or ''
+end
