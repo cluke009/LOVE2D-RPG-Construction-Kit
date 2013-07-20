@@ -45,4 +45,22 @@ return
         width = 32,
         height = 32
     },
+    [5] = {
+        name = 'HP',
+        image = 'assets/img/hpfountain.png',
+        width = 64,
+        height = 64
+    },
+    [6] = {
+        name = 'MP',
+        image = 'assets/img/mpfountain.png',
+        width = 64,
+        height = 64
+    },
+    [7] = {
+        name = 'Portal',
+        image = 'assets/img/portal.png',
+        width = 64,
+        height = 64
+    },
 }

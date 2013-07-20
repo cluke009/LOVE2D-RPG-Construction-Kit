@@ -89,7 +89,7 @@ return
         name = 'Hero',
         stats = {
             level = 1,
-            hp = 200,
+            hp = 100,
             hpmax = 200,
             mp = 60,
             mpmax = 70,

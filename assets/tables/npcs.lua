@@ -29,9 +29,9 @@ return
         height = 32
     },
     [2] = {
-        name = 'NPC 2',
-        image = 'assets/img/panda_dragon.gif',
-        width = 64,
-        height = 64
+        name = 'Betty',
+        image = 'assets/img/betty_0.png',
+        width = 48,
+        height = 48
     }
 }

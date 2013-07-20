@@ -55,6 +55,7 @@ return
             con = 50,
         },
         use = { 1 },
+        cost = 101
     },
     [2] = {
         name = 'Hoody',
@@ -68,6 +69,7 @@ return
             wis = 20,
         },
         use = { 2 },
+        cost = 102
     },
     [3] = {
         name = 'Speed Boots',
@@ -81,6 +83,7 @@ return
             con = 5,
         },
         use = { 1 },
+        cost = 103
     },
     [4] = {
         name = 'Rifle',
@@ -93,6 +96,7 @@ return
             str = 50,
         },
         use = { 1 },
+        cost = 104
     },
     [5] = {
         name = 'Machete',
@@ -105,5 +109,6 @@ return
             str = 170,
         },
         use = { 2 },
+        cost = 105
     },
 }

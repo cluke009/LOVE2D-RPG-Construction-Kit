@@ -47,7 +47,8 @@ return
         effect = {
             { 'hpmax', 20 },
             { 'hp', 50 },
-        }
+        },
+        cost = 101
     },
     [2] = {
         name = 'Coffee',
@@ -57,7 +58,8 @@ return
         desc = 'MP + 20',
         effect = {
             { 'mp', 20 },
-        }
+        },
+        cost = 102
     },
     [3] = {
         name = 'Protein Shake',
@@ -68,23 +70,29 @@ return
         effect = {
             { 'mp', 20 },
         }
+        ,
+        cost = 103
     },
     [4] = {
-        name = 'item4',
-        image = 'img/dragon.png',
+        name = 'Item 4',
+        image = 'img/assets/shake.png',
         width = 64,
         height = 64,
+        desc = ' restores 20 MP',
         effect = {
             { 'mp', 20 },
-        }
+        },
+        cost = 104
     },
     [5] = {
         name = 'item5',
-        image = 'img/dragon.png',
+        image = 'img/assets/shake.png',
+        desc = ' restores 20 MP',
         width = 64,
         height = 64,
         effect = {
             { 'mp', 20 },
-        }
+        },
+        cost = 105
     },
 }
