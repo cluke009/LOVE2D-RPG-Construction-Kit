@@ -16,6 +16,43 @@ local Trigger = Class:extend{
     test = function(self)
         print('test')
     end,
+
+
+    shop = function(self, options)
+        local ShopView = require 'shop'
+        ShopView.shopID = options.shop
+        ShopView:activate()
+    end,
+
+
+    map = function(self, options)
+        STATE.map = options.map
+        the.app.view = MapView:new()
+    end,
+
+    restore = function(self, options)
+        if options.hp == 'true' then
+            local hero = STATE.heroes
+            for i,v in ipairs(hero) do
+                if v.active == true then
+                    hero[i].stats.hp = hero[i].stats.hpmax
+                end
+            end
+            the.app.view:flash({ 255, 0, 0 }, .75)
+        end
+        if options.mp == 'true' then
+            local hero = STATE.heroes
+            for i,v in ipairs(hero) do
+                if v.active == true then
+                    hero[i].stats.mp = hero[i].stats.mpmax
+                end
+            end
+            the.app.view:flash({ 0, 0, 255 }, .75)
+        end
+    end,
+
+
+
     --
     -- Method: scene
     -- Triggers cutscene from Tiled. Replaces "the.app.view" with scene.
@@ -26,8 +63,8 @@ local Trigger = Class:extend{
     -- Require:
     -- - 'assets.cutscenes.' .. scene
     --
-    scene = function(self, scene)
-        scene = require('assets.cutscenes.' .. scene)
+    scene = function(self, options)
+        local scene = require('assets.cutscenes.' .. options.scene)
         local myView = View:extend{
             count = 1,
             dcount = 1,

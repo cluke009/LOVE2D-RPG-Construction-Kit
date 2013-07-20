@@ -2,10 +2,15 @@ local Trigger = require'triggers'
 -- local Battle    = require 'battle'
 local Battle = require'battleView'
 
+
+local Assets  = require'assets'
+local Enemies = Assets.Enemy
+local Items   = Assets.Item
+local Equipment = Assets.Equipment
+local Inventory = Assets.Inventory
+
 local dialog = require'assets.tables.dialog'
-local enemies = require'assets.tables.enemies'
-local items = require'assets.tables.items'
-local equipment = require'assets.tables.equipment'
+
 local obj = require'assets.tables.obj'
 local npc = require'assets.tables.npcs'
 
@@ -21,7 +26,6 @@ Door = Tile:extend{
         if other:instanceOf(Hero) then
             STATE.prevmap = STATE.map
             STATE.map = self.to
-
             the.app.view = MapView:new()
             the.app.view:flash({ 0, 0, 0 }, .75)
         end
@@ -52,15 +56,26 @@ Spawn = Tile:extend{
 --------------------------------------------------------------------------------
 ]] ------------------------------------------------------------------------------
 Hero = Animation:extend{
-    -- TODO: add config
-    width = STATE.heroes[1].img.width,
+    width  = STATE.heroes[1].img.width,
     height = STATE.heroes[1].img.height,
-    image = STATE.heroes[1].img.down.image,
+    image  = STATE.heroes[1].img.down.image,
     sequences = {
-        right = { frames = STATE.heroes[1].img.right.frames, fps = STATE.heroes[1].img.right.fps },
-        left = { frames = STATE.heroes[1].img.left.frames, fps = STATE.heroes[1].img.left.fps },
-        up = { frames = STATE.heroes[1].img.up.frames, fps = STATE.heroes[1].img.up.fps },
-        down = { frames = STATE.heroes[1].img.down.frames, fps = STATE.heroes[1].img.down.fps },
+        right = {
+            frames = STATE.heroes[1].img.right.frames,
+            fps = STATE.heroes[1].img.right.fps
+        },
+        left  = {
+            frames = STATE.heroes[1].img.left.frames,
+            fps = STATE.heroes[1].img.left.fps
+        },
+        up    = {
+            frames = STATE.heroes[1].img.up.frames,
+            fps = STATE.heroes[1].img.up.fps
+        },
+        down  = {
+            frames = STATE.heroes[1].img.down.frames,
+            fps = STATE.heroes[1].img.down.fps
+        },
     },
     onUpdate = function(self)
         self.velocity.x = 0
@@ -74,8 +89,7 @@ Hero = Animation:extend{
             self.velocity.y = 300
             self.image = STATE.heroes[1].img.down.image
             self:play('down')
-        end
-        if the.keys:pressed('left') then
+        elseif the.keys:pressed('left') then
             self.velocity.x = -300
             self.image = STATE.heroes[1].img.left.image
             self:play('left')
@@ -101,15 +115,16 @@ Hero = Animation:extend{
 Enemy = Animation:extend{
     onNew = function(self)
     -- TODO: add config
-        self.id = tonumber(self.id)
-        self.dialog = tonumber(self.dialog)
-        self.image = enemies[self.id]['img']['idle']['image']
-        self.width = enemies[self.id]['img']['width']
-        self.height = enemies[self.id]['img']['height']
+
+        self.id        = tonumber(self.id)
+        self.dialog    = tonumber(self.dialog)
+        self.image     = Enemies:get(self.id, 'img').idle.image
+        self.width     = Enemies:get(self.id, 'img').width
+        self.height    = Enemies:get(self.id, 'img').height
         self.sequences = {
             down = {
-                frames = enemies[self.id].img.idle.frames,
-                fps = enemies[self.id].img.idle.fps
+                frames = Enemies:get(self.id, 'img').idle.frames,
+                fps    = Enemies:get(self.id, 'img').idle.fps
             },
         }
         self:play('down')
@@ -140,7 +155,7 @@ Enemy = Animation:extend{
                     if self.dialog then
                         d = dialog[self.dialog]
                     else
-                        d = string.gsub(dialog.enemies, '$enemy', enemies[self.id].name)
+                        d = string.gsub(dialog.enemies, '$enemy', Enemies:get(self.id, 'name'))
                         d = { d }
                     end
 
@@ -166,28 +181,26 @@ Enemy = Animation:extend{
 ]] ------------------------------------------------------------------------------
 Chest = Tile:extend{
     onNew = function(self)
-
-    -- Get item type
+        -- Get item type
         if self.item then
             self.kind = 'item'
         elseif self.equipment then
             self.kind = 'equipment'
-        elseif self.weapon then
-            self.kind = 'weapon'
         end
 
         -- Add params
-        self.uid = tonumber(self.x .. self.y)
-        self.item = tonumber(self.item)
-        self.equipment = tonumber(self.equipment)
-        self.weapon = tonumber(self.weapon)
-        self.id = self[self.kind]
+        self.uid        = tonumber(self.x .. self.y)
+        self.item       = tonumber(self.item)
+        self.equipment  = tonumber(self.equipment)
+        self.weapon     = tonumber(self.weapon)
+        self.id         = self[self.kind]
 
         -- Set state of chest
         if STATE[STATE.map] == nil then
             STATE[STATE.map] = {}
             STATE[STATE.map]['chest'] = {}
         end
+        -- TODO: add config for image
         if STATE[STATE.map]['chest'][self.uid] == nil then
             self.open = 0
             self.image = 'assets/img/chest.gif'
@@ -222,11 +235,7 @@ Chest = Tile:extend{
                     STATE[STATE.map]['chest'][self.uid] = 1
 
                     -- Save to inventory
-                    if STATE['inventory'][self.kind][self.id] == nil then
-                        STATE['inventory'][self.kind][self.id] = 1
-                    else
-                        STATE['inventory'][self.kind][self.id] = STATE['inventory'][self.kind][self.id] + 1
-                    end
+                    Inventory:put(self.kind, self.id)
 
                     -- Display dialog
                     local d = ''
@@ -234,9 +243,9 @@ Chest = Tile:extend{
                         d = dialog[tonumber(self.dialog)]
                     else
                         if self.item then
-                            d = string.gsub(dialog.items, '$item', items[self.id].name)
+                            d = string.gsub(dialog.items, '$item', Items:get(self.id, 'name'))
                         elseif self.equipment then
-                            d = string.gsub(dialog.items, '$item', equipment[self.id].name)
+                            d = string.gsub(dialog.items, '$item', Equipment:get(self.id, 'name'))
                         end
                         d = { d }
                     end
@@ -258,10 +267,10 @@ Chest = Tile:extend{
 Obj = Tile:extend{
     onNew = function(self)
     -- TODO: add config
-        self.id = tonumber(self.id)
+        self.id     = tonumber(self.id)
         self.dialog = tonumber(self.dialog)
-        self.image = obj[self.id]['image']
-        self.width = obj[self.id]['width']
+        self.image  = obj[self.id]['image']
+        self.width  = obj[self.id]['width']
         self.height = obj[self.id]['height']
     end,
     onCollide = function(self, other)
@@ -290,7 +299,16 @@ Obj = Tile:extend{
                         }:activate()
                     end
                     if self.trigger then
-                        Trigger[self.trigger]()
+                        local options = split(self.trigger, ',')
+                        local func = options[1]
+                        options[1] = nil
+
+                        local args = {}
+                        for k,v in pairs(options) do
+                            local a = split(v, '=')
+                            args[string.trim(a[1])] = string.trim(a[2])
+                        end
+                        Trigger[func](self, args)
                     end
                     if self.scene then
                         Trigger:scene(self.scene)
@@ -311,10 +329,10 @@ Obj = Tile:extend{
 ]] ------------------------------------------------------------------------------
 NPC = Obj:extend{
     onNew = function(self)
-        self.id = tonumber(self.id)
+        self.id     = tonumber(self.id)
         self.dialog = tonumber(self.dialog)
-        self.image = npc[self.id]['image']
-        self.width = npc[self.id]['width']
+        self.image  = npc[self.id]['image']
+        self.width  = npc[self.id]['width']
         self.height = npc[self.id]['height']
     end,
 }
