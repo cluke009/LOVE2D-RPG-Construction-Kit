@@ -67,8 +67,6 @@ ShopView = Subview:new{
         for k, v in pairs(ShopController.data) do
             -- pretty.dump(v)
             table.insert(links, {
-                -- name = Assets[v.ikind[1]]:get(v.key, 'name'),
-
                 name = Assets[v.ikind[1]]:get(v.key, 'name') .. ' G ' .. Assets[v.ikind[1]]:get(v.key, 'cost'),
                 hover = function()
                     self.text.text = Assets[v.ikind[1]]:get(v.key, 'desc')
@@ -112,8 +110,6 @@ ShopView = Subview:new{
         self:remove(self.gold)
         self:remove(self.text)
         self:remove(self.menu)
-        -- ShopController:init(self.shopID)
-        -- pretty.dump(ShopController.data)
     end,
     onUpdate = function (self)
         self.gold.text = 'gold: ' .. STATE.gold
