@@ -28,13 +28,7 @@ menu = require'menu'
 
 the.app = App:new{
     onRun = function(self)
-
-
-        MapGen = require'mapGen'
-        MapGen:init()
-        -- MapGen = require 'mapGen'
-
-    -- Reload clean game state every time
+        -- Reload clean game state every time
         initializeSTATE()
 
         -- Setup save state
