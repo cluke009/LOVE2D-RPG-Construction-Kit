@@ -9,7 +9,6 @@
 STRICT = true
 DEBUG = true
 
-pretty = require'pl.pretty'
 
 require'globals'
 require'state'
