@@ -1,6 +1,6 @@
 local Trigger = require'triggers'
 -- local Battle    = require 'battle'
-local Battle = require'battleView'
+local Battle = require'view.battle.battle_view'
 
 
 local Assets  = require'assets'

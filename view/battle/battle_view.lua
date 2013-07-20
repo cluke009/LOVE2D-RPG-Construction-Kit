@@ -1,4 +1,4 @@
-local BattleController = require'battleController'
+local BattleController = require 'controller.battle.battle_controller'
 --
 -- Class: BattleView
 -- Display code for battles
