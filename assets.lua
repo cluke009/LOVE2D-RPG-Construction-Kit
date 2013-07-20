@@ -1,6 +1,7 @@
 local enemies   = require'assets.tables.enemies'
 local equipment = require'assets.tables.equipment'
 local items     = require'assets.tables.items'
+local shop     = require'assets.tables.shop'
 
 --
 -- Class: Assets
@@ -33,7 +34,7 @@ Assets.Enemy = {
         local ret = nil
         local enemy = enemies[enemyID][arg[1]]
 
-        if arg[1] and type(enemy) == 'string' then
+        if arg[1] and type(enemy) ~= 'table' then
             ret = enemy
         elseif arg[1] and type(enemy) == 'table' then
             local data = {}; local i = 1
@@ -70,7 +71,7 @@ Assets.Equipment = {
         local ret = nil
         local equip = equipment[equipmentID][arg[1]]
 
-        if arg[1] and type(equip) == 'string' then
+        if arg[1] and type(equip) ~= 'table' then
             ret = equip
         elseif arg[1] and type(equip) == 'table' then
             local data = {}; local i = 1
@@ -144,7 +145,7 @@ Assets.Item = {
         local ret = nil
         local item = items[itemID][arg[1]]
 
-        if arg[1] and type(item) == 'string' then
+        if arg[1] and type(item) ~= 'table' then
             ret = item
         elseif arg[1] and type(item) == 'table' then
             local data = {}; local i = 1
@@ -191,4 +192,36 @@ Assets.Item = {
     end,
 }
 
+--
+-- Class: Inventory
+-- Interface for Inventory.
+--
+Assets.Inventory = {
+    --
+    -- Method: get
+    --
+    get = function(self, kind, itemID, ...)
+
+    end,
+    --
+    -- Method: put
+    --
+    put = function(self, kind, ID, ...)
+        if STATE['inventory'][kind][ID] == nil then
+            STATE['inventory'][kind][ID] = 1
+        else
+            STATE['inventory'][kind][ID] = STATE['inventory'][kind][ID] + 1
+        end
+    end,
+}
+Assets.Shop = {
+    --
+    -- Method: get
+    --
+    get = function(self, shopID, ...)
+        shopID = tonumber(shopID)
+        return shop[shopID]
+    end,
+
+}
 return Assets
