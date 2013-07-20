@@ -954,7 +954,7 @@
   <object name="Obj" x="320" y="576" width="32" height="32">
    <properties>
     <property name="id" value="2"/>
-    <property name="scene" value="scene1"/>
+    <property name="trigger" value="scene, scene = scene1"/>
    </properties>
   </object>
   <object name="Obj" x="425" y="407" width="96" height="76">

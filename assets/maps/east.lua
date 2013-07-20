@@ -179,7 +179,7 @@ return {
           visible = true,
           properties = {
             ["id"] = "2",
-            ["scene"] = "scene1"
+            ["trigger"] = "scene, scene = scene1"
           }
         },
         {
