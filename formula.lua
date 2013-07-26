@@ -92,6 +92,28 @@ local Formula = {
         local s = math.ceil((stat*r*(level)) * stat)
         local g = s - math.ceil((stat*r*(level - 1)) * stat)
     end,
+
+
+    exper = function(self, lvl, exp)
+        lvl = lvl + 1
+        local _, nextLevel = self:level(lvl)
+        local exb = exp - nextLevel
+
+        -- print('---------------------')
+        -- print(exp,exb,nextLevel,lvl)
+        if nextLevel <= exp then
+            exp = exb
+            -- print('++++++++++++++++++++++++++')
+            return self:exper(lvl, exp)
+        else
+            -- print('======================')
+            -- print(exp,exb,nextLevel,lvl)
+            -- return exb,nextLevel,lvl
+            return exp, nextLevel, lvl - 1
+        end
+        
+    end,
+
     --
     -- Method: level
     -- Get experience to next level
@@ -99,16 +121,18 @@ local Formula = {
     -- X = Level
     -- .04 * X^3 + .8 * X^2 + 2 * X,
     --
-    level = function(self, level)
-        local prevLevel = level - 1
+    level = function(self, lvl)
+        local prevLevel = lvl - 1
 
-        local totalExp = 0.04 * math.pow(level, 3) + 0.8 * math.pow(level, 2) * level
+        local totalExp = 0.04 * math.pow(lvl, 3) + 0.8 * math.pow(lvl, 2) * lvl
         totalExp = math.floor(totalExp)
 
         local prevExp = 0.04 * math.pow(prevLevel, 3) + 0.8 * math.pow(prevLevel, 2) * prevLevel
         prevExp = math.floor(prevExp)
 
         local nextLevel = totalExp - prevExp
+        print('lvl:' .. lvl)
+
         return totalExp, nextLevel
     end,
     --
@@ -124,9 +148,9 @@ local Formula = {
     enemyAI = function ( self, party)
         local p = {}
         for k, v in pairs(party) do
-            -- if not v.dead then
-            table.insert(p, k)
-            -- end
+            if not v.dead then
+                table.insert(p, k)
+            end
         end
 
         return p[math.random(1, #p)]
