@@ -1,4 +1,4 @@
-local assets    = require 'assets'
+local assets    = require 'helpers.asset_helper'
 local Enemy     = assets.Enemy
 local Equipment = assets.Equipment
 local Item      = assets.Item
@@ -31,7 +31,7 @@ local BattleModel = {
     end,
     --
     -- Method: hero
-    -- Fill hero data table.
+    -- Fill hero data table. --console
     -- Copies active heroes and applies equipment boosts.
     --
     hero = function ( self )
