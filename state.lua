@@ -35,7 +35,7 @@ STATE = {
     -----------------------------------------
     -- not configurable beyond this point
     -----------------------------------------
-    heroes = require'assets.tables.heroes',
+    heroes = table.deepcopy(require'assets.tables.heroes'),
     equip = {},
     gold = 300,
 }
