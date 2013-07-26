@@ -1,5 +1,5 @@
 local ShopModel = require 'model.shop.shop_model'
-local Assets    = require 'assets'
+local Assets    = require 'helpers.asset_helper'
 
 local ShopController = {
     init = function ( self, shopID )

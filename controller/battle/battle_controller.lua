@@ -88,12 +88,16 @@ local BattleController = {
         if #hero == 0 then
             return false, 'heroes dead'
         elseif #enemy == 0 then
+            -- Update any important data that changed
+            self:write()
+
             -- TODO: Calculate exp and notify if new level
             for k,v in pairs(self.data.enemy) do
                 self.data.gold = self.data.gold + v.gold
                 self.data.exp = self.data.exp + v.exp
             end
-            return true, { gold = self.data.gold, exp = self.data.exp }
+
+            return true, { gold = self.data.gold, exp = self.data.exp, lvl = self.data.level}
         end
     end,
     --
@@ -147,6 +151,13 @@ local BattleController = {
             else
                 STATE.heroes[k]['stats']['exp'] = v.stats.exp + self.data.exp
             end
+            -- Update exp, expmax, level
+            local sLvl = STATE.heroes[k].stats.level
+            local sExp = STATE.heroes[k].stats.exp
+            local exp,expmax,level = Formula:exper(sLvl, sExp)
+            STATE.heroes[k].stats.level = level
+            STATE.heroes[k].stats.exp = exp
+            STATE.heroes[k].stats.expmax = expmax
         end
     end,
 }

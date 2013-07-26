@@ -1,4 +1,4 @@
-local Assets    = require'assets'
+local Assets    = require'helpers.asset_helper'
 local Equipment = Assets.Equipment
 local Item      = Assets.Item
 local Shop      = Assets.Shop

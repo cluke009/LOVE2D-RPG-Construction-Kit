@@ -1,4 +1,4 @@
-local Menu           = require 'menu.menu'
+local Menu           = require 'helpers.menu_helper'
 local ShopController = require 'controller.shop.shop_controller'
 
 local ShopView = Subview:new{
