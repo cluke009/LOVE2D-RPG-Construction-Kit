@@ -19,7 +19,7 @@ local Trigger = Class:extend{
 
 
     shop = function(self, options)
-        local ShopView = require 'shop'
+        local ShopView = require 'view.shop.shop_view'
         ShopView.shopID = options.shop
         ShopView:activate()
     end,
