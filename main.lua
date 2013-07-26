@@ -8,7 +8,7 @@
 
 STRICT = true
 DEBUG = true
-
+io.stdout:setvbuf("no")
 
 require'globals'
 require'state'
@@ -20,7 +20,7 @@ require'objects'
 require'dialog'
 
 
-menu = require'menu'
+menu = require'view.menu_game.menu_game_view'
 
 
 -- pretty.dump(STATE)
@@ -35,9 +35,6 @@ the.app = App:new{
 
         -- Set view to our map loader.
         self.view = MapView:new()
-
-    -- l = love.graphics.newPixelEffect([[]])
-    -- love.graphics.setPixelEffect(l)
 
     end,
     onUpdate = function(self)
@@ -57,7 +54,6 @@ the.app = App:new{
             self.save.data = STATE
             self.save:save()
         end
-
 
         if the.keys:justPressed('l') then
             -- Load data into state if exists
