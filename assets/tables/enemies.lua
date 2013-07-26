@@ -74,7 +74,7 @@ return
             wis = 14,
             spd = 35,
         },
-        exp = 300,
+        exp = 10,
         gold = 100,
         group = { 2, 1 },
         img = {
@@ -108,7 +108,7 @@ return
             wis = 14,
             spd = 22,
         },
-        exp = 300,
+        exp = 5,
         gold = 100,
         group = { 2, 1 },
         img = {

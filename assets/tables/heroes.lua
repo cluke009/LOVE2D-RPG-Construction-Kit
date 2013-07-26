@@ -89,11 +89,11 @@ return
         name = 'Hero',
         stats = {
             level = 1,
-            hp = 100,
+            hp = 200,
             hpmax = 200,
             mp = 60,
             mpmax = 70,
-            exp = 50,
+            exp = 0,
             expmax = 100,
             -- -- -- -- -- -- -- --
             -- -- -- -- -- -- -- --
@@ -139,7 +139,7 @@ return
             hpmax = 200,
             mp = 60,
             mpmax = 70,
-            exp = 50,
+            exp = 0,
             expmax = 100,
             -- -- -- -- -- -- -- --
             -- -- -- -- -- -- -- --
@@ -184,7 +184,7 @@ return
             hpmax = 200,
             mp = 60,
             mpmax = 70,
-            exp = 50,
+            exp = 0,
             expmax = 100,
             -- -- -- -- -- -- -- --
             -- -- -- -- -- -- -- --
@@ -219,7 +219,7 @@ return
                 fps = 25
             },
         },
-        active = false
+        active = true
     },
     [4] = {
         name = 'Princess',
@@ -229,7 +229,7 @@ return
             hpmax = 200,
             mp = 60,
             mpmax = 70,
-            exp = 50,
+            exp = 0,
             expmax = 100,
             -- -- -- -- -- -- -- --
             -- -- -- -- -- -- -- --
@@ -264,6 +264,6 @@ return
                 fps = 25
             },
         },
-        active = false
+        active = true
     },
 }

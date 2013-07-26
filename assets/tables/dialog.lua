@@ -19,7 +19,7 @@ return
     [1] = { 'Controls \n"S" - saves, "L" loads save, "D" deletes save' },
     [2] = {
         'Custom Dialog can be added to chests!!!',
-        'It can even span multiple dialog boxes.\n You can add dialog by assigning a dialog property with the ID of your text.\n Edit "assets/tables/dialog.lua"'
+        'It can even span multiple dialog boxes.\n You can add dialog by assigning a dialog property with the ID of your text.\n Edit "assets/tables/dialog.lua"',
     },
     [3] = { 'Even enemies can have custom dialog. \nLike this panda dragon here.' },
     [4] = { 'You can even trigger cutscenes from tiled.',

@@ -26,7 +26,7 @@ return
         name = 'NPC 1',
         image = 'assets/img/npc.png',
         width = 32,
-        height = 32
+        height = 32,
     },
     [2] = {
         name = 'Betty',
