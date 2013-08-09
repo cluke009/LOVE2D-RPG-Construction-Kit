@@ -8,7 +8,7 @@ local Item      = assets.Item
 -- Prepare local data table for modification
 --
 -- Require:
--- - assets
+-- - helpers.asset_helper
 --
 local BattleModel = {
     --
@@ -29,9 +29,10 @@ local BattleModel = {
 
         return self.data
     end,
+
     --
     -- Method: hero
-    -- Fill hero data table. --console
+    -- Fill hero data table. 
     -- Copies active heroes and applies equipment boosts.
     --
     hero = function ( self )
@@ -39,7 +40,7 @@ local BattleModel = {
         for k, v in pairs(STATE.heroes) do
             if v.active then
                 -- Copy active heroes
-                self.data.hero[k] = table.deepcopy(v)
+                self.data.hero[k] = table.copy(v, true)
 
                 local stats = self.data.hero[k]['stats']
 
@@ -53,6 +54,7 @@ local BattleModel = {
         end
         -- pretty.dump(self.data.hero[1])
     end,
+
     --
     -- Method: enemy
     -- Fill enemy data table with 1-5 enemies from the group.
@@ -65,18 +67,18 @@ local BattleModel = {
 
         -- Lua likes to pick 2 every time with only one random. Who knows why?
         local superRand = math.random(math.random(1, 3), 5)
-        -- superRand = 1 -- or not at all random
+        superRand = 2 -- or not at all random
 
         for i=1, superRand do
             local randID = math.random(1, #enemyGroup)
             randID = enemyGroup[randID]
 
-            table.insert(array, table.deepcopy(Enemy:get(randID)))
+            table.insert(array, table.copy(Enemy:get(randID), true))
             array[i]['key'] = randID
 
             -- Randomize stats +/- 10%
             for k,v in pairs(array[i]['stats']) do
-                local randStats = v + math.round(v * (random(-10, 10)/100))
+                local randStats = v + math.floor(v * (math.random(-10, 10)/100))
                 array[i]['stats'][k] = randStats
             end
             array[i]['stats']['hpmax'] = array[i]['stats']['hp']
@@ -84,6 +86,7 @@ local BattleModel = {
 
         self.data.enemy = array
     end,
+    
     --
     -- Method: queue
     -- Creates a queue for turn order. Sorted by spd, highest first.
