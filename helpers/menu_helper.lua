@@ -1,3 +1,57 @@
+local Sound = require 'assets.tables.sound'
+local FX    = Sound.fx
+
+-- 
+-- Class: MenuHelper
+-- Simple vertical menus.
+-- 
+-- Properties:
+--     x - X coordinates.
+--     y - Y coordinates.
+--     width - Text width.
+--     height - Text height.
+--     step - Height between cursor movement.
+-- 
+-- Extends:
+--     <Group>
+-- 
+-- Require:
+-- - assets.tables.sound
+-- 
+-- Example code:
+--     (begin code)
+-- local MenuHelper = require 'helpers.menu_helper'
+-- 
+-- menu = MenuHelper:new {
+--     x = 200,
+--     y = 250,
+--     width = 150,
+--     height = 23,
+--     step = 23,
+--     items = {
+--         {
+--             name = 'New Game',
+--             action = function()
+--                 love.audio.stop(msrc)
+--                 Save:new()
+--                 the.app.view = MapView:new()
+--             end,
+--         }, {
+--             name = 'Continue',
+--             action = function()
+--                 Continue:activate()
+--             end,
+--         }, {
+--             name = 'Quit',
+--             action = function()
+--                 Quit:activate()
+--             end,
+--         },
+--     },
+-- }
+-- self:add(menu)
+--     (end code)
+-- 
 local MenuHelper = Group:extend{
     items = {},
     selected = 1,
@@ -40,6 +94,7 @@ local MenuHelper = Group:extend{
     onUpdate = function(self)
         if self.active == true then
             if the.keys:justPressed('up') then
+                playSound(FX[1].path)
                 if self.selected > 1 then
                     self.selected = self.selected - 1
                 else
@@ -47,6 +102,7 @@ local MenuHelper = Group:extend{
                 end
                 self:highlight()
             elseif the.keys:justPressed('down') then
+                playSound(FX[1].path)
                 if self.selected < #self.items then
                     self.selected = self.selected + 1
                 else
@@ -54,6 +110,7 @@ local MenuHelper = Group:extend{
                 end
                 self:highlight()
             elseif the.keys:justPressed('return') then
+                playSound(FX[2].path)
                 if self.items[self.selected].action then
                     self.items[self.selected]:action()
                 end
