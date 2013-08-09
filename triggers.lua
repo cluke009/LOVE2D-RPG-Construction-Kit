@@ -5,31 +5,40 @@
 -- Extends:
 --      <Class>
 --
-local Trigger = Class:extend{
+local Trigger = Class:extend {
     --
-    -- Method: test
-    -- A testing function for triggers.
+    -- Method: shop
+    -- Opens up a shop with the supplied ID.
     --
-    -- Returns:
-    --      Prints test to the console.
-    --
-    test = function(self)
-        print('test')
-    end,
-
-
-    shop = function(self, options)
+    shop = function ( self, options )
         local ShopView = require 'view.shop.shop_view'
         ShopView.shopID = options.shop
         ShopView:activate()
     end,
 
-
+    --
+    -- Method: map
+    -- Sends player to the supplied map
+    --
     map = function(self, options)
         STATE.map = options.map
         the.app.view = MapView:new()
     end,
 
+    --
+    -- Method: party
+    -- Add character to party
+    --
+    party = function(self, options)
+        for k,v in pairs(options.heroes) do
+            STATE.heroes[v].active = true
+        end
+    end,
+
+    --
+    -- Method: restore
+    -- Restores MP/HP
+    --
     restore = function(self, options)
         if options.hp == 'true' then
             local hero = STATE.heroes
@@ -51,8 +60,6 @@ local Trigger = Class:extend{
         end
     end,
 
-
-
     --
     -- Method: scene
     -- Triggers cutscene from Tiled. Replaces "the.app.view" with scene.
@@ -65,7 +72,7 @@ local Trigger = Class:extend{
     --
     scene = function(self, options)
         local scene = require('assets.cutscenes.' .. options.scene)
-        local myView = View:extend{
+        local myView = View:extend {
             count = 1,
             dcount = 1,
             onNew = function(self)
@@ -84,7 +91,7 @@ local Trigger = Class:extend{
                     y = 450,
                     width = 760,
                     tint = { 0, 0, 0 },
-                    font = 24,
+                    font = STATE.font,
                     text = scene[1]['dialog'][1]
                 }
                 self:add(self.img)
@@ -126,7 +133,7 @@ local Trigger = Class:extend{
                             y = 450,
                             width = 760,
                             tint = { 0, 0, 0 },
-                            font = 24,
+                            font = STATE.font,
                             text = scene[self.count]['dialog'][self.dcount]
                         }
                         self:add(self.text)
