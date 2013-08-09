@@ -340,7 +340,6 @@ Group = Class:extend
 		else
 			ok, data = pcall(loadstring(Cached:text(file)))
 			_, _, directory = string.find(file, '^(.*[/\\])')
-			pretty.dump(directory)
 			directory = directory or ''
 		end
 
@@ -348,6 +347,27 @@ Group = Class:extend
 			-- store tile properties by gid
 
 			local tileProtos = {}
+			-- !!!!!!!!!! HACKS !!!!!!!!!!!!!!!!!!
+			-- local tk = {}
+			-- -- pretty.dump(layer.data)
+			-- for _, layer in pairs(data.layers) do
+			-- 	if layer.type == 'tilelayer' then
+			-- 		for k,v in pairs(layer.data) do
+			-- 			tk[k] = k
+			-- 		end
+			-- 		for k,v in pairs(tk) do
+			-- 			local t = {
+			-- 		        id = k,
+			-- 		        properties = {
+			-- 		          solid = false
+			-- 		        },
+			-- 		        height = 32,
+			-- 		        width = 32
+			-- 		      }
+			-- 			table.insert(data.tilesets[1].tiles, t)
+			-- 		end
+			-- 	end
+			-- end
 
 			for _, tileset in pairs(data.tilesets) do
 				for _, tile in pairs(tileset.tiles) do
@@ -446,6 +466,55 @@ Group = Class:extend
 							spr = _G[obj.name]:new(obj.properties)
 						else
 							spr = Fill:new{ x = obj.x, y = obj.y, width = obj.width, height = obj.height, fill = { 128, 128, 128 } }
+
+-- !!!!!!!!!! HACKS !!!!!!!!!!!!!!!!!!
+-- 							print('fill')
+-- 							require 'zoetrope.sprites.polygon'
+-- local polyline = {
+--             { x = 0, y = 0 },
+--             { x = -64, y = 0 },
+--             { x = -64, y = -64 },
+--             { x = -160, y = -64 },
+--             { x = -160, y = -96 },
+--             { x = -192, y = -96 },
+--             { x = -192, y = -64 },
+--             { x = -256, y = -64 },
+--             { x = -256, y = -96 },
+--             { x = -288, y = -96 },
+--             { x = -288, y = -128 },
+--             { x = -320, y = -160 },
+--             { x = -320, y = -192 },
+--             { x = -384, y = -192 },
+--             { x = -384, y = -160 },
+--             { x = -416, y = -160 },
+--             { x = -416, y = -224 },
+--             { x = 352, y = -224 },
+--             { x = 352, y = -128 },
+--             { x = 320, y = -128 },
+--             { x = 288, y = -96 },
+--             { x = 288, y = -64 },
+--             { x = 256, y = -32 },
+--             { x = 256, y = 0 },
+--             { x = 128, y = 0 },
+--             { x = 128, y = -32 },
+--             { x = 96, y = -32 },
+--             { x = 96, y = 0 },
+--             { x = 32, y = 0 },
+--             { x = 32, y = -32 },
+--             { x = 0, y = -32 },
+--             { x = 0, y = 0 }
+--           }
+--     local vertices = {}
+--     for k,v in pairs(polyline) do
+--         -- print(v['x'], v['y'])
+--         table.insert(vertices, v['x'] + 416)
+--         table.insert(vertices, v['y'] + 288)
+--     end
+
+
+
+
+-- 							spr = Polygon:new{416, 255,vertices }
 						end
 
 						if obj.properties._the then
