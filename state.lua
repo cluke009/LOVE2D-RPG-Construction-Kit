@@ -1,11 +1,3 @@
---[[----------------------------------------------------------------------------
---------------------------------------------------------------------------------
-
-
-
---------------------------------------------------------------------------------
-]] -----------------------------------------------------------------------------
-
 --
 -- Class: State
 -- Initialize any empty game data that needs to be present before we load.
@@ -22,22 +14,26 @@
 --         - equipment - Array of equipment in inventory
 --
 STATE = {
-    map = 'west',
-    hud = true,
+    map = 'home',
+    hud = true,  
     init = true,
-    font = {'assets/font/PressStart2P.ttf', 16},
+    font = 16,
     heroStartX = 480,
     heroStartY = 480,
     inventory = {
         item = {},
-        equipment = { [2] = 1, [3] = 1, [5] = 1 },
+        equipment = {},
+        -- equipment = { [2] = 1, [3] = 1, [5] = 1 },
     },
-    -----------------------------------------
-    -- not configurable beyond this point
-    -----------------------------------------
-    heroes = table.deepcopy(require'assets.tables.heroes'),
+    heroes = require'assets.tables.heroes',
     equip = {},
     gold = 300,
+    time = {
+        date = 0,
+        seconds = 0,
+        human = '',
+        epoch = 0,
+    }
 }
 --
 -- Class: TEMP
@@ -61,15 +57,22 @@ for i, v in ipairs(STATE.heroes) do
     end
 end
 
--- Copy clean state table
-local stateCopy = {}
-if STATE.init then
-    stateCopy = table.copy(STATE)
-    stateCopy.init = false
-    STATE.init = false
+
+local Formula = require 'formula'
+for i, iv in ipairs(STATE.heroes) do
+    -- Get experience needed for desired level
+    local experience, _ = Formula:level(STATE.heroes[i].stats.level)
+    -- Overwrite experience
+    STATE.heroes[i].stats.exp = experience
+    -- Get new stats/ Set level to 1 / Calculate by experience
+    local a,b,c,d = Formula:exper( 1, STATE.heroes[i].stats.exp, STATE.heroes[i].stats)
+    for k,kv in pairs(d) do
+        STATE.heroes[i].stats[k] = kv
+    end
+    -- print(d)
+    STATE.heroes[i].stats.exp = a
+    STATE.heroes[i].stats.expmax = b
+    STATE.heroes[i].stats.hp = STATE.heroes[i].stats.hpmax
+    STATE.heroes[i].stats.mp = STATE.heroes[i].stats.mpmax
 end
 
--- Load clean game state
-function initializeSTATE()
-    STATE = table.copy(stateCopy)
-end
