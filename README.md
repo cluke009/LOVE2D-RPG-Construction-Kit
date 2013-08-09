@@ -15,6 +15,10 @@ More info about how to use these files can be found in the comments or in the do
 * `items.lua` - Consumable items.
 * `npcs.lua` - NPCs.
 * `obj.lua` - Generic game objects for use in Tiled.
+* `quests.lua` - Quests. Not yet implemented.
+* `shop.lua` - Items and equipment at shops.
+* `sound.lua` - Sound effects and music.
+* `specials.lua` - shared Magic/Special attacks. Not yet implemented.
 
 Tiled
 ------------
