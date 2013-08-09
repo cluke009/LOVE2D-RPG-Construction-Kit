@@ -6,7 +6,7 @@ local Formula     = require 'formula'
 -- Communicate between the model and view
 --
 -- Require:
--- - battleModel
+-- - model.battle.battle_model
 -- - formula
 --
 local BattleController = {
@@ -17,6 +17,7 @@ local BattleController = {
     init = function(self)
         self.data = BattleModel:init()
     end,
+
     --
     -- Method: updateQueue
     -- Update BattleModel.data.queue
@@ -51,6 +52,7 @@ local BattleController = {
             i = i + 1
         end
     end,
+
     --
     -- Method: enemyTurn
     -- Run AI and take enemy turn.
@@ -67,6 +69,7 @@ local BattleController = {
 
         return dmg, heroID
     end,
+
     --
     -- Method: win
     -- Checks to see if either side has won yet.
@@ -91,15 +94,10 @@ local BattleController = {
             -- Update any important data that changed
             self:write()
 
-            -- TODO: Calculate exp and notify if new level
-            for k,v in pairs(self.data.enemy) do
-                self.data.gold = self.data.gold + v.gold
-                self.data.exp = self.data.exp + v.exp
-            end
-
-            return true, { gold = self.data.gold, exp = self.data.exp, lvl = self.data.level}
+            return true, { gold = self.data.gold, exp = self.data.exp}
         end
     end,
+
     --
     -- Method: heroTurn
     -- Complete "action" from hero turn.
@@ -113,6 +111,7 @@ local BattleController = {
             return dmg, self.arg.args[2]
         end
     end,
+
     --
     -- Method: action
     -- Puts hero action into a queue to be completed with heroTurn.
@@ -135,6 +134,7 @@ local BattleController = {
         local dmg = 0
         return dmg, arg[2]
     end,
+
     --
     -- Method: write
     -- Write any permanent changes made to the heroes back to the STATE object.
@@ -142,7 +142,13 @@ local BattleController = {
     -- TODO: Track status effects
     --
     write = function(self)
+        for k,v in pairs(self.data.enemy) do
+            self.data.gold = self.data.gold + v.gold
+            self.data.exp = self.data.exp + v.exp
+        end
+
         STATE.gold = STATE.gold + self.data.gold
+
         for k, v in pairs(self.data.hero) do
             STATE.heroes[k]['stats']['hp'] = v.stats.hp
             STATE.heroes[k]['stats']['mp'] = v.stats.mp
@@ -151,10 +157,17 @@ local BattleController = {
             else
                 STATE.heroes[k]['stats']['exp'] = v.stats.exp + self.data.exp
             end
+
             -- Update exp, expmax, level
-            local sLvl = STATE.heroes[k].stats.level
-            local sExp = STATE.heroes[k].stats.exp
-            local exp,expmax,level = Formula:exper(sLvl, sExp)
+            local sLvl = STATE.heroes[k]['stats']['level']
+            local sExp = STATE.heroes[k]['stats']['exp']
+            local test = require 'assets.tables.heroes'
+            local exp, expmax, level, stats = Formula:exper(sLvl, sExp, test[k].stats)
+            -- print(exp, expmax, level, stats )
+            for k2,v2 in pairs(stats) do
+                STATE.heroes[k].stats[k2] = v2
+            end
+
             STATE.heroes[k].stats.level = level
             STATE.heroes[k].stats.exp = exp
             STATE.heroes[k].stats.expmax = expmax

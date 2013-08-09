@@ -35,13 +35,13 @@ local BattleView = Subview:new{
             x = 0,      width = 1000,
             y = 0,      height = 120,
             tint = { 1, 0, 0 },
-            font = {'assets/font/PressStart2P.ttf', 16},
+            font = STATE.font,
         }
         self.dmgTextShadow = Text:new{
             x = 0,      width = 1000,
             y = 0,      height = 120,
             tint = { 1, 1, 1 },
-            font = {'assets/font/PressStart2P.ttf', 16},
+            font = STATE.font,
         }
         self.dmgAnim = Animation:new{
             image = 'assets/img/dmg.png',
@@ -73,14 +73,14 @@ local BattleView = Subview:new{
                 y = 492 + (25 * (k - 1)),
                 width =1000,
                 tint = { 0, 0, 0 },
-                font = {'assets/font/PressStart2P.ttf', 16},
+                font = STATE.font,
             }
             self['heroText' .. k] = Text:new{
                 x = 300,
                 y = 490 + (25 * (k - 1)),
                 width =1000,
                 tint = { 1, 1, 1 },
-                font = {'assets/font/PressStart2P.ttf', 16},
+                font = STATE.font,
             }
 
             self:add(self['heroImg' .. k])
@@ -112,14 +112,14 @@ local BattleView = Subview:new{
                 y = self['enemyImg' .. k].y + self['enemyImg' .. k].width + 2,
                 width =1000,
                 tint = { 0, 0, 0 },
-                font = {'assets/font/PressStart2P.ttf', 16},
+                font = STATE.font,
             }
             self['enemyText' .. k] = Text:new{
                 x = self['enemyImg' .. k].x + self['enemyImg' .. k].height,
                 y = self['enemyImg' .. k].y + self['enemyImg' .. k].width,
                 width =1000,
                 tint = { 1, 1, 1 },
-                font = {'assets/font/PressStart2P.ttf', 16},
+                font = STATE.font,
             }
 
             self:add(self['enemyImg' .. k])
@@ -136,7 +136,7 @@ local BattleView = Subview:new{
                 y = 492 + (25 * (i - 1)),
                 width =1000,
                 tint = { 0, 0, 0 },
-                font = {'assets/font/PressStart2P.ttf', 16},
+                font = STATE.font,
                 text = k
             }
             self['enemyName' .. i] = Text:new{
@@ -144,7 +144,7 @@ local BattleView = Subview:new{
                 y = 490 + (25 * (i - 1)),
                 width =1000,
                 tint = { 1, 1, 1 },
-                font = {'assets/font/PressStart2P.ttf', 16},
+                font = STATE.font,
                 text = k
             }
 
@@ -160,9 +160,6 @@ local BattleView = Subview:new{
         self:add(self.dmgAnim)
     end,
     onDeactivate = function(self)
-        -- Update any important data that changed
-        BattleController:write()
-
         -- Remove misc
         self:remove(self.indicator)
         self:remove(self.dmgText)
