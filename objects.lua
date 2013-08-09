@@ -1,7 +1,5 @@
 local Trigger = require'triggers'
--- local Battle    = require 'battle'
-local Battle = require'view.battle.battle_view'
-
+local Battle  = require'view.battle.battle_view'
 
 local Assets  = require'assets'
 local Enemies = Assets.Enemy
@@ -14,13 +12,10 @@ local dialog = require'assets.tables.dialog'
 local obj = require'assets.tables.obj'
 local npc = require'assets.tables.npcs'
 
---[[----------------------------------------------------------------------------
---------------------------------------------------------------------------------
-
-    DOOR - Where you leave a room.
-
---------------------------------------------------------------------------------
-]] ------------------------------------------------------------------------------
+--
+-- Class: Door
+-- Add the property "to" with the value "*mapname*" to load when passing over it.
+--
 Door = Tile:extend{
     onCollide = function(self, other)
         if other:instanceOf(Hero) then
@@ -32,13 +27,10 @@ Door = Tile:extend{
     end
 }
 
---[[----------------------------------------------------------------------------
---------------------------------------------------------------------------------
-
-    SPAWN - Where you enter a room
-
---------------------------------------------------------------------------------
-]] ------------------------------------------------------------------------------
+--
+-- Class: Spawn
+-- Add the property "from" with the value "*mapname*" to specify the spawn point when coming from that location.
+--
 Spawn = Tile:extend{
     onNew = function(self)
         if STATE.prevmap and self.from == STATE.prevmap then
@@ -55,6 +47,10 @@ Spawn = Tile:extend{
 
 --------------------------------------------------------------------------------
 ]] ------------------------------------------------------------------------------
+--
+-- Class: Hero
+-- Player sprite. Grabs data from the first hero in heroes.lua
+--
 Hero = Animation:extend{
     width  = STATE.heroes[1].img.width,
     height = STATE.heroes[1].img.height,
@@ -105,17 +101,12 @@ Hero = Animation:extend{
 }
 
 
---[[----------------------------------------------------------------------------
---------------------------------------------------------------------------------
-
-    ENEMY
-
---------------------------------------------------------------------------------
-]] ------------------------------------------------------------------------------
+--
+-- Class: Spawn
+-- Add the property "id" with the "id value" from enemies.lua.
+--
 Enemy = Animation:extend{
     onNew = function(self)
-    -- TODO: add config
-
         self.id        = tonumber(self.id)
         self.dialog    = tonumber(self.dialog)
         self.image     = Enemies:get(self.id, 'img').idle.image
@@ -172,13 +163,11 @@ Enemy = Animation:extend{
     end
 }
 
---[[----------------------------------------------------------------------------
---------------------------------------------------------------------------------
-
-    CHEST
-
---------------------------------------------------------------------------------
-]] ------------------------------------------------------------------------------
+--
+-- Class: Chest
+-- Items and equipment can go in here.
+-- Add the property "item" / "equipment" with the "id" from the appropriate config file.
+--
 Chest = Tile:extend{
     onNew = function(self)
         -- Get item type
@@ -257,16 +246,14 @@ Chest = Tile:extend{
     end
 }
 
---[[----------------------------------------------------------------------------
---------------------------------------------------------------------------------
-
-    Obj
-
---------------------------------------------------------------------------------
-]] ------------------------------------------------------------------------------
+--
+-- Class: Obj
+-- Anything else that might go on your map.
+-- - These can be collideable or not by setting the property "solid" with a value of "false".
+-- - Add the property "id" with the "id value" from obj.lua.
+--
 Obj = Tile:extend{
     onNew = function(self)
-    -- TODO: add config
         self.id     = tonumber(self.id)
         self.dialog = tonumber(self.dialog)
         self.image  = obj[self.id]['image']
@@ -319,15 +306,14 @@ Obj = Tile:extend{
     end
 }
 
-
---[[----------------------------------------------------------------------------
---------------------------------------------------------------------------------
-
-    NPC
-
---------------------------------------------------------------------------------
-]] ------------------------------------------------------------------------------
-NPC = Obj:extend{
+--
+-- Class: NPC
+-- Add the property "id" with the "id value" from npcs.lua.
+-- 
+-- Extends:
+--      <Obj>
+--
+NPC = Obj:extend {
     onNew = function(self)
         self.id     = tonumber(self.id)
         self.dialog = tonumber(self.dialog)
