@@ -10,9 +10,24 @@ local BattleController = require 'controller.battle.battle_controller'
 -- - battleController
 --
 local BattleView = Subview:new{
-    onActivate = function(self)
-        BattleController:init()
+    activate = function (self, enemyGroup)
+        self.enemyGroup = enemyGroup
+        if the.view == self then
+            if STRICT then
+                local info = debug.getinfo(2, 'Sl')
+                print('Warning: treid to activate an already active subview (' ..
+                      info.short_src .. ', line ' .. info.currentline .. ')')
+            end
+            return
+        end
 
+        self.parentView = the.view
+        the.app.view = self
+        self.activated = true
+        if self.onActivate then self:onActivate() end
+    end,
+    onActivate = function(self)
+        BattleController:init(self.enemyGroup)
         -- Create misc
         self.fill = Tile:new{
             x = 300,    width  = 800,

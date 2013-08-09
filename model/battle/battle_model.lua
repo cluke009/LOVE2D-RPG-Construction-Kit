@@ -15,13 +15,14 @@ local BattleModel = {
     -- Method: init
     -- Create empty data table. Run functions to fill it.
     --
-    init = function ( self )
+    init = function ( self, enemyGroup )
         self.data = {
             hero = {},
             enemy = {},
             queue = {},
             gold = 0,
-            exp = 0
+            exp = 0,
+            enemyGroup = enemyGroup
         }
         self:hero()
         self:enemy()
@@ -62,12 +63,11 @@ local BattleModel = {
     --
     enemy = function ( self )
         local array = {}
-        local e = TEMP['objects.Enemy.onUpdate.enemyID']
-        local enemyGroup = Enemy:get(e, 'group')
+        local enemyGroup = self.data.enemyGroup
 
         -- Lua likes to pick 2 every time with only one random. Who knows why?
         local superRand = math.random(math.random(1, 3), 5)
-        superRand = 2 -- or not at all random
+        -- superRand = 2 -- or not at all random
 
         for i=1, superRand do
             local randID = math.random(1, #enemyGroup)

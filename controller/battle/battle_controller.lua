@@ -14,8 +14,8 @@ local BattleController = {
     -- Method: init
     -- Copy data from BattleModel
     --
-    init = function(self)
-        self.data = BattleModel:init()
+    init = function(self, enemyGroup)
+        self.data = BattleModel:init(enemyGroup)
     end,
 
     --
