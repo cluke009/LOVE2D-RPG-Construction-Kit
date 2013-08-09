@@ -18,11 +18,11 @@ local Formula = {
     attack = function(self, offense, defense)
     -- pretty.dump(offense)
 
-        local oRand = (offense.stats.str * 4) * (random(-10, 10) / 100)
-        local dRand = (defense.stats.con * 2) * (random(-10, 10) / 100)
+        local oRand = (offense.stats.str * 4) * (math.random(-10, 10) / 100)
+        local dRand = (defense.stats.con * 2) * (math.random(-10, 10) / 100)
 
-        local con = math.round(defense.stats.con * 2 + dRand)
-        local str = math.round(offense.stats.str * 4 + oRand)
+        local con = math.floor(defense.stats.con * 2 + dRand)
+        local str = math.floor(offense.stats.str * 4 + oRand)
         local dmg = str - con
 
         if self:crit() == 'hit' then
@@ -50,7 +50,7 @@ local Formula = {
     end,
     --
     -- Method: crit
-    -- random(1,20) if 20 its a crit hit if not check if miss is 20 then its a dodge
+    -- math.random(1,20) if 20 its a crit hit if not check if miss is 20 then its a dodge
     --
     crit = function(self)
         local hit = math.random(1,20)
@@ -87,29 +87,41 @@ local Formula = {
     -- Method: stats
     -- Calculate stats for level
     --
-    stats = function(self, level)
-        local r = math.random(42,50) / 100
-        local s = math.ceil((stat*r*(level)) * stat)
-        local g = s - math.ceil((stat*r*(level - 1)) * stat)
+    stats = function(self, level, stat)
+        -- local randStats = stat + math.floor(stat * (math.random(2, 10)/100))
+        local s = stat * level
+        return s
     end,
 
 
-    exper = function(self, lvl, exp)
+    exper = function(self, lvl, exp, stat)
         lvl = lvl + 1
         local _, nextLevel = self:level(lvl)
         local exb = exp - nextLevel
 
+        -- print("----------------------------------------")
+        -- print("level: " .. lvl - 1)
+        -- print("----------------------------------------")
+        -- print(newStats)
+
+        -- print(newStats)
         -- print('---------------------')
         -- print(exp,exb,nextLevel,lvl)
         if nextLevel <= exp then
             exp = exb
-            -- print('++++++++++++++++++++++++++')
-            return self:exper(lvl, exp)
+            print('++++++++++++++++++++++++++')
+            return self:exper(lvl, exp, stat)
         else
-            -- print('======================')
-            -- print(exp,exb,nextLevel,lvl)
+            print('======================')
+            print(exp,exb,nextLevel,lvl)
             -- return exb,nextLevel,lvl
-            return exp, nextLevel, lvl - 1
+            local newStats = {}
+            for k,v in pairs(stat) do
+                if k ~= 'exp' and k ~= 'expmax' and k ~= 'level' and k ~= 'hp' and k ~= 'mp' then  
+                    newStats[k] = self:stats(lvl - 1, v)
+                end
+            end     
+            return exp, nextLevel, lvl - 1, newStats
         end
         
     end,
@@ -131,7 +143,6 @@ local Formula = {
         prevExp = math.floor(prevExp)
 
         local nextLevel = totalExp - prevExp
-        print('lvl:' .. lvl)
 
         return totalExp, nextLevel
     end,
