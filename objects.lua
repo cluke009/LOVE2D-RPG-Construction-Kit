@@ -41,13 +41,6 @@ Spawn = Tile:extend{
     end
 }
 
---[[----------------------------------------------------------------------------
---------------------------------------------------------------------------------
-
-    HERO - Player sprite
-
---------------------------------------------------------------------------------
-]] ------------------------------------------------------------------------------
 --
 -- Class: Hero
 -- Player sprite. Grabs data from the first hero in heroes.lua
@@ -75,11 +68,16 @@ Hero = Animation:extend{
         },
     },
     rand = function(self)
-        self.encounter = math.random(100,175)
+        local low = 100
+        local high = 175
+        if Encounter[STATE.map] then
+            low = Encounter[STATE.map]['rate'][1]
+            high = Encounter[STATE.map]['rate'][2]
+        end
+        self.encounter = math.random(low, high)
     end,
     onNew = function(self)
         self:rand()
-        print(self.encounter)
     end,
     onUpdate = function(self)
         self.velocity.x = 0
