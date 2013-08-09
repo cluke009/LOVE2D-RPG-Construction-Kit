@@ -27,12 +27,11 @@
         width = 64,
         height = 64,
         desc = 'Max HP + 20, HP + 10',
-        value = 100,
         effect = {
-            {'hpmax', 20},
-            {'hp', 50},
-        }
-
+            { 'hpmax', 20 },
+            { 'hp', 50 },
+        },
+        cost = 101
     },
     (end code)
 --]]

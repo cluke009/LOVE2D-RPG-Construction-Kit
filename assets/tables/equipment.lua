@@ -28,17 +28,17 @@
     Example code:
     (begin code)
     [1] = {
-        name = 'Speed Boots',
-        image = 'assets/img/sboots.png',
+        name = 'Mandalorian Armor',
+        image = 'assets/img/sweater.png',
         width = 64,
         height = 64,
-        kind = 'Boots',
-        desc = 'Speed + 30, Defense + 10',
+        kind = 'Armor',
+        desc = 'Defense + 50',
         effect = {
-            def = 10,
-            mdef = 20,
+            con = 50,
         },
-        use = {1},
+        use = { 1 },
+        cost = 101
     },
     (end code)
 --]]

@@ -15,68 +15,46 @@
     Example code:
     (begin code)
     [1] = {
-        name = 'Fighter',
-        image = 'assets/img/hero.png',
-        width = 32,
-        height = 32,
+        name = 'Hero',
         stats = {
-            lvl = 1,
-            spd = 9,
-            str = 8,
-            con = 7,
-            int = 6,
+            level = 1,
+            hp = 5,
+            hpmax = 5,
+            mp = 5,
+            mpmax = 5,
+            exp = 0,
+            expmax = 0,
+            spd = 5,
+            str = 5,
+            con = 5,
+            int = 5,
             wis = 5,
         },
-        special = {name1,name2},
         img = {
+            width = 64,
+            height = 64,
             -- Walk
             left = {
-                image = 'assets/img/panda_dragon_idle.png',
-                frames = { 1, 2, 3, },
-                fps = 5
+                image = 'assets/img/baldric.png',
+                frames = { 10,11,12,13,14,15,16,17,18, },
+                fps = 25
             },
             right = {
-                image = 'assets/img/panda_dragon_idle.png',
-                frames = { 1, 2, 3, },
-                fps = 5
+                image = 'assets/img/baldric.png',
+                frames = { 28,29,30,31,32,33,34,35,36 },
+                fps = 25
             },
             up = {
-                image = 'assets/img/panda_dragon_idle.png',
-                frames = { 1, 2, 3, },
-                fps = 5
+                image = 'assets/img/baldric.png',
+                frames = { 1, 2, 3, 4, 5, 6, 7, 8, 9, },
+                fps = 25
             },
             down = {
-                image = 'assets/img/panda_dragon_idle.png',
-                frames = { 1, 2, 3, },
-                fps = 5
+                image = 'assets/img/baldric.png',
+                frames = { 19,20,21,22,23,24,25,26,27 },
+                fps = 25
             },
-            -- Battle
-            idle = {
-                image = 'assets/img/panda_dragon_idle.png',
-                frames = { 1, 2, 3, },
-                fps = 5
-            },
-            attack = {
-                image = 'assets/img/panda_dragon_attack.png',
-                frames = { 1, 2, 3, },
-                fps = 5
-            },
-            dmg = {
-                image = 'assets/img/panda_dragon_dmg.png',
-                frames = { 1, 2, 3, },
-                fps = 5
-            },
-            -- Specials
-            name1 = {
-                image = 'assets/img/panda_dragon_dmg.png',
-                frames = { 1, 2, 3, },
-                fps = 5
-            },
-            name2 = {
-                image = 'assets/img/panda_dragon_dmg.png',
-                frames = { 1, 2, 3, },
-                fps = 5
-            },
+
         },
         active = true
     },
@@ -89,19 +67,17 @@ return
         name = 'Hero',
         stats = {
             level = 1,
-            hp = 200,
-            hpmax = 200,
-            mp = 60,
-            mpmax = 70,
+            hp = 5,
+            hpmax = 5,
+            mp = 5,
+            mpmax = 5,
             exp = 0,
-            expmax = 100,
-            -- -- -- -- -- -- -- --
-            -- -- -- -- -- -- -- --
-            spd = 24,
-            str = 24,
-            con = 24,
-            int = 24,
-            wis = 24,
+            expmax = 0,
+            spd = 5,
+            str = 5,
+            con = 5,
+            int = 5,
+            wis = 5,
         },
         img = {
             width = 64,
@@ -135,19 +111,19 @@ return
         name = 'Tank',
         stats = {
             level = 2,
-            hp = 200,
-            hpmax = 200,
-            mp = 60,
-            mpmax = 70,
+            hp = 5,
+            hpmax = 5,
+            mp = 5,
+            mpmax = 5,
             exp = 0,
-            expmax = 100,
+            expmax = 0,
             -- -- -- -- -- -- -- --
             -- -- -- -- -- -- -- --
-            spd = 24,
-            str = 24,
-            con = 24,
-            int = 24,
-            wis = 24,
+            spd = 5,
+            str = 5,
+            con = 5,
+            int = 5,
+            wis = 5,
         },
         img = {
             width = 64,
@@ -179,20 +155,20 @@ return
     [3] = {
         name = 'Mage',
         stats = {
-            level = 1,
-            hp = 200,
-            hpmax = 200,
-            mp = 60,
-            mpmax = 70,
+            level = 3,
+            hp = 5,
+            hpmax = 5,
+            mp = 5,
+            mpmax = 5,
             exp = 0,
-            expmax = 100,
+            expmax = 0,
             -- -- -- -- -- -- -- --
             -- -- -- -- -- -- -- --
-            spd = 24,
-            str = 24,
-            con = 24,
-            int = 24,
-            wis = 24,
+            spd = 5,
+            str = 5,
+            con = 5,
+            int = 5,
+            wis = 5,
         },
         img = {
             width = 64,
@@ -224,20 +200,20 @@ return
     [4] = {
         name = 'Princess',
         stats = {
-            level = 1,
-            hp = 200,
-            hpmax = 200,
-            mp = 60,
-            mpmax = 70,
+            level = 4,
+            hp = 5,
+            hpmax = 5,
+            mp = 5,
+            mpmax = 5,
             exp = 0,
-            expmax = 100,
+            expmax = 0,
             -- -- -- -- -- -- -- --
             -- -- -- -- -- -- -- --
-            spd = 24,
-            str = 24,
-            con = 24,
-            int = 24,
-            wis = 24,
+            spd = 5,
+            str = 5,
+            con = 5,
+            int = 5,
+            wis = 5,
         },
         img = {
             width = 64,

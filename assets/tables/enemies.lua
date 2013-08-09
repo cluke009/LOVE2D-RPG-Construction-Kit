@@ -5,74 +5,64 @@
 
     Properties:
         name - Name of enemy
-        image - Location of image
-        width - Width of image
-        height - Height of image
-        stats - Enemy stats like hp & mp
-            Not currently implemented.
         exp - Amount of exp given
-            Not currently implemented.
         gold - Amount of gold given
-            Not currently implemented.
+        group - enemies it fights with
+        stats - Enemy stats like hp & mp
+        img.width - Width of image
+        img.height - Height of image
         drops - Items/Equipment given
             Not currently implemented.
 
     Example code:
     (begin code)
     [1] = {
-        name = 'Water Dragon',
-        image = 'assets/img/water_dragon.gif',
-        width = 128,
-        height = 128,
+        name = 'Bat',
         stats = {
-            hp = 34,
+            hp = 20,
             mp = 60,
-            str = 24,
-            con = 24,
-            int = 24,
-            wis = 14,
-            spd = 22,
+            str = 4,
+            con = 4,
+            int = 4,
+            wis = 4,
+            spd = 4,
         },
-        exp = 100,
-        gold = 99,
+        exp = 10,
+        gold = 100,
         group = { 2, 1 },
-        specials = { 1, 2, 3 }
-        drops = {
-            equipment = {1,2,3,4},
-            items = {1,2}
-        },
         img = {
+            width = 32,
+            height = 32,
             idle = {
-                image = 'assets/img/water_dragon.png',
-                frames = { 1, 2, 3, },
-                fps = 5
-            },
-            attack = {
-                image = 'assets/img/water_dragon.png',
-                frames = { 1, 2, 3, },
-                fps = 5
+                image = 'assets/img/bat_battle.png',
+                frames = { 1,2,3 },
+                fps = 7
             },
             dmg = {
-                image = 'assets/img/water_dragon.png',
-                frames = { 1, 2, 3, },
-                fps = 5
+                image = 'assets/img/bat_battle.png',
+                frames = { 10,11,12,13,14,15},
+                fps = 7
+            },
+            attack = {
+                image = 'assets/img/bat_battle.png',
+                frames = {  4,5,6,7, 8, 9, },
+                fps = 7
             },
         }
-    }
-    (end code)
+    },    (end code)
 --]]
 return
 {
     [1] = {
         name = 'Bat',
         stats = {
-            hp = 100,
+            hp = 20,
             mp = 60,
-            str = 24,
-            con = 24,
-            int = 24,
-            wis = 14,
-            spd = 35,
+            str = 4,
+            con = 4,
+            int = 4,
+            wis = 4,
+            spd = 4,
         },
         exp = 10,
         gold = 100,
@@ -102,11 +92,11 @@ return
         stats = {
             hp = 34,
             mp = 60,
-            str = 24,
-            con = 24,
-            int = 24,
-            wis = 14,
-            spd = 22,
+            str = 2,
+            con = 2,
+            int = 2,
+            wis = 2,
+            spd = 2,
         },
         exp = 5,
         gold = 100,
