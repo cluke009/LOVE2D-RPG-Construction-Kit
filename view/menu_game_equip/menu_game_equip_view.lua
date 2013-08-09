@@ -230,7 +230,9 @@ EquipList = Subview:new{
     onDeactivate = function(self)
         Equipped.ready = true
         EquipHero.ready = true
-        self:remove(self.menu)
+        if self.menu then
+            self:remove(self.menu)
+        end
         self:remove(self.fill)
     end,
     onNew = function(self)
@@ -254,7 +256,7 @@ EquipHero = Group:new{
             y = 0 + 40,
             width = 100,
             tint = { 0, 0, 0 },
-            font = 24,
+            font = STATE.font,
             text = ''
         }
         self.atk = Text:new{
@@ -262,7 +264,7 @@ EquipHero = Group:new{
             y = 32 + 80,
             width = 100,
             tint = { 0, 0, 0 },
-            font = 20,
+            font = STATE.font,
             text = ''
         }
 
@@ -271,7 +273,7 @@ EquipHero = Group:new{
             y = 32 + 120,
             width = 100,
             tint = { 0, 0, 0 },
-            font = 20,
+            font = STATE.font,
             text = ''
         }
         self.mag = Text:new{
@@ -279,7 +281,7 @@ EquipHero = Group:new{
             y = 32 + 160,
             width = 100,
             tint = { 0, 0, 0 },
-            font = 20,
+            font = STATE.font,
             text = ''
         }
         self.mdef = Text:new{
@@ -287,7 +289,7 @@ EquipHero = Group:new{
             y = 32 + 200,
             width = 100,
             tint = { 0, 0, 0 },
-            font = 20,
+            font = STATE.font,
             text = ''
         }
         self.spd = Text:new{
@@ -295,7 +297,7 @@ EquipHero = Group:new{
             y = 32 + 240,
             width = 100,
             tint = { 0, 0, 0 },
-            font = 20,
+            font = STATE.font,
             text = ''
         }
         self:add(self.image)
