@@ -1,22 +1,22 @@
---[[
-    Class: Dialog
-    Display dialog boxes.
-
-    Properties:
-        dialog - A table of text to display.
-        text - change text properties
-        fill - change bg properties
-
-    Extends:
-         <Subview>
-
-    Example code:
-        (begin code)
-        local text = {'some text', 'some more text'}
-        local dialog = Dialog:new{dialog = text}
-        dialog:activate()
-        (end code)
---]]
+-- 
+-- Class: Dialog
+-- Display dialog boxes.
+-- 
+-- Properties:
+--     dialog - A table of text to display.
+--     text - change text properties
+--     fill - change bg properties
+-- 
+-- Extends:
+--     <Subview>
+-- 
+-- Example code:
+--     (begin code)
+--     local text = {'some text', 'some more text'}
+--     local dialog = Dialog:new{dialog = text}
+--     dialog:activate()
+--     (end code)
+-- 
 Dialog = Subview:new{
     dialog = {},
     count = 1,
