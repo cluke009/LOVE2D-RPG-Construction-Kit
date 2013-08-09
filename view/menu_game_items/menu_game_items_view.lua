@@ -19,7 +19,7 @@ Items = Subview:new{
         y = 40,
         width = 480,
         tint = { 0, 0, 0 },
-        font = 24,
+        font = STATE.font,
         text = 'No items.'
     },
     inventory = function (self)
