@@ -1,5 +1,6 @@
 local Trigger = require'triggers'
 local Battle  = require'view.battle.battle_view'
+local Encounter = require'assets.tables.encounters'
 
 local Assets  = require'assets'
 local Enemies = Assets.Enemy
@@ -73,29 +74,46 @@ Hero = Animation:extend{
             fps = STATE.heroes[1].img.down.fps
         },
     },
+    rand = function(self)
+        self.encounter = math.random(100,175)
+    end,
+    onNew = function(self)
+        self:rand()
+        print(self.encounter)
+    end,
     onUpdate = function(self)
         self.velocity.x = 0
         self.velocity.y = 0
 
         if the.keys:pressed('up') then
+            self.encounter = self.encounter - 1
             self.velocity.y = -300
             self.image = STATE.heroes[1].img.up.image
             self:play('up')
         elseif the.keys:pressed('down') then
+            self.encounter = self.encounter - 1
             self.velocity.y = 300
             self.image = STATE.heroes[1].img.down.image
             self:play('down')
         elseif the.keys:pressed('left') then
+            self.encounter = self.encounter - 1
             self.velocity.x = -300
             self.image = STATE.heroes[1].img.left.image
             self:play('left')
         elseif the.keys:pressed('right') then
+            self.encounter = self.encounter - 1
             self.velocity.x = 300
             self.image = STATE.heroes[1].img.right.image
             self:play('right')
         end
         if self.velocity.x == 0 and self.velocity.y == 0 then
             self:freeze()
+        end
+
+        if self.encounter == 0 and Encounter[STATE.map] then
+            local a = math.random(1, #Encounter[STATE.map])
+            Battle:activate(Encounter[STATE.map][a])
+            self:rand()
         end
     end
 }
@@ -153,10 +171,10 @@ Enemy = Animation:extend{
                     Dialog:new{
                         dialog = d
                     }:activate()
-                    Battle.enemyInit = self.id
+                    -- Battle.enemyInit = self.id
                     TEMP['objects.Enemy.onUpdate.enemyID'] = self.id
                     Battle:activate(self.id)
-                    TEMP['objects.Enemy.onUpdate.enemyID'] = nil
+                    -- TEMP['objects.Enemy.onUpdate.enemyID'] = nil
                 end
             end
         end
