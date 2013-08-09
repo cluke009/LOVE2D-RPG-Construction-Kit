@@ -1,13 +1,24 @@
 local Menu           = require 'helpers.menu_helper'
 local ShopController = require 'controller.shop.shop_controller'
 
-local ShopView = Subview:new{
+--
+-- Class: ShopView
+-- Display code for shops.
+-- 
+-- Extends:
+--   <Subview>
+--
+-- Require:
+-- - helpers.menu_helper
+-- - controller.shop.shop_controller
+--
+local ShopView = Subview:new {
     text = Text:new{
         x = 420,
         y = 40,
         width = 480,
         tint = { 0, 0, 0 },
-        font = 24,
+        font = STATE.font,
     },
     inventory = function (self)
         local links = {}
@@ -36,7 +47,7 @@ local ShopView = Subview:new{
             x = 20,      width = 1000,
             y = 20,      height = 120,
             tint = { 0, 0, 0 },
-            font = {'assets/font/PressStart2P.ttf', 16},
+            font = STATE.font,
         }
 
         self:add(self.fill)
