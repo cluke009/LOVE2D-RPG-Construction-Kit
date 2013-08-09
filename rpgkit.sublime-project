@@ -16,19 +16,61 @@
 			"file_exclude_patterns":
 			[
 				"*.sublime*",
-				".git*"
+				".git*",
+				"README.md",
+				"RELEASE.md",
+				"TODO.md"
 			],
 			"folder_exclude_patterns":
 			[
-				"docs",
+				"_docs",
 				".idea"
 			],
 			"path": "/home/cluke009/Dropbox/Game/Geraldo/awiderworld"
-			
+		},
+		{
+			"file_exclude_patterns":
+			[
+				"*.sublime*",
+				".git*",
+				"README.md",
+				"RELEASE.md",
+				"TODO.md"
+			],
+			"folder_exclude_patterns":
+			[
+				"_docs",
+				".idea"
+			],
+			"path": "/Users/geraldo/Dropbox/Game/Geraldo/awiderworld"
+		},
+		{
+			"file_exclude_patterns":
+			[
+				"*.sublime*",
+				".git*",
+				"README.md",
+				"RELEASE.md",
+				"TODO.md"
+			],
+			"folder_exclude_patterns":
+			[
+				"_docs",
+				".idea"
+			],
+			"path": "/C/Users/G/Dropbox/Game/Geraldo/awiderworld"
 		}
 	],
 	"settings":
 	{
-		"tab_size": 4
+		"bold_folder_labels": true,
+		"draw_white_space": "all",
+		"rulers":
+		[
+			80
+		],
+		"tab_completion": false,
+		"tab_size": 4,
+		"translate_tabs_to_spaces": true
 	}
 }
