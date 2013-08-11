@@ -23,6 +23,7 @@ Door = Tile:extend{
             STATE.prevmap = STATE.map
             STATE.map = self.to
             the.app.view = MapView:new()
+            the.app.view:moveToFront(the.app.view.foreground)
             the.app.view:flash({ 0, 0, 0 }, .75)
         end
     end

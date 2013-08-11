@@ -26,4 +26,5 @@ return
          'Just add the property "scene" and the filename.',
          '\nEdit: "assets/cutscenes/<filename>" ' },
     [5] = { 'I\'m an NPC I can do all the things Obj can do' },
+    [6] = { 'Random Battle Area' },
 }

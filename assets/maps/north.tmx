@@ -917,7 +917,7 @@
    <tile gid="1"/>
   </data>
  </layer>
- <objectgroup name="objects" width="30" height="30">
+ <objectgroup draworder="topdown" name="objects" width="30" height="30">
   <object name="Door" x="326" y="929" width="309" height="25">
    <properties>
     <property name="to" value="home"/>
@@ -926,6 +926,12 @@
   <object name="Spawn" x="325" y="858" width="309" height="25">
    <properties>
     <property name="from" value="home"/>
+   </properties>
+  </object>
+  <object name="Obj" x="608" y="864" width="32" height="32">
+   <properties>
+    <property name="dialog" value="6"/>
+    <property name="id" value="1"/>
    </properties>
   </object>
  </objectgroup>

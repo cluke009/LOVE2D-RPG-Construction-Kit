@@ -95,6 +95,7 @@ return {
           y = 929,
           width = 309,
           height = 25,
+          rotation = 0,
           visible = true,
           properties = {
             ["to"] = "home"
@@ -108,9 +109,25 @@ return {
           y = 858,
           width = 309,
           height = 25,
+          rotation = 0,
           visible = true,
           properties = {
             ["from"] = "home"
+          }
+        },
+        {
+          name = "Obj",
+          type = "",
+          shape = "rectangle",
+          x = 608,
+          y = 864,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["dialog"] = "6",
+            ["id"] = "1"
           }
         }
       }
