@@ -256,7 +256,7 @@ Assets.Event = {
             }
             d.onDeactivate = function(self)
                 if e[currentEvent].func then
-                    local options = split(e[currentEvent].func[1], ',')
+                    local options = split(e[currentEvent].func, ',')
                     local func = options[1]
                     options[1] = nil
 
@@ -269,6 +269,8 @@ Assets.Event = {
                 end
             end
             d:activate()
+        elseif e[currentEvent].func then
+            self:trigger(e, currentEvent)
         end
 
 
@@ -295,11 +297,22 @@ Assets.Event = {
         end
 
     end,
+    trigger = function(self, e, currentEvent )
+        local options = split(e[currentEvent].func, ',')
+        local func = options[1]
+        options[1] = nil
+
+        local args = {}
+        for k,v in pairs(options) do
+            local a = split(v, '=')
+            args[string.trim(a[1])] = string.trim(a[2])
+        end
+        Trigger[func](self, args)
+    end,
     --
     -- Method: register
     --
     register = function(self, ID )
-        print(ID)
         local currentEvent
 
         if type(STATE.event[ID]) ~= 'number' then
