@@ -12,6 +12,7 @@ require'global'
 
 require'view.menu_main.menu_main_view'
 
+
 the.app = App:new{
     onRun = function(self)
         self.view = MenuMainView:new()

@@ -1,7 +1,14 @@
 local enemies   = require'assets.tables.enemies'
 local equipment = require'assets.tables.equipment'
+local event     = require'assets.tables.events'
+
 local items     = require'assets.tables.items'
 local shop      = require'assets.tables.shop'
+
+local Trigger = require'triggers'
+
+
+
 
 --
 -- Class: Assets
@@ -213,6 +220,11 @@ Assets.Inventory = {
         end
     end,
 }
+
+--
+-- Class: Shop
+-- Interface for Shop.
+--
 Assets.Shop = {
     --
     -- Method: get
@@ -220,6 +232,77 @@ Assets.Shop = {
     get = function(self, shopID, ...)
         shopID = tonumber(shopID)
         return shop[shopID]
+    end,
+
+}
+
+--
+-- Class: Event
+-- Interface for Events.
+--
+Assets.Event = {
+    --
+    -- Method: init
+    --
+    init = function(self, eventID)
+        local ID = tonumber(eventID)
+        local e = event[ID]
+
+        local currentEvent = self:register(ID)
+
+        if e[currentEvent].dialog then
+            local d = Dialog:new{
+                dialog = e[currentEvent].dialog
+            }
+            d.onDeactivate = function(self)
+                -- if e[currentEvent].func then
+                --     e[currentEvent].func[1]()
+                -- end
+            end
+            d:activate()
+        end
+
+
+        if e[currentEvent].func then
+
+            -- local promise = Trigger:map({map = 'east'})
+            -- promise
+
+            -- for i,v in ipairs(e[currentEvent].func) do
+            --     print(i,v)
+
+            --     local options = split(e[currentEvent].func[i], ',')
+            --     local func = options[1]
+            --     options[1] = nil
+
+            --     local args = {}
+            --     for k,v in pairs(options) do
+            --         local a = split(v, '=')
+            --         args[string.trim(a[1])] = string.trim(a[2])
+            --     end
+            --     Trigger[func](self, args)
+                
+            -- end
+        end
+
+    end,
+    --
+    -- Method: register
+    --
+    register = function(self, ID )
+        print(ID)
+        local currentEvent
+
+        if type(STATE.event[ID]) ~= 'number' then
+            STATE.event[ID] = 1
+        end
+        if event[ID][STATE.event[ID]].trigger then
+            local a = event[ID][STATE.event[ID]].trigger
+            local e = string.split(a)
+            STATE.event[tonumber(e[1])] = tonumber(e[2])
+        end
+        -- table_print(STATE.event)
+        return STATE.event[ID]
     end,
 
 }

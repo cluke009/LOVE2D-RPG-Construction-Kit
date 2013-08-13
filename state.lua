@@ -33,7 +33,8 @@ STATE = {
         seconds = 0,
         human = '',
         epoch = 0,
-    }
+    },
+    event = {}
 }
 --
 -- Class: TEMP
