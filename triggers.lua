@@ -141,6 +141,9 @@ local Trigger = Class:extend {
 
                 elseif #scene < self.count then
                     the.app.view = MapView:new()
+                    if the.app.view.foreground then
+                        the.app.view:moveToFront(the.app.view.foreground)
+                    end
                 end
             end
         }

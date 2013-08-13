@@ -11,6 +11,8 @@ local Event     = Assets.Event
 
 local dialog = require'assets.tables.dialog'
 
+local event = require'assets.tables.events'
+
 local obj = require'assets.tables.obj'
 local npc = require'assets.tables.npcs'
 
@@ -24,7 +26,9 @@ Door = Tile:extend{
             STATE.prevmap = STATE.map
             STATE.map = self.to
             the.app.view = MapView:new()
-            the.app.view:moveToFront(the.app.view.foreground)
+            if the.app.view.foreground then
+                the.app.view:moveToFront(the.app.view.foreground)
+            end
             the.app.view:flash({ 0, 0, 0 }, .75)
         end
     end
@@ -84,7 +88,6 @@ Hero = Animation:extend{
     onUpdate = function(self)
         self.velocity.x = 0
         self.velocity.y = 0
-
         if the.keys:pressed('up') then
             self.encounter = self.encounter - 1
             self.velocity.y = -300
@@ -120,7 +123,7 @@ Hero = Animation:extend{
 
 
 --
--- Class: Spawn
+-- Class: Enemy
 -- Add the property "id" with the "id value" from enemies.lua.
 --
 Enemy = Animation:extend{
@@ -224,7 +227,6 @@ Chest = Tile:extend{
     end,
     onUpdate = function(self)
         if self.other then
-
             local otherX = self.other.x + (self.other.width / 2)
             local otherY = self.other.y + (self.other.height / 2)
 
@@ -280,6 +282,21 @@ Obj = Tile:extend{
     end,
     onCollide = function(self, other)
         self.other = other
+        local e = event[tonumber(self.event)][1]
+        if STATE.event[tonumber(self.event)] then
+            e = event[tonumber(self.event)][STATE.event[tonumber(self.event)]]
+        end
+
+        -- Play event 
+        if other:instanceOf(Hero) and self.event and e.auto then
+            if not e.replay and not STATE.event[self.event .. ':' .. STATE.event[tonumber(self.event)]] then
+                Event:init(self.event)
+                STATE.event[self.event .. ':' .. STATE.event[tonumber(self.event)]] = true
+            elseif e.replay then
+                Event:init(self.event)
+            end
+        end
+
         if other:instanceOf(Hero) and self.solid ~= 'false' then
             self:displace(other)
         end
@@ -297,29 +314,18 @@ Obj = Tile:extend{
             local offsetY = (self.height / 2) + (self.other.height / 2)
 
             if math.abs(otherX - selfX) <= offsetX and math.abs(otherY - selfY) <= offsetY then
-                if the.keys:justPressed('return') then
-                    -- if self.dialog then
-                    --     Dialog:new{
-                    --         dialog = dialog[self.dialog]
-                    --     }:activate()
-                    -- end
-                    -- if self.trigger then
-                    --     local options = split(self.trigger, ',')
-                    --     local func = options[1]
-                    --     options[1] = nil
-
-                    --     local args = {}
-                    --     for k,v in pairs(options) do
-                    --         local a = split(v, '=')
-                    --         args[string.trim(a[1])] = string.trim(a[2])
-                    --     end
-                    --     Trigger[func](self, args)
-                    -- end
-                    -- if self.scene then
-                    --     Trigger:scene(self.scene)
-                    -- end
-                    if self.event then
-                        Event:init(self.event)
+                if self.event then
+                    local e = event[tonumber(self.event)][1]
+                    if STATE.event[tonumber(self.event)] then
+                        e = event[tonumber(self.event)][STATE.event[tonumber(self.event)]]
+                    end
+                    if not e.auto and the.keys:justPressed('return') then
+                        if not e.replay and not STATE.event[self.event .. ':' .. STATE.event[tonumber(self.event)]] then
+                            Event:init(self.event)
+                            STATE.event[self.event .. ':' .. STATE.event[tonumber(self.event)]] = true
+                        elseif e.replay then
+                            Event:init(self.event)
+                        end
                     end
                 end
             end

@@ -50,7 +50,9 @@ MenuMainView = View:extend {
                     love.audio.stop(msrc)
                     Save:new()
                     the.app.view = MapView:new()
-                    the.app.view:moveToFront(the.app.view.foreground)
+                    if the.app.view.foreground then
+                        the.app.view:moveToFront(the.app.view.foreground)
+                    end
                 end,
             }, {
                 name = 'Continue',

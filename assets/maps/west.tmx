@@ -1824,63 +1824,6 @@
    <tile gid="1"/>
   </data>
  </layer>
- <objectgroup draworder="topdown" name="objects" width="30" height="30">
-  <object name="Door" x="933" y="334" width="25" height="299">
-   <properties>
-    <property name="to" value="home"/>
-   </properties>
-  </object>
-  <object name="Spawn" x="859" y="332" width="32" height="301">
-   <properties>
-    <property name="from" value="home"/>
-   </properties>
-  </object>
-  <object name="NPC" x="470" y="330" width="32" height="32">
-   <properties>
-    <property name="id" value="2"/>
-    <property name="trigger" value="shop, shop = 1"/>
-   </properties>
-  </object>
-  <object name="NPC" x="671" y="347" width="32" height="32">
-   <properties>
-    <property name="event" value="1"/>
-    <property name="id" value="1"/>
-   </properties>
-  </object>
-  <object name="Obj" x="192" y="448" width="32" height="32">
-   <properties>
-    <property name="id" value="5"/>
-    <property name="trigger" value="restore, hp = true"/>
-   </properties>
-  </object>
-  <object name="Obj" x="192" y="576" width="32" height="32">
-   <properties>
-    <property name="id" value="6"/>
-    <property name="trigger" value="restore,  mp = true"/>
-   </properties>
-  </object>
-  <object name="Obj" x="480" y="704" width="32" height="32">
-   <properties>
-    <property name="id" value="7"/>
-    <property name="solid" value="false"/>
-    <property name="trigger" value="map, map = east"/>
-   </properties>
-  </object>
-  <object name="Obj" x="736" y="320" width="32" height="32">
-   <properties>
-    <property name="event" value="2"/>
-    <property name="id" value="7"/>
-    <property name="solid" value="false"/>
-   </properties>
-  </object>
-  <object name="Obj" x="740" y="443" width="32" height="32">
-   <properties>
-    <property name="event" value="3"/>
-    <property name="id" value="7"/>
-    <property name="solid" value="false"/>
-   </properties>
-  </object>
- </objectgroup>
  <layer name="foreground" width="30" height="30">
   <data>
    <tile gid="0"/>
@@ -2785,4 +2728,60 @@
    <tile gid="0"/>
   </data>
  </layer>
+ <objectgroup draworder="topdown" name="objects" width="30" height="30">
+  <object name="Door" x="933" y="334" width="25" height="299">
+   <properties>
+    <property name="to" value="home"/>
+   </properties>
+  </object>
+  <object name="Spawn" x="859" y="332" width="32" height="301">
+   <properties>
+    <property name="from" value="home"/>
+   </properties>
+  </object>
+  <object name="NPC" x="470" y="330" width="32" height="32">
+   <properties>
+    <property name="id" value="2"/>
+    <property name="trigger" value="shop, shop = 1"/>
+   </properties>
+  </object>
+  <object name="NPC" x="671" y="347" width="32" height="32">
+   <properties>
+    <property name="event" value="1"/>
+    <property name="id" value="1"/>
+   </properties>
+  </object>
+  <object name="Obj" x="192" y="448" width="32" height="32">
+   <properties>
+    <property name="event" value="4"/>
+    <property name="id" value="5"/>
+   </properties>
+  </object>
+  <object name="Obj" x="192" y="576" width="32" height="32">
+   <properties>
+    <property name="id" value="6"/>
+    <property name="trigger" value="restore,  mp = true"/>
+   </properties>
+  </object>
+  <object name="Obj" x="480" y="704" width="32" height="32">
+   <properties>
+    <property name="id" value="7"/>
+    <property name="solid" value="false"/>
+    <property name="trigger" value="map, map = east"/>
+   </properties>
+  </object>
+  <object name="Obj" x="736" y="320" width="32" height="32">
+   <properties>
+    <property name="event" value="2"/>
+    <property name="id" value="1"/>
+   </properties>
+  </object>
+  <object name="Obj" x="704" y="544" width="32" height="32">
+   <properties>
+    <property name="event" value="3"/>
+    <property name="id" value="7"/>
+    <property name="solid" value="false"/>
+   </properties>
+  </object>
+ </objectgroup>
 </map>
