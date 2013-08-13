@@ -185,7 +185,7 @@ return {
           rotation = 0,
           visible = true,
           properties = {
-            ["dialog"] = "5",
+            ["event"] = "1",
             ["id"] = "1"
           }
         },
@@ -233,6 +233,38 @@ return {
             ["id"] = "7",
             ["solid"] = "false",
             ["trigger"] = "map, map = east"
+          }
+        },
+        {
+          name = "Obj",
+          type = "",
+          shape = "rectangle",
+          x = 736,
+          y = 320,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["event"] = "2",
+            ["id"] = "7",
+            ["solid"] = "false"
+          }
+        },
+        {
+          name = "Obj",
+          type = "",
+          shape = "rectangle",
+          x = 740,
+          y = 443,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["event"] = "3",
+            ["id"] = "7",
+            ["solid"] = "false"
           }
         }
       }

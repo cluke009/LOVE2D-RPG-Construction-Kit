@@ -24,7 +24,7 @@ function table.first(t)
 end
 
 -- 
--- Method: first
+-- Method: add
 -- Like table.insert(), but won't fail if `t` isn't already
 -- initialized. If it isn't, it will be initialized.
 -- 

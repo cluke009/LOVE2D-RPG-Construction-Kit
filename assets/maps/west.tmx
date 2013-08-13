@@ -1840,7 +1840,7 @@
   </object>
   <object name="NPC" x="671" y="347" width="32" height="32">
    <properties>
-    <property name="dialog" value="5"/>
+    <property name="event" value="1"/>
     <property name="id" value="1"/>
    </properties>
   </object>
@@ -1861,6 +1861,20 @@
     <property name="id" value="7"/>
     <property name="solid" value="false"/>
     <property name="trigger" value="map, map = east"/>
+   </properties>
+  </object>
+  <object name="Obj" x="736" y="320" width="32" height="32">
+   <properties>
+    <property name="event" value="2"/>
+    <property name="id" value="7"/>
+    <property name="solid" value="false"/>
+   </properties>
+  </object>
+  <object name="Obj" x="740" y="443" width="32" height="32">
+   <properties>
+    <property name="event" value="3"/>
+    <property name="id" value="7"/>
+    <property name="solid" value="false"/>
    </properties>
   </object>
  </objectgroup>

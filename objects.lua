@@ -7,6 +7,7 @@ local Enemies = Assets.Enemy
 local Items   = Assets.Item
 local Equipment = Assets.Equipment
 local Inventory = Assets.Inventory
+local Event     = Assets.Event
 
 local dialog = require'assets.tables.dialog'
 
@@ -297,25 +298,28 @@ Obj = Tile:extend{
 
             if math.abs(otherX - selfX) <= offsetX and math.abs(otherY - selfY) <= offsetY then
                 if the.keys:justPressed('return') then
-                    if self.dialog then
-                        Dialog:new{
-                            dialog = dialog[self.dialog]
-                        }:activate()
-                    end
-                    if self.trigger then
-                        local options = split(self.trigger, ',')
-                        local func = options[1]
-                        options[1] = nil
+                    -- if self.dialog then
+                    --     Dialog:new{
+                    --         dialog = dialog[self.dialog]
+                    --     }:activate()
+                    -- end
+                    -- if self.trigger then
+                    --     local options = split(self.trigger, ',')
+                    --     local func = options[1]
+                    --     options[1] = nil
 
-                        local args = {}
-                        for k,v in pairs(options) do
-                            local a = split(v, '=')
-                            args[string.trim(a[1])] = string.trim(a[2])
-                        end
-                        Trigger[func](self, args)
-                    end
-                    if self.scene then
-                        Trigger:scene(self.scene)
+                    --     local args = {}
+                    --     for k,v in pairs(options) do
+                    --         local a = split(v, '=')
+                    --         args[string.trim(a[1])] = string.trim(a[2])
+                    --     end
+                    --     Trigger[func](self, args)
+                    -- end
+                    -- if self.scene then
+                    --     Trigger:scene(self.scene)
+                    -- end
+                    if self.event then
+                        Event:init(self.event)
                     end
                 end
             end
