@@ -255,9 +255,18 @@ Assets.Event = {
                 dialog = e[currentEvent].dialog
             }
             d.onDeactivate = function(self)
-                -- if e[currentEvent].func then
-                --     e[currentEvent].func[1]()
-                -- end
+                if e[currentEvent].func then
+                    local options = split(e[currentEvent].func[1], ',')
+                    local func = options[1]
+                    options[1] = nil
+
+                    local args = {}
+                    for k,v in pairs(options) do
+                        local a = split(v, '=')
+                        args[string.trim(a[1])] = string.trim(a[2])
+                    end
+                    Trigger[func](self, args)
+                end
             end
             d:activate()
         end
@@ -271,16 +280,16 @@ Assets.Event = {
             -- for i,v in ipairs(e[currentEvent].func) do
             --     print(i,v)
 
-            --     local options = split(e[currentEvent].func[i], ',')
-            --     local func = options[1]
-            --     options[1] = nil
+                -- local options = split(e[currentEvent].func[i], ',')
+                -- local func = options[1]
+                -- options[1] = nil
 
-            --     local args = {}
-            --     for k,v in pairs(options) do
-            --         local a = split(v, '=')
-            --         args[string.trim(a[1])] = string.trim(a[2])
-            --     end
-            --     Trigger[func](self, args)
+                -- local args = {}
+                -- for k,v in pairs(options) do
+                --     local a = split(v, '=')
+                --     args[string.trim(a[1])] = string.trim(a[2])
+                -- end
+                -- Trigger[func](self, args)
                 
             -- end
         end
