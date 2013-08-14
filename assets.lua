@@ -1,14 +1,11 @@
-local enemies   = require'assets.tables.enemies'
-local equipment = require'assets.tables.equipment'
-local event     = require'assets.tables.events'
+local enemies   = require 'assets.tables.enemies'
+local equipment = require 'assets.tables.equipment'
+local event     = require 'assets.tables.events'
 
-local items     = require'assets.tables.items'
-local shop      = require'assets.tables.shop'
+local items     = require 'assets.tables.items'
+local shop      = require 'assets.tables.shop'
 
-local Trigger = require'triggers'
-
-
-
+local Trigger = require 'triggers'
 
 --
 -- Class: Assets
@@ -292,7 +289,7 @@ Assets.Event = {
                 --     args[string.trim(a[1])] = string.trim(a[2])
                 -- end
                 -- Trigger[func](self, args)
-                
+
             -- end
         end
 

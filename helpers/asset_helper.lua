@@ -1,7 +1,7 @@
-local enemies   = require'assets.tables.enemies'
-local equipment = require'assets.tables.equipment'
-local items     = require'assets.tables.items'
-local shop      = require'assets.tables.shop'
+local enemies   = require 'assets.tables.enemies'
+local equipment = require 'assets.tables.equipment'
+local items     = require 'assets.tables.items'
+local shop      = require 'assets.tables.shop'
 
 --
 -- Class: Assets

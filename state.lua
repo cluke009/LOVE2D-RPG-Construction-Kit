@@ -1,52 +1,34 @@
 --
--- Class: State
 -- Initialize any empty game data that needs to be present before we load.
--- Set init to false so it isn't loaded more than once
 --
--- Properties:
---
---     map - Map to load when game starts.
---     hud - Boolean to display hud.
---     heroStartX - Starting X position.
---     heroStartY - Starting Y position.
---     inventory -
---         - item - Array of items in inventory
---         - equipment - Array of equipment in inventory
---
-STATE = {
-    map = 'home',
-    hud = true,  
+STATE = Class:new {
+    map  = 'home',
+    hud  = true,
     init = true,
     font = 16,
+    gold = 300,
     heroStartX = 480,
     heroStartY = 480,
-    inventory = {
-        item = {},
+    inventory  = {
+        item   = {},
         equipment = {},
         -- equipment = { [2] = 1, [3] = 1, [5] = 1 },
     },
-    heroes = require'assets.tables.heroes',
-    equip = {},
-    gold = 300,
     time = {
         date = 0,
         seconds = 0,
         human = '',
         epoch = 0,
     },
+    heroes = require 'assets.tables.heroes',
+    equip = {},
     event = {},
-    removeObj = {}
+    removeObj = {},
 }
---
--- Class: TEMP
--- For table data that can be immediately destroyed
--- Current convention TEMP[<filename>.<class>.<method>.<property>]
---
-TEMP = {}
 
 -- Get all unique type of equipment
 local unique = {}
-local equipment = require'assets.tables.equipment'
+local equipment = require 'assets.tables.equipment'
 for i, v in ipairs(equipment) do
     unique[v.kind] = true
 end
@@ -59,7 +41,7 @@ for i, v in ipairs(STATE.heroes) do
     end
 end
 
-
+-- Calculate stats at level for heroes that join party at a level besides 1
 local Formula = require 'formula'
 for i, iv in ipairs(STATE.heroes) do
     -- Get experience needed for desired level
@@ -71,10 +53,9 @@ for i, iv in ipairs(STATE.heroes) do
     for k,kv in pairs(d) do
         STATE.heroes[i].stats[k] = kv
     end
-    -- print(d)
+
     STATE.heroes[i].stats.exp = a
     STATE.heroes[i].stats.expmax = b
     STATE.heroes[i].stats.hp = STATE.heroes[i].stats.hpmax
     STATE.heroes[i].stats.mp = STATE.heroes[i].stats.mpmax
 end
-
