@@ -1,1 +1,1 @@
-NaturalDocs -i C:\Users\MAINRIG\Dropbox\Game\Geraldo\awiderworld -p C:\Users\MAINRIG\Dropbox\Game\Geraldo\awiderworld\docs -o HTML C:\Users\MAINRIG\Dropbox\Game\Geraldo\awiderworld\docs -xi C:\Users\MAINRIG\Dropbox\Game\Geraldo\awiderworld\pl -xi C:\Users\MAINRIG\Dropbox\Game\Geraldo\awiderworld\zoetrope
+NaturalDocs -i C:\Users\G\Dropbox\Game\Geraldo\awiderworld -p C:\Users\G\Dropbox\Game\Geraldo\awiderworld\_docs -o HTML C:\Users\G\Dropbox\Game\Geraldo\awiderworld\_docs -xi C:\Users\G\Dropbox\Game\Geraldo\awiderworld\zoetrope

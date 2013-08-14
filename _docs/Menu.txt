@@ -1,13 +1,19 @@
 Format: 1.52
 
 
-Title: LÖVE RPG
-SubTitle: An RPG Construction Kit
+# You can add a title and sub-title to your menu like this:
+# Title: [project name]
+# SubTitle: [subtitle]
 
 # You can add a footer to your documentation like this:
 # Footer: [text]
 # If you want to add a copyright notice, this would be the place to do it.
-Timestamp: Updated month day, year
+
+# You can add a timestamp to your documentation like one of these:
+# Timestamp: Generated on month day, year
+# Timestamp: Updated mm/dd/yyyy
+# Timestamp: Last updated mon day
+#
 #   m     - One or two digit month.  January is "1"
 #   mm    - Always two digit month.  January is "01"
 #   mon   - Short month word.  January is "Jan"
@@ -40,29 +46,59 @@ Timestamp: Updated month day, year
 # --------------------------------------------------------------------------
 
 
-Group: Config  {
+Group: Assets  {
 
    File: Dialog  (assets\tables\dialog.lua)
+   File: Encounters  (assets\tables\encounters.lua)
    File: Enemies  (assets\tables\enemies.lua)
    File: Equipment  (assets\tables\equipment.lua)
+   File: Events  (assets\tables\events.lua)
    File: Heroes  (assets\tables\heroes.lua)
    File: Items  (assets\tables\items.lua)
    File: NPCs  (assets\tables\npcs.lua)
-   File: OBJ  (assets\tables\obj.lua)
-   }  # Group: Config
+   File: Obj  (assets\tables\obj.lua)
+   File: Shop  (assets\tables\shop.lua)
+   File: Sound  (assets\tables\sound.lua)
+   File: Specials  (assets\tables\specials.lua)
+   File: State  (assets\tables\config.lua)
+   }  # Group: Assets
+
+Group: Helpers  {
+
+   File: Assets  (helpers\asset_helper.lua)
+   File: Dialog  (helpers\dialog_helper.lua)
+   File: MenuHelper  (helpers\menu_helper.lua)
+   File: string  (helpers\string_helper.lua)
+   File: table  (helpers\table_helper.lua)
+   }  # Group: Helpers
 
 Group: Classes  {
 
-   File: Assets  (assets.lua)
-   File: BattleController  (battleController.lua)
-   File: BattleModel  (battleModel.lua)
-   File: BattleView  (battleView.lua)
-   File: Dialog  (dialog.lua)
    File: Formula  (formula.lua)
-   File: Globals  (globals.lua)
+   File: Assets  (assets.lua)
    File: HUD / Mapview  (map.lua)
+   File: Objects  (objects.lua)
+   File: Save  (save.lua)
    File: Trigger  (triggers.lua)
    }  # Group: Classes
+
+Group: Model  {
+
+   File: BattleModel  (model\battle\battle_model.lua)
+   File: ShopModel  (model\shop\shop_model.lua)
+   }  # Group: Model
+
+Group: View  {
+
+   File: BattleView  (view\battle\battle_view.lua)
+   File: ShopView  (view\shop\shop_view.lua)
+   }  # Group: View
+
+Group: Controller  {
+
+   File: BattleController  (controller\battle\battle_controller.lua)
+   File: ShopController  (controller\shop\shop_controller.lua)
+   }  # Group: Controller
 
 Group: Index  {
 
