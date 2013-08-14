@@ -34,7 +34,8 @@ STATE = {
         human = '',
         epoch = 0,
     },
-    event = {}
+    event = {},
+    removeObj = {}
 }
 --
 -- Class: TEMP
