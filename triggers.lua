@@ -38,9 +38,7 @@ local Trigger = Class:extend {
     -- Add character to party
     --
     party = function(self, options)
-        for k,v in pairs(options.heroes) do
-            STATE.heroes[v].active = true
-        end
+        STATE.heroes[tonumber(options.heroes)].active = true
     end,
 
     --
