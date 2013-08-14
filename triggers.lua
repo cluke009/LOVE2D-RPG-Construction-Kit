@@ -7,6 +7,15 @@
 --
 local Trigger = Class:extend {
     --
+    -- Method: removeObj
+    -- Sends player to the supplied map
+    --
+    removeObj = function(self, options)
+        STATE.removeObj[tonumber(options.obj)] = true
+    end,
+
+
+    --
     -- Method: shop
     -- Opens up a shop with the supplied ID.
     --

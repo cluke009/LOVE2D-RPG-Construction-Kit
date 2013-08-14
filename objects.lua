@@ -272,7 +272,7 @@ Chest = Tile:extend{
 -- - These can be collideable or not by setting the property "solid" with a value of "false".
 -- - Add the property "id" with the "id value" from obj.lua.
 --
-Obj = Tile:extend{
+Obj = Tile:extend {
     onNew = function(self)
         self.id     = tonumber(self.id)
         self.dialog = tonumber(self.dialog)
@@ -302,6 +302,11 @@ Obj = Tile:extend{
         end
     end,
     onUpdate = function(self)
+        if STATE.removeObj[self.id] then
+            self.solid = false
+            self.image = 'assets/maps/img/trans.png'
+        end
+
         if self.other then
 
             local otherX = self.other.x + (self.other.width / 2)
