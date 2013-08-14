@@ -1,6 +1,6 @@
 -- Require needed stuff locally
 local Menu = require 'helpers.menu_helper'
-local equipment = require'assets.tables.equipment'
+local equipment = require 'assets.tables.equipment'
 
 -- Make our classes available to each other
 local Equip, Equipped, EquipList, EquipHero

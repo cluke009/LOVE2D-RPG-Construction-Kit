@@ -1,20 +1,21 @@
-local Trigger = require'triggers'
-local Battle  = require'view.battle.battle_view'
-local Encounter = require'assets.tables.encounters'
+--
+-- File: Objects
+--
 
-local Assets  = require'assets'
-local Enemies = Assets.Enemy
-local Items   = Assets.Item
+local Battle    = require 'view.battle.battle_view'
+local Encounter = require 'assets.tables.encounters'
+
+local Assets    = require 'assets'
+local Enemies   = Assets.Enemy
+local Items     = Assets.Item
 local Equipment = Assets.Equipment
 local Inventory = Assets.Inventory
 local Event     = Assets.Event
 
-local dialog = require'assets.tables.dialog'
-
-local event = require'assets.tables.events'
-
-local obj = require'assets.tables.obj'
-local npc = require'assets.tables.npcs'
+local dialog = require 'assets.tables.dialog'
+local event  = require 'assets.tables.events'
+local obj    = require 'assets.tables.obj'
+local npc    = require 'assets.tables.npcs'
 
 --
 -- Class: Door
@@ -121,69 +122,6 @@ Hero = Animation:extend{
     end
 }
 
-
---
--- Class: Enemy
--- Add the property "id" with the "id value" from enemies.lua.
---
-Enemy = Animation:extend{
-    onNew = function(self)
-        self.id        = tonumber(self.id)
-        self.dialog    = tonumber(self.dialog)
-        self.image     = Enemies:get(self.id, 'img').idle.image
-        self.width     = Enemies:get(self.id, 'img').width
-        self.height    = Enemies:get(self.id, 'img').height
-        self.sequences = {
-            down = {
-                frames = Enemies:get(self.id, 'img').idle.frames,
-                fps    = Enemies:get(self.id, 'img').idle.fps
-            },
-        }
-        self:play('down')
-    end,
-    onCollide = function(self, other)
-        if other:instanceOf(Hero) then
-            self.other = other
-            self:displace(other)
-        end
-    end,
-    onUpdate = function(self)
-        if self.other then
-
-            local otherX = self.other.x + (self.other.width / 2)
-            local otherY = self.other.y + (self.other.height / 2)
-
-            local selfX = self.x + (self.width / 2)
-            local selfY = self.y + (self.height / 2)
-
-            local offsetX = (self.width / 2) + (self.other.width / 2)
-            local offsetY = (self.height / 2) + (self.other.height / 2)
-
-            if math.abs(otherX - selfX) <= offsetX and math.abs(otherY - selfY) <= offsetY then
-                if the.keys:justPressed('return') then
-
-                    -- Display dialog
-                    local d = ''
-                    if self.dialog then
-                        d = dialog[self.dialog]
-                    else
-                        d = string.gsub(dialog.enemies, '$enemy', Enemies:get(self.id, 'name'))
-                        d = { d }
-                    end
-
-                    Dialog:new{
-                        dialog = d
-                    }:activate()
-                    -- Battle.enemyInit = self.id
-                    TEMP['objects.Enemy.onUpdate.enemyID'] = self.id
-                    Battle:activate(self.id)
-                    -- TEMP['objects.Enemy.onUpdate.enemyID'] = nil
-                end
-            end
-        end
-    end
-}
-
 --
 -- Class: Chest
 -- Items and equipment can go in here.
@@ -272,7 +210,7 @@ Chest = Tile:extend{
 -- - These can be collideable or not by setting the property "solid" with a value of "false".
 -- - Add the property "id" with the "id value" from obj.lua.
 --
-Obj = Tile:extend {
+Obj = Animation:extend {
     onNew = function(self)
         self.id     = tonumber(self.id)
         self.dialog = tonumber(self.dialog)
@@ -287,7 +225,7 @@ Obj = Tile:extend {
             e = event[tonumber(self.event)][STATE.event[tonumber(self.event)]]
         end
 
-        -- Play event 
+        -- Play event
         if other:instanceOf(Hero) and self.event and e.auto then
             if not e.replay and not STATE.event[self.event .. ':' .. STATE.event[tonumber(self.event)]] then
                 Event:init(self.event)
@@ -341,7 +279,7 @@ Obj = Tile:extend {
 --
 -- Class: NPC
 -- Add the property "id" with the "id value" from npcs.lua.
--- 
+--
 -- Extends:
 --      <Obj>
 --
@@ -352,5 +290,29 @@ NPC = Obj:extend {
         self.image  = npc[self.id]['image']
         self.width  = npc[self.id]['width']
         self.height = npc[self.id]['height']
+    end,
+}
+
+--
+-- Class: Enemy
+-- Add the property "id" with the "id value" from enemies.lua.
+--
+-- Extends:
+--      <Obj>
+--
+Enemy = Obj:extend{
+    onNew = function(self)
+        self.id        = tonumber(self.id)
+        self.dialog    = tonumber(self.dialog)
+        self.image     = Enemies:get(self.id, 'img').idle.image
+        self.width     = Enemies:get(self.id, 'img').width
+        self.height    = Enemies:get(self.id, 'img').height
+        self.sequences = {
+            down = {
+                frames = Enemies:get(self.id, 'img').idle.frames,
+                fps    = Enemies:get(self.id, 'img').idle.fps
+            },
+        }
+        self:play('down')
     end,
 }

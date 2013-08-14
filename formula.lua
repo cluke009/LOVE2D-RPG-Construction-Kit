@@ -109,21 +109,19 @@ local Formula = {
         -- print(exp,exb,nextLevel,lvl)
         if nextLevel <= exp then
             exp = exb
-            print('++++++++++++++++++++++++++')
             return self:exper(lvl, exp, stat)
         else
-            print('======================')
             print(exp,exb,nextLevel,lvl)
             -- return exb,nextLevel,lvl
             local newStats = {}
             for k,v in pairs(stat) do
-                if k ~= 'exp' and k ~= 'expmax' and k ~= 'level' and k ~= 'hp' and k ~= 'mp' then  
+                if k ~= 'exp' and k ~= 'expmax' and k ~= 'level' and k ~= 'hp' and k ~= 'mp' then
                     newStats[k] = self:stats(lvl - 1, v)
                 end
-            end     
+            end
             return exp, nextLevel, lvl - 1, newStats
         end
-        
+
     end,
 
     --

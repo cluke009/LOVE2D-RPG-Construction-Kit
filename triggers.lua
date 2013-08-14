@@ -14,7 +14,6 @@ local Trigger = Class:extend {
         STATE.removeObj[tonumber(options.obj)] = true
     end,
 
-
     --
     -- Method: shop
     -- Opens up a shop with the supplied ID.

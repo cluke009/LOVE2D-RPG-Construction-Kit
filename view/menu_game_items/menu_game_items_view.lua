@@ -1,8 +1,8 @@
 local assets    = require 'helpers.asset_helper'
 local Item      = assets.Item
 
-local Menu = require'helpers.menu_helper'
-local Party = require'view.menu_game.menu_game_party_helper'
+local Menu = require 'helpers.menu_helper'
+local Party = require 'view.menu_game.menu_game_party_helper'
 
 local Select, Items
 

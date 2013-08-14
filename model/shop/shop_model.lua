@@ -1,4 +1,4 @@
-local Assets    = require'helpers.asset_helper'
+local Assets    = require 'helpers.asset_helper'
 local Equipment = Assets.Equipment
 local Item      = Assets.Item
 local Shop      = Assets.Shop
@@ -14,7 +14,7 @@ local ShopModel = {
     --
     -- Method: init
     -- Set up data table.
-    -- 
+    --
     init = function ( self, shopID )
         self.data = {}
         self:item(shopID)

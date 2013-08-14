@@ -1,5 +1,5 @@
 --[[
-    File: OBJ
+    File: Obj
     Objects are referenced in tiled by there numerical ID.
     You can use this to place generic in game objects.
 

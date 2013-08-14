@@ -1,4 +1,5 @@
-local menu = require'view.menu_game.menu_game_view'
+local menu = require 'view.menu_game.menu_game_view'
+local Save = require 'save'
 
 --
 -- Title: HUD / Mapview
@@ -72,7 +73,7 @@ MapView = View:extend{
 
         self.focus = self.hero
         self:clampTo(self.map)
-        
+
         -- Send map name to hud.
         if STATE.hud == true then
             Hud.text.text = STATE.map
@@ -101,6 +102,3 @@ MapView = View:extend{
         end
     end
 }
-
-
-
