@@ -2741,8 +2741,8 @@
   </object>
   <object name="NPC" x="470" y="330" width="32" height="32">
    <properties>
+    <property name="event" value="5"/>
     <property name="id" value="2"/>
-    <property name="trigger" value="shop, shop = 1"/>
    </properties>
   </object>
   <object name="NPC" x="671" y="347" width="32" height="32">

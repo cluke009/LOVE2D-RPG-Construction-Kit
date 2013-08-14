@@ -228,8 +228,8 @@ return {
           rotation = 0,
           visible = true,
           properties = {
-            ["id"] = "2",
-            ["trigger"] = "shop, shop = 1"
+            ["event"] = "5",
+            ["id"] = "2"
           }
         },
         {

@@ -240,6 +240,6 @@ return
                 fps = 25
             },
         },
-        active = true
+        active = false
     },
 }

@@ -71,5 +71,13 @@ return {
             func = 'scene, scene = scene1',
         },
     },
-    [4] = {}
+    [4] = {},
+    [5] = {
+        [1] = {
+            replay = true,
+            auto = false,
+            dialog = {'dialog 1.1\n go to the sign to trigger dialog 1.2'},
+            func = 'party, heroes = 4',
+        }
+    }
 }

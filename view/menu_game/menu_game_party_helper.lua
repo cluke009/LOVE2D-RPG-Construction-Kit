@@ -2,6 +2,10 @@ local Party = Group:extend{
     text = 'test',
     ready = true,
     onNew = function (self)
+
+    end,
+    onUpdate = function(self)
+        if self.ready then
         local i = 1
         for k, hero in pairs(STATE.heroes) do
             if hero['active'] then
@@ -108,23 +112,20 @@ local Party = Group:extend{
                 i = i + 1
             end
         end
-    end,
-    onUpdate = function(self)
-        if self.ready then
-            local i = 1
+            local p = 1
             for k, hero in pairs(STATE.heroes) do
                 if hero['active'] then
-                    self['levelShadow' .. i].text = 'Level ' .. hero.stats.level
-                    self['hpShadow' .. i].text = 'HP ' .. hero.stats.hp .. '/' .. hero.stats.hpmax
-                    self['mpShadow' .. i].text = 'MP ' .. hero.stats.mp .. '/' .. hero.stats.mpmax
-                    self['expShadow' .. i].text = 'EXP ' .. hero.stats.exp .. '/' .. hero.stats.expmax
+                    self['levelShadow' .. p].text = 'Level ' .. hero.stats.level
+                    self['hpShadow' .. p].text = 'HP ' .. hero.stats.hp .. '/' .. hero.stats.hpmax
+                    self['mpShadow' .. p].text = 'MP ' .. hero.stats.mp .. '/' .. hero.stats.mpmax
+                    self['expShadow' .. p].text = 'EXP ' .. hero.stats.exp .. '/' .. hero.stats.expmax
 
-                    self['level' .. i].text = 'Level ' .. hero.stats.level
-                    self['hp' .. i].text = 'HP ' .. hero.stats.hp .. '/' .. hero.stats.hpmax
-                    self['mp' .. i].text = 'MP ' .. hero.stats.mp .. '/' .. hero.stats.mpmax
-                    self['exp' .. i].text = 'EXP ' .. hero.stats.exp .. '/' .. hero.stats.expmax
+                    self['level' .. p].text = 'Level ' .. hero.stats.level
+                    self['hp' .. p].text = 'HP ' .. hero.stats.hp .. '/' .. hero.stats.hpmax
+                    self['mp' .. p].text = 'MP ' .. hero.stats.mp .. '/' .. hero.stats.mpmax
+                    self['exp' .. p].text = 'EXP ' .. hero.stats.exp .. '/' .. hero.stats.expmax
                 end
-                i = i + 1
+                p = p + 1
             end
             self.ready = false
         end
