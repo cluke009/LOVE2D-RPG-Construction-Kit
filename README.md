@@ -2,6 +2,10 @@ LÖVE2D RPG Construction Kit
 =============
 An old-school RPG construction kit meant to be fully usable from a series of config files and the Tiled Map Editor.
 
+Notice
+------------
+This readme and the current map files are out of date. Current documentation can be found in the "_docs" folder. This readme ill be updated again once things stabilize a bit more.
+
 Config Files
 ------------
 A series of lua tables where game data should be read from. These files are located in `assets/tables/`.
