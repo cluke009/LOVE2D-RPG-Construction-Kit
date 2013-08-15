@@ -150,7 +150,7 @@ return
                 fps = 25
             },
         },
-        active = true
+        active = false
     },
     [3] = {
         name = 'Mage',
@@ -195,7 +195,7 @@ return
                 fps = 25
             },
         },
-        active = true
+        active = false
     },
     [4] = {
         name = 'Princess',

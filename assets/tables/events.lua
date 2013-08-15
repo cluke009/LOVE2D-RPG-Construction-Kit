@@ -41,9 +41,11 @@ return {
     [1] = {
         [1] = {
             replay = true,
-            dialog = {'dialog 1.1\n go to the sign to trigger dialog 1.2'},
-            func = 'removeObj, obj = 5',
-            trigger = '3:2'
+            auto = true,
+            dialog = {
+                'This would be a good place to go and get a quest from the king or queen',
+                'It\'s to bad we haven\'t built that yet :)'
+            },
         },
         [2] = {
             replay = true,

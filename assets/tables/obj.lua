@@ -28,8 +28,8 @@ return
         height = 32
     },
     [2] = {
-        name = 'Weapons',
-        image = 'assets/img/wpn.png',
+        name = 'Transparent',
+        image = 'assets/img/trans.png',
         width = 32,
         height = 32
     },
