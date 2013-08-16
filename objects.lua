@@ -220,20 +220,6 @@ Obj = Animation:extend {
     end,
     onCollide = function(self, other)
         self.other = other
-        local e = event[tonumber(self.event)][1]
-        if STATE.event[tonumber(self.event)] then
-            e = event[tonumber(self.event)][STATE.event[tonumber(self.event)]]
-        end
-
-        -- Play event
-        if other:instanceOf(Hero) and self.event and e.auto then
-            if not e.replay and not STATE.event[self.event .. ':' .. STATE.event[tonumber(self.event)]] then
-                Event:init(self.event)
-                STATE.event[self.event .. ':' .. STATE.event[tonumber(self.event)]] = true
-            elseif e.replay then
-                Event:init(self.event)
-            end
-        end
 
         if other:instanceOf(Hero) and self.solid ~= 'false' then
             self:displace(other)
@@ -258,19 +244,35 @@ Obj = Animation:extend {
 
             if math.abs(otherX - selfX) <= offsetX and math.abs(otherY - selfY) <= offsetY then
                 if self.event then
-                    local e = event[tonumber(self.event)][1]
-                    if STATE.event[tonumber(self.event)] then
-                        e = event[tonumber(self.event)][STATE.event[tonumber(self.event)]]
-                    end
-                    if not e.auto and the.keys:justPressed('return') then
-                        if not e.replay and not STATE.event[self.event .. ':' .. STATE.event[tonumber(self.event)]] then
-                            Event:init(self.event)
-                            STATE.event[self.event .. ':' .. STATE.event[tonumber(self.event)]] = true
-                        elseif e.replay then
-                            Event:init(self.event)
-                        end
-                    end
+                    self:onEvent()
                 end
+            end
+        end
+    end,
+
+    onEvent = function(self)
+        -- Get the currently needed event
+        local e = event[tonumber(self.event)][1]
+        if STATE.event[tonumber(self.event)] then
+            e = event[tonumber(self.event)][STATE.event[tonumber(self.event)]]
+        end
+
+        -- Check replay autoplay logic
+        if e.replay and e.auto then
+            print('replay=true','auto=true')
+            Event:init(self.event)
+        elseif e.replay and not e.auto and the.keys:justPressed('return') then
+            print('replay=true','auto=false')
+            Event:init(self.event)
+        elseif not e.replay and e.auto then
+            print('replay=false','auto=true')
+            if not STATE.event[tonumber(self.event)] then
+                Event:init(self.event)
+            end
+        elseif not e.replay and not e.auto and the.keys:justPressed('return') then
+            print('replay=false','auto=false')
+            if not STATE.event[tonumber(self.event)] then
+                Event:init(self.event)
             end
         end
     end
