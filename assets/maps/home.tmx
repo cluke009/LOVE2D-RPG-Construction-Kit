@@ -2867,7 +2867,7 @@
     <property name="from" value="equipment_shop"/>
    </properties>
   </object>
-  <object name="Spawn" x="84" y="310" width="53" height="21">
+  <object name="Spawn" x="32" y="320" width="53" height="21">
    <properties>
     <property name="from" value="west"/>
    </properties>
@@ -2892,7 +2892,7 @@
     <property name="from" value="castle"/>
    </properties>
   </object>
-  <object name="Spawn" x="839" y="41" width="53" height="21">
+  <object name="Spawn" x="850" y="41" width="53" height="21">
    <properties>
     <property name="from" value="north"/>
    </properties>
@@ -2903,5 +2903,13 @@
     <property name="id" value="2"/>
    </properties>
   </object>
+  <object name="Obj" x="619" y="346" width="78" height="69">
+   <properties>
+    <property name="event" value="4"/>
+    <property name="id" value="2"/>
+    <property name="solid" value="false"/>
+   </properties>
+  </object>
+  <object x="1030" y="228"/>
  </objectgroup>
 </map>

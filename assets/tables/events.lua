@@ -3,8 +3,8 @@
     Define in-game events
 
     Properties:
-        replay - true|false should event repeat
-        auto - true|false should event autoplay
+        replay - true|false should event repeat default false
+        auto - true|false should event autoplay default false
         dialog - Any dialog associatted with event
         trigger - What event is unlocked when this one is activated
         func - function to run after dialog, uses triggers.lua
@@ -73,10 +73,14 @@ return {
             func = 'scene, scene = scene1',
         },
     },
-    [4] = {},
+    [4] = {
+        [1] = {
+            dialog = {'dialog should only play once'},
+        }
+    },
     [5] = {
         [1] = {
-            replay = true,
+            replay = false,
             auto = false,
             dialog = {'dialog 1.1\n go to the sign to trigger dialog 1.2'},
             func = 'party, heroes = 4',

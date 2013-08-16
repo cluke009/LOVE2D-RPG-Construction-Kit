@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="25" height="20" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="testing-Tileset" tilewidth="32" tileheight="32">
+  <image source="img/testing-Tileset.png" trans="ff00ff" width="960" height="800"/>
+ </tileset>
+ <tileset firstgid="751" name="collision" tilewidth="32" tileheight="32">
+  <image source="img/collision.png" trans="ff00ff" width="32" height="32"/>
+ </tileset>
+ <tileset firstgid="752" name="castle_2" tilewidth="32" tileheight="32">
+  <image source="img/castle_2.png" trans="ff00ff" width="256" height="608"/>
+ </tileset>
+ <tileset firstgid="904" name="Castle2" tilewidth="32" tileheight="32">
+  <image source="img/Castle2.png" trans="ff00ff" width="512" height="512"/>
+ </tileset>
+ <tileset firstgid="1160" name="stairs_1" tilewidth="32" tileheight="32">
+  <image source="img/stairs_1.png" trans="ff00ff" width="256" height="352"/>
+ </tileset>
+ <layer name="map" width="25" height="20">
+  <data encoding="base64" compression="zlib">
+   eJzjZ2Rg4B/FROP3TLTDyHagA5gYLr3EAHQ7yDWHHDvQ/UFNO2gBRu0YtWPUjpFnByGMTT8pZTu59Qux+gFuKF2M
+  </data>
+ </layer>
+ <layer name="Tile Layer 4" width="25" height="20">
+  <data encoding="base64" compression="zlib">
+   eJxjYBj+gJGZMjxY7OBkpgwTAySZKcM4w4UBgpkoNH+g7ICFIUyeiwZ2UGreqB2jdozaQZkdhACl+mkNAGP+Hdg=
+  </data>
+ </layer>
+ <layer name="background" width="25" height="20">
+  <data encoding="base64" compression="zlib">
+   eJxjYBj+4AMTA8NHMvEnJuLs+E+kOmzgHwl25LMwMBSwIMTUgGx1Ftx6yLGjHmheAxA3QrEZEJuTaQe2sGdnJs4txNoBC/uzQDeeIcKdlNhxFWj+FRrb0Qs0v4vGdlALjNoxage97CAEviPp+UZl98AAsj/JcSOtAQApsjsr
+  </data>
+ </layer>
+ <layer name="foreground" width="25" height="20">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUjIJRMAoGN/jBxMDwEw/+zoRQ+42AWhD+xYTbLlzgP5Kef2TopzUAAIqzFJ4=
+  </data>
+ </layer>
+ <objectgroup draworder="topdown" name="objects" width="25" height="20">
+  <object name="Door" x="130" y="203" width="60" height="48">
+   <properties>
+    <property name="to" value="inn2"/>
+   </properties>
+  </object>
+  <object name="Spawn" x="365" y="506" width="32" height="32">
+   <properties>
+    <property name="from" value="home"/>
+   </properties>
+  </object>
+  <object name="Door" x="322" y="606" width="119" height="7">
+   <properties>
+    <property name="to" value="home"/>
+   </properties>
+  </object>
+  <object name="Spawn" x="145" y="275" width="60" height="48">
+   <properties>
+    <property name="from" value="inn2"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>

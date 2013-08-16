@@ -241,8 +241,8 @@ return {
           name = "Spawn",
           type = "",
           shape = "rectangle",
-          x = 84,
-          y = 310,
+          x = 32,
+          y = 320,
           width = 53,
           height = 21,
           rotation = 0,
@@ -311,7 +311,7 @@ return {
           name = "Spawn",
           type = "",
           shape = "rectangle",
-          x = 839,
+          x = 850,
           y = 41,
           width = 53,
           height = 21,
@@ -335,6 +335,34 @@ return {
             ["event"] = "1",
             ["id"] = "2"
           }
+        },
+        {
+          name = "Obj",
+          type = "",
+          shape = "rectangle",
+          x = 619,
+          y = 346,
+          width = 78,
+          height = 69,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["event"] = "4",
+            ["id"] = "2",
+            ["solid"] = "false"
+          }
+        },
+        {
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = 1030,
+          y = 228,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {}
         }
       }
     }
