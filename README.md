@@ -12,16 +12,17 @@ A series of lua tables where game data should be read from. These files are loca
 
 More info about how to use these files can be found in the comments or in the docs.
 
-* `dialog.lua` - Add in game dialog.
+* `config.lua` - Game properties.
+* `encounters.lua` - Define enemy groups by map.
 * `enemies.lua` - Create new enemies.
 * `equipment.lua` - Equipable items.
+* `events.lua` - Define in-game events.
 * `heroes.lua` - The heroes in your party.
 * `items.lua` - Consumable items.
 * `npcs.lua` - NPCs.
 * `obj.lua` - Generic game objects for use in Tiled.
-* `quests.lua` - Quests. Not yet implemented.
 * `shop.lua` - Items and equipment at shops.
-* `sound.lua` - Sound effects and music.
+* `sound.lua` - Sound effects and music. Not fully implemented.
 * `specials.lua` - shared Magic/Special attacks. Not yet implemented.
 
 Tiled
@@ -43,22 +44,31 @@ Examples can be found in `assets/maps/`
 * `Door` - Add the property "to" with the value "*mapname*" to load when passing over it.
 * `Spawn` - Add the property "from" with the value "*mapname*" to specify the spawn point when coming from that location.
 
-Triggers
+Creating Maps
 ------------
-These are properties that you can add to "Obj"s in Tiled.
-In `triggers.lua` you can create custom function to run when triggered in game.
-There is an example you can run called test which will print "test" to the console when triggered.
+A typical map will have 4 layers in this order:
 
-Currently triggers do not support passing in function arguments.
+* `objects` - This is where you will place "NPC", "Obj", "Chest" etc..
+* `foreground` - A special layer that will be drawn above the player sprite
+* `background` - The sprite will be placed above this layer
+* `map` - This layer is drawn behind everything and used as a collision layer
+
+We use `map` for collision because of the way Zoetrope works. This allows us to avoid adding "solid":"false" property to every tile we want to walk on.
+
+Events
+------------
+These are properties that you can add to "Obj"s and "NPC"s in Tiled. They are created in `events.lua`.
+Events can include dialog and function calls from `triggers.lua`. Events will always play the first entry unless another has been triggered by a previous event.
+You can trigger new events by adding the trigger property to `events.lua`. The value will be a string like "4:2".
+This will trigger the second option in event "4" the next time you interact with it.
+
 
 Scenes
 ------------
 These are a special type of trigger that plays the specified cutscene.
 Examples of cutscenes can be found in `assets/cutscenes/`.
-You can cutscenes by adding the property "scene" with a value of "*filename*" without the file extension.
+You can add cutscenes by adding "func = 'scene, scene = filename'" to an event.
 This will load the lua file of the same name from the `assets/cutscenes/` folder.
-
-This will be merged with the regular triggers once variables are supported.
 
 Controls
 ------------
@@ -76,6 +86,10 @@ Controls
 ----------
 In battle
 * "1-5" - chooses which enemy to attack
+
+----------
+In game
+* "1-3" - correspnd to save slots
 
 ----------
 * "ctr+alt+r" - reloads game
