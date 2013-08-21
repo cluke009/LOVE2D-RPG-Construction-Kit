@@ -278,6 +278,21 @@ return {
           properties = {
             ["from"] = "inn2"
           }
+        },
+        {
+          name = "NPC",
+          type = "",
+          shape = "rectangle",
+          x = 416,
+          y = 219,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["event"] = "7",
+            ["id"] = "1"
+          }
         }
       }
     }

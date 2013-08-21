@@ -93,5 +93,18 @@ return {
             dialog = {'you feel refreshed'},
             func = 'restore, hp = true',
         }
-    }
+    },
+    [7] = {
+        [1] = {
+            replay = false,
+            auto = false,
+            dialog = {'Your journey will be dangerous.\nTake my son "Tank" with you.'},
+            func = 'party, heroes = 2',
+        },
+        [2] = {
+            replay = true,
+            auto = false,
+            dialog = {'I can do nothing else for you!'},
+        }
+    },
 }

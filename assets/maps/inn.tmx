@@ -56,5 +56,11 @@
     <property name="from" value="inn2"/>
    </properties>
   </object>
+  <object name="NPC" x="416" y="219" width="32" height="32">
+   <properties>
+    <property name="event" value="7"/>
+    <property name="id" value="1"/>
+   </properties>
+  </object>
  </objectgroup>
 </map>
