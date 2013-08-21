@@ -85,5 +85,13 @@ return {
             dialog = {'dialog 1.1\n go to the sign to trigger dialog 1.2'},
             func = 'party, heroes = 4',
         }
+    },
+    [6] = {
+        [1] = {
+            replay = true,
+            auto = false,
+            dialog = {'you feel refreshed'},
+            func = 'restore, hp = true',
+        }
     }
 }

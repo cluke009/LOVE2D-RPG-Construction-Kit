@@ -63,4 +63,10 @@ return
         width = 64,
         height = 64
     },
+    [8] = {
+        name = 'Portal',
+        image = 'assets/img/fountain.png',
+        width = 64,
+        height = 64
+    },
 }

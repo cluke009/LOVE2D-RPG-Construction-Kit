@@ -353,16 +353,19 @@ return {
           }
         },
         {
-          name = "",
+          name = "Obj",
           type = "",
           shape = "rectangle",
-          x = 1030,
-          y = 228,
-          width = 0,
-          height = 0,
+          x = 959,
+          y = 226,
+          width = 78,
+          height = 69,
           rotation = 0,
           visible = true,
-          properties = {}
+          properties = {
+            ["event"] = "6",
+            ["id"] = "8"
+          }
         }
       }
     }

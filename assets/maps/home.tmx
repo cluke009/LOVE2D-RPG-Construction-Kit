@@ -2910,6 +2910,11 @@
     <property name="solid" value="false"/>
    </properties>
   </object>
-  <object x="1030" y="228"/>
+  <object name="Obj" x="959" y="226" width="78" height="69">
+   <properties>
+    <property name="event" value="6"/>
+    <property name="id" value="8"/>
+   </properties>
+  </object>
  </objectgroup>
 </map>
