@@ -372,6 +372,8 @@ local BattleView = Subview:new{
             }
             d.text.x = 20
             d.text.y = 20
+            d.textShadow.x = 22
+            d.textShadow.y = 22
 
             d.onDeactivate = function()
                 self:deactivate()
@@ -386,6 +388,8 @@ local BattleView = Subview:new{
             d.dialog = { 'You suck dead guy.!' }
             d.text.x = 20
             d.text.y = 20
+            d.textShadow.x = 22
+            d.textShadow.y = 22
 
             d.onDeactivate = function()
                 self:deactivate()
