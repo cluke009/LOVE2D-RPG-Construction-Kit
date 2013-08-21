@@ -30,10 +30,15 @@ Launch = Subview:new{
         fill = { 0, 0, 255, 200 },
         border = { 255, 255, 255, 255 },
     },
-    onNew = function(self)
+    onActivate = function(self)
         self:add(self.fill)
         self:add(self.menu)
         self:add(self.party)
+    end,
+    onDeactivate = function(self)
+        self:remove(self.fill)
+        self:remove(self.menu)
+        self:remove(self.party)
     end,
     onUpdate = function(self)
         if the.keys:justPressed('escape') then
