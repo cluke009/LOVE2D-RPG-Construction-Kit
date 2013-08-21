@@ -38,6 +38,10 @@ local Formula = {
             print('crit miss')
         end
 
+        if dmg < 0 then
+            dmg = 0
+        end
+
         local hp = defense.stats.hp - dmg
 
         if hp < 0 then
