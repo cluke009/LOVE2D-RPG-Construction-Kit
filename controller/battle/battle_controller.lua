@@ -153,9 +153,9 @@ local BattleController = {
             STATE.heroes[k]['stats']['hp'] = v.stats.hp
             STATE.heroes[k]['stats']['mp'] = v.stats.mp
             if v.dead then
-                STATE.heroes[k]['stats']['exp'] = v.stats.exp + ( self.data.exp / 2 )
+                STATE.heroes[k]['stats']['exp'] = math.floor(v.stats.exp + ( self.data.exp / 2 ))
             else
-                STATE.heroes[k]['stats']['exp'] = v.stats.exp + self.data.exp
+                STATE.heroes[k]['stats']['exp'] = math.floor(v.stats.exp + self.data.exp)
             end
 
             -- Update exp, expmax, level
@@ -166,6 +166,12 @@ local BattleController = {
             -- print(exp, expmax, level, stats )
             for k2,v2 in pairs(stats) do
                 STATE.heroes[k].stats[k2] = v2
+            end
+
+            -- If player gained a level and is not dead max hp/mp
+            if level > sLvl and STATE.heroes[k].stats.hp > 0 then
+                STATE.heroes[k].stats.hp = STATE.heroes[k].stats.hpmax
+                STATE.heroes[k].stats.mp = STATE.heroes[k].stats.mpmax
             end
 
             STATE.heroes[k].stats.level = level
