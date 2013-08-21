@@ -263,11 +263,22 @@ Assets.Event = {
                         args[string.trim(a[1])] = string.trim(a[2])
                     end
                     Trigger[func](self, args)
+
+                    if event[ID][STATE.event[ID]].trigger then
+                        local a = event[ID][STATE.event[ID]].trigger
+                        local e = string.split(a)
+                        STATE.event[tonumber(e[1])] = tonumber(e[2])
+                    end
                 end
             end
             d:activate()
         elseif e[currentEvent].func then
             self:trigger(e, currentEvent)
+            if event[ID][STATE.event[ID]].trigger then
+                local a = event[ID][STATE.event[ID]].trigger
+                local e = string.split(a)
+                STATE.event[tonumber(e[1])] = tonumber(e[2])
+            end
         end
 
 
@@ -315,11 +326,7 @@ Assets.Event = {
         if type(STATE.event[ID]) ~= 'number' then
             STATE.event[ID] = 1
         end
-        if event[ID][STATE.event[ID]].trigger then
-            local a = event[ID][STATE.event[ID]].trigger
-            local e = string.split(a)
-            STATE.event[tonumber(e[1])] = tonumber(e[2])
-        end
+
         -- table_print(STATE.event)
         return STATE.event[ID]
     end,
