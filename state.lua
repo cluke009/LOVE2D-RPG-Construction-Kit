@@ -42,20 +42,20 @@ for i, v in ipairs(STATE.heroes) do
 end
 
 -- Calculate stats at level for heroes that join party at a level besides 1
-local Formula = require 'formula'
-for i, iv in ipairs(STATE.heroes) do
-    -- Get experience needed for desired level
-    local experience, _ = Formula:level(STATE.heroes[i].stats.level)
-    -- Overwrite experience
-    STATE.heroes[i].stats.exp = experience
-    -- Get new stats/ Set level to 1 / Calculate by experience
-    local a,b,c,d = Formula:exper( 1, STATE.heroes[i].stats.exp, STATE.heroes[i].stats)
-    for k,kv in pairs(d) do
-        STATE.heroes[i].stats[k] = kv
-    end
+-- local Formula = require 'formula'
+-- for i, iv in ipairs(STATE.heroes) do
+--     -- Get experience needed for desired level
+--     local experience, _ = Formula:level(STATE.heroes[i].stats.level)
+--     -- Overwrite experience
+--     STATE.heroes[i].stats.exp = experience
+--     -- Get new stats/ Set level to 1 / Calculate by experience
+--     local a,b,c,d = Formula:exper( 1, STATE.heroes[i].stats.exp, STATE.heroes[i].stats)
+--     for k,kv in pairs(d) do
+--         STATE.heroes[i].stats[k] = kv
+--     end
 
-    STATE.heroes[i].stats.exp = a
-    STATE.heroes[i].stats.expmax = b
-    STATE.heroes[i].stats.hp = STATE.heroes[i].stats.hpmax
-    STATE.heroes[i].stats.mp = STATE.heroes[i].stats.mpmax
-end
+--     STATE.heroes[i].stats.exp = a
+--     STATE.heroes[i].stats.expmax = b
+--     STATE.heroes[i].stats.hp = STATE.heroes[i].stats.hpmax
+--     STATE.heroes[i].stats.mp = STATE.heroes[i].stats.mpmax
+-- end
