@@ -8,7 +8,7 @@ local Assets    = require 'helpers.asset_helper'
 -- Require:
 -- - model.shop.shop_model
 -- - helpers.asset_helper
--- 
+--
 local ShopController = {
     --
     -- Method: init
@@ -22,13 +22,13 @@ local ShopController = {
     --
     -- Method: buy
     -- Buy item from shop.
-    -- 
+    --
     -- Arguments:
     --      ikind - The type of item/equipment
     --      ID - ID of item/equipment
     --
     buy = function ( self, ikind, ID )
-        if STATE.gold > Assets[ikind[1]]:get(ID, 'cost') then
+        if STATE.gold >= Assets[ikind[1]]:get(ID, 'cost') then
             -- Update inventory
             Assets.Inventory:put(ikind[2], ID)
             -- Update gold
