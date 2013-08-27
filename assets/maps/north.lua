@@ -224,20 +224,6 @@ return {
           }
         },
         {
-          name = "Door",
-          type = "",
-          shape = "rectangle",
-          x = 357,
-          y = 222,
-          width = 56,
-          height = 32,
-          rotation = 0,
-          visible = true,
-          properties = {
-            ["to"] = "cave"
-          }
-        },
-        {
           name = "Obj",
           type = "",
           shape = "rectangle",
@@ -248,7 +234,23 @@ return {
           rotation = 0,
           visible = true,
           properties = {
+            ["event"] = "4",
             ["id"] = "1"
+          }
+        },
+        {
+          name = "Obj",
+          type = "",
+          shape = "rectangle",
+          x = 363,
+          y = 218,
+          width = 45,
+          height = 41,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["event"] = "3",
+            ["id"] = "2"
           }
         }
       }

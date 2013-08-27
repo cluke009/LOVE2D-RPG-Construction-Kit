@@ -250,6 +250,21 @@ return {
           properties = {
             ["to"] = "home"
           }
+        },
+        {
+          name = "NPC",
+          type = "",
+          shape = "rectangle",
+          x = 480,
+          y = 320,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["event"] = "9",
+            ["id"] = "2"
+          }
         }
       }
     }

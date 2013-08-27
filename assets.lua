@@ -263,59 +263,34 @@ Assets.Event = {
                         args[string.trim(a[1])] = string.trim(a[2])
                     end
                     Trigger[func](self, args)
-
-                    if event[ID][STATE.event[ID]].trigger then
-                        local a = event[ID][STATE.event[ID]].trigger
-                        local e = string.split(a)
-                        STATE.event[tonumber(e[1])] = tonumber(e[2])
-                    end
+                end
+                if event[ID][STATE.event[ID]].trigger then
+                    print('---------')
+                    local a = event[ID][STATE.event[ID]].trigger
+                    local e = string.split(a)
+                    STATE.event[tonumber(e[1])] = tonumber(e[2])
                 end
             end
             d:activate()
         elseif e[currentEvent].func then
-            self:trigger(e, currentEvent)
+            local options = split(e[currentEvent].func, ',')
+            local func = options[1]
+            options[1] = nil
+
+            local args = {}
+            for k,v in pairs(options) do
+                local a = split(v, '=')
+                args[string.trim(a[1])] = string.trim(a[2])
+            end
+            Trigger[func](self, args)
+
             if event[ID][STATE.event[ID]].trigger then
+                print('++++++++++++')
                 local a = event[ID][STATE.event[ID]].trigger
                 local e = string.split(a)
                 STATE.event[tonumber(e[1])] = tonumber(e[2])
             end
         end
-
-
-        if e[currentEvent].func then
-
-            -- local promise = Trigger:map({map = 'east'})
-            -- promise
-
-            -- for i,v in ipairs(e[currentEvent].func) do
-            --     print(i,v)
-
-                -- local options = split(e[currentEvent].func[i], ',')
-                -- local func = options[1]
-                -- options[1] = nil
-
-                -- local args = {}
-                -- for k,v in pairs(options) do
-                --     local a = split(v, '=')
-                --     args[string.trim(a[1])] = string.trim(a[2])
-                -- end
-                -- Trigger[func](self, args)
-
-            -- end
-        end
-
-    end,
-    trigger = function(self, e, currentEvent )
-        local options = split(e[currentEvent].func, ',')
-        local func = options[1]
-        options[1] = nil
-
-        local args = {}
-        for k,v in pairs(options) do
-            local a = split(v, '=')
-            args[string.trim(a[1])] = string.trim(a[2])
-        end
-        Trigger[func](self, args)
     end,
     --
     -- Method: register

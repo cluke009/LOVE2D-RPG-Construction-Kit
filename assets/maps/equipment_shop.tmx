@@ -27,12 +27,12 @@
  </layer>
  <layer name="background" width="25" height="20">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFo4B24AMTA8NHKuJPTJh2/MciRgn4N2rHqB2jdgw6OwiB70h6vlHZPTCA7E9y3EhrAABCCyvs
+   eJxjYBgFo4B24AMTA8NHKuJPTJh2/MciRgn4N8jsKGRhYJBloa0d5IJRO0btoJcdhMB3JD3fqOweGED2JzlupDUAALNlLII=
   </data>
  </layer>
  <layer name="foreground" width="25" height="20">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFo2AUjIJRMAoGN/jBxMDwEw/+zoRQ+42AWhD+xYTbLlzgP5Kef2TopzUAAIqzFJ4=
+   eJxjYBgFo2AUjALcoIqZgaEaiGuYaWdHE9DsZiBuoaEdo2Bogx9MDAw/8eDvTAi13wioBeFfTLjtwgX+I+n5R4Z+WgMAEg4Xqg==
   </data>
  </layer>
  <objectgroup draworder="topdown" name="objects" width="25" height="20">
@@ -44,6 +44,12 @@
   <object name="Door" x="322" y="606" width="119" height="7">
    <properties>
     <property name="to" value="home"/>
+   </properties>
+  </object>
+  <object name="NPC" x="512" y="288" width="32" height="32">
+   <properties>
+    <property name="event" value="8"/>
+    <property name="id" value="2"/>
    </properties>
   </object>
  </objectgroup>

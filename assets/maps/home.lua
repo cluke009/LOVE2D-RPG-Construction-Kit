@@ -255,20 +255,6 @@ return {
           name = "Door",
           type = "",
           shape = "rectangle",
-          x = 2,
-          y = 140,
-          width = 0,
-          height = 404,
-          rotation = 0,
-          visible = true,
-          properties = {
-            ["to"] = "west"
-          }
-        },
-        {
-          name = "Door",
-          type = "",
-          shape = "rectangle",
           x = 736,
           y = 1,
           width = 376,

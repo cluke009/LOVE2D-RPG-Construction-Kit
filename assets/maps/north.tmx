@@ -42,14 +42,16 @@
     <property name="from" value="cave"/>
    </properties>
   </object>
-  <object name="Door" x="357" y="222" width="56" height="32">
-   <properties>
-    <property name="to" value="cave"/>
-   </properties>
-  </object>
   <object name="Obj" x="480" y="416" width="32" height="32">
    <properties>
+    <property name="event" value="4"/>
     <property name="id" value="1"/>
+   </properties>
+  </object>
+  <object name="Obj" x="363" y="218" width="45" height="41">
+   <properties>
+    <property name="event" value="3"/>
+    <property name="id" value="2"/>
    </properties>
   </object>
  </objectgroup>

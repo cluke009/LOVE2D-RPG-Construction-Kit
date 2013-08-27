@@ -40,18 +40,13 @@
 return {
     [1] = {
         [1] = {
-            replay = true,
+            replay = false,
             auto = true,
             dialog = {
                 'This would be a good place to go and get a quest from the king or queen',
                 'It\'s to bad we haven\'t built that yet :)'
             },
         },
-        [2] = {
-            replay = true,
-            dialog = {'dialog 1.2\n Dialog 2.2 now activated'},
-            trigger = '2:2',
-        }
     },
     [2] = {
         [1] = {
@@ -59,23 +54,18 @@ return {
             dialog = {'dialog 2.1\n Dialog 1.2 now activated'},
             trigger = '1:2'
         },
-        [2] = {
-            dialog = {'dialog 2.2'},
-        }
     },
     [3] = {
         [1] = {
-            replay = true,
+            replay = false,
             auto = true,
-            trigger = '4:2'
-        },
-        [2] = {
-            func = 'scene, scene = scene1',
+            dialog = {'Cant go here yet.'},
         },
     },
     [4] = {
         [1] = {
-            dialog = {'dialog should only play once'},
+            replay = true,
+            dialog = {'you will encounter random battles here.'},
         }
     },
     [5] = {
@@ -100,11 +90,38 @@ return {
             auto = false,
             dialog = {'Your journey will be dangerous.\nTake my son "Tank" with you.'},
             func = 'party, heroes = 2',
+            trigger = "7:2"
         },
         [2] = {
             replay = true,
             auto = false,
             dialog = {'I can do nothing else for you!'},
+        }
+    },
+    [8] = {
+        [1] = {
+            replay = true,
+            auto = false,
+            dialog = {'You can buy equipment from me'},
+            trigger = "8:2"
+        },
+        [2] = {
+            replay = true,
+            auto = false,
+            func = 'shop, shop = 1',
+        }
+    },
+    [9] = {
+        [1] = {
+            replay = false,
+            auto = false,
+            dialog = {'You can buy items from me'},
+            trigger = "9:2"
+        },
+        [2] = {
+            replay = true,
+            auto = false,
+            func = 'shop, shop = 2',
         }
     },
 }

@@ -2872,11 +2872,6 @@
     <property name="from" value="west"/>
    </properties>
   </object>
-  <object name="Door" x="2" y="140" height="404">
-   <properties>
-    <property name="to" value="west"/>
-   </properties>
-  </object>
   <object name="Door" x="736" y="1" width="376">
    <properties>
     <property name="to" value="north"/>
