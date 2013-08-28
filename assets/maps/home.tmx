@@ -2898,11 +2898,10 @@
     <property name="id" value="2"/>
    </properties>
   </object>
-  <object name="Obj" x="619" y="346" width="78" height="69">
+  <object name="Obj" x="2" y="130" width="11" height="396">
    <properties>
-    <property name="event" value="4"/>
-    <property name="id" value="2"/>
-    <property name="solid" value="false"/>
+    <property name="event" value="2"/>
+    <property name="id" value="1"/>
    </properties>
   </object>
   <object name="Obj" x="959" y="226" width="78" height="69">

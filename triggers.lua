@@ -8,15 +8,18 @@
 local Trigger = Class:extend {
     --
     -- Method: removeObj
-    -- Sends player to the supplied map
+    -- Makes object transparent and solid=false
     --
-    removeObj = function(self, options)
+    removeObj = function ( self, options )
         STATE.removeObj[tonumber(options.obj)] = true
     end,
 
     --
     -- Method: shop
     -- Opens up a shop with the supplied ID.
+    --
+    -- Require:
+    -- - 'view.shop.shop_view'
     --
     shop = function ( self, options )
         local ShopView = require 'view.shop.shop_view'
@@ -28,7 +31,7 @@ local Trigger = Class:extend {
     -- Method: map
     -- Sends player to the supplied map
     --
-    map = function(self, options)
+    map = function ( self, options )
         STATE.map = options.map
         the.app.view = MapView:new()
     end,
@@ -37,7 +40,7 @@ local Trigger = Class:extend {
     -- Method: party
     -- Add character to party
     --
-    party = function(self, options)
+    party = function ( self, options )
         STATE.heroes[tonumber(options.heroes)].active = true
     end,
 
@@ -45,7 +48,7 @@ local Trigger = Class:extend {
     -- Method: restore
     -- Restores MP/HP
     --
-    restore = function(self, options)
+    restore = function ( self, options )
         if options.hp == 'true' then
             local hero = STATE.heroes
             for i,v in ipairs(hero) do
@@ -76,12 +79,12 @@ local Trigger = Class:extend {
     -- Require:
     -- - 'assets.cutscenes.' .. scene
     --
-    scene = function(self, options)
+    scene = function ( self, options )
         local scene = require('assets.cutscenes.' .. options.scene)
         local myView = View:extend {
             count = 1,
             dcount = 1,
-            onNew = function(self)
+            onNew = function ( self )
                 self.fill = Fill:new{
                     x = 10,
                     y = 440,
@@ -104,7 +107,7 @@ local Trigger = Class:extend {
                 self:add(self.fill)
                 self:add(self.text)
             end,
-            onUpdate = function(self)
+            onUpdate = function ( self )
                 if the.keys:justPressed('return') then
 
                     self.dcount = self.dcount + 1
@@ -120,7 +123,7 @@ local Trigger = Class:extend {
                             self.img = Tile:new{
                                 image = scene[self.count]['image']
                             }
-                            self.fill = Fill:new{
+                            self.fill = Fill:new {
                                 x = 10,
                                 y = 440,
                                 width = 780,
@@ -134,7 +137,7 @@ local Trigger = Class:extend {
                     end
                     self.text:die()
                     if #scene >= self.count then
-                        self.text = Text:new{
+                        self.text = Text:new {
                             x = 20,
                             y = 450,
                             width = 760,

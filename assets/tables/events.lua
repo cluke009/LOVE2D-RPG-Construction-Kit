@@ -51,8 +51,8 @@ return {
     [2] = {
         [1] = {
             replay = true,
-            dialog = {'dialog 2.1\n Dialog 1.2 now activated'},
-            trigger = '1:2'
+            auto = true,
+            func = 'scene, scene = scene1',
         },
     },
     [3] = {

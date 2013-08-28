@@ -37,6 +37,12 @@ emitter:loadParticles(Fill:extend {
     fill = {255, 255, 255, 200}
 }, 200)
 
+--
+-- Class: MenuMainView
+-- The main game menu
+--
+-- TODO: this should probably be local
+--
 MenuMainView = View:extend {
     menu = MenuHelper:new {
         x = sWidth/2-93,
@@ -128,6 +134,12 @@ MenuMainView = View:extend {
     end
 }
 
+--
+-- Class: Quit
+-- The Quit game menu
+--
+-- TODO: this should probably be local
+--
 Quit = Subview:new {
     onNew = function ( self )
         self.menu = MenuHelper:new{
@@ -186,6 +198,12 @@ Quit = Subview:new {
     end
 }
 
+--
+-- Class: Continue
+-- The Continue game menu
+--
+-- TODO: this should probably be local
+--
 Continue = Subview:new {
     onNew = function ( self )
 

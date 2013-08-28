@@ -208,7 +208,6 @@ local BattleView = Subview:new{
         local turnKind = queue[1].kind
         local turnKey = queue[1].key
         local bcEnemy = BattleController.data.enemy
-        local bcHero = BattleController.data.hero
         local battle, battleText  = BattleController:win()
 
         local heroID, dmg

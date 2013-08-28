@@ -326,16 +326,15 @@ return {
           name = "Obj",
           type = "",
           shape = "rectangle",
-          x = 619,
-          y = 346,
-          width = 78,
-          height = 69,
+          x = 2,
+          y = 130,
+          width = 11,
+          height = 396,
           rotation = 0,
           visible = true,
           properties = {
-            ["event"] = "4",
-            ["id"] = "2",
-            ["solid"] = "false"
+            ["event"] = "2",
+            ["id"] = "1"
           }
         },
         {

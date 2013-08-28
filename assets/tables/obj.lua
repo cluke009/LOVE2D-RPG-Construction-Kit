@@ -13,7 +13,7 @@
     (begin code)
     [1] = {
         name = 'NPC 1',
-        image = 'assets/img/water_dragon.gif',
+    image = 'assets/img/water_dragon.gif',
         width = 128,
         height = 128
     },

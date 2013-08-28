@@ -88,8 +88,8 @@ end
 function string.pad(s, l, c)
     c = c or ' '
     s = tostring(s)
-    local res1, stat1 = rpad(s, (l / 2) + #s, c) -- pad to half-length + the length of s
-    local res2, stat2 = lpad(res1, l, c) -- right-pad our left-padded string to the full length
+    local res1, stat1 = string.rpad(s, (l / 2) + #s, c) -- pad to half-length + the length of s
+    local res2, stat2 = string.lpad(res1, l, c) -- right-pad our left-padded string to the full length
 
     return res2, stat1 or stat2
 end
