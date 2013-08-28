@@ -8,13 +8,13 @@ General
 * Sort item lists
 * Page/Scroll item list
 * Confirm/Deny action for dialog boxes.
-* Gold system.
 * Mini-map
 * Proper save points
 * Status effects
 * Calculate monster dimensions to determine max number on screen
 * Enemy item drops / drop rate
 * Steal
+* replace string.split with split from zoetrope 
 
 
 Systems

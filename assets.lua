@@ -11,6 +11,8 @@ local Trigger = require 'triggers'
 -- Class: Assets
 -- Interface for assets.
 --
+-- TODO: Route all asset calls through this class
+--
 -- Require:
 -- - assets.tables.enemies
 -- - assets.tables.equipment
@@ -296,8 +298,6 @@ Assets.Event = {
     -- Method: register
     --
     register = function(self, ID )
-        local currentEvent
-
         if type(STATE.event[ID]) ~= 'number' then
             STATE.event[ID] = 1
         end

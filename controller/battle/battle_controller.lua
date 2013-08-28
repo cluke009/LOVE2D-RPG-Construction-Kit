@@ -107,7 +107,7 @@ local BattleController = {
     --
     heroTurn = function(self)
         if self.arg.action == 'attack' then
-            dmg, _ = Formula:attack(self.arg[1], self.arg[2])
+            local dmg, _ = Formula:attack(self.arg[1], self.arg[2])
             return dmg, self.arg.args[2]
         end
     end,

@@ -1,7 +1,6 @@
 local assets    = require 'helpers.asset_helper'
 local Enemy     = assets.Enemy
 local Equipment = assets.Equipment
-local Item      = assets.Item
 
 --
 -- Class: BattleModel

@@ -10,11 +10,11 @@ local Save = {
     -- Arguments:
     --      name - The name of the file to save.
     --
-    save = function(self, name)
+    save = function ( self, name )
         local save = Storage:new { filename = 'save' .. name .. '.dat' }
         STATE.time.date = os.date('%x %H:%M')
         STATE.time.seconds = STATE.time.seconds + os.difftime(os.time(), STATE.time.epoch )
-        STATE.time.human = self:SecondsToClock(STATE.time.seconds)
+        STATE.time.human = self:secondsToClock(STATE.time.seconds)
         STATE.prototype = nil
         save.data = STATE
         save:save()
@@ -30,7 +30,7 @@ local Save = {
     -- Returns:
     --      Loads map from save file.
     --
-    load = function(self, name)
+    load = function ( self, name )
         local save = Storage:new{ filename = 'save' .. name .. '.dat' }
 
         -- Load data into state
@@ -48,21 +48,21 @@ local Save = {
     -- Sets epoch in STATE. Required to keep correct time.
     -- Only needs to be set once for new games.
     --
-    new = function(self)
+    new = function ( self )
         STATE.time.epoch = os.time()
     end,
 
     --
-    -- Method: SecondsToClock
+    -- Method: secondsToClock
     -- Converts seconds to human readable form.
     --
-    SecondsToClock = function(self, sSeconds)
+    secondsToClock = function ( self, sSeconds )
         if sSeconds == 0 then
             return '00:00:00'
         else
-            nHours = string.format('%02.f', math.floor(sSeconds / 3600));
-            nMins  = string.format('%02.f', math.floor(sSeconds / 60 - (nHours * 60)));
-            nSecs  = string.format('%02.f', math.floor(sSeconds - nHours * 3600 - nMins * 60));
+            local nHours = string.format('%02.f', math.floor(sSeconds / 3600));
+            local nMins  = string.format('%02.f', math.floor(sSeconds / 60 - (nHours * 60)));
+            local nSecs  = string.format('%02.f', math.floor(sSeconds - nHours * 3600 - nMins * 60));
             return nHours .. ':' .. nMins .. ':' .. nSecs
         end
     end
