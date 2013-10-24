@@ -5,7 +5,7 @@
 local Battle    = require 'view.battle.battle_view'
 local Encounter = require 'assets.tables.encounters'
 
-local Assets    = require 'assets'
+local Assets    = require 'helpers/asset_helper'
 local Enemies   = Assets.Enemy
 local Items     = Assets.Item
 local Equipment = Assets.Equipment
@@ -249,7 +249,6 @@ Obj = Animation:extend {
             end
         end
     end,
-
     onEvent = function(self)
         -- Get the currently needed event
         local e = event[tonumber(self.event)][1]
