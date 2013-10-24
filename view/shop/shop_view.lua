@@ -4,7 +4,7 @@ local ShopController = require 'controller.shop.shop_controller'
 --
 -- Class: ShopView
 -- Display code for shops.
--- 
+--
 -- Extends:
 --   <Subview>
 --
@@ -25,13 +25,9 @@ local ShopView = Subview:new {
         for k, v in pairs(ShopController.data) do
             -- pretty.dump(v)
             table.insert(links, {
-                name = v.name .. ' G ' .. v.cost,
-                hover = function()
-                    self.text.text = v.desc
-                end,
-                action = function()
-                    ShopController:buy(v.ikind, v.key)
-                end
+                v.name .. ' G ' .. v.cost,
+                function() ShopController:buy(v.ikind, v.key) end,
+                function() self.text.text = v.desc end,
             })
         end
         return links
@@ -55,10 +51,7 @@ local ShopView = Subview:new {
         self:add(self.text)
         local links = self:inventory()
         self.menu = Menu:new{
-            x = 20,
-            y = 80,
-            step = 24,
-            width = 1300,
+            coord = {20,80,1300,24, true},
             items = links
         }
         self:add(self.menu)

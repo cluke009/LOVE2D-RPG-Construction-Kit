@@ -45,34 +45,20 @@ emitter:loadParticles(Fill:extend {
 --
 MenuMainView = View:extend {
     menu = MenuHelper:new {
-        x = sWidth/2-93,
-        y = 250,
-        width = 150,
-        height = 23,
-        step = 23,
+        coord = {sWidth/2-93,250,150,23,true},
         items = {
-            {
-                name = 'New Game',
-                action = function()
-                    love.audio.stop(msrc)
-                    Save:new()
-                    the.app.view = MapView:new()
-                    if the.app.view.foreground then
-                        the.app.view:moveToFront(the.app.view.foreground)
-                    end
-                end,
-            }, {
-                name = 'Continue',
-                action = function()
-                    Continue:activate()
-                end,
-            }, {
-                name = 'Quit',
-                action = function()
-                    Quit:activate()
-                end,
-            },
-        },
+            {'New Game', function()
+                love.audio.stop(msrc)
+                Save:new()
+                the.app.view = MapView:new()
+                if the.app.view.foreground then
+                    the.app.view:moveToFront(the.app.view.foreground)
+                end
+            end },
+            {'Continue', function() Continue:activate() end },
+            {'Quit', function() Quit:activate() end },
+        }
+
     },
     onNew = function ( self )
         msrc:setLooping(true)
@@ -142,26 +128,14 @@ MenuMainView = View:extend {
 --
 Quit = Subview:new {
     onNew = function ( self )
-        self.menu = MenuHelper:new{
-            x = 330,
-            y = 295,
-            width = 220,
-            height = 23,
-            step = 23,
+        self.menu = MenuHelper:new {
+            coord = {330,295,220,23,true},
             items = {
-                {
-                    name = 'No',
-                    action = function()
-                        self:deactivate()
-                    end,
-                }, {
-                    name = 'Yes',
-                    action = function()
-                        love.event.quit()
-                    end,
-                },
-            },
+                {'No', function() self:deactivate() end },
+                {'Yes', function() love.event.quit() end },
+            }
         }
+
         local sWidth = love.graphics.getWidth()
         local sheight = love.graphics.getHeight()
 
@@ -212,8 +186,8 @@ Continue = Subview:new {
             local s = Storage:new{ filename = 'save' .. i .. '.dat' }; s:load(); s = s.data
             if next(s) then
                 table.insert(items, {
-                    name = 'DATE: ' .. s.time.date  .. '\nTIME: ' .. s.time.human .. '\nMAP: ' .. s.map,
-                    action = function()
+                    'DATE: ' .. s.time.date  .. '\nTIME: ' .. s.time.human .. '\nMAP: ' .. s.map,
+                    function()
                         love.audio.stop(msrc)
                         Save:load(tostring(i))
                     end,
@@ -222,15 +196,10 @@ Continue = Subview:new {
                 table.insert(items, {})
             end
         end
-        self.menu = MenuHelper:new{
-            x = 160,
-            y = 160,
-            width = 500,
-            height = 100,
-            step = 110,
+        self.menu = MenuHelper:new {
+            coord = {160,160,500,110,true},
             items = items
         }
-
         self:add(Fill:new {
             width = sWidth,
             height = sheight,

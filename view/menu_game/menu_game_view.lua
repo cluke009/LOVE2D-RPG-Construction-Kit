@@ -4,25 +4,12 @@ local MenuHelper    = require 'helpers.menu_helper'
 local Party         = require 'view.menu_game.menu_game_party_helper'
 Launch = Subview:new{
     party = Party:new(),
-    menu = MenuHelper:new{
-        x = 20,
-        y = 200,
-        width = 22,
-        height = 23,
-        step = 23,
+    menu = MenuHelper:new {
+        coord = {20,200,150,23,true},
         items = {
-            {
-                name = 'Items',
-                action = function()
-                    MenuGameItems:activate()
-                end,
-            }, {
-                name = 'Equip',
-                action = function()
-                    MenuGameEquip:activate()
-                end,
-            },
-        },
+            {'Items', function() MenuGameItems:activate() end },
+            {'Equip', function() MenuGameEquip:activate() end },
+        }
     },
     fill = Fill:new{
         x = 10,     width  = 780,
