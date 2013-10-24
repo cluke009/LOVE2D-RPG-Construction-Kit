@@ -27,15 +27,16 @@ Items = Subview:new{
         if next(STATE.inventory.item) then
             for k, v in pairs(STATE.inventory.item) do
                 table.insert(links, {
-                    name = Item:get(k, 'name') .. ' x' .. v,
-                    hover = function()
-                        self.text.text = Item:get(k, 'desc')
-                    end,
-                    action = function()
+                    Item:get(k, 'name') .. ' x' .. v,
+                    function()
                         Select.item = Item:get(k)
                         Select.item.key = k
                         Select:activate()
-                    end
+                    end,
+                    function()
+                        self.text.text = Item:get(k, 'desc')
+                    end,
+
                 })
             end
         else
@@ -47,10 +48,7 @@ Items = Subview:new{
         local links = self:inventory()
         if next(links) then
             self.menu = Menu:new{
-                x = 20,
-                y = 80,
-                step = 24,
-                width = 300,
+                coord = {20,80,300,23,true},
                 items = links
             }
             self:add(self.menu)
@@ -66,10 +64,7 @@ Items = Subview:new{
             if self.menu then
                 self:remove(self.menu)
                 self.menu = Menu:new{
-                    x = 20,
-                    y = 80,
-                    step = 24,
-                    width = 300,
+                    coord = {20,80,300,23,true},
                     items = self:inventory()
                 }
                 self:add(self.menu)
@@ -95,8 +90,8 @@ Select = Subview:new{
         for k, hero in pairs(STATE.heroes) do
             if hero['active'] then
                 table.insert(links, {
-                    name = '',
-                    action = function()
+                    '',
+                    function()
                         local effect = self.item.effect
                         local key = self.item.key
                         -- Apply effects
@@ -125,10 +120,7 @@ Select = Subview:new{
         end
 
         self.m = Menu:new{
-            x = 350,
-            y = 20,
-            width = 10,
-            step = 100,
+            coord = {350,20,10,100,true},
             items = links
         }
         self:add(self.m)

@@ -33,8 +33,7 @@ Equip = Subview:new{
         for k, v in pairs(STATE.heroes) do
             if v['active'] then
                 table.insert(links, {
-                    name = '',
-                    action = function()
+                    '',  function()
                         localHero = v
                         localHero.key = k
                         Equipped:activate()
@@ -44,10 +43,7 @@ Equip = Subview:new{
         end
 
         self.menu = Menu:new{
-            x = 350,
-            y = 20,
-            width = 22,
-            step = 100,
+            coord = {350,20,22,100,true},
             items = links
         }
         self:add(self.menu)
@@ -88,10 +84,8 @@ Equipped = Subview:new{
             end
 
             table.insert(links, {
-                name = k .. ': ' .. ename,
-                hover = function()
-                end,
-                action = function()
+                k .. ': ' .. ename,
+                function()
                     localItemType = k
                     EquipList:activate()
                 end
@@ -109,10 +103,7 @@ Equipped = Subview:new{
         }
         -- Add menu to stage
         self.menu = Menu:new{
-            x = 20,
-            y = 80,
-            step = 24,
-            width = 300,
+            coord = {20,80,300,24,true},
             items = self:equipped()
         }
         self:add(self.fill)
@@ -131,10 +122,7 @@ Equipped = Subview:new{
         if self.ready then
             self:remove(self.menu)
             self.menu = Menu:new{
-                x = 20,
-                y = 80,
-                step = 24,
-                width = 300,
+                coord = {20,80,300,24,true},
                 items = self:equipped()
             }
             self:add(self.menu)
@@ -205,23 +193,20 @@ EquipList = Subview:new{
             local links = {}
             for k, v in pairs(ofType) do
                 table.insert(links, {
-                    name = ofType[k].name .. ' x' .. ofType[k].amount,
-                    hover = function()
-                    -- self.text.text = ofType[k].desc
-                    end,
-                    action = function()
+                    ofType[k].name .. ' x' .. ofType[k].amount,
+                    function()
                         STATE.equip[localHero.key][localItemType] = k
                         self:deactivate()
-                    end
+                    end,
+                    function()
+                    -- self.text.text = ofType[k].desc
+                    end,
                 })
             end
 
             -- Add menu
             self.menu = Menu:new{
-                x = 20,
-                y = 80,
-                step = 24,
-                width = 300,
+                coord = {20,80,300,24,true},
                 items = links
             }
             self:add(self.menu)
