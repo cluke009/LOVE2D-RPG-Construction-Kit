@@ -21,7 +21,12 @@ require 'view.menu_main.menu_main_view'
 
 the.app = App:new{
     onRun = function(self)
-        self.view = MenuMainView:new()
-        self.view:flash({ 0, 0, 0 }, 10)
+    	if STATE.auto_start then
+    		self.view = MapView:new()
+	        self.view:flash({ 0, 0, 0 }, 10)
+    	else
+	        self.view = MenuMainView:new()
+	        self.view:flash({ 0, 0, 0 }, 10)
+	    end
     end,
 }
