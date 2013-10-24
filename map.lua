@@ -85,7 +85,7 @@ MapView = View:extend{
         self.map:displace(self.hero)
         self.objects:collide(self.hero)
 
-        Hud.text2.text = Save:SecondsToClock(os.difftime(os.time(), t1)  + STATE.time.seconds)
+        Hud.text2.text = Save:secondsToClock(os.difftime(os.time(), t1)  + STATE.time.seconds)
 
         if the.keys:justPressed('1') then
             Save:save('1')
