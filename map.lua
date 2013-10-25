@@ -1,5 +1,5 @@
 local menu = require 'view.menu_game.menu_game_view'
-local Save = require 'save'
+local Save = require 'helpers.save'
 
 --
 -- Title: HUD / Mapview
