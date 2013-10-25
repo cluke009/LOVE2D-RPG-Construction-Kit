@@ -1,5 +1,5 @@
 local BattleModel = require 'model.battle.battle_model'
-local Formula     = require 'formula'
+local Formula     = require 'helpers.formula'
 
 --
 -- Class: BattleController

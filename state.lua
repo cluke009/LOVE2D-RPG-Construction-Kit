@@ -42,7 +42,7 @@ for i, v in ipairs(STATE.heroes) do
 end
 
 -- Calculate stats at level for heroes that join party at a level besides 1
--- local Formula = require 'formula'
+-- local Formula = require 'helpers.formula'
 -- for i, iv in ipairs(STATE.heroes) do
 --     -- Get experience needed for desired level
 --     local experience, _ = Formula:level(STATE.heroes[i].stats.level)
