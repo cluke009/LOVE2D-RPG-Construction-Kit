@@ -8,7 +8,7 @@ DEBUG = true
 io.stdout:setvbuf("no")
 
 require 'zoetrope'
-require 'state'
+require 'helpers.state'
 require 'assets.tables.config'
 
 require 'map'
