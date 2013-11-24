@@ -12,7 +12,6 @@ local Equipment = Assets.Equipment
 local Inventory = Assets.Inventory
 local Event     = Assets.Event
 
-local dialog = require 'assets.tables.dialog'
 local event  = require 'assets.tables.events'
 local obj    = require 'assets.tables.obj'
 local npc    = require 'assets.tables.npcs'
@@ -190,9 +189,9 @@ Chest = Tile:extend{
                         d = dialog[tonumber(self.dialog)]
                     else
                         if self.item then
-                            d = string.gsub(dialog.items, '$item', Items:get(self.id, 'name'))
+                            d = string.gsub('Recieved $item. Its a good one', '$item', Items:get(self.id, 'name'))
                         elseif self.equipment then
-                            d = string.gsub(dialog.items, '$item', Equipment:get(self.id, 'name'))
+                            d = string.gsub('Recieved $item. Its a good one', '$item', Equipment:get(self.id, 'name'))
                         end
                         d = { d }
                     end
@@ -213,7 +212,6 @@ Chest = Tile:extend{
 Obj = Animation:extend {
     onNew = function(self)
         self.id     = tonumber(self.id)
-        self.dialog = tonumber(self.dialog)
         self.image  = obj[self.id]['image']
         self.width  = obj[self.id]['width']
         self.height = obj[self.id]['height']
@@ -287,7 +285,6 @@ Obj = Animation:extend {
 NPC = Obj:extend {
     onNew = function(self)
         self.id     = tonumber(self.id)
-        self.dialog = tonumber(self.dialog)
         self.image  = npc[self.id]['image']
         self.width  = npc[self.id]['width']
         self.height = npc[self.id]['height']
@@ -304,7 +301,6 @@ NPC = Obj:extend {
 Enemy = Obj:extend{
     onNew = function(self)
         self.id        = tonumber(self.id)
-        self.dialog    = tonumber(self.dialog)
         self.image     = Enemies:get(self.id, 'img').idle.image
         self.width     = Enemies:get(self.id, 'img').width
         self.height    = Enemies:get(self.id, 'img').height
