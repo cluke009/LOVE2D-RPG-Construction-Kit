@@ -10,9 +10,8 @@ local Enemies   = Assets.Enemy
 local Items     = Assets.Item
 local Equipment = Assets.Equipment
 local Inventory = Assets.Inventory
-local Event     = Assets.Event
+local Event     = require 'helpers/event_helper'
 
-local event  = require 'assets.tables.events'
 local obj    = require 'assets.tables.obj'
 local npc    = require 'assets.tables.npcs'
 
@@ -267,10 +266,11 @@ Obj = Animation:extend {
     onEvent = function(self)
         -- Get the currently needed event
         local e, continue
-        e = event[tonumber(self.event)][1]
+        e = Event:get(self.event)[1]
         if STATE.event[tonumber(self.event)] then
             -- table_print(STATE.event)
-            e = event[tonumber(self.event)][STATE.event[tonumber(self.event)]['id']]
+            local eid = STATE.event[tonumber(self.event)]['id']
+            e = Event:get(self.event)[eid]
         end
         -- Check replay/autoplay logic
         if self.continue == 'true' then
