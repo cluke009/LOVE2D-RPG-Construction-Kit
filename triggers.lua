@@ -7,11 +7,39 @@
 --
 local Trigger = Class:extend {
     --
-    -- Method: removeObj
-    -- Makes object transparent and solid=false
+    -- Method: battle
     --
-    removeObj = function ( self, options )
-        STATE.removeObj[tonumber(options.obj)] = true
+    battle = function(self, options)
+        local Battle    = require 'view.battle.battle_view'
+        local Encounter = require 'assets.tables.encounters'
+
+        Battle:activate(Encounter['north'][1])
+    end,
+
+    --
+    -- Method: removeObj
+    -- Removes an object from the map
+    --
+    removeObj = function(self, options)
+        if not STATE.removeObj[options.map] then
+            STATE.removeObj[options.map] = {}
+            if not STATE.removeObj[options.map][options.kind] then
+                STATE.removeObj[options.map][options.kind] = {}
+                if not STATE.removeObj[options.map][options.kind][tonumber(options.obj)] then
+                    STATE.removeObj[options.map][options.kind][tonumber(options.obj)] = {true}
+                end
+            end
+        elseif not STATE.removeObj[options.map][options.kind][tonumber(options.obj)] then
+            STATE.removeObj[options.map][options.kind][tonumber(options.obj)] = {true}
+        end
+    end,
+
+    --
+    -- Method: restoreObj
+    -- Restores an object to the map
+    --
+    restoreObj = function(self, options)
+        STATE.removeObj[options.map][options.kind][tonumber(options.obj)][1] = false
     end,
 
     --
@@ -28,6 +56,15 @@ local Trigger = Class:extend {
     end,
 
     --
+    -- Method: inventory
+    -- Opens up a shop with the supplied ID.
+    --
+    inventory = function ( self, options )
+        local Assets  = require 'helpers.asset_helper'
+        Assets.Inventory:put(options.kind, tonumber(options.id))
+    end,
+
+    --
     -- Method: map
     -- Sends player to the supplied map
     --
@@ -40,7 +77,7 @@ local Trigger = Class:extend {
     -- Method: party
     -- Add character to party
     --
-    party = function ( self, options )
+    party = function(self, options)
         STATE.heroes[tonumber(options.heroes)].active = true
     end,
 
@@ -79,12 +116,12 @@ local Trigger = Class:extend {
     -- Require:
     -- - 'assets.cutscenes.' .. scene
     --
-    scene = function ( self, options )
+    scene = function(self, options)
         local scene = require('assets.cutscenes.' .. options.scene)
         local myView = View:extend {
             count = 1,
             dcount = 1,
-            onNew = function ( self )
+            onNew = function(self)
                 self.fill = Fill:new{
                     x = 10,
                     y = 440,
@@ -104,56 +141,84 @@ local Trigger = Class:extend {
                     text = scene[1]['dialog'][1]
                 }
                 self:add(self.img)
-                self:add(self.fill)
-                self:add(self.text)
+                if options.anim ~= 'true' then
+                    self:add(self.fill)
+                    self:add(self.text)
+                end
             end,
-            onUpdate = function ( self )
-                if the.keys:justPressed('return') then
-
+            onUpdate = function(self)
+                if options.anim == 'true' then
                     self.dcount = self.dcount + 1
 
-                    if #scene[self.count]['dialog'] < self.dcount then
+                    if self.dcount > 40 then
                         self.count = self.count + 1
                         self.dcount = 1
 
                         if #scene >= self.count then
                             self.img:die()
-                            self.fill:die()
 
                             self.img = Tile:new{
                                 image = scene[self.count]['image']
                             }
-                            self.fill = Fill:new {
-                                x = 10,
-                                y = 440,
-                                width = 780,
-                                height = 150,
-                                fill = { 255, 255, 255, 200 }
-                            }
 
                             self:add(self.img)
-                            self:add(self.fill)
                         end
                     end
-                    self.text:die()
-                    if #scene >= self.count then
-                        self.text = Text:new {
-                            x = 20,
-                            y = 450,
-                            width = 760,
-                            tint = { 0, 0, 0 },
-                            font = STATE.font,
-                            text = scene[self.count]['dialog'][self.dcount]
-                        }
-                        self:add(self.text)
+                    if #scene < self.count then
+                        the.app.view = MapView:new()
+                        if the.app.view.foreground then
+                            the.app.view:moveToFront(the.app.view.foreground)
+                        end
                     end
+                else
+                    if the.keys:justPressed('return') then
 
-                elseif #scene < self.count then
-                    the.app.view = MapView:new()
-                    if the.app.view.foreground then
-                        the.app.view:moveToFront(the.app.view.foreground)
+                        self.dcount = self.dcount + 1
+
+                        if #scene[self.count]['dialog'] < self.dcount then
+                            self.count = self.count + 1
+                            self.dcount = 1
+
+                            if #scene >= self.count then
+                                self.img:die()
+                                self.fill:die()
+
+                                self.img = Tile:new{
+                                    image = scene[self.count]['image']
+                                }
+                                self.fill = Fill:new{
+                                    x = 10,
+                                    y = 440,
+                                    width = 780,
+                                    height = 150,
+                                    fill = { 255, 255, 255, 200 }
+                                }
+
+                                self:add(self.img)
+                                self:add(self.fill)
+                            end
+                        end
+                        self.text:die()
+                        if #scene >= self.count then
+                            self.text = Text:new{
+                                x = 20,
+                                y = 450,
+                                width = 760,
+                                tint = { 0, 0, 0 },
+                                font = STATE.font,
+                                text = scene[self.count]['dialog'][self.dcount]
+                            }
+                            self:add(self.text)
+                        end
+
+                    elseif #scene < self.count then
+                        the.app.view = MapView:new()
+                        if the.app.view.foreground then
+                            the.app.view:moveToFront(the.app.view.foreground)
+                        end
                     end
                 end
+
             end
         }
         the.app.view = myView:new()

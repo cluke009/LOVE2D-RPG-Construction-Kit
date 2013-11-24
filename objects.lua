@@ -21,6 +21,7 @@ local npc    = require 'assets.tables.npcs'
 -- Add the property "to" with the value "*mapname*" to load when passing over it.
 --
 Door = Tile:extend{
+    __class__ = 'Door',
     onCollide = function(self, other)
         if other:instanceOf(Hero) then
             STATE.prevmap = STATE.map
@@ -39,6 +40,7 @@ Door = Tile:extend{
 -- Add the property "from" with the value "*mapname*" to specify the spawn point when coming from that location.
 --
 Spawn = Tile:extend{
+    __class__ = 'Spawn',
     onNew = function(self)
         if STATE.prevmap and self.from == STATE.prevmap then
             STATE.heroStartX = self.x
@@ -52,6 +54,7 @@ Spawn = Tile:extend{
 -- Player sprite. Grabs data from the first hero in heroes.lua
 --
 Hero = Animation:extend{
+    __class__ = 'Hero',
     width  = STATE.heroes[1].img.width,
     height = STATE.heroes[1].img.height,
     image  = STATE.heroes[1].img.down.image,
@@ -127,6 +130,7 @@ Hero = Animation:extend{
 -- Add the property "item" / "equipment" with the "id" from the appropriate config file.
 --
 Chest = Tile:extend{
+    __class__ = 'Chest',
     onNew = function(self)
         -- Get item type
         if self.item then
@@ -210,6 +214,7 @@ Chest = Tile:extend{
 -- - Add the property "id" with the "id value" from obj.lua.
 --
 Obj = Animation:extend {
+    __class__ = 'Obj',
     onNew = function(self)
         self.id     = tonumber(self.id)
         self.image  = obj[self.id]['image']
@@ -224,9 +229,21 @@ Obj = Animation:extend {
         end
     end,
     onUpdate = function(self)
-        if STATE.removeObj[self.id] then
-            self.solid = false
-            self.image = 'assets/maps/img/trans.png'
+        if STATE.removeObj[STATE.map] and STATE.removeObj[STATE.map][self.__class__] then
+            if STATE.removeObj[STATE.map][self.__class__][self.id] then
+                -- Write image data to removeObj
+                if not STATE.removeObj[STATE.map][self.__class__][self.id][2] then
+                    STATE.removeObj[STATE.map][self.__class__][self.id] = {true, self.solid, self.image}
+                elseif STATE.removeObj[STATE.map][self.__class__][self.id][1] == false then
+                    self.solid = STATE.removeObj[STATE.map][self.__class__][self.id][2]
+                    self.image = STATE.removeObj[STATE.map][self.__class__][self.id][3]
+                    STATE.removeObj[STATE.map][self.__class__][self.id] = nil
+                    -- table_print(STATE.removeObj)
+                else
+                    self.solid = false
+                    self.image = 'assets/maps/img/trans.png'
+                end
+            end
         end
 
         if self.other then
@@ -249,27 +266,40 @@ Obj = Animation:extend {
     end,
     onEvent = function(self)
         -- Get the currently needed event
-        local e = event[tonumber(self.event)][1]
+        local e, continue
+        e = event[tonumber(self.event)][1]
         if STATE.event[tonumber(self.event)] then
-            e = event[tonumber(self.event)][STATE.event[tonumber(self.event)]]
+            -- table_print(STATE.event)
+            e = event[tonumber(self.event)][STATE.event[tonumber(self.event)]['id']]
         end
-
-        -- Check replay autoplay logic
-        if e.replay and e.auto then
-            print('replay=true','auto=true')
-            Event:init(self.event)
+        -- Check replay/autoplay logic
+        if self.continue == 'true' then
+            -- print('continue = true')
+            if STATE.event[tonumber(self.event)].activated == false then
+                STATE.event[tonumber(self.event)].activated = true
+                self.continue = Event:init(self.event)
+            end
+        elseif e.replay and e.auto then
+            -- print('replay=true','auto=true')
+            self.continue = Event:init(self.event)
         elseif e.replay and not e.auto and the.keys:justPressed('return') then
-            print('replay=true','auto=false')
-            Event:init(self.event)
+            -- print('replay=true','auto=false')
+            self.continue = Event:init(self.event)
         elseif not e.replay and e.auto then
-            print('replay=false','auto=true')
+            -- print('replay=false','auto=true')
             if not STATE.event[tonumber(self.event)] then
-                Event:init(self.event)
+                self.continue = Event:init(self.event)
+            elseif STATE.event[tonumber(self.event)].activated == false then
+                STATE.event[tonumber(self.event)].activated = true
+                self.continue = Event:init(self.event)
             end
         elseif not e.replay and not e.auto and the.keys:justPressed('return') then
-            print('replay=false','auto=false')
+            -- print('replay=false','auto=false')
             if not STATE.event[tonumber(self.event)] then
-                Event:init(self.event)
+                self.continue = Event:init(self.event)
+            elseif STATE.event[tonumber(self.event)].activated == false then
+                STATE.event[tonumber(self.event)].activated = true
+                self.continue = Event:init(self.event)
             end
         end
     end
@@ -283,6 +313,7 @@ Obj = Animation:extend {
 --      <Obj>
 --
 NPC = Obj:extend {
+    __class__ = 'NPC',
     onNew = function(self)
         self.id     = tonumber(self.id)
         self.image  = npc[self.id]['image']
@@ -299,6 +330,7 @@ NPC = Obj:extend {
 --      <Obj>
 --
 Enemy = Obj:extend{
+    __class__ = 'Enemy',
     onNew = function(self)
         self.id        = tonumber(self.id)
         self.image     = Enemies:get(self.id, 'img').idle.image
@@ -312,4 +344,68 @@ Enemy = Obj:extend{
         }
         self:play('down')
     end,
+}
+
+--
+-- Class: Test
+-- Testing walk cycles
+--
+-- Extends:
+--      <Obj>
+--
+Test = Animation:extend{
+    onNew = function(self)
+        self.count = 1
+        self.id        = tonumber(self.id)
+        self.dialog    = tonumber(self.dialog)
+        self.image     = Enemies:get(self.id, 'img').up.image
+        self.width     = Enemies:get(self.id, 'img').width
+        self.height    = Enemies:get(self.id, 'img').height
+        self.sequences = {
+            right = {
+                frames = Enemies:get(self.id, 'img').right.frames,
+                fps = Enemies:get(self.id, 'img').right.fps
+            },
+            left  = {
+                frames = Enemies:get(self.id, 'img').left.frames,
+                fps = Enemies:get(self.id, 'img').left.fps
+            },
+            up    = {
+                frames = Enemies:get(self.id, 'img').up.frames,
+                fps = Enemies:get(self.id, 'img').up.fps
+            },
+            down  = {
+                frames = Enemies:get(self.id, 'img').down.frames,
+                fps = Enemies:get(self.id, 'img').down.fps
+            },
+        }
+        self:play('down')
+        self.cycleID = 1
+    end,
+    onUpdate = function(self)
+        self.velocity.x = 0
+        self.velocity.y = 0
+
+        if self.count < Enemies:get(self.id, 'cycle')[self.cycleID][2] * 16 then
+            self:play(Enemies:get(self.id, 'cycle')[self.cycleID][1])
+            if Enemies:get(self.id, 'cycle')[self.cycleID][1] == 'up' then
+                self.velocity.y = -64
+            elseif Enemies:get(self.id, 'cycle')[self.cycleID][1] == 'down' then
+                self.velocity.y = 64
+            elseif Enemies:get(self.id, 'cycle')[self.cycleID][1] == 'left' then
+                self.velocity.x = -64
+            elseif Enemies:get(self.id, 'cycle')[self.cycleID][1] == 'right' then
+                self.velocity.x = 64
+            end
+        elseif self.cycleID >= #Enemies:get(self.id, 'cycle') then
+            self.cycleID = 1
+            self.count = 1
+        else
+            self.cycleID = self.cycleID + 1
+            self.count = 1
+
+        end
+
+        self.count = self.count + 1
+    end
 }
