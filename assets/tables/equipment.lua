@@ -28,50 +28,6 @@
     Example code:
     (begin code)
     [1] = {
-        name = 'Mandalorian Armor',
-        image = 'assets/img/sweater.png',
-        width = 64,
-        height = 64,
-        kind = 'Armor',
-        desc = 'Defense + 50',
-        effect = {
-            con = 50,
-        },
-        use = { 1 },
-        cost = 101
-    },
-    (end code)
---]]
-return
-{
-    [1] = {
-        name = 'Mandalorian Armor',
-        image = 'assets/img/sweater.png',
-        width = 64,
-        height = 64,
-        kind = 'Armor',
-        desc = 'Defense + 50',
-        effect = {
-            con = 50,
-        },
-        use = { 1 },
-        cost = 101
-    },
-    [2] = {
-        name = 'Hoody',
-        image = 'assets/img/hoody.png',
-        width = 64,
-        height = 64,
-        kind = 'Armor',
-        desc = 'Defense + 10, Magic Defense + 20',
-        effect = {
-            con = 10,
-            wis = 20,
-        },
-        use = { 2 },
-        cost = 102
-    },
-    [3] = {
         name = 'Speed Boots',
         image = 'assets/img/sboots.png',
         width = 64,
@@ -79,36 +35,93 @@ return
         kind = 'Boots',
         desc = 'Speed + 30, Defense + 10',
         effect = {
-            spd = 10,
-            con = 5,
+            def = 10,
+            mdef = 20,
         },
-        use = { 1 },
-        cost = 103
+        use = {1},
     },
-    [4] = {
-        name = 'Rifle',
-        image = 'assets/img/rifle.png',
+    (end code)
+--]]
+return
+{
+    [1] = {
+        name = 'ULTIMA WEAPON!',
+        image = 'assets/img/sweater.png',
+        cost = 50,
         width = 64,
         height = 64,
-        desc = 'Attack + 50',
         kind = 'Weapon',
+        desc = 'KIDDING. \n It\'s just Masamune. \n\nAttack + 5',
         effect = {
             str = 50,
         },
         use = { 1 },
-        cost = 104
     },
-    [5] = {
-        name = 'Machete',
-        image = 'assets/img/machete.png',
+    [2] = {
+        name = 'Rusty Shovel',
+        image = 'assets/img/hoody.png',
+        cost = 50,
         width = 64,
         height = 64,
-        desc = 'Attack + 50',
-        kind = 'gauntlets',
+        kind = 'Weapon',
+        desc = 'Trusty Rusty\n\nAttack + 10',
         effect = {
-            str = 170,
+            con = 25,
+            str = 25,
         },
         use = { 2 },
-        cost = 105
+    },
+    [3] = {
+        name = 'Warrior Skirt',
+        image = 'assets/img/sboots.png',
+        cost = 50,
+        width = 64,
+        height = 64,
+        kind = 'Armor',
+        desc = 'A little too much\ngroin coverage. \n\nDefense + 5',
+        effect = {
+            spd = 10,
+            con = 5,
+        },
+        use = { 1 },
+    },
+    [4] = {
+        name = 'Air Force Ones',
+        image = 'assets/img/rifle.png',
+        cost = 50,
+        width = 64,
+        height = 64,
+        desc = 'Get ta stompin\' \n\nSpeed + 5',
+        kind = 'Boots',
+        effect = {
+            spd = 50,
+        },
+        use = { 1 },
+    },
+    [5] = {
+        name = 'First Dragon Sphere',
+        image = 'assets/img/machete.png',
+        cost = 50,
+        width = 64,
+        height = 64,
+        desc = 'Collect all 6! \n\n Grants 1/6th of a wish.',
+        kind = 'Accessory',
+        effect = {
+            spd = 20,
+        },
+        use = { 2 },
+    },
+    [6] = {
+        name = 'Seashell Bracelet',
+        image = 'assets/img/machete.png',
+        cost = 50,
+        width = 64,
+        height = 64,
+        desc = 'She sells she shel... \nOh, fuck it. \n\n Halves damage from \nWater sources.',
+        kind = 'Gauntlets',
+        effect = {
+            con = 17,
+        },
+        use = { 2 },
     },
 }

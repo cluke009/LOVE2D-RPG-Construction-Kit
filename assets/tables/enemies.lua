@@ -5,66 +5,76 @@
 
     Properties:
         name - Name of enemy
-        exp - Amount of exp given
-        gold - Amount of gold given
-        group - enemies it fights with
+        image - Location of image
+        width - Width of image
+        height - Height of image
         stats - Enemy stats like hp & mp
-        img.width - Width of image
-        img.height - Height of image
+            Not currently implemented.
+        exp - Amount of exp given
+            Not currently implemented.
+        gold - Amount of gold given
+            Not currently implemented.
         drops - Items/Equipment given
             Not currently implemented.
 
     Example code:
     (begin code)
     [1] = {
-        name = 'Bat',
+        name = 'Water Dragon',
+        image = 'assets/img/water_dragon.gif',
+        width = 128,
+        height = 128,
         stats = {
-            hp = 20,
+            hp = 34,
             mp = 60,
-            str = 4,
-            con = 4,
-            int = 4,
-            wis = 4,
-            spd = 4,
+            str = 24,
+            con = 24,
+            int = 24,
+            wis = 14,
+            spd = 22,
         },
-        exp = 10,
-        gold = 100,
+        exp = 100,
+        gold = 99,
         group = { 2, 1 },
+        specials = { 1, 2, 3 }
+        drops = {
+            equipment = {1,2,3,4},
+            items = {1,2}
+        },
         img = {
-            width = 32,
-            height = 32,
             idle = {
-                image = 'assets/img/bat_battle.png',
-                frames = { 1,2,3 },
-                fps = 7
-            },
-            dmg = {
-                image = 'assets/img/bat_battle.png',
-                frames = { 10,11,12,13,14,15},
-                fps = 7
+                image = 'assets/img/water_dragon.png',
+                frames = { 1, 2, 3, },
+                fps = 5
             },
             attack = {
-                image = 'assets/img/bat_battle.png',
-                frames = {  4,5,6,7, 8, 9, },
-                fps = 7
+                image = 'assets/img/water_dragon.png',
+                frames = { 1, 2, 3, },
+                fps = 5
+            },
+            dmg = {
+                image = 'assets/img/water_dragon.png',
+                frames = { 1, 2, 3, },
+                fps = 5
             },
         }
-    },    (end code)
+    }
+    (end code)
 --]]
 return
 {
     [1] = {
         name = 'Bat',
         stats = {
-            hp = 2,
-            mp = 2,
-            str = 22,
-            con = 4,
-            int = 4,
-            wis = 4,
-            spd = 4,
+            hp = 100,
+            mp = 60,
+            str = 24,
+            con = 24,
+            int = 24,
+            wis = 14,
+            spd = 35,
         },
-        exp = 10,
+        exp = 300,
         gold = 100,
         group = { 2, 1 },
         img = {
@@ -90,45 +100,64 @@ return
     [2] = {
         name = 'Bee',
         stats = {
-            hp = 2,
-            mp = 2,
-            str = 2,
-            con = 2,
-            int = 2,
-            wis = 2,
-            spd = 2,
+            hp = 34,
+            mp = 60,
+            str = 24,
+            con = 24,
+            int = 24,
+            wis = 14,
+            spd = 22,
         },
-        exp = 5,
+        exp = 300,
         gold = 100,
         group = { 2, 1 },
+        cycle = {
+            {'right', 5},
+            {'down', 3},
+            {'left', 5},
+            {'up', 2},
+            {'right', 5},
+            {'down', 2},
+            {'left', 5}
+        },
         img = {
             width = 32,
             height = 32,
             idle = {
-                image = 'assets/img/bee.png',
-                frames = { 1, 2, 3, },
+                image = 'assets/img/bat_battle.png',
+                frames = { 1,2,3 },
                 fps = 7
             },
-            dmg = {
+            left = {
                 image = 'assets/img/bee.png',
-                frames = { 1, 2, 3,},
-                fps = 7
+                frames = { 4, 5, 6 },
+                fps = 25
             },
-            attack = {
+            right = {
                 image = 'assets/img/bee.png',
-                frames = {  7, 8, 9, },
-                fps = 7
+                frames = { 10,11,12 },
+                fps = 25
+            },
+            up = {
+                image = 'assets/img/bee.png',
+                frames = { 1, 2, 3,   },
+                fps = 25
+            },
+            down = {
+                image = 'assets/img/bee.png',
+                frames = { 7, 8, 9, },
+                fps = 25
             },
         }
     },
     [3] = {
         name = 'Big Worm',
         stats = {
-            hp = 2,
-            mp = 2,
-            str = 2,
-            con = 2,
-            int = 2,
+            hp = 34,
+            mp = 60,
+            str = 24,
+            con = 24,
+            int = 24,
             wis = 14,
             spd = 22,
         },
@@ -158,11 +187,11 @@ return
     [4] = {
         name = 'EyeBall',
         stats = {
-            hp = 2,
-            mp = 2,
-            str = 2,
-            con = 2,
-            int = 2,
+            hp = 34,
+        mp = 60,
+            str = 24,
+            con = 24,
+            int = 24,
             wis = 14,
             spd = 22,
         },
@@ -192,11 +221,11 @@ return
     [5] = {
         name = 'Ghost',
         stats = {
-            hp = 2,
-            mp = 2,
-            str = 2,
-            con = 2,
-            int = 2,
+            hp = 34,
+            mp = 60,
+            str = 24,
+            con = 24,
+            int = 24,
             wis = 14,
             spd = 22,
         },
@@ -226,11 +255,11 @@ return
     [6] = {
         name = 'Flower Power',
         stats = {
-            hp = 2,
-            mp = 2,
-            str = 2,
-            con = 2,
-            int = 2,
+            hp = 34,
+            mp = 60,
+            str = 24,
+            con = 24,
+            int = 24,
             wis = 14,
             spd = 22,
         },
@@ -262,9 +291,9 @@ return
         stats = {
             hp = 34,
         mp = 60,
-            str = 2,
-            con = 2,
-            int = 2,
+            str = 24,
+            con = 24,
+            int = 24,
             wis = 14,
             spd = 22,
         },
@@ -296,9 +325,9 @@ return
         stats = {
             hp = 34,
             mp = 60,
-            str = 2,
-            con = 2,
-            int = 2,
+            str = 24,
+            con = 24,
+            int = 24,
             wis = 14,
             spd = 22,
         },
@@ -330,9 +359,9 @@ return
         stats = {
             hp = 34,
             mp = 60,
-            str = 2,
-            con = 2,
-            int = 2,
+            str = 24,
+            con = 24,
+            int = 24,
             wis = 14,
             spd = 22,
         },
@@ -364,9 +393,9 @@ return
         stats = {
             hp = 34,
             mp = 60,
-            str = 2,
-            con = 2,
-            int = 2,
+            str = 24,
+            con = 24,
+            int = 24,
             wis = 14,
             spd = 22,
         },
@@ -389,6 +418,74 @@ return
             attack = {
                 image = 'assets/img/snake.png',
                 frames = {  7, 8, 9, },
+                fps = 7
+            },
+        }
+    },
+    [11] = {
+        name = 'GoldenMoonDragon',
+        stats = {
+            hp = 200,
+            mp = 60,
+            str = 24,
+            con = 24,
+            int = 24,
+            wis = 14,
+            spd = 22,
+        },
+        exp = 3000,
+        gold = 100,
+        group = { 11 },
+        img = {
+            width = 192,
+            height = 128,
+            idle = {
+                image = 'assets/img/earth_dragon2.png',
+                frames = { 1,},
+                fps = 7
+            },
+            dmg = {
+                image = 'assets/img/earth_dragon2.png',
+                frames = { 1,},
+                fps = 7
+            },
+            attack = {
+                image = 'assets/img/earth_dragon2.png',
+                frames = { 1,},
+                fps = 7
+            },
+        }
+    },
+            [12] = {
+        name = 'PandaMoonDragon',
+        stats = {
+            hp = 200,
+            mp = 60,
+            str = 24,
+            con = 24,
+            int = 24,
+            wis = 14,
+            spd = 22,
+        },
+        exp = 3000,
+        gold = 100,
+        group = { 11 },
+        img = {
+            width = 192,
+            height = 128,
+            idle = {
+                image = 'assets/img/panda_dragon.png',
+                frames = { 1,},
+                fps = 7
+            },
+            dmg = {
+                image = 'assets/img/panda_dragon.png',
+                frames = { 1,},
+                fps = 7
+            },
+            attack = {
+                image = 'assets/img/panda_dragon.png',
+                frames = { 1,},
                 fps = 7
             },
         }

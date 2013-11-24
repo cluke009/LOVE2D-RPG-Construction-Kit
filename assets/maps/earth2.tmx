@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="30" height="20" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="BlackAndWhite" tilewidth="32" tileheight="32">
+  <image source="img/BlackAndWhite.png" width="320" height="32"/>
+  <tile id="0">
+   <properties>
+    <property name="solid" value="true"/>
+   </properties>
+  </tile>
+  <tile id="9">
+   <properties>
+    <property name="solid" value="false"/>
+   </properties>
+  </tile>
+ </tileset>
+ <layer name="map" width="30" height="20">
+  <data encoding="base64" compression="zlib">
+   eJzNlDESACEIA7H1/w++xvZGko3eFemEZSBxVNWAmkukluoLpspO1TkzvL3b9UruQO2RuIFbS7g3Zib7or47ze3mJeGPJLeTp5vcLptwCZtkidyf5FDlOp78C9fJGeW6+SZc9V9S9AC/SQ4F
+  </data>
+ </layer>
+ <objectgroup name="objects" width="30" height="20">
+  <object name="Door" x="160" y="608" width="64" height="32">
+   <properties>
+    <property name="to" value="earth1"/>
+   </properties>
+  </object>
+  <object name="Spawn" x="160" y="544" width="64" height="32">
+   <properties>
+    <property name="from" value="earth1"/>
+   </properties>
+  </object>
+  <object name="Spawn" x="544" y="64" width="64" height="32">
+   <properties>
+    <property name="from" value="earth3"/>
+   </properties>
+  </object>
+  <object name="Door" x="544" y="0" width="64" height="32">
+   <properties>
+    <property name="to" value="earth3"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>

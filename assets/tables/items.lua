@@ -27,71 +27,71 @@
         width = 64,
         height = 64,
         desc = 'Max HP + 20, HP + 10',
+        value = 100,
         effect = {
-            { 'hpmax', 20 },
-            { 'hp', 50 },
-        },
-        cost = 101
+            {'hpmax', 20},
+            {'hp', 50},
+        }
+
     },
     (end code)
 --]]
 return
 {
     [1] = {
-        name = 'Beer',
+        name = 'Zu Zoo Beans',
         image = 'assets/img/beer.png',
+        cost = 25,
         width = 64,
         height = 64,
-        desc = 'Max HP + 20, HP + 10',
+        desc = 'Anime Guy\'s favorite! \n\n+50 Health',
         effect = {
             { 'hpmax', 20 },
             { 'hp', 50 },
-        },
-        cost = 101
+        }
     },
     [2] = {
-        name = 'Coffee',
+        name = 'Mug of Nasty Ale',
         image = 'img/img/coffee.png',
+        cost = 50,
         width = 64,
         height = 64,
-        desc = 'MP + 20',
-        effect = {
-            { 'mp', 20 },
-        },
-        cost = 102
-    },
-    [3] = {
-        name = 'Protein Shake',
-        image = 'img/assets/shake.png',
-        width = 64,
-        height = 64,
-        desc = 'A tasty shake that restores 20 MP',
+        desc = 'Perfect for \ncatching tears in.\n\n +50 Health',
         effect = {
             { 'mp', 20 },
         }
-        ,
-        cost = 103
+    },
+    [3] = {
+        name = 'Fairy Dust',
+        image = 'img/assets/shake.png',
+        cost = 50,
+        width = 64,
+        height = 64,
+        desc = 'This is really just PCP. \n\n+50 Health',
+        effect = {
+            { 'mp', 20 },
+        }
     },
     [4] = {
-        name = 'Item 4',
-        image = 'img/assets/shake.png',
+        name = 'Potion',
+        image = 'img/dragon.png',
+        cost = 100,
         width = 64,
         height = 64,
-        desc = ' restores 20 MP',
+        desc = 'I forget. \n Turns you into a frog? \nMaybe? \n\n Seriously, I \ndon\'t remember.',
         effect = {
             { 'mp', 20 },
-        },
-        cost = 104
+        }
     },
     [5] = {
-        name = 'item5',
-        image = 'img/assets/shake.png',
-        desc = ' restores 20 MP',
+        name = 'Phoenix Down',
+        image = 'img/dragon.png',
+        cost = 200,
         width = 64,
         height = 64,
+        desc = 'A shitty album from \n some awful \n metalcore band. \n\nSaddens Enemies',
         effect = {
             { 'mp', 20 },
-        },
-        cost = 105
+        }
     },
 }

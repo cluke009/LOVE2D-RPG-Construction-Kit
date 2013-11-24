@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="23" height="21" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="road" tilewidth="32" tileheight="32">
+  <image source="../../../../../Chris/Pickle/road.png" width="512" height="32"/>
+ </tileset>
+ <tileset firstgid="17" name="House 2 128x128" tilewidth="32" tileheight="32">
+  <image source="../../../../../Chris/Pickle/houses/House 2 128x128.png" width="128" height="128"/>
+ </tileset>
+ <tileset firstgid="33" name="house 128x128" tilewidth="32" tileheight="32">
+  <image source="../../../../../Chris/Pickle/houses/house 128x128.png" width="128" height="128"/>
+ </tileset>
+ <tileset firstgid="49" name="collision" tilewidth="32" tileheight="32">
+  <image source="img/collision.png" width="32" height="32"/>
+ </tileset>
+ <tileset firstgid="50" name="house door" tilewidth="32" tileheight="32">
+  <image source="../../../../../Chris/Pickle/houses/house door.png" width="32" height="32"/>
+ </tileset>
+ <tileset firstgid="51" name="House 2.5L 128x128" tilewidth="32" tileheight="32">
+  <image source="img/House 2.5L 128x128.png" width="128" height="128"/>
+ </tileset>
+ <tileset firstgid="67" name="tree" tilewidth="32" tileheight="32">
+  <image source="../../../../../Chris/pixel/buildings/tree.png" width="128" height="128"/>
+ </tileset>
+ <tileset firstgid="83" name="dirt simple" tilewidth="32" tileheight="32">
+  <image source="img/dirt simple.png" width="32" height="32"/>
+ </tileset>
+ <layer name="map" width="23" height="21">
+  <properties>
+   <property name="solid" value="true"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUGKLhUbNRzUNnD1X/0DusRsEoIBYAAH4KBV0=
+  </data>
+ </layer>
+ <layer name="background" width="23" height="21">
+  <data encoding="base64" compression="zlib">
+   eJwLZmBgCB7Fo3gUj+JRPIpH8YBhAEzEnJo=
+  </data>
+ </layer>
+ <layer name="path" width="23" height="21">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUjAL6A1Yams0CxLxQNiOVzEQ2h41KZmKzA+R2biyYk8p2MdPAzFFAPgAA7qgAcA==
+  </data>
+ </layer>
+ <layer name="foreground" width="23" height="21">
+  <data encoding="base64" compression="zlib">
+   eJzt0NkKgkAUxnFfwTazfTEry4qyfVGioCCh3v9l+l+Md8HgSBfRfPC7OZw5A59h6Oj8VxYIsMRKzEzkkEchw+01NthiJ2ZFlGChjAuuCrf3OOCIk5jZqKCKGm64K9wOEWGOs5jV0UATLTwQo40OunAU/vqUJ17owUUfA8mbtD0O4WGEsWQ3bY8+JphiJtlNevxGkh51fi9vvwAMUg==
+  </data>
+ </layer>
+ <layer name="doors" width="23" height="21">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUjALswAiKRwFhMBpWo4ASAAA9SgDJ
+  </data>
+ </layer>
+ <objectgroup name="objects" width="23" height="21"/>
+</map>

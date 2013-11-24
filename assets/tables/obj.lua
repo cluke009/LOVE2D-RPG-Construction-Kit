@@ -1,5 +1,5 @@
 --[[
-    File: Obj
+    File: OBJ
     Objects are referenced in tiled by there numerical ID.
     You can use this to place generic in game objects.
 
@@ -13,7 +13,7 @@
     (begin code)
     [1] = {
         name = 'NPC 1',
-    image = 'assets/img/water_dragon.gif',
+        image = 'assets/img/water_dragon.gif',
         width = 128,
         height = 128
     },
@@ -28,8 +28,8 @@ return
         height = 32
     },
     [2] = {
-        name = 'Transparent',
-        image = 'assets/img/trans.png',
+        name = 'Weapons',
+        image = 'assets/img/wpn.png',
         width = 32,
         height = 32
     },
@@ -46,27 +46,51 @@ return
         height = 32
     },
     [5] = {
-        name = 'HP',
-        image = 'assets/img/hpfountain.png',
-        width = 64,
-        height = 64
+        name = 'ItemSign',
+        image = 'assets/img/itemsign.png',
+        width = 32,
+        height = 32
     },
     [6] = {
-        name = 'MP',
-        image = 'assets/img/mpfountain.png',
-        width = 64,
-        height = 64
+        name = 'ArmorSign',
+        image = 'assets/img/armorsign.png',
+        width = 32,
+        height = 32
     },
     [7] = {
-        name = 'Portal',
-        image = 'assets/img/portal.png',
-        width = 64,
-        height = 64
+        name = 'Inn',
+        image = 'assets/img/innsign.png',
+        width = 32,
+        height = 32
     },
     [8] = {
-        name = 'Portal',
-        image = 'assets/img/fountain.png',
-        width = 64,
-        height = 64
+        name = 'Clear',
+        image = 'assets/img/clear.png',
+        width = 32,
+        height = 32
     },
+    [9] = {
+        name = 'CabinRoof',
+        image = 'assets/maps/img/CabinClosed96x96.png',
+        width = 96,
+        height = 96
+    },
+    [11] = {
+        name = 'CabinDoor',
+        image = 'assets/maps/img/CabinDoor.png',
+        width = 32,
+        height = 32
+    },
+    [20] = {
+        name = 'Southgate',
+        image = 'assets/img/southgate.png',
+        width = 128,
+        height = 32
+    },
+    [21] = {
+        name = 'RescueObj',
+        image = 'assets/img/clear.png',
+        width = 320,
+        height = 32
+    }
 }

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="24" height="10" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="BlackAndWhite" tilewidth="32" tileheight="32">
+  <image source="img/BlackAndWhite.png" width="320" height="32"/>
+  <tile id="0">
+   <properties>
+    <property name="solid" value="true"/>
+   </properties>
+  </tile>
+  <tile id="9">
+   <properties>
+    <property name="solid" value="false"/>
+   </properties>
+  </tile>
+ </tileset>
+ <layer name="map" width="24" height="10">
+  <data encoding="base64" compression="zlib">
+   eJxjZGBgYKQx5qIRHgjzybUPW3hgM4se4TZQ4UmOHYxk6hsM/qV1vgJhAPAkBuI=
+  </data>
+ </layer>
+ <objectgroup name="objects" width="24" height="10">
+  <object name="Door" x="0" y="128" width="32" height="96">
+   <properties>
+    <property name="to" value="beachpath1"/>
+   </properties>
+  </object>
+  <object name="Spawn" x="64" y="160" width="32" height="64">
+   <properties>
+    <property name="from" value="beachpath1"/>
+   </properties>
+  </object>
+  <object name="Door" x="736" y="128" width="32" height="96">
+   <properties>
+    <property name="to" value="waterentrance"/>
+   </properties>
+  </object>
+  <object name="Spawn" x="672" y="160" width="32" height="64">
+   <properties>
+    <property name="from" value="waterentrance"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>

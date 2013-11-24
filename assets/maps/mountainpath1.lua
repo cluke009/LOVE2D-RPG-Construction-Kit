@@ -15,7 +15,7 @@ return {
       tileheight = 32,
       spacing = 0,
       margin = 0,
-      image = "../../../../Jeph/Walkthrough/RPGKit/assets/maps/img/BlackAndWhite.png",
+      image = "img/BlackAndWhite.png",
       imagewidth = 320,
       imageheight = 32,
       properties = {},
@@ -41,7 +41,7 @@ return {
       tileheight = 32,
       spacing = 0,
       margin = 0,
-      image = "../../../../Jeph/Walkthrough/RPGKit/assets/maps/img/collision.png",
+      image = "img/collision.png",
       imagewidth = 32,
       imageheight = 32,
       properties = {},
@@ -190,7 +190,6 @@ return {
           y = 0,
           width = 96,
           height = 32,
-          rotation = 0,
           visible = true,
           properties = {
             ["to"] = "south"
@@ -204,7 +203,6 @@ return {
           y = 864,
           width = 96,
           height = 32,
-          rotation = 0,
           visible = true,
           properties = {
             ["to"] = "mountainpath2"
@@ -218,7 +216,6 @@ return {
           y = 64,
           width = 64,
           height = 32,
-          rotation = 0,
           visible = true,
           properties = {
             ["from"] = "south"
@@ -232,7 +229,6 @@ return {
           y = 800,
           width = 64,
           height = 32,
-          rotation = 0,
           visible = true,
           properties = {
             ["from"] = "mountainpath2"
@@ -242,15 +238,30 @@ return {
           name = "Obj",
           type = "",
           shape = "rectangle",
-          x = 282,
-          y = 294,
-          width = 69,
-          height = 50,
-          rotation = 0,
+          x = 32,
+          y = 256,
+          width = 320,
+          height = 32,
           visible = true,
           properties = {
-            ["event"] = "12",
-            ["id"] = "7"
+            ["event"] = "4",
+            ["id"] = "21",
+            ["solid"] = "false"
+          }
+        },
+        {
+          name = "Obj",
+          type = "",
+          shape = "rectangle",
+          x = 32,
+          y = 448,
+          width = 320,
+          height = 32,
+          visible = true,
+          properties = {
+            ["event"] = "5",
+            ["id"] = "21",
+            ["solid"] = "false"
           }
         }
       }

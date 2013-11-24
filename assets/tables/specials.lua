@@ -1,8 +1,4 @@
---[[
-    File: Specials
-    Special/Magic attacks.
-    Not currently implemented.
---]]
+
 return
 {
     [1] = {
