@@ -61,7 +61,7 @@ local Trigger = Class:extend {
     --
     inventory = function ( self, options )
         local Assets  = require 'helpers.asset_helper'
-        Assets.Inventory:put(options.kind, tonumber(options.id))
+        Assets:putInventory(options.kind, options.id)
     end,
 
     --

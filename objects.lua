@@ -6,14 +6,7 @@ local Battle    = require 'view.battle.battle_view'
 local Encounter = require 'assets.tables.encounters'
 
 local Assets    = require 'helpers/asset_helper'
-local Enemies   = Assets.Enemy
-local Items     = Assets.Item
-local Equipment = Assets.Equipment
-local Inventory = Assets.Inventory
 local Event     = require 'helpers/event_helper'
-
-local obj    = require 'assets.tables.obj'
-local npc    = require 'assets.tables.npcs'
 
 --
 -- Class: Door
@@ -216,9 +209,9 @@ Obj = Animation:extend {
     __class__ = 'Obj',
     onNew = function(self)
         self.id     = tonumber(self.id)
-        self.image  = obj[self.id]['image']
-        self.width  = obj[self.id]['width']
-        self.height = obj[self.id]['height']
+        self.image  = Assets:get('obj', self.id, 'image')
+        self.width  = Assets:get('obj', self.id, 'width')
+        self.height = Assets:get('obj', self.id, 'height')
     end,
     onCollide = function(self, other)
         self.other = other
@@ -316,9 +309,9 @@ NPC = Obj:extend {
     __class__ = 'NPC',
     onNew = function(self)
         self.id     = tonumber(self.id)
-        self.image  = npc[self.id]['image']
-        self.width  = npc[self.id]['width']
-        self.height = npc[self.id]['height']
+        self.image  = Assets:get('npcs', self.id, 'image')
+        self.width  = Assets:get('npcs', self.id, 'width')
+        self.height = Assets:get('npcs', self.id, 'height')
     end,
 }
 
@@ -333,13 +326,13 @@ Enemy = Obj:extend{
     __class__ = 'Enemy',
     onNew = function(self)
         self.id        = tonumber(self.id)
-        self.image     = Enemies:get(self.id, 'img').idle.image
-        self.width     = Enemies:get(self.id, 'img').width
-        self.height    = Enemies:get(self.id, 'img').height
+        self.image     = Assets:get('enemies', self.id, 'img').idle.image
+        self.width     = Assets:get('enemies', self.id, 'img').width
+        self.height    = Assets:get('enemies', self.id, 'img').height
         self.sequences = {
             down = {
-                frames = Enemies:get(self.id, 'img').idle.frames,
-                fps    = Enemies:get(self.id, 'img').idle.fps
+                frames = Assets:get('enemies', self.id, 'img').idle.frames,
+                fps    = Assets:get('enemies', self.id, 'img').idle.fps
             },
         }
         self:play('down')
@@ -357,26 +350,25 @@ Test = Animation:extend{
     onNew = function(self)
         self.count = 1
         self.id        = tonumber(self.id)
-        self.dialog    = tonumber(self.dialog)
-        self.image     = Enemies:get(self.id, 'img').up.image
-        self.width     = Enemies:get(self.id, 'img').width
-        self.height    = Enemies:get(self.id, 'img').height
+        self.image     = Assets:get('enemies', self.id, 'img').idle.image
+        self.width     = Assets:get('enemies', self.id, 'img').width
+        self.height    = Assets:get('enemies', self.id, 'img').height
         self.sequences = {
             right = {
-                frames = Enemies:get(self.id, 'img').right.frames,
-                fps = Enemies:get(self.id, 'img').right.fps
+                frames = Assets:get('enemies', self.id, 'img').right.frames,
+                fps = Assets:get('enemies', self.id, 'img').right.fps
             },
             left  = {
-                frames = Enemies:get(self.id, 'img').left.frames,
-                fps = Enemies:get(self.id, 'img').left.fps
+                frames = Assets:get('enemies', self.id, 'img').left.frames,
+                fps = Assets:get('enemies', self.id, 'img').left.fps
             },
             up    = {
-                frames = Enemies:get(self.id, 'img').up.frames,
-                fps = Enemies:get(self.id, 'img').up.fps
+                frames = Assets:get('enemies', self.id, 'img').up.frames,
+                fps = Assets:get('enemies', self.id, 'img').up.fps
             },
             down  = {
-                frames = Enemies:get(self.id, 'img').down.frames,
-                fps = Enemies:get(self.id, 'img').down.fps
+                frames = Assets:get('enemies', self.id, 'img').down.frames,
+                fps = Assets:get('enemies', self.id, 'img').down.fps
             },
         }
         self:play('down')
@@ -386,18 +378,18 @@ Test = Animation:extend{
         self.velocity.x = 0
         self.velocity.y = 0
 
-        if self.count < Enemies:get(self.id, 'cycle')[self.cycleID][2] * 16 then
-            self:play(Enemies:get(self.id, 'cycle')[self.cycleID][1])
-            if Enemies:get(self.id, 'cycle')[self.cycleID][1] == 'up' then
+        if self.count < Assets:get('enemies', self.id, 'cycle')[self.cycleID][2] * 16 then
+            self:play(Assets:get('enemies', self.id, 'cycle')[self.cycleID][1])
+            if Assets:get('enemies', self.id, 'cycle')[self.cycleID][1] == 'up' then
                 self.velocity.y = -64
-            elseif Enemies:get(self.id, 'cycle')[self.cycleID][1] == 'down' then
+            elseif Assets:get('enemies', self.id, 'cycle')[self.cycleID][1] == 'down' then
                 self.velocity.y = 64
-            elseif Enemies:get(self.id, 'cycle')[self.cycleID][1] == 'left' then
+            elseif Assets:get('enemies', self.id, 'cycle')[self.cycleID][1] == 'left' then
                 self.velocity.x = -64
-            elseif Enemies:get(self.id, 'cycle')[self.cycleID][1] == 'right' then
+            elseif Assets:get('enemies', self.id, 'cycle')[self.cycleID][1] == 'right' then
                 self.velocity.x = 64
             end
-        elseif self.cycleID >= #Enemies:get(self.id, 'cycle') then
+        elseif self.cycleID >= #Assets:get('enemies', self.id, 'cycle') then
             self.cycleID = 1
             self.count = 1
         else
