@@ -1,4 +1,4 @@
-local BattleModel = require 'model.battle.battle_model'
+local BattleModel = require 'views.battle.battle_model'
 local Formula     = require 'helpers.formula'
 
 --

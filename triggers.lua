@@ -10,7 +10,7 @@ local Trigger = Class:extend {
     -- Method: battle
     --
     battle = function(self, options)
-        local Battle    = require 'view.battle.battle_view'
+        local Battle    = require 'views.battle'
         local Encounter = require 'assets.tables.encounters'
 
         Battle:activate(Encounter['north'][1])
@@ -50,7 +50,7 @@ local Trigger = Class:extend {
     -- - 'view.shop.shop_view'
     --
     shop = function ( self, options )
-        local ShopView = require 'modes.shop'
+        local ShopView = require 'views.shop'
         ShopView.shopID = options.shop
         ShopView:activate()
     end,

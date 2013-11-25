@@ -2,7 +2,7 @@
 -- File: Objects
 --
 
-local Battle    = require 'view.battle.battle_view'
+local Battle    = require 'views.battle'
 local Encounter = require 'assets.tables.encounters'
 
 local Assets    = require 'helpers/asset_helper'

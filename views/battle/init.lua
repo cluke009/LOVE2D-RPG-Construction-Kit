@@ -1,4 +1,4 @@
-local BattleController  = require 'controller.battle.battle_controller'
+local BattleController  = require 'views.battle.battle_controller'
 local MenuHelper        = require 'helpers.menu_helper'
 
 --

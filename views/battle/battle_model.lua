@@ -1,6 +1,4 @@
-local assets    = require 'helpers.asset_helper'
-local Enemy     = assets.Enemy
-local Equipment = assets.Equipment
+local Assets    = require 'helpers.asset_helper'
 
 --
 -- Class: BattleModel
@@ -14,25 +12,27 @@ local BattleModel = {
     -- Method: init
     -- Create empty data table. Run functions to fill it.
     --
-    init = function ( self, enemyGroup )
+    init = function ( self, enemyGroup, rand )
         self.data = {
             hero = {},
             enemy = {},
             queue = {},
             gold = 0,
             exp = 0,
+            rand = rand,
             enemyGroup = enemyGroup
         }
         self:hero()
         self:enemy()
         self:queue()
+        -- table_print(self.data)
 
         return self.data
     end,
 
     --
     -- Method: hero
-    -- Fill hero data table. 
+    -- Fill hero data table.
     -- Copies active heroes and applies equipment boosts.
     --
     hero = function ( self )
@@ -45,7 +45,7 @@ local BattleModel = {
                 local stats = self.data.hero[k]['stats']
 
                 -- Add bonuses from equipment to stats
-                for i, effects in ipairs(Equipment:equipped(k, 'effect')) do
+                for i, effects in ipairs(Assets:equipped(k, 'effect')) do
                     for k, v in pairs(effects) do
                         stats[k] = stats[k] + v
                     end
@@ -72,7 +72,7 @@ local BattleModel = {
             local randID = math.random(1, #enemyGroup)
             randID = enemyGroup[randID]
 
-            table.insert(array, table.copy(Enemy:get(randID), true))
+            table.insert(array, table.copy(Assets:get('enemies', randID), true))
             array[i]['key'] = randID
 
             -- Randomize stats +/- 10%
@@ -85,7 +85,7 @@ local BattleModel = {
 
         self.data.enemy = array
     end,
-    
+
     --
     -- Method: queue
     -- Creates a queue for turn order. Sorted by spd, highest first.
