@@ -8,6 +8,7 @@ DEBUG = true
 io.stdout:setvbuf("no")
 
 require 'zoetrope'
+require 'log'
 require 'helpers.state'
 require 'assets.tables.config'
 
@@ -17,7 +18,7 @@ require 'objects'
 require 'helpers.string_helper'
 require 'helpers.table_helper'
 require 'helpers.dialog_helper'
-require 'view.menu_main.menu_main_view'
+require 'views.menu.main'
 
 the.app = App:new{
     onRun = function(self)
@@ -29,4 +30,6 @@ the.app = App:new{
             self.view:flash({ 0, 0, 0 }, 10)
         end
     end,
+    onUpdate = function (self, elapsed)
+    end
 }

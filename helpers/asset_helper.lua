@@ -62,12 +62,12 @@ local Assets = {
     --      nothing
     --
     useItem = function(self, itemID, ...)
-        if STATE.inventory['item'][itemID] == 1 then
-            STATE.inventory['item'][itemID] = nil
-        elseif STATE.inventory['item'][itemID] == nil then
+        if STATE.inventory['items'][itemID] == 1 then
+            STATE.inventory['items'][itemID] = nil
+        elseif STATE.inventory['items'][itemID] == nil then
             self:deactivate()
         else
-            STATE.inventory['item'][itemID] = STATE.inventory['item'][itemID] - 1
+            STATE.inventory['items'][itemID] = STATE.inventory['items'][itemID] - 1
         end
         -- TODO: apply effects of item to hero?
     end,

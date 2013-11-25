@@ -1,7 +1,8 @@
-local MenuGameItems = require 'view.menu_game_items.menu_game_items_view'
-local MenuGameEquip = require 'view.menu_game_equip.menu_game_equip_view'
+local MenuGameItems = require 'views.menu.game.items'
+local MenuGameEquip = require 'views.menu.game.equip'
 local MenuHelper    = require 'helpers.menu_helper'
-local Party         = require 'view.menu_game.menu_game_party_helper'
+local Party         = require 'views.menu.game.party_helper'
+
 Launch = Subview:new{
     party = Party:new(),
     menu = MenuHelper:new {

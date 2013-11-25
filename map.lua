@@ -1,4 +1,4 @@
-local menu = require 'view.menu_game.menu_game_view'
+local menu = require 'views.menu.game'
 local Save = require 'helpers.save'
 
 --

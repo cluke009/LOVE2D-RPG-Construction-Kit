@@ -1,8 +1,15 @@
-local assets    = require 'helpers.asset_helper'
-local Item      = assets.Item
+--
+--
+-- replace with Assets handler
+--
+--
+local Assets    = require 'helpers.asset_helper'
+--
+--
+--
 
 local Menu = require 'helpers.menu_helper'
-local Party = require 'view.menu_game.menu_game_party_helper'
+local Party = require 'views.menu.game.party_helper'
 
 local Select, Items
 
@@ -24,17 +31,17 @@ Items = Subview:new{
     },
     inventory = function (self)
         local links = {}
-        if next(STATE.inventory.item) then
-            for k, v in pairs(STATE.inventory.item) do
+        if next(STATE.inventory.items) then
+            for k, v in pairs(STATE.inventory.items) do
                 table.insert(links, {
-                    Item:get(k, 'name') .. ' x' .. v,
+                    Assets:get('items', k, 'name') .. ' x' .. v,
                     function()
-                        Select.item = Item:get(k)
+                        Select.item = Assets:get('items', k)
                         Select.item.key = k
                         Select:activate()
                     end,
                     function()
-                        self.text.text = Item:get(k, 'desc')
+                        self.text.text = Assets:get('items', k, 'desc')
                     end,
 
                 })
@@ -110,7 +117,7 @@ Select = Subview:new{
                         end
 
                         -- Update inventory
-                        Item:use(key)
+                        Assets:useItem(key)
                         self:remove(self.m)
 
                         self:deactivate()
