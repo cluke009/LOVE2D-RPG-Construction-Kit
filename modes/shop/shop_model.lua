@@ -1,7 +1,4 @@
 local Assets    = require 'helpers.asset_helper'
-local Equipment = Assets.Equipment
-local Item      = Assets.Item
-local Shop      = Assets.Shop
 
 --
 -- Class: ShopModel
@@ -27,11 +24,11 @@ local ShopModel = {
     -- Insert items from shop into data table.
     --
     item = function ( self, shopID )
-        if Shop:get(shopID).items then
-            for i,v in ipairs(Shop:get(shopID).items) do
-                local items = Item:get(v)
+        if Assets:get('shop', shopID, 'items') then
+            for i,v in ipairs(Assets:get('shop', shopID, 'items')) do
+                local items = Assets:get('items', v)
                 items['key'] = v
-                items['ikind'] = {'Item', 'item'}
+                items['ikind'] = 'items'
                 table.insert(self.data, items)
             end
         end
@@ -42,11 +39,11 @@ local ShopModel = {
     -- Insert equipment from shop into data table.
     --
     equipment = function ( self, shopID )
-        if Shop:get(shopID).equipment then
-            for i,v in ipairs(Shop:get(shopID).equipment) do
-                local equipment = Equipment:get(v)
+        if Assets:get('shop', shopID, 'equipment') then
+            for i,v in ipairs(Assets:get('shop', shopID, 'equipment')) do
+                local equipment = Assets:get('equipment', v)
                 equipment['key'] = v
-                equipment['ikind'] = {'Equipment', 'equipment'}
+                equipment['ikind'] = 'equipment'
                 table.insert(self.data, equipment)
             end
         end

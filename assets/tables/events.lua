@@ -247,6 +247,13 @@ return {
             trigger = '10:1',
         },
     },
+    [11] = {
+        [1] = {
+            replay = true,
+            auto = false,
+            func = 'shop, shop = 1',
+        },
+    },
 }
 
 --     -- ITEM SHOP HERE! --

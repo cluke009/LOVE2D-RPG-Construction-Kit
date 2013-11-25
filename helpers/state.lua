@@ -10,7 +10,7 @@ STATE = Class:new {
     heroStartX = 480,
     heroStartY = 480,
     inventory  = {
-        item   = {},
+        items   = {},
         equipment = {},
         -- equipment = { [2] = 1, [3] = 1, [5] = 1 },
     },

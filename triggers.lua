@@ -50,7 +50,7 @@ local Trigger = Class:extend {
     -- - 'view.shop.shop_view'
     --
     shop = function ( self, options )
-        local ShopView = require 'view.shop.shop_view'
+        local ShopView = require 'modes.shop'
         ShopView.shopID = options.shop
         ShopView:activate()
     end,

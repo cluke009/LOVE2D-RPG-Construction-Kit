@@ -1,5 +1,5 @@
 local Menu           = require 'helpers.menu_helper'
-local ShopController = require 'controller.shop.shop_controller'
+local ShopHelper     = require 'modes.shop.shop_helper'
 
 --
 -- Class: ShopView
@@ -10,7 +10,7 @@ local ShopController = require 'controller.shop.shop_controller'
 --
 -- Require:
 -- - helpers.menu_helper
--- - controller.shop.shop_controller
+-- - modes.shop.shop_helper
 --
 local ShopView = Subview:new {
     text = Text:new{
@@ -22,18 +22,19 @@ local ShopView = Subview:new {
     },
     inventory = function (self)
         local links = {}
-        for k, v in pairs(ShopController.data) do
-            -- pretty.dump(v)
+        for k, v in pairs(ShopHelper.data) do
             table.insert(links, {
                 v.name .. ' G ' .. v.cost,
-                function() ShopController:buy(v.ikind, v.key) end,
+                function() ShopHelper:buy(v.ikind, v.key) end,
                 function() self.text.text = v.desc end,
             })
         end
         return links
     end,
     onActivate = function(self)
-        ShopController:init(self.shopID)
+        -- Initialize shop data
+        ShopHelper:init(self.shopID)
+
         self.fill = Fill:new{
             width  = 800,
             height = 600,
