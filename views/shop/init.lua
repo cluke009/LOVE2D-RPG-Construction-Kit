@@ -1,5 +1,5 @@
 local Menu           = require 'helpers.menu_helper'
-local ShopHelper     = require 'modes.shop.shop_helper'
+local ShopHelper     = require 'views.shop.shop_helper'
 
 --
 -- Class: ShopView
