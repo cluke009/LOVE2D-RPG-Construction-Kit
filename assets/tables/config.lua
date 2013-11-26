@@ -16,8 +16,9 @@
 --
 STATE = STATE:new {
     font = {'assets/font/press_start_2p/PressStart2P.ttf', 16},
-    map = 'home',
-	heroStartX = 320,
-	heroStartY = 320,
-    gold = 600
+    map = 'equipshop',
+	heroStartX = 250,
+	heroStartY = 200,
+    gold = 600,
+    log = true,
 }

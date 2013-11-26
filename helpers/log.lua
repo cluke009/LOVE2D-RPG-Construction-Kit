@@ -1,9 +1,9 @@
 log = {
     text = {},
     init = Text:new{
-        x = 20,
+        x = 320,
         y = 20,
-        width = 200,
+        width = 400,
         tint = { 255, 0, 0 },
         -- font = STATE.font,
         text = 'start log \n',
@@ -12,7 +12,8 @@ log = {
 }
 function log:add( text )
     if STATE.log then
-        table.insert(self.text,os.date('%X', os.time()) .. ': ' .. text .. '\n')
+        table.insert(self.text, os.time() .. ': ' .. text .. '\n')
+        -- table.insert(self.text,os.date('%X', os.time()) .. ': ' .. text .. '\n')
         self:update(true)
     end
 end

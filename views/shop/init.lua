@@ -31,6 +31,9 @@ local ShopView = Subview:new {
         end
         return links
     end,
+    onNew = function ( self )
+
+    end,
     onActivate = function(self)
         -- Initialize shop data
         ShopHelper:init(self.shopID)
@@ -56,6 +59,7 @@ local ShopView = Subview:new {
             items = links
         }
         self:add(self.menu)
+        -- self:add(log.init)
     end,
     onDeactivate = function(self)
         self:remove(self.fill)
@@ -64,6 +68,7 @@ local ShopView = Subview:new {
         self:remove(self.menu)
     end,
     onUpdate = function (self)
+        -- log:update()
         self.gold.text = 'gold: ' .. STATE.gold
         if the.keys:justPressed('escape') then
             self:deactivate()
