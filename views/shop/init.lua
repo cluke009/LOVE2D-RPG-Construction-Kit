@@ -18,7 +18,7 @@ local ShopView = Subview:new {
         y = 40,
         width = 480,
         tint = { 0, 0, 0 },
-        font = STATE.font,
+        font = STATE.conf.font,
     },
     inventory = function (self)
         local links = {}
@@ -47,7 +47,7 @@ local ShopView = Subview:new {
             x = 20,      width = 1000,
             y = 20,      height = 120,
             tint = { 0, 0, 0 },
-            font = STATE.font,
+            font = STATE.conf.font,
         }
 
         self:add(self.fill)
@@ -69,7 +69,7 @@ local ShopView = Subview:new {
     end,
     onUpdate = function (self)
         -- log:update()
-        self.gold.text = 'gold: ' .. STATE.gold
+        self.gold.text = 'gold: ' .. STATE.inventory.gold
         if the.keys:justPressed('escape') then
             self:deactivate()
         end

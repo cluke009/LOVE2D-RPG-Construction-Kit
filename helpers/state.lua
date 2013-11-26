@@ -1,58 +1,52 @@
 --
 -- Initialize any empty game data that needs to be present before we load.
 --
-local h = require 'assets.tables.heroes'
-local heroes = {}
--- Add equippable types to STATE
-for i, v in ipairs(h) do
-    heroes[i] = {
-        stats = h[i].stats,
-        active = h[i].active,
+local heroes    = require 'assets.tables.heroes'
+local equipment = require 'assets.tables.equipment'
+
+-- Get all unique type of equipment
+local unique = {}
+for i, v in ipairs(equipment) do
+    unique[v.kind] = false
+end
+
+-- Add needed data to heroes table
+local hAtrr = {}
+for i, v in ipairs(heroes) do
+    hAtrr[i] = {
+        stats  = heroes[i].stats,
+        active = heroes[i].active,
+        equip  = unique,
     }
 end
 
-table_print(heroes)
-
+-- table_print(hAtrr)
 
 STATE = Class:new {
-    map  = 'home',
-    hud  = true,
-    init = true,
-    font = 16,
-    gold = 300,
-    heroStartX = 480,
-    heroStartY = 480,
+    conf = {
+        map  = 'home',
+        hud  = true,
+        font = 16,
+        heroStartX = 480,
+        heroStartY = 480,
+        time = {
+            date = 0,
+            seconds = 0,
+            human = '',
+            epoch = 0,
+        },
+    },
     inventory  = {
+        gold = 300,
         items   = {},
         equipment = {},
         -- equipment = { [2] = 1, [3] = 1, [5] = 1 },
     },
-    time = {
-        date = 0,
-        seconds = 0,
-        human = '',
-        epoch = 0,
+    heroes = hAtrr,
+    event = {
+        removeObj = {},
     },
-    heroes = heroes,
-    equip = {},
-    event = {},
-    removeObj = {},
 }
-
--- Get all unique type of equipment
-local unique = {}
-local equipment = require 'assets.tables.equipment'
-for i, v in ipairs(equipment) do
-    unique[v.kind] = true
-end
-
--- Add equippable types to STATE
-for i, v in ipairs(STATE.heroes) do
-    STATE.equip[i] = {}
-    for k, v in pairs(unique) do
-        STATE.equip[i][k] = false
-    end
-end
 
 -- Calculate stats at level for heroes that join party at a level besides 1
 -- local Formula = require 'helpers.formula'

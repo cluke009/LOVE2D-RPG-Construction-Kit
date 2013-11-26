@@ -80,7 +80,7 @@ return
         height = 64,
         desc = 'I forget. \n Turns you into a frog? \nMaybe? \n\n Seriously, I \ndon\'t remember.',
         effect = {
-            { 'mp', 20 },
+            { 'mp', 1 },
         }
     },
     [5] = {

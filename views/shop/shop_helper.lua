@@ -82,15 +82,15 @@ local ShopHelper = {
     --      ID - ID of item/equipment
     --
     buy = function ( self, ikind, ID )
-        if STATE.gold >= Assets:get(ikind, ID, 'cost') then
+        if STATE.inventory.gold >= Assets:get(ikind, ID, 'cost') then
             -- Update inventory
             Assets:putInventory(ikind, ID)
             -- Update gold
-            STATE.gold = STATE.gold - Assets:get(ikind, ID, 'cost')
-            log:add('purchased ' .. Assets:get(ikind, ID, 'name') .. ' from "' .. STATE.map .. '"')
+            STATE.inventory.gold = STATE.inventory.gold - Assets:get(ikind, ID, 'cost')
+            log:add('purchased ' .. Assets:get(ikind, ID, 'name') .. ' from "' .. STATE.conf.map .. '"')
         else
             print('no gold')
-            log:add('no gold to purchase ' .. Assets:get(ikind, ID, 'name') .. ' from "' .. STATE.map .. '"')
+            log:add('no gold to purchase ' .. Assets:get(ikind, ID, 'name') .. ' from "' .. STATE.conf.map .. '"')
             return false
         end
     end,

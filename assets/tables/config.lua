@@ -14,11 +14,9 @@
 --         - item - Array of items in inventory
 --         - equipment - Array of equipment in inventory
 --
-STATE = STATE:new {
-    font = {'assets/font/press_start_2p/PressStart2P.ttf', 16},
-    map = 'equipshop',
-	heroStartX = 250,
-	heroStartY = 200,
-    gold = 600,
-    log = true,
-}
+STATE.conf.font = {'assets/font/press_start_2p/PressStart2P.ttf', 16}
+STATE.conf.map = 'equipshop'
+STATE.conf.heroStartX = 250
+STATE.conf.heroStartY = 200
+STATE.conf.log = true
+STATE.inventory.gold = 600

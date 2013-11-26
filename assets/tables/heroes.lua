@@ -134,7 +134,7 @@ return
     [2] = {
         name = 'The Woodsman',
         stats = {
-            level = 2,
+            level = 1,
             hp = 200,
             hpmax = 200,
             mp = 60,
@@ -149,7 +149,7 @@ return
             int = 24,
             wis = 24,
         },
-        img = {
+        img  = {
             width = 64,
             height = 64,
             -- Walk
@@ -194,7 +194,7 @@ return
             int = 24,
             wis = 24,
         },
-        img = {
+        img  = {
             width = 64,
             height = 64,
             -- Walk

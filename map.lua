@@ -29,13 +29,13 @@ local Hud = Group:new{
             x = 20,
             y = 20,
             tint = { 255, 0, 0 },
-            font = STATE.font
+            font = STATE.conf.font
         }
         self.text2 = Text:new{
             x = 20,
             y = 40,
             tint = { 255, 0, 0 },
-            font = STATE.font
+            font = STATE.conf.font
         }
         self:add(self.text)
         self:add(self.text2)
@@ -57,16 +57,16 @@ local Hud = Group:new{
 MapView = View:extend{
     onNew = function(self)
         self.hero = Hero:new()
-        self:loadLayers('assets/maps/' .. STATE.map .. '.lua')
+        self:loadLayers('assets/maps/' .. STATE.conf.map .. '.lua')
 
-        if STATE.prevmap then
+        if STATE.conf.prevmap then
             -- Coordinates upon entering new room.
-            self.hero.x = STATE.heroStartX
-            self.hero.y = STATE.heroStartY
+            self.hero.x = STATE.conf.heroStartX
+            self.hero.y = STATE.conf.heroStartY
         else
             -- The starting coordinates of our player.
-            self.hero.x = STATE.heroStartX
-            self.hero.y = STATE.heroStartY
+            self.hero.x = STATE.conf.heroStartX
+            self.hero.y = STATE.conf.heroStartY
         end
 
         self:add(self.hero)
@@ -75,8 +75,8 @@ MapView = View:extend{
         self:clampTo(self.map)
 
         -- Send map name to hud.
-        if STATE.hud == true then
-            Hud.text.text = STATE.map
+        if STATE.conf.hud == true then
+            Hud.text.text = STATE.conf.map
             self:add(Hud)
         end
     end,
@@ -85,7 +85,7 @@ MapView = View:extend{
         self.map:displace(self.hero)
         self.objects:collide(self.hero)
 
-        Hud.text2.text = Save:secondsToClock(os.difftime(os.time(), t1)  + STATE.time.seconds)
+        Hud.text2.text = Save:secondsToClock(os.difftime(os.time(), t1)  + STATE.conf.time.seconds)
 
         if the.keys:justPressed('1') then
             Save:save('1')

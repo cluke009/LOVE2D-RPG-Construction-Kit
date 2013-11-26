@@ -90,7 +90,7 @@ local MenuHelper = Group:extend{
                 y = self.y + 12 + (i - 1) * self.height,
                 width = self.width - 20,
                 tint = { 0, 0, 0 },
-                font = STATE.font,
+                font = STATE.conf.font,
                 text = self.items[i][1]
             }
             self['text' .. i] = Text:new{
@@ -98,7 +98,7 @@ local MenuHelper = Group:extend{
                 y = self.y + 10 + (i - 1) * self.height,
                 width = self.width - 20,
                 tint = { 1, 1, 1 },
-                font = STATE.font,
+                font = STATE.conf.font,
                 text = self.items[i][1]
             }
             self:add(self['textShadow' .. i])

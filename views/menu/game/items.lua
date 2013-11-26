@@ -14,7 +14,6 @@ local Party = require 'views.menu.game.party_helper'
 local Select, Items
 
 Items = Subview:new{
-    ready = true,
     party = Party:new(),
     fill = Fill:new{
         width = 800,
@@ -67,18 +66,6 @@ Items = Subview:new{
         self:add(self.party)
     end,
     onUpdate = function(self)
-        if self.ready == true then
-            if self.menu then
-                self:remove(self.menu)
-                self.menu = Menu:new{
-                    coord = {20,80,300,23,true},
-                    items = self:inventory()
-                }
-                self:add(self.menu)
-            end
-            self.ready = false
-        end
-
         if the.keys:justPressed('escape') then
             self.ready = true
             self:remove(self.text)

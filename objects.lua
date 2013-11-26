@@ -16,8 +16,8 @@ Door = Tile:extend{
     __class__ = 'Door',
     onCollide = function(self, other)
         if other:instanceOf(Hero) then
-            STATE.prevmap = STATE.map
-            STATE.map = self.to
+            STATE.conf.prevmap = STATE.conf.map
+            STATE.conf.map = self.to
             the.app.view = MapView:new()
             if the.app.view.foreground then
                 the.app.view:moveToFront(the.app.view.foreground)
@@ -34,9 +34,9 @@ Door = Tile:extend{
 Spawn = Tile:extend{
     __class__ = 'Spawn',
     onNew = function(self)
-        if STATE.prevmap and self.from == STATE.prevmap then
-            STATE.heroStartX = self.x
-            STATE.heroStartY = self.y
+        if STATE.conf.prevmap and self.from == STATE.conf.prevmap then
+            STATE.conf.heroStartX = self.x
+            STATE.conf.heroStartY = self.y
         end
     end
 }
@@ -71,9 +71,9 @@ Hero = Animation:extend{
     rand = function(self)
         local low = 100
         local high = 175
-        if Encounter[STATE.map] then
-            low = Encounter[STATE.map]['rate'][1]
-            high = Encounter[STATE.map]['rate'][2]
+        if Encounter[STATE.conf.map] then
+            low = Encounter[STATE.conf.map]['rate'][1]
+            high = Encounter[STATE.conf.map]['rate'][2]
         end
         self.encounter = math.random(low, high)
     end,
@@ -108,9 +108,9 @@ Hero = Animation:extend{
             self:freeze()
         end
 
-        if self.encounter == 0 and Encounter[STATE.map] then
-            local a = math.random(1, #Encounter[STATE.map])
-            Battle:activate(Encounter[STATE.map][a])
+        if self.encounter == 0 and Encounter[STATE.conf.map] then
+            local a = math.random(1, #Encounter[STATE.conf.map])
+            Battle:activate(Encounter[STATE.conf.map][a])
             self:rand()
         end
     end
@@ -139,12 +139,12 @@ Chest = Tile:extend{
         self.id         = self[self.kind]
 
         -- Set state of chest
-        if STATE[STATE.map] == nil then
-            STATE[STATE.map] = {}
-            STATE[STATE.map]['chest'] = {}
+        if STATE[STATE.conf.map] == nil then
+            STATE[STATE.conf.map] = {}
+            STATE[STATE.conf.map]['chest'] = {}
         end
         -- TODO: add config for image
-        if STATE[STATE.map]['chest'][self.uid] == nil then
+        if STATE[STATE.conf.map]['chest'][self.uid] == nil then
             self.open = 0
             self.image = 'assets/img/chest.gif'
         else
@@ -174,7 +174,7 @@ Chest = Tile:extend{
                     self.image = 'assets/img/chestopen.gif'
                     self.open = 1
 
-                    STATE[STATE.map]['chest'][self.uid] = 1
+                    STATE[STATE.conf.map]['chest'][self.uid] = 1
 
                     -- Save to inventory
                     Inventory:put(self.kind, self.id)
@@ -221,16 +221,16 @@ Obj = Animation:extend {
         end
     end,
     onUpdate = function(self)
-        if STATE.removeObj[STATE.map] and STATE.removeObj[STATE.map][self.__class__] then
-            if STATE.removeObj[STATE.map][self.__class__][self.id] then
+        if STATE.event.removeObj[STATE.conf.map] and STATE.event.removeObj[STATE.conf.map][self.__class__] then
+            if STATE.event.removeObj[STATE.conf.map][self.__class__][self.id] then
                 -- Write image data to removeObj
-                if not STATE.removeObj[STATE.map][self.__class__][self.id][2] then
-                    STATE.removeObj[STATE.map][self.__class__][self.id] = {true, self.solid, self.image}
-                elseif STATE.removeObj[STATE.map][self.__class__][self.id][1] == false then
-                    self.solid = STATE.removeObj[STATE.map][self.__class__][self.id][2]
-                    self.image = STATE.removeObj[STATE.map][self.__class__][self.id][3]
-                    STATE.removeObj[STATE.map][self.__class__][self.id] = nil
-                    -- table_print(STATE.removeObj)
+                if not STATE.event.removeObj[STATE.conf.map][self.__class__][self.id][2] then
+                    STATE.event.removeObj[STATE.conf.map][self.__class__][self.id] = {true, self.solid, self.image}
+                elseif STATE.event.removeObj[STATE.conf.map][self.__class__][self.id][1] == false then
+                    self.solid = STATE.event.removeObj[STATE.conf.map][self.__class__][self.id][2]
+                    self.image = STATE.event.removeObj[STATE.conf.map][self.__class__][self.id][3]
+                    STATE.event.removeObj[STATE.conf.map][self.__class__][self.id] = nil
+                    -- table_print(STATE.event.removeObj)
                 else
                     self.solid = false
                     self.image = 'assets/maps/img/trans.png'

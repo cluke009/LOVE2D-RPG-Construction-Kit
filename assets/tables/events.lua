@@ -110,7 +110,7 @@ return {
             replay = false,
             auto = false,
             trigger = '2:7:true',
-            func = 'inventory, kind = item, op = put, id = 1',
+            func = 'inventory, kind = items, op = put, id = 1',
             dialog = {
                 'Bartender:\n\n Here ya are! My signature Zu Zu Bean Soup! And, I couldn\'t help but over-hearin\' your conversation, so here are some extra beans to take for ya on your way. Best of luck.',
                 -- '\n *You have acquired Zu Zu Beans!*',

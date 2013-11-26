@@ -21,16 +21,16 @@ local Trigger = Class:extend {
     -- Removes an object from the map
     --
     removeObj = function(self, options)
-        if not STATE.removeObj[options.map] then
-            STATE.removeObj[options.map] = {}
-            if not STATE.removeObj[options.map][options.kind] then
-                STATE.removeObj[options.map][options.kind] = {}
-                if not STATE.removeObj[options.map][options.kind][tonumber(options.obj)] then
-                    STATE.removeObj[options.map][options.kind][tonumber(options.obj)] = {true}
+        if not STATE.event.removeObj[options.map] then
+            STATE.event.removeObj[options.map] = {}
+            if not STATE.event.removeObj[options.map][options.kind] then
+                STATE.event.removeObj[options.map][options.kind] = {}
+                if not STATE.event.removeObj[options.map][options.kind][tonumber(options.obj)] then
+                    STATE.event.removeObj[options.map][options.kind][tonumber(options.obj)] = {true}
                 end
             end
-        elseif not STATE.removeObj[options.map][options.kind][tonumber(options.obj)] then
-            STATE.removeObj[options.map][options.kind][tonumber(options.obj)] = {true}
+        elseif not STATE.event.removeObj[options.map][options.kind][tonumber(options.obj)] then
+            STATE.event.removeObj[options.map][options.kind][tonumber(options.obj)] = {true}
         end
     end,
 
@@ -39,7 +39,7 @@ local Trigger = Class:extend {
     -- Restores an object to the map
     --
     restoreObj = function(self, options)
-        STATE.removeObj[options.map][options.kind][tonumber(options.obj)][1] = false
+        STATE.event.removeObj[options.map][options.kind][tonumber(options.obj)][1] = false
     end,
 
     --
@@ -69,7 +69,7 @@ local Trigger = Class:extend {
     -- Sends player to the supplied map
     --
     map = function ( self, options )
-        STATE.map = options.map
+        STATE.conf.map = options.map
         the.app.view = MapView:new()
     end,
 

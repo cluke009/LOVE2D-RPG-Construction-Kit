@@ -85,7 +85,7 @@ Equipped = Subview:new{
         local links = {}
         for k, v in pairs(unique) do
             local heroID = localHero.key
-            local itemID = STATE.equip[heroID][k]
+            local itemID = STATE.heroes[heroID].equip[k]
             local ename = ''
 
             if itemID and itemID ~= 0 then
@@ -183,16 +183,16 @@ EquipList = Subview:new{
             }
 
             -- Remove already equipped items from available items
-            for k, v in pairs(STATE.equip) do
-                local typeID = v[localItemType]
+            -- for k, v in pairs(STATE.equip) do
+            --     local typeID = v[localItemType]
 
-                if typeID and typeID == ofType[typeID].key then
-                    ofType[typeID].amount = ofType[typeID].amount - 1
-                    if ofType[typeID].amount == 0 then
-                        ofType[typeID] = nil
-                    end
-                end
-            end
+            --     if typeID and typeID == ofType[typeID].key then
+            --         ofType[typeID].amount = ofType[typeID].amount - 1
+            --         if ofType[typeID].amount == 0 then
+            --             ofType[typeID] = nil
+            --         end
+            --     end
+            -- end
 
             -- TODO: Check if hero can use item
         end
@@ -204,7 +204,7 @@ EquipList = Subview:new{
                 table.insert(links, {
                     ofType[k].name .. ' x' .. ofType[k].amount,
                     function()
-                        STATE.equip[localHero.key][localItemType] = k
+                        STATE.heroes[localHero.key].equip[localItemType] = k
                         self:deactivate()
                     end,
                     function()
@@ -250,7 +250,7 @@ EquipHero = Group:new{
             y = 0 + 40,
             width = 100,
             tint = { 0, 0, 0 },
-            font = STATE.font,
+            font = STATE.conf.font,
             text = ''
         }
         self.atk = Text:new{
@@ -258,7 +258,7 @@ EquipHero = Group:new{
             y = 32 + 80,
             width = 100,
             tint = { 0, 0, 0 },
-            font = STATE.font,
+            font = STATE.conf.font,
             text = ''
         }
 
@@ -267,7 +267,7 @@ EquipHero = Group:new{
             y = 32 + 120,
             width = 100,
             tint = { 0, 0, 0 },
-            font = STATE.font,
+            font = STATE.conf.font,
             text = ''
         }
         self.mag = Text:new{
@@ -275,7 +275,7 @@ EquipHero = Group:new{
             y = 32 + 160,
             width = 100,
             tint = { 0, 0, 0 },
-            font = STATE.font,
+            font = STATE.conf.font,
             text = ''
         }
         self.mdef = Text:new{
@@ -283,7 +283,7 @@ EquipHero = Group:new{
             y = 32 + 200,
             width = 100,
             tint = { 0, 0, 0 },
-            font = STATE.font,
+            font = STATE.conf.font,
             text = ''
         }
         self.spd = Text:new{
@@ -291,7 +291,7 @@ EquipHero = Group:new{
             y = 32 + 240,
             width = 100,
             tint = { 0, 0, 0 },
-            font = STATE.font,
+            font = STATE.conf.font,
             text = ''
         }
         self:add(self.image)
@@ -316,7 +316,7 @@ EquipHero = Group:new{
             -- Get stat totals with equiped items
             for k, v in pairs(unique) do
                 local heroID = localHero.key
-                local itemID = STATE.equip[heroID][k]
+                local itemID = STATE.heroes[heroID].equip[k]
 
                 if itemID and itemID ~= 0 then
                     local effect = equipment[itemID].effect

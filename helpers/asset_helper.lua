@@ -62,10 +62,11 @@ local Assets = {
     --      nothing
     --
     useItem = function(self, itemID, ...)
+        itemID = tonumber(itemID)
         if STATE.inventory['items'][itemID] == 1 then
             STATE.inventory['items'][itemID] = nil
         elseif STATE.inventory['items'][itemID] == nil then
-            self:deactivate()
+            -- self:deactivate()
         else
             STATE.inventory['items'][itemID] = STATE.inventory['items'][itemID] - 1
         end
@@ -99,9 +100,9 @@ local Assets = {
     equipped = function(self, heroID, ...)
         local data = {}
         local equipment = self:req('equipment')
-        if STATE.equip[heroID] then
+        if STATE.heroes[heroID].equip then
             local i = 1
-            for k, v in pairs(STATE.equip[heroID]) do
+            for k, v in pairs(STATE.heroes[heroID].equip) do
                 if arg[1] and equipment[v] then
                     data[i] = equipment[v][arg[1]]
                 else
@@ -121,7 +122,7 @@ local Assets = {
     equip = function(self, ID, heroID, ...)
         -- TODO: check that equipment is in inventory and available to use
         local itemType = self:get('equipment', ID, 'kind')
-        STATE.equip[heroID][itemType] = ID
+        STATE.heroes[heroID].equip[itemType] = ID
     end,
 }
 

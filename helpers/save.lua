@@ -12,9 +12,9 @@ local Save = {
     --
     save = function ( self, name )
         local save = Storage:new { filename = 'save' .. name .. '.dat' }
-        STATE.time.date = os.date('%x %H:%M')
-        STATE.time.seconds = STATE.time.seconds + os.difftime(os.time(), STATE.time.epoch )
-        STATE.time.human = self:secondsToClock(STATE.time.seconds)
+        STATE.conf.time.date = os.date('%x %H:%M')
+        STATE.conf.time.seconds = STATE.conf.time.seconds + os.difftime(os.time(), STATE.conf.time.epoch )
+        STATE.conf.time.human = self:secondsToClock(STATE.conf.time.seconds)
         STATE.prototype = nil
         save.data = STATE
         save:save()
@@ -36,7 +36,7 @@ local Save = {
         -- Load data into state
         save:load()
         STATE = save.data
-        STATE.time.epoch = os.time()
+        STATE.conf.time.epoch = os.time()
 
         -- Reload view
         the.app.view = MapView:new()
@@ -49,7 +49,7 @@ local Save = {
     -- Only needs to be set once for new games.
     --
     new = function ( self )
-        STATE.time.epoch = os.time()
+        STATE.conf.time.epoch = os.time()
     end,
 
     --
