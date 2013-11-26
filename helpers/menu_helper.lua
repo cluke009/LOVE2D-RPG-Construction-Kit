@@ -1,6 +1,5 @@
 local Sound = require 'assets.tables.sound'
 local FX    = Sound.fx
-
 --
 -- Class: MenuHelper
 -- Simple vertical menus.
@@ -52,7 +51,6 @@ local FX    = Sound.fx
 -- self:add(menu)
 --     (end code)
 --
-
 local MenuHelper = Group:extend{
     items = {},
     delay = 1,

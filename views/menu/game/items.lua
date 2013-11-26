@@ -1,25 +1,10 @@
---
---
--- replace with Assets handler
---
---
 local Assets    = require 'helpers.asset_helper'
---
---
---
-
-local Menu = require 'helpers.menu_helper'
-local Party = require 'views.menu.game.party_helper'
+local Menu      = require 'helpers.menu_helper'
+local Party     = require 'views.menu.game.party_helper'
 
 local Select, Items
 
 Items = Subview:new{
-    party = Party:new(),
-    fill = Fill:new{
-        width = 800,
-        height = 600,
-        fill = { 255, 255, 255, 255 }
-    },
     text = Text:new{
         x = 20,
         y = 40,
@@ -62,12 +47,10 @@ Items = Subview:new{
         self:add(self.text)
     end,
     onNew = function(self)
-        self:add(self.fill)
-        self:add(self.party)
+        -- self:add(self.fill)
     end,
     onUpdate = function(self)
         if the.keys:justPressed('escape') then
-            self.ready = true
             self:remove(self.text)
             if self.menu then
                 self:remove(self.menu)
