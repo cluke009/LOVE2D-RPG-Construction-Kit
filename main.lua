@@ -26,7 +26,7 @@ require 'views.menu.main'
 the.app = App:new{
     count = 1,
     onRun = function(self)
-        if STATE.auto_start then
+        if STATE.conf.auto_start then
             self.view = MapView:new()
             self.view:flash({ 0, 0, 0 }, 10)
         else

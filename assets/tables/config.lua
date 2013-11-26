@@ -18,5 +18,7 @@ STATE.conf.font = {'assets/font/press_start_2p/PressStart2P.ttf', 16}
 STATE.conf.map = 'equipshop'
 STATE.conf.heroStartX = 250
 STATE.conf.heroStartY = 200
+STATE.conf.auto_start = true
 STATE.conf.log = true
 STATE.inventory.gold = 600
+
