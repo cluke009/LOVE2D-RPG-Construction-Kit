@@ -8,16 +8,19 @@ DEBUG = true
 io.stdout:setvbuf("no")
 
 require 'zoetrope'
+
+require 'helpers.string_helper'
+require 'helpers.table_helper'
+
 require 'helpers.state'
 require 'helpers.log'
+require 'helpers.dialog_helper'
+
 require 'assets.tables.config'
 
 require 'map'
 require 'objects'
 
-require 'helpers.string_helper'
-require 'helpers.table_helper'
-require 'helpers.dialog_helper'
 require 'views.menu.main'
 
 the.app = App:new{
@@ -31,6 +34,7 @@ the.app = App:new{
             self.view:flash({ 0, 0, 0 }, 10)
         end
         -- self:add(log.init)
+        log:add('Game loaded')
     end,
     onUpdate = function (self, elapsed)
         -- log:update()

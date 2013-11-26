@@ -1,6 +1,19 @@
 --
 -- Initialize any empty game data that needs to be present before we load.
 --
+local h = require 'assets.tables.heroes'
+local heroes = {}
+-- Add equippable types to STATE
+for i, v in ipairs(h) do
+    heroes[i] = {
+        stats = h[i].stats,
+        active = h[i].active,
+    }
+end
+
+table_print(heroes)
+
+
 STATE = Class:new {
     map  = 'home',
     hud  = true,
@@ -20,7 +33,7 @@ STATE = Class:new {
         human = '',
         epoch = 0,
     },
-    heroes = require 'assets.tables.heroes',
+    heroes = heroes,
     equip = {},
     event = {},
     removeObj = {},

@@ -1,3 +1,4 @@
+local Asset = require 'helpers.asset_helper'
 local Party = Group:extend{
     text = 'test',
     ready = true,
@@ -7,8 +8,8 @@ local Party = Group:extend{
             self['image' .. i] = Tile:new{
                 x = 0 + 340,
                 y = 0 + 40 + (i - 1) * 100,
-                width = hero.img.width,
-                height = hero.img.height,
+                width = Asset:get('heroes', k, 'img').width,
+                height = Asset:get('heroes', k, 'img').height,
                 imageOffset = {x=0,y=196}
             }
             self['name' .. i] = Text:new{
@@ -111,8 +112,8 @@ local Party = Group:extend{
             local p = 1
             for k, hero in pairs(STATE.heroes) do
                 if hero['active'] then
-                    self['image' .. p].image = hero.img.down.image
-                    self['name' .. p].text = hero.name
+                    self['image' .. p].image = Asset:get('heroes', k, 'img').down.image
+                    self['name' .. p].text = Asset:get('heroes', k, 'name')
                     self['nameShadow' .. p].text = hero.name
                     self['levelShadow' .. p].text = 'Level ' .. hero.stats.level
                     self['hpShadow' .. p].text = 'HP ' .. hero.stats.hp .. '/' .. hero.stats.hpmax

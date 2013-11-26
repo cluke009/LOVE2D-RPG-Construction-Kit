@@ -47,25 +47,25 @@ Spawn = Tile:extend{
 --
 Hero = Animation:extend{
     __class__ = 'Hero',
-    width  = STATE.heroes[1].img.width,
-    height = STATE.heroes[1].img.height,
-    image  = STATE.heroes[1].img.down.image,
+    width  = Assets:get('heroes', 1, 'img').width,
+    height = Assets:get('heroes', 1, 'img').height,
+    image  = Assets:get('heroes', 1, 'img').down.image,
     sequences = {
         right = {
-            frames = STATE.heroes[1].img.right.frames,
-            fps = STATE.heroes[1].img.right.fps
+            frames = Assets:get('heroes', 1, 'img').right.frames,
+            fps = Assets:get('heroes', 1, 'img').right.fps
         },
         left  = {
-            frames = STATE.heroes[1].img.left.frames,
-            fps = STATE.heroes[1].img.left.fps
+            frames = Assets:get('heroes', 1, 'img').left.frames,
+            fps = Assets:get('heroes', 1, 'img').left.fps
         },
         up    = {
-            frames = STATE.heroes[1].img.up.frames,
-            fps = STATE.heroes[1].img.up.fps
+            frames = Assets:get('heroes', 1, 'img').up.frames,
+            fps = Assets:get('heroes', 1, 'img').up.fps
         },
         down  = {
-            frames = STATE.heroes[1].img.down.frames,
-            fps = STATE.heroes[1].img.down.fps
+            frames = Assets:get('heroes', 1, 'img').down.frames,
+            fps = Assets:get('heroes', 1, 'img').down.fps
         },
     },
     rand = function(self)
@@ -86,22 +86,22 @@ Hero = Animation:extend{
         if the.keys:pressed('up') then
             self.encounter = self.encounter - 1
             self.velocity.y = -300
-            self.image = STATE.heroes[1].img.up.image
+            self.image = Assets:get('heroes', 1, 'img').up.image
             self:play('up')
         elseif the.keys:pressed('down') then
             self.encounter = self.encounter - 1
             self.velocity.y = 300
-            self.image = STATE.heroes[1].img.down.image
+            self.image = Assets:get('heroes', 1, 'img').down.image
             self:play('down')
         elseif the.keys:pressed('left') then
             self.encounter = self.encounter - 1
             self.velocity.x = -300
-            self.image = STATE.heroes[1].img.left.image
+            self.image = Assets:get('heroes', 1, 'img').left.image
             self:play('left')
         elseif the.keys:pressed('right') then
             self.encounter = self.encounter - 1
             self.velocity.x = 300
-            self.image = STATE.heroes[1].img.right.image
+            self.image = Assets:get('heroes', 1, 'img').right.image
             self:play('right')
         end
         if self.velocity.x == 0 and self.velocity.y == 0 then
