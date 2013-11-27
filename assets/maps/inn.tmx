@@ -47,6 +47,7 @@
   </object>
   <object name="NPC" x="576" y="192" width="32" height="32">
    <properties>
+    <property name="event" value="12"/>
     <property name="id" value="8"/>
    </properties>
   </object>

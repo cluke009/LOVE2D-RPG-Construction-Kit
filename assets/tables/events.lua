@@ -1,3 +1,5 @@
+local Assets = require 'helpers.asset_helper'
+
 return {
     [1] = {
         [1] = {
@@ -252,6 +254,31 @@ return {
             replay = true,
             auto = false,
             func = 'shop, shop = 1',
+        },
+    },
+    [12] = {
+        [1] = {
+            replay = true,
+            auto = false,
+            portrait = '',
+            dialog = {
+                {'Golden Moon Dragon: Ah, I am awake again! Thank you all so much! Golden Moon Dragon: Ah, I am awake again! Thank you all so much! Golden Moon Dragon: Ah, I am awake again! Thank you all so much!',
+                    {Assets:get('heroes', 1, 'portraits')[1], 'left'}
+                },
+                {'Golden Moon Dragon: Ah, I am awake again! Thank you all so much! Golden Moon Dragon: Ah, I am awake again! Thank you all so much! Golden Moon Dragon: Ah, I am awake again! Thank you all so much!',
+                    {Assets:get('heroes', 1, 'portraits')[2], 'right'}
+                },
+                {'Anime Guy: *Confused look upon his face.* Golden Moon Dragon: Ah, I am awake again! Thank you all so much! Golden Moon Dragon: Ah, I am awake again! Thank you all so much! Golden Moon Dragon:\n Ah, I am awake again! Thank you all so much!',
+                    {Assets:get('heroes', 1, 'portraits')[3], 'left'}
+                },
+                {'Golden Moon Dragon: Oh, you look as confused as me! Golden Moon Dragon: Ah, I am awake again! Thank you all so much! Golden Moon Dragon: Ah, I am awake again! Thank you all so much! Golden Moon Dragon:\n Ah, I am awake again! Thank you all so much!',
+                    {Assets:get('heroes', 1, 'portraits')[4], 'right'}
+                },
+                {'Woodsman: Believe me pal, you was awake not too long ago when you tried gobblin\' us all up! Golden Moon Dragon: Ah, I am awake again! Thank you all so much! Golden Moon Dragon: Ah, I am awake again! Thank you all so much!',
+                    {Assets:get('heroes', 1, 'portraits')[5], 'left'}
+                },
+                {'Golden Moon Dragon: Oh my! I\'m so sorry! I remember nothing of the sort. Golden Moon Dragon: Ah, I am awake again! Thank you all so much! Golden Moon Dragon: Ah, I am awake again! Thank you all so much!'},
+            },
         },
     },
 }

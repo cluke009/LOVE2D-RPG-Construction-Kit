@@ -103,6 +103,13 @@ return
             int = 24,
             wis = 24,
         },
+        portraits = {
+            [1] = 'assets/img/Alan.png',
+            [2] = 'assets/img/Tiffany.png',
+            [3] = 'assets/img/Alan2.png',
+            [4] = 'assets/img/Tiffany2.png',
+            [5] = 'assets/img/Alan3.png',
+        },
         img = {
             width = 35,
             height = 50,

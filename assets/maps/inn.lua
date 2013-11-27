@@ -133,6 +133,7 @@ return {
           height = 32,
           visible = true,
           properties = {
+            ["event"] = "12",
             ["id"] = "8"
           }
         }
