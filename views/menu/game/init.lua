@@ -6,11 +6,10 @@ local Assets        = require 'helpers.asset_helper'
 
 Launch = Subview:new{
     party = Party:new(),
-    fill = Fill:new{
-        x = 10,     width  = 780,
-        y = 10,     height = 580,
-        fill = { 0, 0, 255, 200 },
-        border = { 255, 255, 255, 255 },
+    fill = Tile:new{
+        width  = 640,
+        height = 360,
+        image = 'assets/img/menu_game.png'
     },
     inventory_links = function (self)
         local links = {}
@@ -45,10 +44,15 @@ Launch = Subview:new{
         -- Create static root menu
         --
         self.menu = MenuHelper:new {
-            coord = {20,200,150,23,true},
+            coord = {12,20,150,23,true},
             items = {
                 {'Items', function() self.menu:submenu(self.items_menu) end },
-                {'Equip', function() self.menu:submenu(self.equipment_menu) end },
+                {'Magic', function() print('Magic') end },
+                {'Equipment', function() self.menu:submenu(self.equipment_menu) end },
+                {'Status\n', function() print('Status') end },
+
+                {'Config', function() print('Status') end },
+                {'Save', function() print('Save') end },
             }
         }
 

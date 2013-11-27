@@ -56,7 +56,9 @@ local MenuHelper = Group:extend{
     delay = 1,
     selected = 1,
     highlight = function(self)
-        self.h.y = self.y  + (self.selected - 1) * self.height
+        -- self.h.y = self.y  + (self.selected - 1) * self.height
+
+        self.h.y = self['text' .. self.selected].y - 10
         if self.items[self.selected].hover then
             self.items[self.selected][3]()
         end
@@ -74,7 +76,7 @@ local MenuHelper = Group:extend{
             fill = { 0, 0, 255, 200 },
             border = { 255, 255, 255, 255 },
         }
-        self:add(self.bg)
+        -- self:add(self.bg)
 
         self.h = Tile:new{
             x = self.x - 14,  width = 22,
@@ -82,10 +84,11 @@ local MenuHelper = Group:extend{
             image = 'assets/img/arrow.png'
         }
         self:add(self.h)
+        local pad = 0
         for i, value in ipairs(self.items) do
             self['textShadow' .. i] = Text:new{
                 x = self.x + 12,
-                y = self.y + 12 + (i - 1) * self.height,
+                y = self.y + pad + 12 + (i - 1) * self.height,
                 width = self.width - 20,
                 tint = { 0, 0, 0 },
                 font = STATE.conf.font,
@@ -93,12 +96,15 @@ local MenuHelper = Group:extend{
             }
             self['text' .. i] = Text:new{
                 x = self.x + 10,
-                y = self.y + 10 + (i - 1) * self.height,
+                y = self.y + pad + 10 + (i - 1) * self.height,
                 width = self.width - 20,
                 tint = { 1, 1, 1 },
                 font = STATE.conf.font,
                 text = self.items[i][1]
             }
+            if self.items[i][1] and string.find(self.items[i][1], '\n') then
+                pad = pad + self.height
+            end
             self:add(self['textShadow' .. i])
             self:add(self['text' .. i])
         end
@@ -131,6 +137,7 @@ local MenuHelper = Group:extend{
                 self.delay = 1
             end
         elseif the.keys:justPressed('escape') then
+            playSound(FX[3].path)
             if self.parent then
                 self:deactivate(self.parent)
                 self.delay = 1
