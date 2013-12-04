@@ -16,8 +16,8 @@
 --
 
 STATE.conf.font = {'assets/font/press_start_2p/PressStart2P.ttf', 16}
-STATE.conf.map = 'south'
+STATE.conf.map = 'west'
 STATE.conf.auto_start = true
-STATE.conf.heroStartX = 384
-STATE.conf.heroStartY = 550
+STATE.conf.heroStartX = 128
+STATE.conf.heroStartY = 196
 STATE.inventory.gold = 600

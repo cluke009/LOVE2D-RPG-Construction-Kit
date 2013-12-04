@@ -3,77 +3,119 @@
 -- Interface for Events.
 --
 local Event = {
-
-    get = function(self, id)
-        -- print('get')
-        self.events = require('maps.' .. STATE.conf.map .. '.events')
-        self:state(tonumber(id))
+    --
+    -- Property: stack
+    -- Table of methods and the order they should be run.
+    --
+    stack = {
+        'play', 'before', 'dialog', 'after', 'goto',
+    },
+    --
+    -- Method: register
+    -- Reorders stacks as they occur.
+    -- Required to make stacks fire as part of the game loop.
+    --
+    register = function (self, arg )
+        -- if Play we must wait for user input
+        if self.stack[1] ~= 'play' then
+            table.insert(self.stack, self.stack[1])
+            self[self.stack[1]](self, arg)
+            self.stack[1] = nil
+            self.stack = table.reindex(self.stack)
+        elseif self:play(arg) then
+            table.insert(self.stack, self.stack[1])
+            self[self.stack[1]](self, arg)
+            self.stack[1] = nil
+            self.stack = table.reindex(self.stack)
+        end
     end,
-    -- Run code for events
-    state = function(self, id)
-        -- print('state')
+    --
+    -- Method: play
+    -- Write event data to the STATE table. Check replay/autoplay logic.
+    -- Returns true if we can move to next item in stack.
+    --
+    play = function(self, id)
+        print('play')
+        id = tonumber(id)
         STATE.event[STATE.conf.map]     = STATE.event[STATE.conf.map] or {}
         STATE.event[STATE.conf.map][id] = STATE.event[STATE.conf.map][id] or {
             id = 1, activated = false, cycle = false
         }
+
+        self.events = require('maps.' .. STATE.conf.map .. '.events')
         local eventId = STATE.event[STATE.conf.map][id]
         local e = self.events[id][eventId['id']]
-        self:play(e, id, eventId)
-    end,
-    -- Check replay/autoplay logic
-    play = function(self, e, id, eventId)
-        -- print('play')
+
         if e.replay and e.auto then
             -- print('replay=true','auto=true')
-            self:before(id, eventId['id'])
+            return true
         elseif e.replay and not e.auto and the.keys:justPressed('return') then
             -- print('replay=true','auto=false')
-            self:before(id, eventId['id'])
+            return true
         elseif not e.replay and e.auto then
             -- print('replay=false','auto=true')
             if eventId.activated == false then
                 eventId.activated = true
-                self:before(id, eventId['id'])
+                return true
             end
         elseif not e.replay and not e.auto and the.keys:justPressed('return') then
             -- print('replay=false','auto=false')
             if eventId.activated == false then
                 eventId.activated = true
-                self:before(id, eventId['id'])
+                return true
             end
         end
     end,
-    before = function(self, id, eventId)
+    --
+    -- Method: before
+    -- Functions to be run before all other events
+    --
+    before = function(self, id)
+        print('before')
+        id = tonumber(id)
+        local eventId = STATE.event[STATE.conf.map][id]['id']
         if self.events[id][eventId]['before'] then
             self.events[id][eventId]['before']()
         end
-
-        self:dialog(id, eventId)
     end,
-    dialog = function(self, id, eventId)
-        -- print('dialog')
+    --
+    -- Method: dialog
+    -- Triggers dialog if part of the event.
+    --
+    dialog = function(self, id)
+        print('dialog')
+        id = tonumber(id)
+        local eventId = STATE.event[STATE.conf.map][id]['id']
+
         if self.events[id][eventId]['dialog'] then
             local d = Dialog:new {
                 dialog = self.events[id][eventId]['dialog']
             }
             d:activate()
-            d.onDeactivate = function ()
-                self:after(id, eventId)
-            end
-        else
-            self:after(id, eventId)
         end
     end,
-    after = function(self, id, eventId)
+    --
+    -- Method: after
+    -- Functions to be run after all other events
+    --
+    after = function(self, id)
+        print('after')
+        id = tonumber(id)
+        local eventId = STATE.event[STATE.conf.map][id]['id']
+
         if self.events[id][eventId]['after'] then
             self.events[id][eventId]['after']()
         end
-
-        self:goto(id, eventId)
     end,
-    goto = function(self, id, eventId)
-        -- print('goto')
-        local eventId = self.events[id][eventId]['goto']
+    --
+    -- Method: goto
+    -- If one event triggers another we overwrite STATE with the new data.
+    --
+    goto = function(self, id)
+        print('goto')
+        id = tonumber(id)
+        local eventId = STATE.event[STATE.conf.map][id]['id']
+        eventId = self.events[id][eventId]['goto']
 
         if eventId then
             STATE.event[eventId[1]] = STATE.event[eventId[1]] or {}
@@ -88,7 +130,10 @@ local Event = {
             -- end
         end
     end,
-    -- Remove Objects
+    --
+    -- Method: removeObj
+    -- Registers an object in the STATE to be removed from the game map.
+    --
     removeObj = function(self, id, kind, map)
         if not STATE.event.removeObj[map] then
             STATE.event.removeObj[map] = {}
@@ -102,24 +147,35 @@ local Event = {
             STATE.event.removeObj[map][kind][id] = {true}
         end
     end,
-    -- _removeObj = function(obj)
-    --     if STATE.event.removeObj[STATE.conf.map] and STATE.event.removeObj[STATE.conf.map][obj.__class__] then
-    --         if STATE.event.removeObj[STATE.conf.map][obj.__class__][obj.id] then
-    --             -- Write image data to removeObj
-    --             if not STATE.event.removeObj[STATE.conf.map][obj.__class__][obj.id][2] then
-    --                 STATE.event.removeObj[STATE.conf.map][obj.__class__][obj.id] = {true, obj.solid, obj.image}
-    --             elseif STATE.event.removeObj[STATE.conf.map][obj.__class__][obj.id][1] == false then
-    --                 obj.solid = STATE.event.removeObj[STATE.conf.map][obj.__class__][obj.id][2]
-    --                 obj.image = STATE.event.removeObj[STATE.conf.map][obj.__class__][obj.id][3]
-    --                 STATE.event.removeObj[STATE.conf.map][obj.__class__][obj.id] = nil
-    --                 -- table_print(STATE.event.removeObj)
-    --             else
-    --                 obj.solid = false
-    --                 obj.image = 'assets/maps/img/trans.png'
-    --             end
-    --         end
-    --     end
-    -- end,
+    --
+    -- Method: checkObj
+    -- Checks the STATE to see if an object should not be drawn.
+    --
+    checkObj = function(self, obj)
+        if STATE.event.removeObj[STATE.conf.map] and STATE.event.removeObj[STATE.conf.map][obj.__class__] then
+            if STATE.event.removeObj[STATE.conf.map][obj.__class__][obj.id] then
+                -- Write image data to removeObj
+                if not STATE.event.removeObj[STATE.conf.map][obj.__class__][obj.id][2] then
+                    STATE.event.removeObj[STATE.conf.map][obj.__class__][obj.id] = {true, obj.solid, obj.image}
+                elseif STATE.event.removeObj[STATE.conf.map][obj.__class__][obj.id][1] == false then
+                    obj.solid = STATE.event.removeObj[STATE.conf.map][obj.__class__][obj.id][2]
+                    obj.image = STATE.event.removeObj[STATE.conf.map][obj.__class__][obj.id][3]
+                    STATE.event.removeObj[STATE.conf.map][obj.__class__][obj.id] = nil
+                else
+                    obj.solid = false
+                    obj.image = 'assets/maps/img/trans.png'
+                end
+            end
+        end
+    end,
 }
 
+
+
+function test( ... )
+    -- body
+end
+
+test()
 return Event
+

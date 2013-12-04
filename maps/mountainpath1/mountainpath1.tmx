@@ -1057,16 +1057,16 @@
     <property name="from" value="mountainpath2"/>
    </properties>
   </object>
-  <object name="Obj" x="32" y="256" width="320" height="32">
+  <object name="Obj" x="35" y="242" width="320" height="32">
    <properties>
     <property name="event" value="1"/>
     <property name="id" value="21"/>
     <property name="solid" value="false"/>
    </properties>
   </object>
-  <object name="Obj" x="32" y="448" width="320" height="32">
+  <object name="Obj" x="32" y="480" width="320" height="32">
    <properties>
-    <property name="event" value="5"/>
+    <property name="event" value="2"/>
     <property name="id" value="21"/>
     <property name="solid" value="false"/>
    </properties>

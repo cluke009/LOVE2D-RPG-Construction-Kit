@@ -238,8 +238,8 @@ return {
           name = "Obj",
           type = "",
           shape = "rectangle",
-          x = 32,
-          y = 256,
+          x = 35,
+          y = 242,
           width = 320,
           height = 32,
           visible = true,
@@ -254,12 +254,12 @@ return {
           type = "",
           shape = "rectangle",
           x = 32,
-          y = 448,
+          y = 480,
           width = 320,
           height = 32,
           visible = true,
           properties = {
-            ["event"] = "5",
+            ["event"] = "2",
             ["id"] = "21",
             ["solid"] = "false"
           }

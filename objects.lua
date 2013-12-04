@@ -262,23 +262,7 @@ Obj = Animation:extend {
         end
     end,
     onUpdate = function(self)
-        -- Event:removeObj(self)
-        if STATE.event.removeObj[STATE.conf.map] and STATE.event.removeObj[STATE.conf.map][self.__class__] then
-            if STATE.event.removeObj[STATE.conf.map][self.__class__][self.id] then
-                -- Write image data to removeObj
-                if not STATE.event.removeObj[STATE.conf.map][self.__class__][self.id][2] then
-                    STATE.event.removeObj[STATE.conf.map][self.__class__][self.id] = {true, self.solid, self.image}
-                elseif STATE.event.removeObj[STATE.conf.map][self.__class__][self.id][1] == false then
-                    self.solid = STATE.event.removeObj[STATE.conf.map][self.__class__][self.id][2]
-                    self.image = STATE.event.removeObj[STATE.conf.map][self.__class__][self.id][3]
-                    STATE.event.removeObj[STATE.conf.map][self.__class__][self.id] = nil
-                    -- table_print(STATE.event.removeObj)
-                else
-                    self.solid = false
-                    self.image = 'assets/maps/img/trans.png'
-                end
-            end
-        end
+        Event:checkObj(self)
 
         if self.other then
 
@@ -292,7 +276,11 @@ Obj = Animation:extend {
             local offsetY = (self.height / 2) + (self.other.height / 2)
 
             if math.abs(otherX - selfX) <= offsetX and math.abs(otherY - selfY) <= offsetY then
-                if self.event then print('--') Event:get(self.event) end
+                if self.event then
+                    print('--')
+                    -- Event:get(self.event)
+                    Event:register(self.event)
+                end
             end
         end
     end

@@ -1,15 +1,15 @@
 local Assets = require 'helpers.asset_helper'
-local Event     = require 'helpers/event_helper'
+local Event  = require 'helpers.event_helper'
 
 return {
     [1] = {
         [1] = {
             -- NOTE:\n This is attached to the guard to the south after the Woodsman joins your party.
-            replay = true,
+            replay = false,
             auto = false,
-            -- goto = {'south', 1, 2},
+            goto = {'south', 1, 2},
             before = function ()
-                return Event:removeObj(20, 'Obj', 'south')
+                Event:removeObj(20, 'Obj', 'south')
                 -- print('before')
 
                 -- body
@@ -29,14 +29,14 @@ return {
             },
             after = function ()
                 print('after')
-                -- Event:removeObj(20, 'Obj', 'south')
+                Event:removeObj(20, 'Obj', 'south')
             end,
         },
         [2] = {
             -- NOTE:\n This is attached to the guard to the south after the Woodsman joins your party.
             replay = false,
             auto = true,
-            goto = {'south', 1, 3},
+            -- goto = {'south', 1, 3},
             before = function ()
                 print('before2')
                 -- Event:removeObj(20, 'Obj', 'south')

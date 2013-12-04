@@ -1,63 +1,63 @@
--- 
+--
 -- Class: table
 -- Table helpers
--- 
+--
 
--- 
+--
 -- Method: keys
 -- Return a table of t's keys.
--- 
+--
 function table.keys(t)
     local keys = {}
-    table.foreach(t, function(k,v) keys[#keys+1] = k end) 
+    table.foreach(t, function(k,v) keys[#keys+1] = k end)
     return keys
 end
 
--- 
+--
 -- Method: first
 -- Return the first key/element in a table.
--- 
+--
 function table.first(t)
     for k,v in pairs(t) do
         return k,v
     end
 end
 
--- 
+--
 -- Method: add
 -- Like table.insert(), but won't fail if `t` isn't already
 -- initialized. If it isn't, it will be initialized.
--- 
+--
 function table.add(t, el)
     local t = t or {}
     table.insert(t, el)
     return t
 end
 
--- 
+--
 -- Method: merge
 -- Combine contents of t2 into t1, overwriting keys if necessary.
--- 
+--
 function table.merge(t1, t2)
     for k,v in pairs(t2) do t1[k] = v end
     return t1
 end
 
--- 
+--
 -- Method: append
 -- Append the contents of t2 into t1. Useful for arrays.
--- 
+--
 function table.append(t1, t2)
     for i,v in ipairs(t2) do t1[#t1+1] = v end
     return t1
 end
 
--- 
+--
 -- Method: slice
 -- Return a subset of an array (ie, a numerically-indexed table).
 -- The resulting table will include elements starting at 'pos'
 -- in table 't', containing a maximum of 'len' elements.
--- 
+--
 function table.slice(t, pos, len)
     local idx = pos
     local t2 = {}
@@ -69,11 +69,11 @@ function table.slice(t, pos, len)
     return t2
 end
 
--- 
+--
 -- Method: pluck
 -- Return an array consisting of a specific element from each
 -- sub-table within table `t`.
--- 
+--
 function table.pluck(t, key)
     local t2 = {}
     for _,v in pairs(t) do
@@ -82,10 +82,10 @@ function table.pluck(t, key)
     return t2
 end
 
--- 
+--
 -- Method: has
 -- See if an element exists in a table.
--- 
+--
 function table.has(t, el)
     for _,v in pairs(t) do
         if v == el then return true end
@@ -93,10 +93,10 @@ function table.has(t, el)
     return false
 end
 
--- 
+--
 -- Method: copy
 -- Perform a (optionally) deep copy on the source table `t`.
--- 
+--
 function table.copy(t, deep, seen)
     seen = seen or {}
     if t == nil then return nil end
@@ -115,10 +115,10 @@ function table.copy(t, deep, seen)
     return nt
 end
 
--- 
+--
 -- Method: extend
 -- Copy a table t and extend it with different/new values from t2.
--- 
+--
 function table.extend(t, t2)
     local nt = table.copy(t)
     if t2 then
@@ -131,12 +131,12 @@ function table.extend(t, t2)
     return nt
 end
 
--- 
+--
 -- Method: map
--- 
+--
 -- Call the callback `fn` with each element in `t` as the first
 -- argument, and use these result to form a new result table.
--- 
+--
 function table.map(t, fn)
     local res = {}
     if t[1] then
@@ -147,11 +147,23 @@ function table.map(t, fn)
     return res
 end
 
--- 
+--
+-- Method: reindex
+--
+-- Updates table index after adding/removing elements
+--
+function table.reindex(t)
+    local tt = {}
+    for i,v in pairs(t) do
+        table.insert(tt, v)
+    end
+    return tt
+end
+--
 -- Method: print
 -- Dump a variable in a human-readable format (useful for tables).
 -- Return the dumped data as a string.
--- 
+--
 function table_print(tt, indent, done)
     done = done or {}
     indent = indent or 0
