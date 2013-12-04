@@ -26,19 +26,35 @@ return
         name = 'Bartender',
         image = 'assets/img/barbarian.gif',
         width = 35,
-        height = 35
+        height = 35,
+        portraits = {
+            [1] = 'assets/img/Bartender.png',
+            [2] = '',
+        },
     },
     [2] = {
-        name = 'NPC 2',
+        name = 'Alan',
         image = 'assets/img/hero.png',
         width = 32,
-        height = 32
+        height = 32,
+        portraits = {
+            [1] = 'assets/img/Alan.png',
+            [2] = 'assets/img/Alan2.png',
+            [3] = 'assets/img/Alan3.png',
+            [4] = 'assets/img/Alan4.png',
+        },
     },
     [3] = {
-        name = 'Priest',
+        name = 'Tiffany',
         image = 'assets/img/priest.png',
         width = 32,
-        height = 64
+        height = 64,
+        portraits = {
+            [1] = 'assets/img/Tiffany.png',
+            [2] = 'assets/img/Tiffany2.png',
+            [3] = 'assets/img/Tiffany3.png',
+            [4] = 'assets/img/Tiffany4.png',
+        },
     },
     [4] = {
         name = 'Priestess',

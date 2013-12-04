@@ -104,44 +104,40 @@ return
             wis = 24,
         },
         portraits = {
-            [1] = 'assets/img/Alan.png',
-            [2] = 'assets/img/Tiffany.png',
-            [3] = 'assets/img/Alan2.png',
-            [4] = 'assets/img/Tiffany2.png',
-            [5] = 'assets/img/Alan3.png',
+            [1] = 'assets/img/AnimeGuy.png',
+            [2] = '',
         },
         img = {
-            width = 35,
-            height = 50,
+            width = 32,
+            height = 32,
             -- Walk
-            left = {
-                image = 'assets/img/baldric2.png',
-                frames = { 10,11,12,13,14,15,16,17,18, },
-                fps = 25
-            },
-            right = {
-                image = 'assets/img/baldric2.png',
-                frames = { 28,29,30,31,32,33,34,35,36 },
-                fps = 25
-            },
             up = {
-                image = 'assets/img/baldric2.png',
-                frames = { 1, 2, 3, 4, 5, 6, 7, 8, 9, },
-                fps = 25
+                image = 'assets/img/spritetest.png',
+                frames = { 5,6 },
+                fps = 7
             },
             down = {
-                image = 'assets/img/baldric2.png',
-                frames = { 19,20,21,22,23,24,25,26,27 },
-                fps = 25
+                image = 'assets/img/spritetest.png',
+                frames = { 1,2 },
+                fps = 7
             },
-
+            left = {
+                image = 'assets/img/spritetest.png',
+                frames = { 3,4 },
+                fps = 7
+            },
+            right = {
+                image = 'assets/img/spritetest.png',
+                frames = { 7,8 },
+                fps = 7
+            },
         },
         active = true
     },
     [2] = {
         name = 'The Woodsman',
         stats = {
-            level = 1,
+            level = 2,
             hp = 200,
             hpmax = 200,
             mp = 60,
@@ -156,7 +152,11 @@ return
             int = 24,
             wis = 24,
         },
-        img  = {
+        portraits = {
+            [1] = 'assets/img/Woodsman.png',
+            [2] = '',
+        },
+        img = {
             width = 64,
             height = 64,
             -- Walk
@@ -201,7 +201,13 @@ return
             int = 24,
             wis = 24,
         },
-        img  = {
+        portraits = {
+            [1] = 'assets/img/Querina.png',
+            [2] = 'assets/img/Querina2.png',
+            [3] = 'assets/img/Querina3.png',
+            [4] = 'assets/img/Querina4.png',
+        },
+        img = {
             width = 64,
             height = 64,
             -- Walk

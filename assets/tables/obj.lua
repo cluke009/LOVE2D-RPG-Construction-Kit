@@ -92,5 +92,11 @@ return
         image = 'assets/img/clear.png',
         width = 320,
         height = 32
+    },
+    [22] = {
+        name = 'Shovel',
+        image = 'assets/img/shovel_icon.jpg',
+        width = 32,
+        height = 32
     }
 }

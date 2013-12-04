@@ -1,119 +1,125 @@
-local event   = require 'assets.tables.events'
-local Trigger = require 'triggers'
-
 --
 -- Class: Event
 -- Interface for Events.
 --
 local Event = {
-    --
-    -- Method: init
-    -- Initialize event code.
-    --
-    init = function(self, eventID)
-        local ID = tonumber(eventID)
-        local e = event[ID]
 
-        local currentEvent, continue
-        currentEvent, continue = self:register(ID)
+    get = function(self, id)
+        -- print('get')
+        self.events = require('maps.' .. STATE.conf.map .. '.events')
+        self:state(tonumber(id))
+    end,
+    -- Run code for events
+    state = function(self, id)
+        -- print('state')
+        STATE.event[STATE.conf.map]     = STATE.event[STATE.conf.map] or {}
+        STATE.event[STATE.conf.map][id] = STATE.event[STATE.conf.map][id] or {
+            id = 1, activated = false, cycle = false
+        }
+        local eventId = STATE.event[STATE.conf.map][id]
+        local e = self.events[id][eventId['id']]
+        self:play(e, id, eventId)
+    end,
+    -- Check replay/autoplay logic
+    play = function(self, e, id, eventId)
+        -- print('play')
+        if e.replay and e.auto then
+            -- print('replay=true','auto=true')
+            self:before(id, eventId['id'])
+        elseif e.replay and not e.auto and the.keys:justPressed('return') then
+            -- print('replay=true','auto=false')
+            self:before(id, eventId['id'])
+        elseif not e.replay and e.auto then
+            -- print('replay=false','auto=true')
+            if eventId.activated == false then
+                eventId.activated = true
+                self:before(id, eventId['id'])
+            end
+        elseif not e.replay and not e.auto and the.keys:justPressed('return') then
+            -- print('replay=false','auto=false')
+            if eventId.activated == false then
+                eventId.activated = true
+                self:before(id, eventId['id'])
+            end
+        end
+    end,
+    before = function(self, id, eventId)
+        if self.events[id][eventId]['before'] then
+            self.events[id][eventId]['before']()
+        end
 
-        if e[currentEvent].dialog then
-            local d = Dialog:new{
-                dialog = e[currentEvent].dialog
+        self:dialog(id, eventId)
+    end,
+    dialog = function(self, id, eventId)
+        -- print('dialog')
+        if self.events[id][eventId]['dialog'] then
+            local d = Dialog:new {
+                dialog = self.events[id][eventId]['dialog']
             }
-            -- Cycle dialog
-            if e[currentEvent].cycle and not STATE.event[ID].cycle then
-                -- table_print(e[currentEvent])
-                d = Dialog:new{
-                    dialog = {e[currentEvent].dialog[1]}
-                }
-                STATE.event[ID].cycle = 2
-            elseif STATE.event[ID].cycle then
-                local cycleID = STATE.event[ID].cycle
-                d = Dialog:new{
-                    dialog = {e[currentEvent].dialog[cycleID]}
-                }
-                if #e[currentEvent].dialog > STATE.event[ID].cycle then
-                    STATE.event[ID].cycle = STATE.event[ID].cycle + 1
-                else
-                    STATE.event[ID].cycle = 1
-                end
-            end
-
-            d.onDeactivate = function()
-                if e[currentEvent].func then
-                    self:trigger(e, currentEvent)
-                end
-            end
             d:activate()
-        elseif e[currentEvent].func then
-            self:trigger(e, currentEvent)
+            d.onDeactivate = function ()
+                self:after(id, eventId)
+            end
+        else
+            self:after(id, eventId)
         end
-        return continue
     end,
-    --
-    -- Method: trigger
-    -- Run triggers.lua for event
-    --
-    trigger = function(self, e, currentEvent )
-        local options = split(e[currentEvent].func, ',')
-        local func = options[1]
-        options[1] = nil
+    after = function(self, id, eventId)
+        if self.events[id][eventId]['after'] then
+            self.events[id][eventId]['after']()
+        end
 
-        local args = {}
-        for k,v in pairs(options) do
-            local a = split(v, '=')
-            args[string.trim(a[1])] = string.trim(a[2])
-        end
-        Trigger[func](self, args)
+        self:goto(id, eventId)
     end,
-    --
-    -- Method: register
-    --
-    register = function(self, ID)
-        local a, e, ret1, ret2
-        if not STATE.event[ID] then
-            STATE.event[ID] = {
-                id = 1,
-                activated = true,
+    goto = function(self, id, eventId)
+        -- print('goto')
+        local eventId = self.events[id][eventId]['goto']
+
+        if eventId then
+            STATE.event[eventId[1]] = STATE.event[eventId[1]] or {}
+            STATE.event[eventId[1]][eventId[2]] = {
+                id = eventId[3],
+                activated = false,
                 cycle = false
             }
-            ret1, ret2 = 1, _
-        elseif STATE.event[ID] then
-            ret1, ret2 = STATE.event[ID]['id'], _
+            -- Rerun if true and states match
+            -- if eventId[4] and eventId[1] == STATE.conf.map then
+            --     self:get(id)
+            -- end
         end
-        if event[ID][STATE.event[ID]['id']].trigger then
-            a = event[ID][STATE.event[ID]['id']].trigger
-            e = string.split(a)
-
-            --  Write trigger to DB
-            if ID == tonumber(e[1]) then
-                -- If trigger shares same parent we return current id before overwriting STATE
-                local cur = STATE.event[ID]['id']
-                STATE.event[tonumber(e[1])] = {
-                    id = tonumber(e[2]),
-                    activated = false,
-                    cycle = false
-                }
-
-                ret1, ret2 =  cur, e[3]
-            else
-                STATE.event[tonumber(e[1])] = {
-                    id = tonumber(e[2]),
-                    activated = false,
-                    cycle = false
-                }
+    end,
+    -- Remove Objects
+    removeObj = function(self, id, kind, map)
+        if not STATE.event.removeObj[map] then
+            STATE.event.removeObj[map] = {}
+            if not STATE.event.removeObj[map][kind] then
+                STATE.event.removeObj[map][kind] = {}
+                if not STATE.event.removeObj[map][kind][id] then
+                    STATE.event.removeObj[map][kind][id] = {true}
+                end
             end
+        elseif not STATE.event.removeObj[map][kind][id] then
+            STATE.event.removeObj[map][kind][id] = {true}
         end
-        return ret1, ret2
     end,
-    --
-    -- Method: get
-    -- Retrieve an event object.
-    --
-    get = function(self, ID)
-        return event[tonumber(ID)]
-    end,
+    -- _removeObj = function(obj)
+    --     if STATE.event.removeObj[STATE.conf.map] and STATE.event.removeObj[STATE.conf.map][obj.__class__] then
+    --         if STATE.event.removeObj[STATE.conf.map][obj.__class__][obj.id] then
+    --             -- Write image data to removeObj
+    --             if not STATE.event.removeObj[STATE.conf.map][obj.__class__][obj.id][2] then
+    --                 STATE.event.removeObj[STATE.conf.map][obj.__class__][obj.id] = {true, obj.solid, obj.image}
+    --             elseif STATE.event.removeObj[STATE.conf.map][obj.__class__][obj.id][1] == false then
+    --                 obj.solid = STATE.event.removeObj[STATE.conf.map][obj.__class__][obj.id][2]
+    --                 obj.image = STATE.event.removeObj[STATE.conf.map][obj.__class__][obj.id][3]
+    --                 STATE.event.removeObj[STATE.conf.map][obj.__class__][obj.id] = nil
+    --                 -- table_print(STATE.event.removeObj)
+    --             else
+    --                 obj.solid = false
+    --                 obj.image = 'assets/maps/img/trans.png'
+    --             end
+    --         end
+    --     end
+    -- end,
 }
 
 return Event

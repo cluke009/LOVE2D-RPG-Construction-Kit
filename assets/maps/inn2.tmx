@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="25" height="20" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="testing-Tileset" tilewidth="32" tileheight="32">
+  <image source="img/testing-Tileset.png" trans="ff00ff" width="960" height="800"/>
+ </tileset>
+ <tileset firstgid="751" name="collision" tilewidth="32" tileheight="32">
+  <image source="img/collision.png" trans="ff00ff" width="32" height="32"/>
+ </tileset>
+ <tileset firstgid="752" name="castle_2" tilewidth="32" tileheight="32">
+  <image source="img/castle_2.png" trans="ff00ff" width="256" height="608"/>
+ </tileset>
+ <tileset firstgid="904" name="Castle2" tilewidth="32" tileheight="32">
+  <image source="img/Castle2.png" trans="ff00ff" width="512" height="512"/>
+ </tileset>
+ <tileset firstgid="1160" name="stairs_1" tilewidth="32" tileheight="32">
+  <image source="img/stairs_1.png" trans="ff00ff" width="256" height="352"/>
+ </tileset>
+ <layer name="map" width="25" height="20">
+  <data encoding="base64" compression="zlib">
+   eJzjZ2Rg4B/FROP3TLTDyHbQAozaMWrHqB2jdozagdsOWpfttMYA0vZN6w==
+  </data>
+ </layer>
+ <layer name="Tile Layer 4" width="25" height="20">
+  <data encoding="base64" compression="zlib">
+   eJxjYBhegJGZ+ngg7OBkpj5GB5LM1MejdozaMWrHqB1D1Y6hDgC/Ix+B
+  </data>
+ </layer>
+ <layer name="background" width="25" height="20">
+  <data encoding="base64" compression="zlib">
+   eJxjYBhe4AMTA8NHKuJPTJh2/MciRgn4RwM7tJkZGHSYaWuHMdB8ExrbYQ0034ZIO86yMDCcYaHMPkJ2XAWaf4XGdtwFmn+HxnZQC4zaMWrHcLLjB1DsJxXxLyq7mRAAAPkcTPA=
+  </data>
+ </layer>
+ <layer name="foreground" width="25" height="20">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUjIJRMApGwVAHAAfQAAE=
+  </data>
+ </layer>
+ <objectgroup draworder="topdown" name="objects" width="25" height="20">
+  <object name="Door" x="129" y="260" width="60" height="48">
+   <properties>
+    <property name="to" value="inn"/>
+   </properties>
+  </object>
+  <object name="Spawn" x="129" y="190" width="60" height="48">
+   <properties>
+    <property name="from" value="inn"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>

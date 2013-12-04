@@ -14,11 +14,10 @@
 --         - item - Array of items in inventory
 --         - equipment - Array of equipment in inventory
 --
-STATE.conf.font = {'assets/font/press_start_2p/PressStart2P.ttf', 14}
-STATE.conf.map = 'inn'
-STATE.conf.heroStartX = 250
-STATE.conf.heroStartY = 200
-STATE.conf.auto_start = true
-STATE.conf.log = true
-STATE.inventory.gold = 600
 
+STATE.conf.font = {'assets/font/press_start_2p/PressStart2P.ttf', 16}
+STATE.conf.map = 'south'
+STATE.conf.auto_start = true
+STATE.conf.heroStartX = 384
+STATE.conf.heroStartY = 550
+STATE.inventory.gold = 600

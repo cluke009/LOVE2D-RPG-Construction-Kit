@@ -15,7 +15,7 @@ return {
       tileheight = 32,
       spacing = 0,
       margin = 0,
-      image = "img/BlackAndWhite.png",
+      image = "../img/BlackAndWhite.png",
       imagewidth = 320,
       imageheight = 32,
       properties = {},
@@ -47,11 +47,18 @@ return {
       tileheight = 32,
       spacing = 0,
       margin = 0,
-      image = "img/collision.png",
+      image = "../img/collision.png",
       imagewidth = 32,
       imageheight = 32,
       properties = {},
-      tiles = {}
+      tiles = {
+        {
+          id = 0,
+          properties = {
+            ["solid"] = "true"
+          }
+        }
+      }
     }
   },
   layers = {
@@ -64,9 +71,7 @@ return {
       height = 40,
       visible = true,
       opacity = 0.45,
-      properties = {
-        ["solid"] = "true"
-      },
+      properties = {},
       encoding = "lua",
       data = {
         11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 0, 0, 0, 0, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11,

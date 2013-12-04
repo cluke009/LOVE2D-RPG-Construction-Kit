@@ -25,6 +25,11 @@
  </tileset>
  <layer name="map" width="24" height="14">
   <data encoding="base64" compression="zlib">
+   eJxjZGBgYBzimFaAXuZTw+/DOXxGzcdvPrXTC7lpB918aoPBaD4Ah8cAcQ==
+  </data>
+ </layer>
+ <layer name="background" width="24" height="14">
+  <data encoding="base64" compression="zlib">
    eJxjYWBgYKExZqQRppf5XDTC1AhbYsxipwDDzMcmR+3wweUnXPzBZj4h+wZD+iFVL6l5BmY+rfLkYDMfAIM6Bt8=
   </data>
  </layer>
@@ -47,7 +52,6 @@
   </object>
   <object name="NPC" x="576" y="192" width="32" height="32">
    <properties>
-    <property name="event" value="12"/>
     <property name="id" value="8"/>
    </properties>
   </object>

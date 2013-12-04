@@ -57,7 +57,8 @@ local Hud = Group:new{
 MapView = View:extend{
     onNew = function(self)
         self.hero = Hero:new()
-        self:loadLayers('assets/maps/' .. STATE.conf.map .. '.lua')
+        -- self:loadLayers('assets/maps/' .. STATE.conf.map .. '.lua')
+        self:loadLayers('maps/' .. STATE.conf.map .. '/'.. STATE.conf.map .. '.lua')
 
         if STATE.conf.prevmap then
             -- Coordinates upon entering new room.
@@ -73,16 +74,15 @@ MapView = View:extend{
 
         self.focus = self.hero
         self:clampTo(self.map)
-
         -- Send map name to hud.
         if STATE.conf.hud == true then
             Hud.text.text = STATE.conf.map
             self:add(Hud)
         end
     end,
-
     onUpdate = function(self)
         self.map:displace(self.hero)
+        self.map:collide(self.hero)
         self.objects:collide(self.hero)
 
         Hud.text2.text = Save:secondsToClock(os.difftime(os.time(), t1)  + STATE.conf.time.seconds)

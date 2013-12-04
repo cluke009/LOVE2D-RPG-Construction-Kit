@@ -14,11 +14,11 @@
     }
     (end code)
 --]]
-return
+return 
 {
     [1] = {
-        items = { 1,3,4,5 },
-        equipment = {2,5 },
+        items = { 1,2,3,4,5 },
+        equipment = { },
     },
     [2] = {
         items = { },

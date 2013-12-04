@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="25" height="52" tilewidth="32" tileheight="32">
+ <layer name="map" width="25" height="52">
+  <data encoding="base64" compression="zlib">
+   eJztwYEAAAAAw6D5U1/hAFUBAAAAAHwGFFAAAQ==
+  </data>
+ </layer>
+ <objectgroup draworder="topdown" name="objects" width="25" height="52"/>
+</map>

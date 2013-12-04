@@ -76,6 +76,7 @@ return
         },
         exp = 300,
         gold = 100,
+        group = { 2, 1 },
         img = {
             width = 32,
             height = 32,
@@ -109,6 +110,7 @@ return
         },
         exp = 300,
         gold = 100,
+        group = { 2, 1 },
         cycle = {
             {'right', 5},
             {'down', 3},

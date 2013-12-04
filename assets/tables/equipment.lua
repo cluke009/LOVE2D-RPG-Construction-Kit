@@ -59,12 +59,12 @@ return
     },
     [2] = {
         name = 'Rusty Shovel',
-        image = 'assets/img/hoody.png',
+        image = 'assets/img/shovel_icon.jpg',
         cost = 50,
         width = 64,
         height = 64,
         kind = 'Weapon',
-        desc = 'Trusty Rusty\n\nAttack + 10',
+        desc = 'Trusty Rusty - Now you can DIG!\n\nAttack + 10',
         effect = {
             con = 25,
             str = 25,

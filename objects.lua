@@ -80,38 +80,79 @@ Hero = Animation:extend{
     onNew = function(self)
         self:rand()
     end,
+    onCollide = function(self, other)
+
+    end,
     onUpdate = function(self)
-        self.velocity.x = 0
-        self.velocity.y = 0
-        if the.keys:pressed('up') then
-            self.encounter = self.encounter - 1
-            self.velocity.y = -300
+        --
+        -- KeyPressed
+        --
+        if the.keys:pressed('up') and self.velocity.x == 0 then
+            self.encounter, self.velocity.y = self.encounter - 1, -120
             self.image = Assets:get('heroes', 1, 'img').up.image
             self:play('up')
-        elseif the.keys:pressed('down') then
-            self.encounter = self.encounter - 1
-            self.velocity.y = 300
+        elseif the.keys:pressed('down') and self.velocity.x == 0 then
+            self.encounter, self.velocity.y = self.encounter - 1, 120
             self.image = Assets:get('heroes', 1, 'img').down.image
             self:play('down')
-        elseif the.keys:pressed('left') then
-            self.encounter = self.encounter - 1
-            self.velocity.x = -300
+        elseif the.keys:pressed('left') and self.velocity.y == 0 then
+            self.encounter, self.velocity.x = self.encounter - 1, -120
             self.image = Assets:get('heroes', 1, 'img').left.image
             self:play('left')
-        elseif the.keys:pressed('right') then
-            self.encounter = self.encounter - 1
-            self.velocity.x = 300
+        elseif the.keys:pressed('right') and self.velocity.y == 0 then
+            self.encounter, self.velocity.x = self.encounter - 1, 120
             self.image = Assets:get('heroes', 1, 'img').right.image
             self:play('right')
         end
-        if self.velocity.x == 0 and self.velocity.y == 0 then
-            self:freeze()
+
+        --
+        -- KeyReleased
+        --
+        if the.keys:justReleased('up') then
+            local x,y = the.app.view.map:pixelToMap(self.x,self.y)
+            local spriteAtMap = the.app.view.map:spriteAtMap(x,y)
+            self['uy'] = (spriteAtMap and y * 32 or (y - 1) * 32)
+            self.up = true
+        elseif the.keys:justReleased('down') then
+            local x,y = the.app.view.map:pixelToMap(self.x,self.y)
+            local spriteAtMap =  the.app.view.map:spriteAtMap(x,y + 1)
+            self['dy'] = (spriteAtMap and (y - 1) * 32 or y * 32)
+            self.down = true
+        elseif the.keys:justReleased('left') then
+            local x,y = the.app.view.map:pixelToMap(self.x,self.y)
+            local spriteAtMap =  the.app.view.map:spriteAtMap(x,y)
+            self['lx'] = (spriteAtMap and x * 32 or (x - 1) * 32)
+            self.left = true
+        elseif the.keys:justReleased('right') then
+            local x,y = the.app.view.map:pixelToMap(self.x,self.y)
+            local spriteAtMap = the.app.view.map:spriteAtMap(x + 1,y)
+            self['rx'] = (spriteAtMap and (x - 1) * 32 or x * 32)
+            self.right = true
         end
 
+        --
+        -- Interpolate coordinates
+        --
+        if self.up and self.y <= self.uy then
+            self.y, self.velocity.y, self.up = self.uy, 0, false
+        elseif self.down and self.y >= self.dy then
+            self.y, self.velocity.y, self.down = self.dy, 0, false
+        elseif self.left and self.x <= self.lx then
+            self.x, self.velocity.x, self.left = self.lx, 0, false
+        elseif self.right and self.x >= self.rx then
+            self.x, self.velocity.x, self.right = self.rx, 0, false
+        end
+
+        --
+        -- Other Crap
+        --
         if self.encounter == 0 and Encounter[STATE.conf.map] then
             local a = math.random(1, #Encounter[STATE.conf.map])
             Battle:activate(Encounter[STATE.conf.map][a])
             self:rand()
+        end
+        if self.velocity.x == 0 and self.velocity.y == 0 then
+            self:freeze()
         end
     end
 }
@@ -221,6 +262,7 @@ Obj = Animation:extend {
         end
     end,
     onUpdate = function(self)
+        -- Event:removeObj(self)
         if STATE.event.removeObj[STATE.conf.map] and STATE.event.removeObj[STATE.conf.map][self.__class__] then
             if STATE.event.removeObj[STATE.conf.map][self.__class__][self.id] then
                 -- Write image data to removeObj
@@ -250,49 +292,7 @@ Obj = Animation:extend {
             local offsetY = (self.height / 2) + (self.other.height / 2)
 
             if math.abs(otherX - selfX) <= offsetX and math.abs(otherY - selfY) <= offsetY then
-                if self.event then
-                    self:onEvent()
-                end
-            end
-        end
-    end,
-    onEvent = function(self)
-        -- Get the currently needed event
-        local e, continue
-        e = Event:get(self.event)[1]
-        if STATE.event[tonumber(self.event)] then
-            -- table_print(STATE.event)
-            local eid = STATE.event[tonumber(self.event)]['id']
-            e = Event:get(self.event)[eid]
-        end
-        -- Check replay/autoplay logic
-        if self.continue == 'true' then
-            -- print('continue = true')
-            if STATE.event[tonumber(self.event)].activated == false then
-                STATE.event[tonumber(self.event)].activated = true
-                self.continue = Event:init(self.event)
-            end
-        elseif e.replay and e.auto then
-            -- print('replay=true','auto=true')
-            self.continue = Event:init(self.event)
-        elseif e.replay and not e.auto and the.keys:justPressed('return') then
-            -- print('replay=true','auto=false')
-            self.continue = Event:init(self.event)
-        elseif not e.replay and e.auto then
-            -- print('replay=false','auto=true')
-            if not STATE.event[tonumber(self.event)] then
-                self.continue = Event:init(self.event)
-            elseif STATE.event[tonumber(self.event)].activated == false then
-                STATE.event[tonumber(self.event)].activated = true
-                self.continue = Event:init(self.event)
-            end
-        elseif not e.replay and not e.auto and the.keys:justPressed('return') then
-            -- print('replay=false','auto=false')
-            if not STATE.event[tonumber(self.event)] then
-                self.continue = Event:init(self.event)
-            elseif STATE.event[tonumber(self.event)].activated == false then
-                STATE.event[tonumber(self.event)].activated = true
-                self.continue = Event:init(self.event)
+                if self.event then print('--') Event:get(self.event) end
             end
         end
     end
