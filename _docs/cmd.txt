@@ -1,1 +1,0 @@
-NaturalDocs -i C:\Users\G\Dropbox\Game\Geraldo\awiderworld -p C:\Users\G\Dropbox\Game\Geraldo\awiderworld\_docs -o HTML C:\Users\G\Dropbox\Game\Geraldo\awiderworld\_docs -xi C:\Users\G\Dropbox\Game\Geraldo\awiderworld\zoetrope
