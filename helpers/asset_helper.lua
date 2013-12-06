@@ -60,6 +60,7 @@ local Assets = {
     --
     -- Returns:
     --      nothing
+    --  TODO: remove calls to this function
     --
     useItem = function(self, itemID, ...)
         itemID = tonumber(itemID)
@@ -74,15 +75,43 @@ local Assets = {
     end,
 
     --
+    -- Method: deleteInventory
+    -- Remove item or equipment to inventory
+    --
+    deleteInventory = function(self, kind, ID, amount)
+        ID = tonumber(ID)
+        amount = amount or 1
+        if not STATE.inventory[kind][ID] or STATE.inventory[kind][ID] - amount <= 0 then
+            STATE.inventory[kind][ID] = nil
+        else
+            STATE.inventory[kind][ID] = STATE.inventory[kind][ID] - amount
+        end
+        return STATE.inventory[kind][ID]
+    end,
+    --
     -- Method: putInventory
     -- Add item or equipment to inventory
     --
-    putInventory = function(self, kind, ID, ...)
+    putInventory = function(self, kind, ID, amount)
+        ID = tonumber(ID)
+        amount = amount or 1
+        if STATE['inventory'][kind][ID] == nil then
+            STATE['inventory'][kind][ID] = amount
+        else
+            STATE['inventory'][kind][ID] = STATE['inventory'][kind][ID] + amount
+        end
+    end,
+
+    --
+    -- Method: getInventory
+    -- Check for item or equipment in inventory
+    --
+    getInventory = function(self, kind, ID)
         ID = tonumber(ID)
         if STATE['inventory'][kind][ID] == nil then
-            STATE['inventory'][kind][ID] = 1
+            return false
         else
-            STATE['inventory'][kind][ID] = STATE['inventory'][kind][ID] + 1
+            return STATE['inventory'][kind][ID]
         end
     end,
 
