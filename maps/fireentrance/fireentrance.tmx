@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="35" height="35" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="BlackAndWhite" tilewidth="32" tileheight="32">
+  <image source="img/BlackAndWhite.png" width="320" height="32"/>
+  <tile id="0">
+   <properties>
+    <property name="solid" value="true"/>
+   </properties>
+  </tile>
+  <tile id="9">
+   <properties>
+    <property name="solid" value="false"/>
+   </properties>
+  </tile>
+ </tileset>
+ <layer name="map" width="35" height="35">
+  <data encoding="base64" compression="zlib">
+   eJzt0rENACAMA8GkZf+BWcKICK741rrCXVX9QCsYCwsLC8vfluQeyznPhL+w5B0sLCwsLCwsLLfauZMchQ==
+  </data>
+ </layer>
+ <objectgroup name="objects" width="35" height="35">
+  <object name="Door" x="-224" y="-64" width="32" height="96">
+   <properties>
+    <property name="to" value="fire1"/>
+   </properties>
+  </object>
+  <object name="Spawn" x="64" y="448" width="32" height="32">
+   <properties>
+    <property name="from" value="fire1"/>
+   </properties>
+  </object>
+  <object name="Door" x="1088" y="480" width="32" height="96">
+   <properties>
+    <property name="to" value="volcanopath2"/>
+   </properties>
+  </object>
+  <object name="Spawn" x="1024" y="512" width="32" height="32">
+   <properties>
+    <property name="from" value="volcanopath2"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>

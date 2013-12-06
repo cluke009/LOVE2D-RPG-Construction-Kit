@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="35" height="35" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="BlackAndWhite" tilewidth="32" tileheight="32">
+  <image source="img/BlackAndWhite.png" width="320" height="32"/>
+  <tile id="0">
+   <properties>
+    <property name="solid" value="true"/>
+   </properties>
+  </tile>
+  <tile id="9">
+   <properties>
+    <property name="solid" value="false"/>
+   </properties>
+  </tile>
+ </tileset>
+ <layer name="map" width="35" height="35">
+  <data encoding="base64" compression="zlib">
+   eJzt1zEKACAMBMFL6/8fbGuhIDF4KFtsmTDthaRI1IYy9zt/XWHBggULFixuBxYsWLBgwYJlbanemZWb9sRz24HlDcvM43L8bul5hiSb
+  </data>
+ </layer>
+ <layer name="background" width="35" height="35">
+  <data encoding="base64" compression="zlib">
+   eJztwQEBAAAAgiD/r25IQAEAAADAtwETJAAB
+  </data>
+ </layer>
+ <layer name="foreground" width="35" height="35">
+  <data encoding="base64" compression="zlib">
+   eJztwQEBAAAAgiD/r25IQAEAAADAtwETJAAB
+  </data>
+ </layer>
+ <objectgroup name="objects" width="35" height="35">
+  <object name="Door" x="448" y="0" width="96">
+   <properties>
+    <property name="to" value="mountainpath2"/>
+   </properties>
+  </object>
+  <object name="Spawn" x="480" y="32" width="32" height="32">
+   <properties>
+    <property name="from" value="mountainpath2"/>
+   </properties>
+  </object>
+  <object name="Door" x="480" y="1088" width="128" height="32">
+   <properties>
+    <property name="to" value="earth1"/>
+   </properties>
+  </object>
+  <object name="Spawn" x="512" y="928" width="64" height="32">
+   <properties>
+    <property name="from" value="earth1"/>
+   </properties>
+  </object>
+  <object name="Obj" x="448" y="32" width="96" height="32">
+   <properties>
+    <property name="event" value="6"/>
+    <property name="id" value="21"/>
+    <property name="solid" value="false"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>

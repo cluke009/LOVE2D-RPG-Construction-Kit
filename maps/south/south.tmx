@@ -3671,5 +3671,11 @@
     <property name="id" value="20"/>
    </properties>
   </object>
+  <object name="NPC" x="608" y="544" width="32" height="32">
+   <properties>
+    <property name="event" value="2"/>
+    <property name="id" value="8"/>
+   </properties>
+  </object>
  </objectgroup>
 </map>

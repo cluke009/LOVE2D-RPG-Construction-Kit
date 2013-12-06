@@ -310,6 +310,20 @@ return {
             ["event"] = "9",
             ["id"] = "20"
           }
+        },
+        {
+          name = "NPC",
+          type = "",
+          shape = "rectangle",
+          x = 608,
+          y = 544,
+          width = 32,
+          height = 32,
+          visible = true,
+          properties = {
+            ["event"] = "2",
+            ["id"] = "8"
+          }
         }
       }
     }

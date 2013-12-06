@@ -277,8 +277,6 @@ Obj = Animation:extend {
 
             if math.abs(otherX - selfX) <= offsetX and math.abs(otherY - selfY) <= offsetY then
                 if self.event then
-                    print('--')
-                    -- Event:get(self.event)
                     Event:register(self.event)
                 end
             end
