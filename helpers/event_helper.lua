@@ -11,7 +11,7 @@ local Event = {
 
     --
     -- Property: stack
-    -- Table of methods and the order they should be run.
+    -- Table of method names and the order they should be run.
     --
     stack = {
         'play', 'before', 'dialog', 'after',
@@ -21,16 +21,11 @@ local Event = {
     -- Reorders stacks as they occur.
     -- Required to make stacks fire as part of the game loop.
     --
-    register = function (self, arg )
-        -- if Play we must wait for user input
-        if self.stack[1] ~= 'play' then
+    register = function(self, arg)
+        if self.stack[1] and self[self.stack[1]](self, arg) then
+            print(self.stack[1])
+            print('--------------------------------------------')
             table.insert(self.stack, self.stack[1])
-            self[self.stack[1]](self, arg)
-            self.stack[1] = nil
-            self.stack = table.reindex(self.stack)
-        elseif self:play(arg) then
-            table.insert(self.stack, self.stack[1])
-            self[self.stack[1]](self, arg)
             self.stack[1] = nil
             self.stack = table.reindex(self.stack)
         end
@@ -82,6 +77,9 @@ local Event = {
         local eventId = STATE.event[STATE.conf.map][id]['id']
         if self.events[id][eventId]['before'] then
             self.events[id][eventId]['before']()
+            return true
+        else
+            return true
         end
     end,
     --
@@ -92,17 +90,26 @@ local Event = {
         -- print('dialog')
         id = tonumber(id)
         local eventId = STATE.event[STATE.conf.map][id]['id']
-
-        if self.events[id][eventId]['dialog'] then
-            local d = Dialog:new {
-                dialog = self.events[id][eventId]['dialog']
-            }
-            d:activate()
+        if self.events[id][eventId]['dialog'] and not self.navi then
+            self.navi = Navi:new()
+            for i,v in ipairs(self.events[id][eventId]['dialog']) do
+                table.insert(self.navi.dialog, _navi:new(
+                    self.events[id][eventId]['dialog'][i][1],
+                    self.events[id][eventId]['dialog'][i][2]
+                ))
+            end
+            the.app.view:add(self.navi)
+        elseif self.navi.is_over then
+            return true
+        elseif not self.events[id][eventId]['dialog'] then
+            return true
         end
     end,
     --
     -- Method: after
-    -- Functions to be run after all other events
+    -- Functions to be run after all other events. 
+    -- Passes navi choice number as an argument to the event "after" function.
+    -- Destroys self.navi after completion.
     --
     after = function(self, id)
         -- print('after')
@@ -110,9 +117,21 @@ local Event = {
         local eventId = STATE.event[STATE.conf.map][id]['id']
 
         if self.events[id][eventId]['after'] then
-            self.events[id][eventId]['after']()
+            self.events[id][eventId]['after'](self.navi.choice)
+            self.navi = nil
+            return true
+        else
+            self.navi = nil
+            return true
         end
     end,
+
+    ----------------------------------------------------------------------------
+    -- 
+    -- Functions to be used inside events.
+    -- 
+    ----------------------------------------------------------------------------
+
     --
     -- Method: goto
     -- If one event triggers another we overwrite STATE with the new data.
@@ -126,13 +145,6 @@ local Event = {
             cycle = false
         }
     end,
-
-    ----------------------------------------------------------------------------
-    -- 
-    -- Functions to be used inside events.
-    -- 
-    ----------------------------------------------------------------------------
-
     --
     -- Method: cutscene
     -- Loads a cutscene.

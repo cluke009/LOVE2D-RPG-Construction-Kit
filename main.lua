@@ -14,7 +14,9 @@ require 'helpers.table_helper'
 
 require 'helpers.state'
 require 'helpers.log'
-require 'helpers.dialog_helper'
+-- require 'helpers.dialog_helper'
+
+
 
 require 'assets.tables.config'
 
@@ -22,7 +24,7 @@ require 'map'
 require 'objects'
 
 require 'views.menu.main'
-
+require 'helpers.navi_helper'
 the.app = App:new{
     count = 1,
     onRun = function(self)
