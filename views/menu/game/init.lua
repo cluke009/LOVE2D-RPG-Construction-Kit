@@ -14,28 +14,28 @@ Launch = Subview:new{
     inventory_links = function (self)
         local links = {}
         if next(STATE.inventory.items) then
-            for k, v in pairs(STATE.inventory.items) do
+            for k, v in pairs(STATE.inventory.equipment) do
                 table.insert(links, {
                     Assets:get('items', k, 'name') .. ' x' .. v,
-                    function() print('Equipment1') end
+                    function() print('inventory_links') end
                 })
             end
         else
-            links = {{}}
+            links = false
         end
         return links
     end,
     equipment_links = function (self)
         local links = {}
-        if next(STATE.inventory.items) then
-            for k, v in pairs(STATE.inventory.items) do
+        if next(STATE.inventory.equipment) then
+            for k, v in pairs(STATE.inventory.equipment) do
                 table.insert(links, {
-                    Assets:get('items', k, 'name') .. ' x' .. v,
-                    function() print('Equipment1') end
+                    Assets:get('equipment', k, 'name') .. ' x' .. v,
+                    function() print('equipment_links') end
                 })
             end
         else
-            links = {{}}
+            links = false
         end
         return links
     end,
@@ -46,9 +46,13 @@ Launch = Subview:new{
         self.menu = MenuHelper:new {
             coord = {12,20,150,23,true},
             items = {
-                {'Items', function() self.menu:submenu(self.items_menu) end },
+                {'Items', function() 
+                    if self:inventory_links() then self.menu:submenu(self.items_menu) end
+                end },
                 {'Magic', function() print('Magic') end },
-                {'Equipment', function() self.menu:submenu(self.equipment_menu) end },
+                {'Equipment', function() 
+                    if self:equipment_links() then self.menu:submenu(self.equipment_menu) end
+                end },
                 {'Status\n', function() print('Status') end },
 
                 {'Config', function() print('Status') end },
@@ -66,27 +70,31 @@ Launch = Subview:new{
         --
         -- Create dynamic child menus
         --
-        self.items_menu = MenuHelper:new {
-            parent = self.menu,
-            coord = {20,80,300,23,false},
-            items = self:inventory_links()
-        }
-
-        self.equipment_menu = MenuHelper:new {
-            parent = self.menu,
-            coord = {220,200,150,23,false},
-            items = {
-                {'Equipment1', function() print('Equipment1') end },
-                {'Equipment2', function() print('Equipment2') end },
+        if self:inventory_links() then 
+            self.items_menu = MenuHelper:new {
+                parent = self.menu,
+                coord = {20,80,300,23,false},
+                items = self:inventory_links()
             }
-        }
+            self:add(self.items_menu)
+        end
+
+        if self:equipment_links() then
+            self.equipment_menu = MenuHelper:new {
+                parent = self.menu,
+                coord = {220,200,150,23,false},
+                items = self:equipment_links()
+            }
+            self:add(self.equipment_menu)
+        end
+            
 
         --
         -- Add dynamic elements
         --
         self:add(self.party)
-        self:add(self.items_menu)
-        self:add(self.equipment_menu)
+        
+        
     end,
     onDeactivate = function(self)
         self:remove(self.party)

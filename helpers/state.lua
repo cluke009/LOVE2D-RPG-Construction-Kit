@@ -38,9 +38,10 @@ STATE = Class:new {
     },
     inventory  = {
         gold = 300,
-        items   = {},
-        equipment = {},
-        -- equipment = { [2] = 1, [3] = 1, [5] = 1 },
+        -- items = {},
+        items   = {[1] = 1, [2] = 2},
+        -- equipment = {},
+        equipment = { [2] = 1, [3] = 1, [5] = 1 },
     },
     heroes = hAtrr,
     event = {

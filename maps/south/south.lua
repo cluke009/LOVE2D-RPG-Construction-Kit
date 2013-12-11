@@ -267,6 +267,7 @@ return {
           height = 32,
           visible = true,
           properties = {
+            ["_the"] = "guard",
             ["event"] = "1",
             ["id"] = "8"
           }

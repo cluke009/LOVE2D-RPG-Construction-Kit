@@ -1,11 +1,22 @@
 local Assets = require 'helpers.asset_helper'
 local Event  = require 'helpers.event_helper'
+local Animate = require 'helpers.animation'
 
 return {
     [1] = {
         [1] = {
             replay = false,
             auto = false,
+            before =  function (  )
+                
+                Animate:moveObject('guard', {
+                    {11, 15, 190},
+                    {11, 18, 90},
+                    {8, 18, 50},
+                    {11, 18, 290}
+                })
+                -- Animate:moveObject('guard', 128, 512)
+            end,
             dialog = {
                 -- {
                 --     'You guys wanna leave eh? |:Fine, I can\'t stop the two of ya, but be careful. |mIt\'s mighty dangerous.',

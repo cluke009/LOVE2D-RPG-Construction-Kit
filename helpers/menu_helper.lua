@@ -87,8 +87,8 @@ local MenuHelper = Group:extend{
         local pad = 0
         for i, value in ipairs(self.items) do
             self['textShadow' .. i] = Text:new{
-                x = self.x + 12,
-                y = self.y + pad + 12 + (i - 1) * self.height,
+                x = self.x + 11,
+                y = self.y + pad + 11 + (i - 1) * self.height,
                 width = self.width - 20,
                 tint = { 0, 0, 0 },
                 font = STATE.conf.font,
@@ -123,7 +123,7 @@ local MenuHelper = Group:extend{
             end
             self:highlight()
         elseif the.keys:justPressed('down') then
-            playSound(FX[1].path)
+            -- playSound(FX[1].path)
             if self.selected < #self.items then
                 self.selected = self.selected + 1
             else
@@ -131,13 +131,13 @@ local MenuHelper = Group:extend{
             end
             self:highlight()
         elseif the.keys:justPressed('return') and self.delay >= 10 then
-            playSound(FX[2].path)
+            -- playSound(FX[2].path)
             if self.items[self.selected][2] then
                 self.items[self.selected][2]()
                 self.delay = 1
             end
         elseif the.keys:justPressed('escape') then
-            playSound(FX[3].path)
+            -- playSound(FX[3].path)
             if self.parent then
                 self:deactivate(self.parent)
                 self.delay = 1

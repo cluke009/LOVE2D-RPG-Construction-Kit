@@ -3651,6 +3651,7 @@
   </object>
   <object name="NPC" x="352" y="576" width="32" height="32">
    <properties>
+    <property name="_the" value="guard"/>
     <property name="event" value="1"/>
     <property name="id" value="8"/>
    </properties>

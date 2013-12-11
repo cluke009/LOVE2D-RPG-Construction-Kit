@@ -60,20 +60,15 @@ MapView = View:extend{
         -- self:loadLayers('assets/maps/' .. STATE.conf.map .. '.lua')
         self:loadLayers('maps/' .. STATE.conf.map .. '/'.. STATE.conf.map .. '.lua')
 
-        if STATE.conf.prevmap then
-            -- Coordinates upon entering new room.
-            self.hero.x = STATE.conf.heroStartX
-            self.hero.y = STATE.conf.heroStartY
-        else
-            -- The starting coordinates of our player.
-            self.hero.x = STATE.conf.heroStartX
-            self.hero.y = STATE.conf.heroStartY
-        end
+        -- Player coordinates.
+        self.hero.x = STATE.conf.heroStartX
+        self.hero.y = STATE.conf.heroStartY
 
         self:add(self.hero)
 
         self.focus = self.hero
         self:clampTo(self.map)
+        
         -- Send map name to hud.
         if STATE.conf.hud == true then
             Hud.text.text = STATE.conf.map
@@ -98,7 +93,7 @@ MapView = View:extend{
         if the.keys:justPressed(' ') and menu.activated ~= true then
             menu:activate()
         elseif the.keys:justPressed('escape') then
-            love.event.quit()
+            -- love.event.quit()
         end
     end
 }
