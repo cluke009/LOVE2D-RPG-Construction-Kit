@@ -266,8 +266,11 @@ Obj = Animation:extend {
             self:displace(other)
         end
     end,
-    onUpdate = function(self)
+    animate = function(self, elapsed)
+    end,
+    onUpdate = function(self, elapsed)
         Event:checkObj(self)
+        self:animate(elapsed)
 
         if self.other then
 
