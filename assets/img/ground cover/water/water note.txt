@@ -1,0 +1,5 @@
+Water tiles are made to be used one at a time for now.
+Just pick a tile and fill.
+
+I'm basicly just fucking around with different ways of
+doing them. More to come soon.
