@@ -45,7 +45,7 @@ lg.setFont(arc.fn.f)
 
 -- keys
 arc.btn = {
-	ent = 'z',
+	ent = 'return',
 	esc = 'x',
 	kp = ''
 }
