@@ -59,7 +59,7 @@ local MenuHelper = Group:extend{
         -- self.h.y = self.y  + (self.selected - 1) * self.height
 
         self.h.y = self['text' .. self.selected].y - 10
-        if self.items[self.selected].hover then
+        if self.items[self.selected][3] then
             self.items[self.selected][3]()
         end
     end,
@@ -114,6 +114,11 @@ local MenuHelper = Group:extend{
         end
     end,
     onUpdate = function(self)
+        -- for i, value in ipairs(self.items) do
+        --     self['textShadow' .. i].text = self.items[i][1]
+        --     self['text' .. i].text = self.items[i][1]
+            
+        -- end
         if the.keys:justPressed('up') then
             playSound(FX[1].path)
             if self.selected > 1 then
@@ -148,15 +153,19 @@ local MenuHelper = Group:extend{
     submenu = function(self, child)
         self.active = false
         self.h:die()
-        -- parent:die()
+        child.parent = self
         child:revive()
     end,
     deactivate = function(self, parent)
+        self.parent = nil
         self.active = false
         self:die()
         parent.active = true
         parent:revive()
         parent.h:revive()
+        self:onDeactivate()
+    end,
+    onDeactivate = function(self)
     end
 }
 return MenuHelper

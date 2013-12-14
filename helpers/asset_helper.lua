@@ -62,7 +62,7 @@ local Assets = {
     --      nothing
     --  TODO: remove calls to this function
     --
-    useItem = function(self, itemID, ...)
+    useItem = function(self, itemID, heroID)
         itemID = tonumber(itemID)
         if STATE.inventory['items'][itemID] == 1 then
             STATE.inventory['items'][itemID] = nil
@@ -72,6 +72,21 @@ local Assets = {
             STATE.inventory['items'][itemID] = STATE.inventory['items'][itemID] - 1
         end
         -- TODO: apply effects of item to hero?
+        local effect = self:get('items', itemID)['effect']
+        for i = 1, #effect do
+            local stat = effect[i][1]
+            local value = effect[i][2]
+            local sHero = STATE.heroes[heroID].stats[stat]
+
+            if string.find(stat, 'max', -3) then
+                STATE.heroes[heroID].stats[stat] = sHero + value
+            elseif STATE.heroes[heroID].stats[stat .. 'max'] and sHero + value > STATE.heroes[heroID].stats[stat .. 'max'] then
+                STATE.heroes[heroID].stats[stat] = STATE.heroes[heroID].stats[stat .. 'max']
+            else
+                STATE.heroes[heroID].stats[stat] = sHero + value
+            end
+        end
+
     end,
 
     --
@@ -149,9 +164,24 @@ local Assets = {
     -- Equip equipment to hero
     --
     equip = function(self, ID, heroID, ...)
-        -- TODO: check that equipment is in inventory and available to use
+        -- Remove equipment, subtract stats and put back in inventory.
         local itemType = self:get('equipment', ID, 'kind')
+        if STATE.heroes[heroID].equip[itemType] then
+            local effect = self:get('equipment', STATE.heroes[heroID].equip[itemType])['effect']
+            for k,v in pairs(effect) do
+                STATE.heroes[heroID].stats[k] = STATE.heroes[heroID].stats[k] - v
+            end
+            self:putInventory('equipment', STATE.heroes[heroID].equip[itemType])
+        end
+
+        -- Equip item, add stats and remove from inventory.
         STATE.heroes[heroID].equip[itemType] = ID
+        self:deleteInventory('equipment', ID)
+
+        local effect = self:get('equipment', ID)['effect']
+        for k,v in pairs(effect) do
+            STATE.heroes[heroID].stats[k] = STATE.heroes[heroID].stats[k] + v
+        end
     end,
 }
 
