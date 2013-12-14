@@ -16,7 +16,7 @@ for i, v in ipairs(heroes) do
     hAtrr[i] = {
         stats  = heroes[i].stats,
         active = heroes[i].active,
-        equip  = unique,
+        equip  = table.copy(unique),
     }
 end
 
@@ -41,7 +41,7 @@ STATE = Class:new {
         -- items = {},
         items   = {[1] = 1, [2] = 2},
         -- equipment = {},
-        equipment = { [2] = 1, [3] = 1, [5] = 1 },
+        equipment = { [1] = 3, [2] = 1, [3] = 4, [5] = 3},
     },
     heroes = hAtrr,
     event = {
