@@ -2,7 +2,6 @@ local MenuHelper = require 'helpers.menu_helper'
 local Party      = require 'views.menu.game.party_helper'
 local Assets     = require 'helpers.asset_helper'
 
--- menu_game_highlight
 Launch = Subview:new{
     party = Party:new(),
     fill = Tile:new{
@@ -16,8 +15,7 @@ Launch = Subview:new{
             for k, v in pairs(STATE.heroes) do
                 if STATE.heroes[k].active then
                     table.insert(links, {
-                        -- Assets:get('heroes', k, 'name'),
-                        '',
+                        '', -- Assets:get('heroes', k, 'name'), 
                         function()
                             Assets:useItem(self.item, k)
                             self.items_menu:submenu(self.party_items_menu)
@@ -44,8 +42,7 @@ Launch = Subview:new{
             for k, v in pairs(STATE.heroes) do
                 if STATE.heroes[k].active then
                     table.insert(links, {
-                        -- Assets:get('heroes', k, 'name'),
-                        '',
+                        '', -- Assets:get('heroes', k, 'name'),
                         function()
                             self.menu.visible = false
                             self.party_equipment_menu:submenu(self.equipment_menu)
@@ -241,7 +238,7 @@ Launch = Subview:new{
                 end
             end
         }
-        
+
         --
         -- Add dynamic elements
         --
