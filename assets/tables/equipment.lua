@@ -45,7 +45,7 @@
 return
 {
     [1] = {
-        name = 'ULTIMA WEAPON!',
+        name = 'ULTIMA WEAP',
         image = 'assets/img/sweater.png',
         cost = 50,
         width = 64,
@@ -86,20 +86,20 @@ return
         use = { 1 },
     },
     [4] = {
-        name = 'Air Force Ones',
+        name = 'AF Ones',
         image = 'assets/img/rifle.png',
         cost = 50,
         width = 64,
         height = 64,
         desc = 'Get ta stompin\' \n\nSpeed + 5',
-        kind = 'Boots',
+        kind = 'Accessory',
         effect = {
             spd = 50,
         },
         use = { 1 },
     },
     [5] = {
-        name = 'First Dragon Sphere',
+        name = 'Dragon Sphere',
         image = 'assets/img/machete.png',
         cost = 50,
         width = 64,
@@ -118,10 +118,10 @@ return
         width = 64,
         height = 64,
         desc = 'She sells she shel... \nOh, fuck it. \n\n Halves damage from \nWater sources.',
-        kind = 'Gauntlets',
         effect = {
             con = 17,
         },
+        kind = 'Accessory',
         use = { 2 },
     },
 }

@@ -34,11 +34,11 @@ return {
                 },
             },
             after = function (choice)
-                print(choice)
+                -- print(choice)
                 if choice == 2 then 
                     Event:goto('south', 1, 2) 
                 elseif choice == 1 then 
-                    Event:goto('south', 1, 3) 
+                    Event:goto('south', 1, 3)
                 end
                 
                 -- Event:removeObj(20, 'Obj', 'south')

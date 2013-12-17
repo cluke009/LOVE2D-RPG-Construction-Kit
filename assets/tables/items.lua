@@ -51,7 +51,7 @@ return
         }
     },
     [2] = {
-        name = 'Mug of Nasty Ale',
+        name = 'Nasty Ale',
         image = 'img/img/coffee.png',
         cost = 50,
         width = 64,

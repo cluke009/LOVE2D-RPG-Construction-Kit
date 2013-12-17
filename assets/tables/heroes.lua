@@ -89,9 +89,9 @@ return
         name = 'Anime Guy',
         stats = {
             level = 1,
-            hp = 200,
+            hp = 100,
             hpmax = 200,
-            mp = 60,
+            mp = 10,
             mpmax = 70,
             exp = 50,
             expmax = 100,
@@ -181,7 +181,7 @@ return
                 fps = 25
             },
         },
-        active = false
+        active = true
     },
     [3] = {
         name = 'The Fairy',
@@ -232,7 +232,7 @@ return
                 fps = 25
             },
         },
-        active = false
+        active = true
     },
     [4] = {
         name = 'Princess',
