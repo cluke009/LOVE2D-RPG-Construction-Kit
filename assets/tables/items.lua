@@ -94,4 +94,169 @@ return
             { 'mp', 20 },
         }
     },
+    [6] = {
+        name = 'Phoenix Down',
+        image = 'img/dragon.png',
+        cost = 200,
+        width = 64,
+        height = 64,
+        desc = 'A shitty album from \n some awful \n metalcore band. \n\nSaddens Enemies',
+        effect = {
+            { 'mp', 20 },
+        }
+    },
+    [7] = {
+        name = 'Phoenix Down',
+        image = 'img/dragon.png',
+        cost = 200,
+        width = 64,
+        height = 64,
+        desc = 'A shitty album from \n some awful \n metalcore band. \n\nSaddens Enemies',
+        effect = {
+            { 'mp', 20 },
+        }
+    },
+    [8] = {
+        name = 'Phoenix Down',
+        image = 'img/dragon.png',
+        cost = 200,
+        width = 64,
+        height = 64,
+        desc = 'A shitty album from \n some awful \n metalcore band. \n\nSaddens Enemies',
+        effect = {
+            { 'mp', 20 },
+        }
+    },
+    [9] = {
+        name = 'Phoenix Down',
+        image = 'img/dragon.png',
+        cost = 200,
+        width = 64,
+        height = 64,
+        desc = 'A shitty album from \n some awful \n metalcore band. \n\nSaddens Enemies',
+        effect = {
+            { 'mp', 20 },
+        }
+    },
+    [10] = {
+        name = 'Phoenix Down',
+        image = 'img/dragon.png',
+        cost = 200,
+        width = 64,
+        height = 64,
+        desc = 'A shitty album from \n some awful \n metalcore band. \n\nSaddens Enemies',
+        effect = {
+            { 'mp', 20 },
+        }
+    },
+    [11] = {
+        name = 'Phoenix Down',
+        image = 'img/dragon.png',
+        cost = 200,
+        width = 64,
+        height = 64,
+        desc = 'A shitty album from \n some awful \n metalcore band. \n\nSaddens Enemies',
+        effect = {
+            { 'mp', 20 },
+        }
+    },
+    [12] = {
+        name = 'Phoenix Down',
+        image = 'img/dragon.png',
+        cost = 200,
+        width = 64,
+        height = 64,
+        desc = 'A shitty album from \n some awful \n metalcore band. \n\nSaddens Enemies',
+        effect = {
+            { 'mp', 20 },
+        }
+    },
+    [13] = {
+        name = 'Phoenix Down',
+        image = 'img/dragon.png',
+        cost = 200,
+        width = 64,
+        height = 64,
+        desc = 'A shitty album from \n some awful \n metalcore band. \n\nSaddens Enemies',
+        effect = {
+            { 'mp', 20 },
+        }
+    },
+    [14] = {
+        name = 'Phoenix Down',
+        image = 'img/dragon.png',
+        cost = 200,
+        width = 64,
+        height = 64,
+        desc = 'A shitty album from \n some awful \n metalcore band. \n\nSaddens Enemies',
+        effect = {
+            { 'mp', 20 },
+        }
+    },
+    [15] = {
+        name = 'Phoenix Down',
+        image = 'img/dragon.png',
+        cost = 200,
+        width = 64,
+        height = 64,
+        desc = 'A shitty album from \n some awful \n metalcore band. \n\nSaddens Enemies',
+        effect = {
+            { 'mp', 20 },
+        }
+    },
+    [16] = {
+        name = 'Phoenix Down',
+        image = 'img/dragon.png',
+        cost = 200,
+        width = 64,
+        height = 64,
+        desc = 'A shitty album from \n some awful \n metalcore band. \n\nSaddens Enemies',
+        effect = {
+            { 'mp', 20 },
+        }
+    },
+    [17] = {
+        name = 'Phoenix Down',
+        image = 'img/dragon.png',
+        cost = 200,
+        width = 64,
+        height = 64,
+        desc = 'A shitty album from \n some awful \n metalcore band. \n\nSaddens Enemies',
+        effect = {
+            { 'mp', 20 },
+        }
+    },
+    [18] = {
+        name = 'Phoenix Down',
+        image = 'img/dragon.png',
+        cost = 200,
+        width = 64,
+        height = 64,
+        desc = 'A shitty album from \n some awful \n metalcore band. \n\nSaddens Enemies',
+        effect = {
+            { 'mp', 20 },
+        }
+    },
+    [19] = {
+        name = 'Phoenix Down',
+        image = 'img/dragon.png',
+        cost = 200,
+        width = 64,
+        height = 64,
+        desc = 'A shitty album from \n some awful \n metalcore band. \n\nSaddens Enemies',
+        effect = {
+            { 'mp', 20 },
+        }
+    },
+    [20] = {
+        name = 'Phoenix Down',
+        image = 'img/dragon.png',
+        cost = 200,
+        width = 64,
+        height = 64,
+        desc = 'A shitty album from \n some awful \n metalcore band. \n\nSaddens Enemies',
+        effect = {
+            { 'mp', 20 },
+        }
+    },
 }

@@ -1,7 +1,5 @@
 local Asset = require 'helpers.asset_helper'
 local Party = Group:extend{
-    text = 'test',
-    ready = true,
     stats = Group:new{
         str = {'', {1,1,1}},
         int = {'', {1,1,1}},
@@ -103,23 +101,26 @@ local Party = Group:extend{
             self:add(self['new_magic_defense'])
         end,
         onUpdate = function (self )
-           self['attack'].text        = 'ATTACK... ' .. STATE.heroes[self.id].stats.str
-           self['magic'].text         = 'MAGIC.... ' .. STATE.heroes[self.id].stats.int
-           self['speed'].text         = 'SPEED.... ' .. STATE.heroes[self.id].stats.spd
-           self['defense'].text       = 'DEFENSE........ ' .. STATE.heroes[self.id].stats.con
-           self['magic_defense'].text = 'MAGIC DEFENSE.. ' .. STATE.heroes[self.id].stats.wis
+            -- Original value
+            self['attack'].text        = 'ATTACK... ' .. STATE.heroes[self.id].stats.str
+            self['magic'].text         = 'MAGIC.... ' .. STATE.heroes[self.id].stats.int
+            self['speed'].text         = 'SPEED.... ' .. STATE.heroes[self.id].stats.spd
+            self['defense'].text       = 'DEFENSE........ ' .. STATE.heroes[self.id].stats.con
+            self['magic_defense'].text = 'MAGIC DEFENSE.. ' .. STATE.heroes[self.id].stats.wis
 
-           self['new_attack'].text        = self.str[1]
-           self['new_magic'].text         = self.int[1]
-           self['new_speed'].text         = self.spd[1]
-           self['new_defense'].text       = self.con[1]
-           self['new_magic_defense'].text = self.wis[1]
+            -- New values
+            self['new_attack'].text        = self.str[1]
+            self['new_magic'].text         = self.int[1]
+            self['new_speed'].text         = self.spd[1]
+            self['new_defense'].text       = self.con[1]
+            self['new_magic_defense'].text = self.wis[1]
 
-           self['new_attack'].tint        = self.str[2]
-           self['new_magic'].tint         = self.int[2]
-           self['new_speed'].tint         = self.spd[2]
-           self['new_defense'].tint       = self.con[2]
-           self['new_magic_defense'].tint = self.wis[2]
+            -- New text color
+            self['new_attack'].tint        = self.str[2]
+            self['new_magic'].tint         = self.int[2]
+            self['new_speed'].tint         = self.spd[2]
+            self['new_defense'].tint       = self.con[2]
+            self['new_magic_defense'].tint = self.wis[2]
         end,
     },
     onNew = function (self)
@@ -261,45 +262,36 @@ local Party = Group:extend{
         end
     end,
     onUpdate = function(self)
-        -- if self.ready then
-            local p = 1
-            for k, hero in pairs(STATE.heroes) do
-                if hero['active'] then
- 
-                    local Armor, Weapon, Accessory = '', '', ''
-                    if hero.equip.Armor then Armor = Asset:get('equipment', hero.equip.Armor, 'name') end
-                    if hero.equip.Weapon then Weapon = Asset:get('equipment', hero.equip.Weapon, 'name') end
-                    if hero.equip.Accessory then Accessory = Asset:get('equipment', hero.equip.Accessory, 'name') end
-                    self['group' .. k]['image'].image       = Asset:get('heroes', k, 'portraits')[1]
-                    self['group' .. k]['name'].text         = Asset:get('heroes', k, 'name')
-                    self['group' .. k]['level'].text        = 'Level ' .. hero.stats.level
-                    self['group' .. k]['hp'].text           = 'HP: ' .. hero.stats.hp .. '/' .. hero.stats.hpmax
-                    self['group' .. k]['mp'].text           = 'MP: ' .. hero.stats.mp .. '/' .. hero.stats.mpmax
-                    self['group' .. k]['exp'].text          = 'XP: ' .. hero.stats.exp .. '/' .. hero.stats.expmax
-                    self['group' .. k]['Armor'].text        = 'Armor:     ' .. Armor
-                    self['group' .. k]['Weapon'].text       = 'Weapon:    ' .. Weapon
-                    self['group' .. k]['Accessory'].text    = 'Accessory: ' .. Accessory
-                    -- self['image' .. p].image = Asset:get('heroes', k, 'portraits')[1]
-                    -- self['name' .. p].text = Asset:get('heroes', k, 'name')
-                    -- self['nameShadow' .. p].text = Asset:get('heroes', k, 'name')
-                    -- self['levelShadow' .. p].text = 'Level ' .. hero.stats.level
-                    -- self['hpShadow' .. p].text = 'HP ' .. hero.stats.hp .. '/' .. hero.stats.hpmax
-                    -- self['mpShadow' .. p].text = 'MP ' .. hero.stats.mp .. '/' .. hero.stats.mpmax
-                    -- self['expShadow' .. p].text = 'EXP ' .. hero.stats.exp .. '/' .. hero.stats.expmax
+        for k, hero in pairs(STATE.heroes) do
+            if hero['active'] then
+                local Armor, Weapon, Accessory = '', '', ''
+                if hero.equip.Armor then Armor = Asset:get('equipment', hero.equip.Armor, 'name') end
+                if hero.equip.Weapon then Weapon = Asset:get('equipment', hero.equip.Weapon, 'name') end
+                if hero.equip.Accessory then Accessory = Asset:get('equipment', hero.equip.Accessory, 'name') end
+                
+                self['group' .. k]['image'].image       = Asset:get('heroes', k, 'portraits')[1]
+                self['group' .. k]['name'].text         = Asset:get('heroes', k, 'name')
+                self['group' .. k]['level'].text        = 'Level ' .. hero.stats.level
+                self['group' .. k]['hp'].text           = 'HP: ' .. hero.stats.hp .. '/' .. hero.stats.hpmax
+                self['group' .. k]['mp'].text           = 'MP: ' .. hero.stats.mp .. '/' .. hero.stats.mpmax
+                self['group' .. k]['exp'].text          = 'XP: ' .. hero.stats.exp .. '/' .. hero.stats.expmax
+                self['group' .. k]['Armor'].text        = 'Armor:     ' .. Armor
+                self['group' .. k]['Weapon'].text       = 'Weapon:    ' .. Weapon
+                self['group' .. k]['Accessory'].text    = 'Accessory: ' .. Accessory
+                -- self['image' .. p].image = Asset:get('heroes', k, 'portraits')[1]
+                -- self['name' .. p].text = Asset:get('heroes', k, 'name')
+                -- self['nameShadow' .. p].text = Asset:get('heroes', k, 'name')
+                -- self['levelShadow' .. p].text = 'Level ' .. hero.stats.level
+                -- self['hpShadow' .. p].text = 'HP ' .. hero.stats.hp .. '/' .. hero.stats.hpmax
+                -- self['mpShadow' .. p].text = 'MP ' .. hero.stats.mp .. '/' .. hero.stats.mpmax
+                -- self['expShadow' .. p].text = 'EXP ' .. hero.stats.exp .. '/' .. hero.stats.expmax
 
-                    -- self['level' .. p].text = 'Level ' .. hero.stats.level
-                    -- self['hp' .. p].text = 'HP ' .. hero.stats.hp .. '/' .. hero.stats.hpmax
-                    -- self['mp' .. p].text = 'MP ' .. hero.stats.mp .. '/' .. hero.stats.mpmax
-                    -- self['exp' .. p].text = 'EXP ' .. hero.stats.exp .. '/' .. hero.stats.expmax
-                else
-                    -- self['image' .. p].text = ''
-                    -- self['name' .. p].text = ''
-                    -- self['nameShadow' .. p].text = ''
-                end
-                p = p + 1
+                -- self['level' .. p].text = 'Level ' .. hero.stats.level
+                -- self['hp' .. p].text = 'HP ' .. hero.stats.hp .. '/' .. hero.stats.hpmax
+                -- self['mp' .. p].text = 'MP ' .. hero.stats.mp .. '/' .. hero.stats.mpmax
+                -- self['exp' .. p].text = 'EXP ' .. hero.stats.exp .. '/' .. hero.stats.expmax
             end
-            -- self.ready = false
-        -- end
+        end
     end,
 }
 return Party

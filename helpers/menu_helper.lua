@@ -58,7 +58,7 @@ local MenuHelper = Group:extend{
     highlight = function(self)
         -- self.h.y = self.y  + (self.selected - 1) * self.height
 
-        self.h.y = self['text' .. self.selected].y - 10
+        self.h.y = self['text' .. self.selected].y - 3
         if self.items[self.selected][3] then
             self.items[self.selected][3]()
         end

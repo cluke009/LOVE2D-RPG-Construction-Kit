@@ -39,7 +39,7 @@ STATE = Class:new {
     inventory  = {
         gold = 300,
         -- items = {},
-        items   = {[1] = 1, [2] = 2},
+        items   = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,8,19,20},
         -- equipment = {},
         equipment = { [1] = 3, [2] = 1, [3] = 4, [5] = 3},
     },

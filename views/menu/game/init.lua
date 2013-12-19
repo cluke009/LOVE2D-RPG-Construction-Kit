@@ -21,7 +21,7 @@ Launch = Subview:new{
                             self.items_menu:submenu(self.party_items_menu)
                             self:remove(self.items_menu)
                             self.items_menu = MenuHelper:new {
-                                coord = {12,20,150,23,false},
+                                coord = {12,40,150,23,false},
                                 items = self:items_links()
                             }
                             self:add(self.items_menu)
@@ -71,6 +71,7 @@ Launch = Subview:new{
     items_links = function (self)
         local links = {}
         if next(STATE.inventory.items) then
+            print(#STATE.inventory.items)
             for k, v in pairs(STATE.inventory.items) do
                 table.insert(links, {
                     Assets:get('items', k, 'name') .. ' x' .. v,
@@ -147,6 +148,26 @@ Launch = Subview:new{
         return links
     end,
     onNew = function(self)
+        self.items_title = Group:new{
+            onNew = function(self)
+                self:add(Text:new{
+                    x = 21,
+                    y = 21,
+                    width = 200,
+                    tint = { 0, 0, 0 },
+                    font = {STATE.conf.font[1], 22},
+                    text = 'Items'
+                })
+                self:add(Text:new{
+                    x = 20,
+                    y = 20,
+                    width = 200,
+                    tint = { 1, 1, 1 },
+                    font = {STATE.conf.font[1], 22},
+                    text = 'Items'
+                })
+            end
+        }
         --
         -- Create static root menu
         --
@@ -154,6 +175,7 @@ Launch = Subview:new{
             coord = {12,20,150,23,true},
             items = {
                 {'Items', function() 
+                    -- self:add(self.items_title)
                     self.menu:submenu(self.items_menu) 
                     self.menu.visible = false
                     -- if self:party_items_links() then self.menu:submenu(self.party_items_menu) end
@@ -180,8 +202,11 @@ Launch = Subview:new{
         -- Create dynamic child menus
         --
         self.items_menu = MenuHelper:new {
-            coord = {12,20,150,23,false},
+            coord = {12,40,150,20,false},
             items = self:items_links(),
+            onDeactivate = function()
+                -- self:remove(self.items_title)
+            end
         }
         self.equipment_menu = MenuHelper:new {
             coord = {12,20,150,23,false},
@@ -190,7 +215,7 @@ Launch = Subview:new{
                 for k,v in pairs(STATE.heroes) do
                     self.party['group' .. k].translate.y = 0
                     self.party['group' .. k].visible = true
-                    self.party.stats.visible = false
+                    self.party:remove(self.party['stats'])
                 end
             end
         }
@@ -251,6 +276,11 @@ Launch = Subview:new{
     end,
     onDeactivate = function(self)
         self:remove(self.party)
+        self:remove(self.items_menu)
+        self:remove(self.equipment_menu)
+        self:remove(self.party_items_menu)
+        self:remove(self.party_equipment_menu)
+        self:remove(self.equipment_sub_menu)
     end,
     onUpdate = function(self)
         if the.keys:justPressed('backspace') then
