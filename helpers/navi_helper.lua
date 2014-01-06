@@ -5,10 +5,12 @@ _navi = require(arc_path .. 'navi')
 Navi = Sprite:extend {
     dialog = {},
     draw = function(self, x, y)
+    print('draw')
         _navi.play_list(self.dialog,0,0)
         arc.clear_key()
     end,
     onUpdate = function (self, elapsed)
+        print('onUpdate')
         if self.dialog[#self.dialog]:is_over() then
             self.is_over = true
             self.choice = self.dialog[#self.dialog]:get_pick()

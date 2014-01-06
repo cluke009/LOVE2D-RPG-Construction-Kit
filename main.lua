@@ -8,24 +8,18 @@ DEBUG = true
 io.stdout:setvbuf("no")
 
 require 'zoetrope'
+require 'modules'
+require 'custom'
+-- require 'helpers.state'
+-- require 'helpers.log'
+-- require 'assets.tables.config'
+-- require 'map'
+-- require 'objects'
+-- require 'views.menu.main'
+-- Navi = require 'modules.navi'
 
-require 'helpers.string_helper'
-require 'helpers.table_helper'
-
-require 'helpers.state'
-require 'helpers.log'
--- require 'helpers.dialog_helper'
-
-
-
-require 'assets.tables.config'
-
-require 'map'
-require 'objects'
-
-require 'views.menu.main'
-require 'helpers.navi_helper'
-the.app = App:new{
+the.app = App:new
+{
     count = 1,
     onRun = function(self)
         if STATE.conf.auto_start then
@@ -35,7 +29,6 @@ the.app = App:new{
             self.view = MenuMainView:new()
             self.view:flash({ 0, 0, 0 }, 10)
         end
-        -- self:add(log.init)
         log:add('Game loaded')
     end,
     onUpdate = function (self, elapsed)

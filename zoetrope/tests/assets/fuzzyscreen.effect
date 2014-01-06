@@ -1,0 +1,58 @@
+// width of a pixel in texture units,
+// should be set to 1 / width, 1 / height.
+uniform vec2 pixelSize;
+
+// how sharp the bilinear filter is, 0 - 1
+uniform float sharpness = 0.5;
+
+// how much to boost the brightness of pixels to compensate for scanlines, 0-1
+// 0 = no increase, 1 = double brightness
+uniform float brightness = 0.25;
+
+// how much a scanline should darken its line, 0-1
+uniform float scanIntensity = 0.25;
+
+// orientation of scanlines
+// 1 = horizontal scanlines, 0 = vertical scanlines
+uniform float scanHorizontal = 1;
+
+// amount of noise, 0-1 (a little goes a long way)
+uniform float noise = 0.0;
+
+// seed used to generate noise, change this on every frame to add shimmer
+uniform float noiseSeed = 0.0;
+
+vec4 effect (vec4 color, sampler2D texture, vec2 texturePos, vec2 pixelPos)
+{
+	// bilinear filter
+	
+	float xInc = pixelSize.x * (1.0 - sharpness);
+	float yInc = pixelSize.y * (1.0 - sharpness);
+
+	vec4 result = texture2D(texture, texturePos + vec2(-xInc, -yInc));
+	result += texture2D(texture, texturePos + vec2(xInc, -yInc));
+	result += texture2D(texture, texturePos + vec2(-xInc, yInc));
+	result += texture2D(texture, texturePos + vec2(xInc, yInc));
+	result /= 4;
+
+	// noise
+	// pseudo-random number generator via
+	// http://www.ozone3d.net/blogs/lab/20110427/glsl-random-generator/
+
+	result = result + noise * fract(sin(dot(texturePos.xy + noiseSeed, vec2(12.9898, 78.233))) * 43758.5453);
+
+	// scanlines
+
+	int coord = int(scanHorizontal);
+
+	if (scanIntensity > 0.0 && mod(texturePos[coord], pixelSize[coord] * 2) > pixelSize[coord])
+	{
+		result.r = max(result.r - scanIntensity, 0);
+		result.g = max(result.g - scanIntensity, 0);
+		result.b = max(result.b - scanIntensity, 0);
+	};
+
+	// final brightness adjustment
+	
+	return result * (1 + brightness);
+}

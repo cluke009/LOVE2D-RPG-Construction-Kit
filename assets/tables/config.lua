@@ -17,8 +17,8 @@
 
 -- STATE.conf.font = {'helpers/navi/fonts/font.png'," abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789.,!?-+/():;%&`'*#=[]\""}
 STATE.conf.font = {'assets/font/goodfonts/chary___.ttf', 18}
-STATE.conf.map = 'south'
+STATE.conf.map = 'inn'
 STATE.conf.auto_start = true
-STATE.conf.heroStartX = 428
-STATE.conf.heroStartY = 550
+STATE.conf.heroStartX = 350
+STATE.conf.heroStartY = 250
 STATE.inventory.gold = 600

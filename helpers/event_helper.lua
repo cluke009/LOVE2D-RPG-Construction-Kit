@@ -4,9 +4,9 @@
 --
 local Event = {
     ----------------------------------------------------------------------------
-    -- 
+    --
     -- Functions used to process events.
-    -- 
+    --
     ----------------------------------------------------------------------------
 
     --
@@ -91,13 +91,10 @@ local Event = {
         id = tonumber(id)
         local eventId = STATE.event[STATE.conf.map][id]['id']
         if self.events[id][eventId]['dialog'] and not self.navi then
-            self.navi = Navi:new()
-            for i,v in ipairs(self.events[id][eventId]['dialog']) do
-                table.insert(self.navi.dialog, _navi:new(
-                    self.events[id][eventId]['dialog'][i][1],
-                    self.events[id][eventId]['dialog'][i][2]
-                ))
-            end
+            self.navi = Navi:new{
+                dialog = self.events[id][eventId]['dialog']
+            }
+
             the.app.view:add(self.navi)
         elseif self.navi.is_over then
             return true
@@ -107,7 +104,7 @@ local Event = {
     end,
     --
     -- Method: after
-    -- Functions to be run after all other events. 
+    -- Functions to be run after all other events.
     -- Passes navi choice number as an argument to the event "after" function.
     -- Destroys self.navi after completion.
     --
@@ -127,9 +124,9 @@ local Event = {
     end,
 
     ----------------------------------------------------------------------------
-    -- 
+    --
     -- Functions to be used inside events.
-    -- 
+    --
     ----------------------------------------------------------------------------
 
     --

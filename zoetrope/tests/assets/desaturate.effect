@@ -1,0 +1,9 @@
+uniform float desaturation = 0;
+
+vec4 effect(vec4 color, sampler2D texture, vec2 texturePos, vec2 pixelPos)
+{
+	vec4 original = texture2D(texture, texturePos);
+	vec4 desaturated = vec4((original.r + original.g + original.b) / 3);
+	desaturated.a = original.a;
+	return mix(original, desaturated, desaturation);
+}
