@@ -82,8 +82,8 @@ return
         height = 32
     },
     [20] = {
-        name = 'Southgate',
-        image = 'assets/img/southgate.png',
+        name = 'Northgate',
+        image = 'assets/img/northgate.png',
         width = 128,
         height = 32
     },
@@ -98,5 +98,17 @@ return
         image = 'assets/img/shovel_icon.jpg',
         width = 32,
         height = 32
-    }
+    },
+    [23] = {
+        name = 'FloorCrack',
+        image = 'assets/img/floor_crack.png',
+        width = 32,
+        height = 32
+    },
+    [24] = {
+        name = 'GoldenDoor',
+        image = 'assets/img/golden_door.png',
+        width = 64,
+        height = 32
+    },
 }

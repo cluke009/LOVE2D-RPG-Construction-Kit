@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="35" height="35" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="BlackAndWhite" tilewidth="32" tileheight="32">
+  <image source="../img/BlackAndWhite.png" width="320" height="32"/>
+  <tile id="0">
+   <properties>
+    <property name="solid" value="true"/>
+   </properties>
+  </tile>
+  <tile id="9">
+   <properties>
+    <property name="solid" value="false"/>
+   </properties>
+  </tile>
+ </tileset>
+ <tileset firstgid="11" name="TileA5" tilewidth="32" tileheight="32">
+  <image source="../img/TileA5.png" trans="ff00ff" width="256" height="512"/>
+ </tileset>
+ <layer name="map" width="35" height="35">
+  <data encoding="base64" compression="zlib">
+   eJztlsEOwCAIQz3w/9+8+4bYgmXLYhMvgPDi0DHGU+bYIv8qviIL1hssM7s5fnP86MqyRPFobraO8szZOt43UPDtYrnbVL2AxkRxM1YFC6vDwrGs+qvrTiM1DwtnV2onS/VtRlmQOgoW5L1XCGXpUEfvVv+Tf2VBhcy1Xf1TZdnJWZ2ZvsSyew+al51jFSzVGkzujj2KvMq7ns01Y/FYmZVVdq5X6LD4UrBcHOcC5Q==
+  </data>
+ </layer>
+ <layer name="background" width="35" height="35">
+  <data encoding="base64" compression="zlib">
+   eJzll71OAzEQhO8BaKAjj8FLcKQKfxJwSQVUoYAkHWVenLV0lobR2rfr2EdB8SmbxMqMfeNdWHddtxEGYT3WK+FWoRduhKVwDsTPA2cn8Ca8C69QPwnPCtHjXcLLMrGHFFfkJWi8gH6oP4UvBVyDXtAjrtH2g/Tk5UF4FO6hHkgrcA0ed+Nnx/EV9bU9aOwULzEjA9XsJQd7tMJetLywl63w4dQp8aLlhb3shcOEv/34jCNh/YXTizUvjOYv9712ti3yYkH73ZK8tPKCPTX0GkteaqA9U+yp4YxK81ID7AXBy1x5YY70Pnjx5OWyobe+my8vFi+18oL9o+T8rHmxzICp3mfxYsnLqTr/MS+Lie+tM36O/mJ9vt7+8hd5ib4iLf6OsnrBmZXLcszCd4G2NgNSXixZrnnX2QvrhzuCWZ66M3xeXi+sr90rzI9FI3deqfnQw56j/oL08f/Iln0weuH9s/5cXiz6qfte8673Rn2stfsV7+e2+92XPKwK9VOzYkNrvbVXPzcrtLnmqb36uRzzWm/t1Z/y4s0f1j+kTfE7
+  </data>
+ </layer>
+ <layer name="foreground" width="35" height="35" visible="0">
+  <data encoding="base64" compression="zlib">
+   eJztwQEBAAAAgiD/r25IQAEAAADAtwETJAAB
+  </data>
+ </layer>
+ <objectgroup name="objects" width="35" height="35">
+  <object name="Door" x="448" y="0" width="96">
+   <properties>
+    <property name="to" value="mountainpath2, 9, 1"/>
+   </properties>
+  </object>
+  <object name="Door" x="496" y="1088" width="128" height="32">
+   <properties>
+    <property name="to" value="mountainpath2, 10, 1"/>
+   </properties>
+  </object>
+  <object name="Obj" x="480" y="1024" width="160" height="32">
+   <properties>
+    <property name="event" value="1"/>
+    <property name="id" value="21"/>
+    <property name="solid" value="false"/>
+   </properties>
+  </object>
+  <object name="Door" x="448" y="0" width="96" height="32">
+   <properties>
+    <property name="to" value="earth1, 14, 18"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>

@@ -183,23 +183,45 @@ end
 -- via http://www.gammon.com.au/forum/?id=9908
 --
 -- Arguments:
---		table - table to shuffle
+--		src - table to shuffle
 --
 -- Returns:
 --		table passed
 
-function shuffleTable (table)
-  local n = #table
+function shuffleTable (src)
+  local n = #src
 
   while n >= 2 do
     -- n is now the last pertinent index
     local k = math.random(n) -- 1 <= k <= n
     -- Quick swap
-    table[n], table[k] = table[k], table[n]
+    src[n], src[k] = src[k], src[n]
     n = n - 1
   end
 
-  return table
+  return src
+end
+
+-- Function: props
+-- Returns a string with a comma-delimited list of properties
+-- for a table.
+--
+-- Arguments:
+--		src - table to inspect
+--
+-- Returns:
+--		string
+
+function props (src)
+	local result = {}
+
+	for key, _ in pairs(src) do
+		if type(key) ~= 'userdata' then
+			table.insert(result, key)
+		end
+	end
+
+	return table.concat(result, ', ')
 end
 
 -- Function: dump
@@ -228,6 +250,10 @@ function dump (source, ignore)
 
 		for key, value in pairs(source) do
 			if not ignore[value] then
+				if type(value) == 'table' then
+					ignore[value] = true
+				end
+
 				local dumpValue = dump(value, ignore)
 
 				if dumpValue ~= '' and type(key) == 'string' then
@@ -236,9 +262,6 @@ function dump (source, ignore)
 					result = result .. '[' .. key .. '] = ' .. dumpValue .. ', '
 				end
 
-				if type(value) == 'table' then
-					ignore[value] = true
-				end
 			end
 		end
 

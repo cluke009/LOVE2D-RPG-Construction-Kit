@@ -13,7 +13,7 @@ local lt = love.timer
 local _bloc = {}
 _bloc.__index = _bloc
 
-function _bloc:new(s, x, y, c)
+function _bloc:new(s ,x, y, c)
     local o = {}
     setmetatable(o, _bloc)
     o.s      = str.unformat(s)
@@ -55,8 +55,6 @@ function _navi:new(s, opt)
     o.wbox        = opt.wbox                              -- fixed box width
     o.x           = opt.x or 10                           -- x disp pos
     o.y           = opt.y or 10                           -- y disp pos
-    o.face_x      = opt.face_x
-    o.face_y      = opt.face_y
     o.alx         = opt.alx or 'l'                        -- text x alignment
     o.alxb        = opt.alxb or 'l'                       -- box x alignment
     o.alyb        = opt.alyb or 't'                       -- box y alignment
@@ -95,7 +93,7 @@ function _navi:new(s, opt)
     o.dyname = (o.name and arc.fn.h) or 0
 
     -- set face info
-    if not o.face_x and o.face then
+    if o.face then
         o.wface = o.face:getWidth()
         o.hface = o.face:getHeight()
         o.dxface = o.wface + 10
@@ -262,12 +260,9 @@ function _navi:set_pos()
     self.xname = x + 10 + self.dxface
     self.yname = y + 10
 
-    if not self.face_x and self.face then
+    if self.face then
         self.xface = x + 10
         self.yface = y + math.floor(0.5 * (self.hbox - self.hface))
-    elseif self.face_x then
-        self.xface = self.face_x
-        self.yface = self.face_y
     end
 
     self.xtext  = x + 10 + self.dxface + self.dxm * (self.wbox - 20 - self.dxface)
@@ -358,22 +353,12 @@ function _navi:play(x, y)
     local nc = (self.instant and math.huge) or math.floor(self.msg_spd * (lt.getTime() - self.t0))
 
     -- draw stuff
-    --
-    -- TODO: ME draw stUFF
-    --
-    if self.face_x then
-        lg.setColor(arc.col.white)
-        lg.draw(self.face, self.xface - x , self.yface - y)
-    end
     if self.box then draw.window(self.xbox, self.ybox, self.wbox, self.hbox) end
     if self.name then draw.text(self.name, self.xname, self.yname, arc.col.name) end
-    if not self.face_x and self.face then
+    if self.face then
         lg.setColor(arc.col.white)
         lg.draw(self.face, self.xface, self.yface)
         if self.face_border then lg.rectangle('line', self.xface, self.yface, self.wface, self.hface) end
-    elseif self.face_x then
-        -- lg.setColor(arc.col.white)
-        -- lg.draw(self.face, self.xface - x , self.yface - y)
     end
 
     -- scroll text
@@ -381,7 +366,7 @@ function _navi:play(x, y)
         lg.setScissor(x + self.clip[1], y + self.clip[2], self.clip[3], self.clip[4])
         dys = -(self.view - 1) * arc.fn.h
         af  = (lt.getTime() - self.sct0) / arc.cfg.msg_tscroll
-        if af then
+        if af >= 1 then
             self.pos = self.scpos
             if self.pos == 'show' then
                 self.view = self.view + self.nrows

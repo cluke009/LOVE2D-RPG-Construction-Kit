@@ -1,4 +1,3 @@
-local Menu           = require 'helpers.menu_helper'
 local ShopHelper     = require 'views.shop.shop_helper'
 
 --
@@ -18,15 +17,13 @@ local ShopView = Subview:new {
         y = 40,
         width = 480,
         tint = { 0, 0, 0 },
-        font = STATE.conf.font,
     },
     inventory = function (self)
         local links = {}
         for k, v in pairs(ShopHelper.data) do
             table.insert(links, {
                 v.name .. ' G ' .. v.cost,
-                function() ShopHelper:buy(v.ikind, v.key) end,
-                function() self.text.text = v.desc end,
+                function() ShopHelper:buy(v.ikind, v.key) end
             })
         end
         return links
@@ -36,7 +33,7 @@ local ShopView = Subview:new {
     end,
     onActivate = function(self)
         -- Initialize shop data
-        ShopHelper:init(self.shopID)
+        ShopHelper:init()
 
         self.fill = Fill:new{
             width  = 800,
@@ -47,7 +44,6 @@ local ShopView = Subview:new {
             x = 20,      width = 1000,
             y = 20,      height = 120,
             tint = { 0, 0, 0 },
-            font = STATE.conf.font,
         }
 
         self:add(self.fill)

@@ -1,8 +1,8 @@
 -- Class: Gamepad
--- This represents a single gamepad connected to the user's computer. This offers the 
+-- This represents a single gamepad connected to the user's computer. This offers the
 -- usual functions to check on the status of buttons; you can also inspect other
 -- controls, like analog joysticks, by checking properties like <axes> and <hats>.
--- (Incidentally, a hat is used for things like a digital control pad.) 
+-- (Incidentally, a hat is used for things like a digital control pad.)
 --
 -- Normally, gamepad buttons are indexed by number. This class also adds virtual buttons
 -- named 'left', 'right', 'up', 'down'. This consults the first two analog axes
@@ -74,13 +74,13 @@ Gamepad = Sprite:extend
 		obj.balls = {}
 		obj.hats = {}
 
-		if obj.number <= love.joystick.getNumJoysticks() then
-			if not love.joystick.isOpen(obj.number) then love.joystick.open(obj.number) end
-			obj.name = love.joystick.getName(obj.number)
-			obj.numAxes = love.joystick.getNumAxes(obj.number)
-			obj.numBalls = love.joystick.getNumBalls(obj.number)
-			obj.numButtons = love.joystick.getNumButtons(obj.number)
-			obj.numHats = love.joystick.getNumHats(obj.number)
+		if obj.number <= love.joystick.getJoystickCount() then
+			-- if not love.joystick.isOpen(obj.number) then love.joystick.open(obj.number) end
+			Joystick = love.joystick.getJoysticks()[obj.number]
+			obj.name = Joystick:getName()
+			obj.numAxes = Joystick:getAxisCount()
+			obj.numButtons = Joystick:getButtonCount()
+			obj.numHats = Joystick:getHatCount()
 
 			-- set initial values for axes and balls
 			-- hat values are strings so nil comparisons are safe
@@ -88,14 +88,9 @@ Gamepad = Sprite:extend
 			for i = 1, obj.numAxes do
 				obj.axes[i] = 0
 			end
-
-			for i = 1, obj.numBalls do
-				obj.balls[i] = { x = 0, y = 0 }
-			end
 		else
 			obj.name = 'NO DEVICE CONNECTED'
 			obj.numAxes = 0
-			obj.numBalls = 0
 			obj.numButtons = 0
 			obj.numHats = 0
 		end
@@ -123,7 +118,7 @@ Gamepad = Sprite:extend
 				return true
 			end
 		end
-		
+
 		return false
 	end,
 
@@ -144,7 +139,7 @@ Gamepad = Sprite:extend
 				return true
 			end
 		end
-		
+
 		return false
 	end,
 
@@ -159,13 +154,13 @@ Gamepad = Sprite:extend
 
 	released = function (self, ...)
 		local buttons = {...}
-	
+
 		for _, value in pairs(buttons) do
 			if self._thisFrame[value] then
 				return false
 			end
 		end
-		
+
 		return true
 	end,
 
@@ -180,13 +175,13 @@ Gamepad = Sprite:extend
 
 	justReleased = function (self, ...)
 		local buttons = {...}
-	
+
 		for _, value in pairs(buttons) do
 			if self._lastFrame[value] and not self._thisFrame[value] then
 				return true
 			end
 		end
-		
+
 		return false
 	end,
 
@@ -205,7 +200,7 @@ Gamepad = Sprite:extend
 		for key, value in pairs(self._thisFrame) do
 			if value then table.insert(result, key) end
 		end
-		
+
 		return unpack(result)
 	end,
 
@@ -224,7 +219,7 @@ Gamepad = Sprite:extend
 		for key, value in pairs(self._thisFrame) do
 			if value and not self._lastFrame[key] then table.insert(result, key) end
 		end
-		
+
 		return unpack(result)
 	end,
 
@@ -243,7 +238,7 @@ Gamepad = Sprite:extend
 		for key, value in pairs(self._thisFrame) do
 			if not value and self._lastFrame[key] then table.insert(result, key) end
 		end
-		
+
 		return unpack(result)
 	end,
 
@@ -265,15 +260,11 @@ Gamepad = Sprite:extend
 		-- set values
 
 		for i = 1, self.numAxes do
-			self.axes[i] = love.joystick.getAxis(self.number, i)
-		end
-
-		for i = 1, self.numBalls do
-			self.balls[i].x, self.balls[i].y = love.joystick.getBall(self.number, i)
+			self.axes[i] = Joystick:getAxis(i)
 		end
 
 		for i = 1, self.numHats do
-			self.hats[i] = love.joystick.getHat(self.number, i)
+			self.hats[i] = Joystick:getHat(i)
 		end
 
 		-- simulate digital controls
@@ -329,7 +320,7 @@ Gamepad = Sprite:extend
 				end
 			end
 		end
-	
+
 		Sprite.endFrame(self)
 	end,
 

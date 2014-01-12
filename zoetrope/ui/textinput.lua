@@ -65,36 +65,18 @@ TextInput = Text:extend{
 			end
 
 			-- handle movement keys that repeat
-			-- we have to simulate repeat rates manually :(
 
-			local delay, rate = love.keyboard.getKeyRepeat()
 			local frameAction
 
 			for _, key in pairs{'backspace', 'delete', 'left', 'right'} do
 				if the.keys:pressed(key) then
-					if self._repeatKey == key then
-						self._repeatTimer = self._repeatTimer + elapsed
-						
-						-- if we've made it past the maximum delay, then
-						-- we reset the timer and take action
-
-						if self._repeatTimer > delay + rate then
-							self._repeatTimer = delay
-							frameAction = key
-						end
-					else
-						-- we've just started holding down the key
-
-						self._repeatKey = key
-						self._repeatTimer = 0
-						frameAction = key
-					end
-				else
-					if self._repeatKey == key then
-						self._repeatKey = nil
+					frameAction = key
+					if the.keys:alreadyHandled(key) then
+						frameAction = nil
 					end
 				end
 			end
+
 
 			if frameAction == 'backspace' and self.caret > 0 then
 				self.text = string.sub(self.text, 1, self.caret - 1) .. string.sub(self.text, self.caret + 1)

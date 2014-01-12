@@ -6,7 +6,7 @@
 --
 -- In most cases, you don't want to create a sprite directly.
 -- Instead, you'd want to use a subclass tailored to your needs.
--- Create a new subclass if you need to heavily customize how a
+-- Create a new subclass if you need to heavily customize how a 
 -- sprite is drawn onscreen.
 --
 -- If you don't need something to display onscreen, just
@@ -57,6 +57,12 @@ Sprite = Class:extend
 
 	-- Property: height
 	-- Height in pixels.
+
+	-- Property: origin
+	-- Sets the origin to use when rotating and scaling this sprite, in pixels
+	-- from the top left corner of the sprite. If either x or y property is
+	-- nil, this uses the center of the sprite.
+	origin = {},
 
 	-- Property: rotation
 	-- Rotation of drawn sprite in radians. This does not affect the bounds
@@ -233,30 +239,30 @@ Sprite = Class:extend
 	-- Returns:
 	--		nothing
 
-	displace = function (self, other, xHint, yHint)
+	displace = function (self, other, xHint, yHint)	
 		if not self.solid or self == other or not other.solid then return end
 		if STRICT then assert(other:instanceOf(Sprite), 'asked to displace a non-sprite') end
 
 		local xChange = 0
 		local yChange = 0
 
-		if other.sprites then
+		if other.members then
 			-- handle groups
 
-			for _, spr in pairs(other.sprites) do
+			for _, spr in other:members() do
 				self:displace(spr, xHint, yHint)
 			end
 		else
 			-- handle sprites
 
 			local xOverlap, yOverlap = self:overlap(other.x, other.y, other.width, other.height)
-
+			
 			-- resolve horizontal overlap
 
 			if xOverlap ~= 0 then
 				local leftMove = (other.x - self.x) + other.width
 				local rightMove = (self.x + self.width) - other.x
-
+				
 				if xHint == LEFT then
 					xChange = - leftMove
 				elseif xHint == RIGHT then
@@ -269,13 +275,13 @@ Sprite = Class:extend
 					end
 				end
 			end
-
+			
 			-- resolve vertical overlap
 
 			if yOverlap ~= 0 then
 				local upMove = (other.y - self.y) + other.height
 				local downMove = (self.y + self.height) - other.y
-
+				
 				if yHint == UP then
 					yChange = - upMove
 				elseif yHint == DOWN then
@@ -288,9 +294,9 @@ Sprite = Class:extend
 					end
 				end
 			end
-
+			
 			-- choose the option that moves the other sprite the least
-
+			
 			if math.abs(xChange) > math.abs(yChange) then
 				other.y = other.y + yChange
 			else
@@ -315,7 +321,7 @@ Sprite = Class:extend
 	end,
 
 	-- Method: distanceTo
-	-- Returns the distance from this sprite to either another sprite or
+	-- Returns the distance from this sprite to either another sprite or 
 	-- an arbitrary point. This uses the center of sprites to calculate the distance.
 	--
 	-- Arguments:
@@ -372,11 +378,11 @@ Sprite = Class:extend
 		vel.rotation = vel.rotation or 0
 
 		-- physics
-
+			
 		if vel.x ~= 0 then self.x = self.x + vel.x * elapsed end
 		if vel.y ~= 0 then self.y = self.y + vel.y * elapsed end
 		if vel.rotation ~= 0 then self.rotation = self.rotation + vel.rotation * elapsed end
-
+		
 		if acc.x and acc.x ~= 0 then
 			vel.x = vel.x + acc.x * elapsed
 		else
@@ -390,7 +396,7 @@ Sprite = Class:extend
 				end
 			end
 		end
-
+		
 		if acc.y and acc.y ~= 0 then
 			vel.y = vel.y + acc.y * elapsed
 		else
@@ -404,7 +410,7 @@ Sprite = Class:extend
 				end
 			end
 		end
-
+		
 		if acc.rotation and acc.rotation ~= 0 then
 			vel.rotation = vel.rotation + acc.rotation * elapsed
 		else
@@ -425,7 +431,7 @@ Sprite = Class:extend
 		if maxVel.y and vel.y > maxVel.y then vel.y = maxVel.y end
 		if minVel.rotation and vel.rotation < minVel.rotation then vel.rotation = minVel.rotation end
 		if maxVel.rotation and vel.rotation > maxVel.rotation then vel.rotation = maxVel.rotation end
-
+		
 		if self.onUpdate then self:onUpdate(elapsed) end
 	end,
 

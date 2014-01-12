@@ -1,5 +1,3 @@
-local Assets = require 'helpers.asset_helper'
-
 --
 -- Class: ShopHelper
 -- Prepare local data table for modification
@@ -35,10 +33,10 @@ local ShopHelper = {
     -- Method: init
     -- Set up a temporary data table.
     --
-    init = function ( self, shopID )
+    init = function ( self )
         self.data = {}
-        self:item(shopID)
-        self:equipment(shopID)
+        self:item()
+        self:equipment()
         -- table_print(self.data)
         return self.data
     end,
@@ -47,14 +45,14 @@ local ShopHelper = {
     -- Method: item
     -- Insert items from shop into data table.
     --
-    item = function ( self, shopID )
-        if Assets:get('shop', shopID, 'items') then
-            for i,v in ipairs(Assets:get('shop', shopID, 'items')) do
-                local items = Assets:get('items', v)
-                items['key'] = v
-                items['ikind'] = 'items'
-                table.insert(self.data, items)
-            end
+    item = function ( self )
+        local map = the.app.view.mapName
+        local conf = require('assets.maps.' .. map  ..'.config')
+        for i,v in ipairs(conf.shop.items) do
+            local items = items[v]
+            items['key'] = v
+            items['ikind'] = 'items'
+            table.insert(self.data, items)
         end
     end,
 
@@ -62,14 +60,14 @@ local ShopHelper = {
     -- Method: equipment
     -- Insert equipment from shop into data table.
     --
-    equipment = function ( self, shopID )
-        if Assets:get('shop', shopID, 'equipment') then
-            for i,v in ipairs(Assets:get('shop', shopID, 'equipment')) do
-                local equipment = Assets:get('equipment', v)
-                equipment['key'] = v
-                equipment['ikind'] = 'equipment'
-                table.insert(self.data, equipment)
-            end
+    equipment = function ( self )
+        local map = the.app.view.mapName
+        local conf = require('assets.maps.' .. map  ..'.config')
+        for i,v in ipairs(conf.shop.equipment) do
+            local equipment = equipment[v]
+            equipment['key'] = v
+            equipment['ikind'] = 'equipment'
+            table.insert(self.data, equipment)
         end
     end,
 
@@ -82,15 +80,15 @@ local ShopHelper = {
     --      ID - ID of item/equipment
     --
     buy = function ( self, ikind, ID )
-        if STATE.inventory.gold >= Assets:get(ikind, ID, 'cost') then
+        if STATE.inventory.gold >= _G[ikind][ID]['cost'] then
             -- Update inventory
-            Assets:putInventory(ikind, ID)
+            Event:putInventory(ikind, ID)
             -- Update gold
-            STATE.inventory.gold = STATE.inventory.gold - Assets:get(ikind, ID, 'cost')
-            log:add('purchased ' .. Assets:get(ikind, ID, 'name') .. ' from "' .. STATE.conf.map .. '"')
+            STATE.inventory.gold = STATE.inventory.gold - _G[ikind][ID]['cost']
+            -- log:add('purchased ' .. Assets:get(ikind, ID, 'name') .. ' from "' .. STATE.conf.map .. '"')
         else
             print('no gold')
-            log:add('no gold to purchase ' .. Assets:get(ikind, ID, 'name') .. ' from "' .. STATE.conf.map .. '"')
+            -- log:add('no gold to purchase ' .. Assets:get(ikind, ID, 'name') .. ' from "' .. STATE.conf.map .. '"')
             return false
         end
     end,

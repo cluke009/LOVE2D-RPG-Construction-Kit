@@ -1,5 +1,5 @@
--- Class: App 
--- An app is where all the magic happens. :) It contains a 
+-- Class: App
+-- An app is where all the magic happens. :) It contains a
 -- view, the group where all major action happens, as well as the
 -- meta view, which persists across views. Only one app may run at
 -- a time.
@@ -7,7 +7,7 @@
 -- An app's job is to get things up and running -- most of its logic
 -- lives in its onRun handler, but for a simple app, you can also
 -- use the onUpdate handler instead of writing a custom <View>.
--- 
+--
 -- Once an app has begun running, it may be accessed globally via
 -- <the>.app.
 --
@@ -28,21 +28,21 @@ App = Class:extend
 	-- Property: name
 	-- This is shown in the window title bar.
 	name = 'Zoetrope',
-	
+
 	-- Property: icon
 	-- A path to an image to use as the window icon (a 32x32 PNG is recommended).
-	-- This doesn't affect the actual executable's icon in the taskbar or dock. 
+	-- This doesn't affect the actual executable's icon in the taskbar or dock.
 
 	-- Property: fps
 	-- Maximum frames per second requested. In practice, your
 	-- FPS may vary from frame to frame. Every event handler (e.g. onUpdate)
 	-- is passed the exact elapsed time in seconds.
 	fps = 60,
-	
+
 	-- Property: timeScale
 	-- Multiplier for elapsed time; 1.0 is normal, 0 is completely frozen.
 	timeScale = 1,
-	
+
 	-- Property: active
 	-- If false, nothing receives update-related events, including the meta view.
 	-- These events specifically are onStartFrame, onUpdate, and onEndFrame.
@@ -52,7 +52,7 @@ App = Class:extend
 	-- Should the app automatically set its active property to false when its
 	-- window loses focus?
 	deactivateOnBlur = true,
-	
+
 	-- Property: view
 	-- The current <View>. When the app is running, this is also accessible
 	-- globally via <the>.view. In order to switch views, you must set this
@@ -99,16 +99,16 @@ App = Class:extend
 		obj = self:extend(obj)
 
 		-- set icon if possible
-		
+
 		if self.icon then
-			love.graphics.setIcon(Cached:image(self.icon))
+			love.window.setIcon(Cached:image(self.icon))
 		end
-	
+
 		-- view containers
 
-		obj.meta = obj.meta or Group:new()
-		obj.view = obj.view or View:new()		
-		
+		obj.meta = obj.meta or View:new()
+		obj.view = obj.view or View:new()
+
 		-- input
 
 		if love.keyboard then
@@ -136,10 +136,11 @@ App = Class:extend
 
 		-- screen dimensions and state
 
-		obj.width, obj.height, obj.fullscreen = love.graphics.getMode()
+		obj.width, obj.height, obj.windowflags = love.window.getMode()
+		obj.fullscreen = obj.windowflags.fullscreen
 
 		-- housekeeping
-		
+
 		the.app = obj
 		if obj.onNew then obj:onNew() end
 		return obj
@@ -150,7 +151,7 @@ App = Class:extend
 	--
 	-- Arguments:
 	-- 		none
-	-- 
+	--
 	-- Returns:
 	--		nothing
 
@@ -164,21 +165,20 @@ App = Class:extend
 		-- attach debug console
 
 		if DEBUG then
-			self.console = DebugConsole:new()
-			self.meta:add(self.console)
+			debugger.init()
 		end
 
 		-- set up callbacks
-		
-		love.graphics.setCaption(self.name)
+
+		love.window.setTitle(self.name)
 		love.update = function (elapsed) self:update(elapsed) end
 		love.draw = function() self:draw() end
-		love.focus = function (value) self:onFocus(value) end	
+		love.focus = function (value) self:onFocus(value) end
 
 		if self.onRun then self:onRun() end
-		self._nextFrameTime = love.timer.getMicroTime()
+		self._nextFrameTime = love.timer.getTime()
 	end,
-	
+
 	-- Method: quit
 	-- Quits the application immediately.
 	--
@@ -200,7 +200,7 @@ App = Class:extend
 	--
 	-- Returns:
 	--		nothing
-	
+
 	useSysCursor = function (self, value)
 		if STRICT then
 			assert(value == true or value == false,
@@ -228,7 +228,7 @@ App = Class:extend
 			assert(not self.fullscreen, 'asked to enter fullscreen when already in fullscreen')
 		end
 
-		local modes = love.graphics.getModes()
+		local modes = love.window.getFullscreenModes()
 
 		if not hint then
 			if self.width * 9 == self.height * 16 then
@@ -246,7 +246,7 @@ App = Class:extend
 		for _, mode in pairs(modes) do
 			mode.area = mode.width * mode.height
 
-			if (mode.area > bestMode.area) and 
+			if (mode.area > bestMode.area) and
 			   ((hint == 'letterbox' and mode.width == self.width) or
 			    (hint == 'pillar' and mode.height == self.height)) then
 					bestMode = mode
@@ -256,7 +256,7 @@ App = Class:extend
 		-- if we found a match, switch to it
 
 		if bestMode.width then
-			love.graphics.setMode(bestMode.width, bestMode.height, true)
+			love.window.setMode(bestMode.width, bestMode.height, {fullscreen = true})
 			self.fullscreen = true
 
 			-- and adjust inset and scissor
@@ -284,8 +284,8 @@ App = Class:extend
 		if STRICT then
 			assert(self.fullscreen, 'asked to exit fullscreen when already out of fullscreen')
 		end
-	
-		love.graphics.setMode(self.width, self.height, false)
+
+		love.window.setMode(self.width, self.height, {fullscreen = false})
 		love.graphics.setScissor(0, 0, self.width, self.height)
 		self.fullscreen = false
 		self.inset.x = 0
@@ -335,12 +335,12 @@ App = Class:extend
 	--
 	-- Arguments:
 	--		sprite - sprite to add
-	-- 
+	--
 	-- Returns:
-	--		nothing
+	--		sprite added
 
 	add = function (self, sprite)
-		self.view:add(sprite)
+		return self.view:add(sprite)
 	end,
 
 	-- Method: remove
@@ -365,7 +365,7 @@ App = Class:extend
 		elapsed = elapsed * self.timeScale
 
 		-- sync the.view with our current view
-		
+
 		local view = self.view
 		if the.view ~= view then the.view = view end
 
@@ -381,13 +381,13 @@ App = Class:extend
 
 		-- update everyone
 		-- all update events bubble up from child to parent
-		-- (we consider the meta view a little 
+		-- (we consider the meta view a little
 
 		view:startFrame(elapsed)
 		self.meta:startFrame(elapsed)
 		if self.onStartFrame then self:onStartFrame(elapsed) end
-		
-		view:update(elapsed)	
+
+		view:update(elapsed)
 		self.meta:update(elapsed)
 		if self.onUpdate then self:onUpdate(elapsed) end
 
@@ -395,7 +395,7 @@ App = Class:extend
 		self.meta:endFrame(elapsed)
 		if self.onEndFrame then self:onEndFrame(elapsed) end
 	end,
-	
+
 	draw = function (self)
 		local inset = self.inset.x ~= 0 or self.inset.y ~= 0
 
@@ -406,7 +406,7 @@ App = Class:extend
 
 		-- sleep off any unneeded time to keep up at our FPS
 
-		local now = love.timer.getMicroTime()
+		local now = love.timer.getTime()
 
 		if self._nextFrameTime < now then
 			self._nextFrameTime = now
@@ -436,6 +436,6 @@ App = Class:extend
 			result = result .. 'inactive'
 		end
 
-		return result .. ', ' .. self.fps .. ' fps, ' .. self.view:count(true) .. ' sprites)'
+		return result .. ', ' .. tostring(self.fps) .. ' fps, ' .. self.view:count(true) .. ' sprites)'
 	end
 }

@@ -22,17 +22,20 @@ end
 
 -- draw window
 function draw.window(x, y, w, h)
-    lg.setColor({0, 0, 0, 64})
-    lg.rectangle('fill', x, y + 4, w, h - 4)
-    lg.setColor(arc.col.window)
-    lg.rectangle('fill', x + 1, y + 4, w - 2, h - 5)
-    lg.setLine(1, 'rough')
-    lg.setColor({40, 40, 40})
-    lg.rectangle('fill', x, y, w, 4)
+    -- lg.setColor({0, 0, 0, 64})
+    -- lg.rectangle('fill', x, y + 4, w, h - 4)
     lg.setColor(arc.col.white)
-    lg.line(x + 1, y + 1, x + w - 1, y + 1)
-    lg.setColor(arc.col.gray)
-    lg.line(x + 1, y + 2, x + w - 1, y + 2)
+    lg.rectangle('line', x + 1, y + 1, w , h )
+    lg.setColor(arc.col.window)
+    lg.rectangle('fill', x + 1, y + 1, w - 2, h - 1)
+    -- lg.setLineWidth(1)
+    -- lg.setLineStyle('rough')
+    -- lg.setColor({40, 40, 40})
+    -- lg.rectangle('fill', x, y, w, 4)
+    -- lg.setColor(arc.col.white)
+    -- lg.line(x + 1, y + 1, x + w - 1, y + 1)
+    -- lg.setColor(arc.col.gray)
+    -- lg.line(x + 1, y + 2, x + w - 1, y + 2)
 end
 
 -- window animation

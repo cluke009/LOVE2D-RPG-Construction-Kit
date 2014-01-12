@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="28" height="26" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="BlackAndWhite" tilewidth="32" tileheight="32">
+  <image source="../img/BlackAndWhite.png" width="320" height="32"/>
+  <tile id="0">
+   <properties>
+    <property name="solid" value="true"/>
+   </properties>
+  </tile>
+  <tile id="1">
+   <properties>
+    <property name="solid" value="false"/>
+   </properties>
+  </tile>
+  <tile id="9">
+   <properties>
+    <property name="solid" value="false"/>
+   </properties>
+  </tile>
+ </tileset>
+ <tileset firstgid="11" name="Sewer TileA2" tilewidth="32" tileheight="32">
+  <image source="../img/Sewer TileA2.png" trans="ff00ff" width="512" height="384"/>
+ </tileset>
+ <tileset firstgid="203" name="Exterior_Walls_TileE" tilewidth="32" tileheight="32">
+  <image source="../img/Exterior_Walls_TileE.png" trans="ff00ff" width="512" height="512"/>
+ </tileset>
+ <layer name="Copy of map" width="28" height="26">
+  <data encoding="base64" compression="zlib">
+   eJyTZWBg0AViPSCWA2JZGvNhbHrRskjuoAeti8TWowOf1vE1Gn+j8Tcaf6PxNxp/o/E3Gn+j8Tcaf6TRAAOia4U=
+  </data>
+ </layer>
+ <layer name="map" width="28" height="26">
+  <data encoding="base64" compression="zlib">
+   eJzd020KQCEIRFHd/6bfCnrdGRTDgX4E1pE+MiJyYJxC6rs9pa8tnupWedSk9TSveQlrX/VID93Z5Kn/3+nBNbo9sm6rp6Tau/VQ+SZIfbd3mrvn82cRj+7jerdMes5dT3nK+ACuwAFx
+  </data>
+ </layer>
+ <objectgroup name="objects" width="28" height="26">
+  <object name="Door" x="384" y="800" width="96" height="32">
+   <properties>
+    <property name="to" value="earth2, 17, 1"/>
+   </properties>
+  </object>
+  <object name="Door" x="64" y="512" width="64" height="64">
+   <properties>
+    <property name="to" value="earth1, 22, 12"/>
+   </properties>
+  </object>
+  <object name="Obj" x="128" y="96" width="32" height="32">
+   <properties>
+    <property name="event" value="1"/>
+    <property name="id" value="22"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <layer name="Tile Layer 2" width="28" height="26">
+  <data encoding="base64" compression="zlib">
+   eJzdlcENwzAIRVml3aDZf5O2EziZoK1Uc0CyfsCA5eQQJKSI/PgZQzAR0bP6y/A37Q31mqZnJfGOWRvEPklmhmdpe2scweMco2c7g9dyPWaUp9VuhKn1BJ/NCuufXaNZPMx/Bk/6x/pPC2i/1X+gj9SuZ8V4PsquxNNmclsPr75ZhlVrbR/CyeYc0WsaiWVmYpZ3q36HmOQe/Q8yvEf1BWJnnSefI85ONs43M4dHNcLaHL0199s+jPIK7e8jzNe7u0qQZ+WG30s/a7UQfeY+9nieRftwNk+bZdrcm8Ub1Us9tLvS2vcfsYCuLA==
+  </data>
+ </layer>
+</map>

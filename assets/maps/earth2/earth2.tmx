@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="30" height="20" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="BlackAndWhite" tilewidth="32" tileheight="32">
+  <image source="../img/BlackAndWhite.png" width="320" height="32"/>
+  <tile id="0">
+   <properties>
+    <property name="solid" value="true"/>
+   </properties>
+  </tile>
+  <tile id="9">
+   <properties>
+    <property name="solid" value="false"/>
+   </properties>
+  </tile>
+ </tileset>
+ <tileset firstgid="11" name="Sewer TileA2" tilewidth="32" tileheight="32">
+  <image source="../img/Sewer TileA2.png" trans="ff00ff" width="512" height="384"/>
+ </tileset>
+ <tileset firstgid="203" name="Exterior_Castle_TileD" tilewidth="32" tileheight="32">
+  <image source="../img/Exterior_Castle_TileD.png" trans="ff00ff" width="512" height="512"/>
+ </tileset>
+ <tileset firstgid="459" name="Exterior_Walls_TileE" tilewidth="32" tileheight="32">
+  <image source="../img/Exterior_Walls_TileE.png" trans="ff00ff" width="512" height="512"/>
+ </tileset>
+ <tileset firstgid="715" name="HF1_Dungeon_3" tilewidth="32" tileheight="32">
+  <image source="../img/HF1_Dungeon_3.png" trans="ff00ff" width="512" height="512"/>
+ </tileset>
+ <layer name="Tile Layer 2" width="30" height="20">
+  <data encoding="base64" compression="zlib">
+   eJyTZWBgkANiWTrTukhsPTryZaFsPST30IMPExNEcg89aHrH60iPX3rTo/E7Gr+j8Tsav6PxOzjjFwAnw1e/
+  </data>
+ </layer>
+ <layer name="Tile Layer 3" width="30" height="20">
+  <data encoding="base64" compression="zlib">
+   eJzVk0kOACAIA+H/n/bk0aUZQGzCsUwFdDNzWFPES/SKq7KzMt966X6j5rDqSXZE8nf0qrNS5kV29QOX/rdIrsLuyj3d4CkX4e7edatXXCVTJ65yAxXcrKrgDko+AVY=
+  </data>
+ </layer>
+ <layer name="map" width="30" height="20">
+  <data encoding="base64" compression="zlib">
+   eJzNllkKhTAMReMqXXx1BX1vBRWxgoESkjTX9sNAQTrck6EpEhGlhWh7Of51sOXmO2LofstK1dnrWB+91dFNwucZbM7F7ujKWNGce9qeD6WZk7FbPrQa0RoV5ew9dzxMZv2c/OcX3N7+iE5WfO7l3NLnOCN3zPIt4oM8i+Qrsler5yi3BHOq6Z4AN3X6AOEi8d5r2jp6B2dxrRoiHC9vFlfyI++K5b/G7nE1He4n2ZfIu4FyPfsyt33DOHfRvh3hWneAazf6f4JwZ9kFGoKdtQ==
+  </data>
+ </layer>
+ <objectgroup name="objects" width="30" height="20">
+  <object name="Door" x="160" y="608" width="64" height="32">
+   <properties>
+    <property name="to" value="earth1, 2, 1"/>
+   </properties>
+  </object>
+  <object name="Door" x="544" y="0" width="64" height="32">
+   <properties>
+    <property name="to" value="earth3, 12, 24"/>
+   </properties>
+  </object>
+  <object name="Obj" x="64" y="96" width="32" height="32">
+   <properties>
+    <property name="event" value="1"/>
+    <property name="id" value="23"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>

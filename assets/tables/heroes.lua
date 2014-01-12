@@ -87,6 +87,9 @@ return
 {
     [1] = {
         name = 'Anime Guy',
+        width = 32,
+        height = 32,
+        image = 'assets/img/spritetest.png',
         stats = {
             level = 1,
             hp = 100,
@@ -107,27 +110,21 @@ return
             [1] = 'assets/img/AnimeGuy.png',
             [2] = '',
         },
-        img = {
-            width = 32,
-            height = 32,
+        sequences = {
             -- Walk
             up = {
-                image = 'assets/img/spritetest.png',
                 frames = { 5,6 },
                 fps = 7
             },
             down = {
-                image = 'assets/img/spritetest.png',
                 frames = { 1,2 },
                 fps = 7
             },
             left = {
-                image = 'assets/img/spritetest.png',
                 frames = { 3,4 },
                 fps = 7
             },
             right = {
-                image = 'assets/img/spritetest.png',
                 frames = { 7,8 },
                 fps = 7
             },
@@ -136,6 +133,9 @@ return
     },
     [2] = {
         name = 'The Woodsman',
+        width = 64,
+        height = 64,
+        image = 'assets/img/goldarmor.png',
         stats = {
             level = 2,
             hp = 200,
@@ -156,35 +156,32 @@ return
             [1] = 'assets/img/Woodsman.png',
             [2] = '',
         },
-        img = {
-            width = 64,
-            height = 64,
+        sequences = {
             -- Walk
             left = {
-                image = 'assets/img/goldarmor.png',
                 frames = { 10,11,12,13,14,15,16,17,18, },
                 fps = 25
             },
             right = {
-                image = 'assets/img/goldarmor.png',
                 frames = { 28,29,30,31,32,33,34,35,36 },
                 fps = 25
             },
             up = {
-                image = 'assets/img/goldarmor.png',
                 frames = { 1, 2, 3, 4, 5, 6, 7, 8, 9, },
                 fps = 25
             },
             down = {
-                image = 'assets/img/goldarmor.png',
                 frames = { 19,20,21,22,23,24,25,26,27 },
                 fps = 25
             },
         },
-        active = true
+        active = false
     },
     [3] = {
         name = 'The Fairy',
+        width = 64,
+        height = 64,
+        image = 'assets/img/mage.png',
         stats = {
             level = 1,
             hp = 200,
@@ -207,35 +204,32 @@ return
             [3] = 'assets/img/Querina3.png',
             [4] = 'assets/img/Querina4.png',
         },
-        img = {
-            width = 64,
-            height = 64,
+        sequences = {
             -- Walk
             left = {
-                image = 'assets/img/mage.png',
                 frames = { 10,11,12,13,14,15,16,17,18, },
                 fps = 25
             },
             right = {
-                image = 'assets/img/mage.png',
                 frames = { 28,29,30,31,32,33,34,35,36 },
                 fps = 25
             },
             up = {
-                image = 'assets/img/mage.png',
                 frames = { 1, 2, 3, 4, 5, 6, 7, 8, 9, },
                 fps = 25
             },
             down = {
-                image = 'assets/img/mage.png',
                 frames = { 19,20,21,22,23,24,25,26,27 },
                 fps = 25
             },
         },
-        active = true
+        active = false
     },
     [4] = {
         name = 'Princess',
+        width = 64,
+        height = 64,
+        image = 'assets/img/princess.png',
         stats = {
             level = 1,
             hp = 200,
@@ -252,12 +246,10 @@ return
             int = 24,
             wis = 24,
         },
-        img = {
-            width = 64,
-            height = 64,
+        sequences = {
             -- Walk
             left = {
-                image = 'assets/img/princess.png',
+
                 frames = { 10,11,12,13,14,15,16,17,18, },
                 fps = 25
             },

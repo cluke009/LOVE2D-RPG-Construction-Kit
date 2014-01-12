@@ -32,7 +32,7 @@ Tile = Sprite:extend
 		obj = obj or {}
 		self:extend(obj)
 		obj._set.imageOffset = {}
-
+		
 		if obj.image then obj:updateQuad() end
 		if obj.onNew then obj:onNew() end
 		return obj
@@ -59,7 +59,7 @@ Tile = Sprite:extend
 
 		x = math.floor(x or self.x)
 		y = math.floor(y or self.y)
-
+	
 		if STRICT then
 			assert(type(x) == 'number', 'visible tile does not have a numeric x property')
 			assert(type(y) == 'number', 'visible tile does not have a numeric y property')
@@ -68,7 +68,7 @@ Tile = Sprite:extend
 		end
 
 		if not self.image then return end
-
+		
 		-- set color if needed
 
 		local colored = self.alpha ~= 1 or self.tint[1] ~= 1 or self.tint[2] ~= 1 or self.tint[3] ~= 1
@@ -78,33 +78,35 @@ Tile = Sprite:extend
 		end
 
 		-- if the source image or offset has changed, we need to recreate our quad
-
+		
 		if self.image and (self.image ~= self._set.image or
 		   self.imageOffset.x ~= self._set.imageOffset.x or
 		   self.imageOffset.y ~= self._set.imageOffset.y) then
 			self:updateQuad()
 		end
-
+		
 		-- draw the quad
 		local scaleX = self.scale * self.distort.x
 		local scaleY = self.scale * self.distort.y
+		local origX = self.origin.x or (self.width / 2)
+		local origY = self.origin.y or (self.height / 2)
 
 		if self.flipX then scaleX = scaleX * -1 end
 		if self.flipY then scaleY = scaleY * -1 end
 
-		love.graphics.drawq(self._imageObj, self._quad, x + self.width / 2, y + self.height / 2, self.rotation,
-							scaleX, scaleY, self.width / 2, self.height / 2)
-
+		love.graphics.draw(self._imageObj, self._quad, x + origX, y + origY, self.rotation,
+							scaleX, scaleY, origX, origY)
+		
 		-- reset color
-
+		
 		if colored then
 			love.graphics.setColor(255, 255, 255, 255)
 		end
 	end,
 
 	__tostring = function (self)
-		local result = 'Tile (x: ' .. self.x .. ', y: ' .. self.y ..
-					   ', w: ' .. self.width .. ', h: ' .. self.height .. ', '
+		local result = 'Tile (x: ' .. tostring(self.x) .. ', y: ' .. tostring(self.y) ..
+					   ', w: ' .. tostring(self.width) .. ', h: ' .. tostring(self.height) .. ', '
 
 		result = result .. 'image \'' .. self.image .. '\', '
 

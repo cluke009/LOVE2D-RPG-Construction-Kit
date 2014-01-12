@@ -34,6 +34,13 @@ Keys = Sprite:extend
 
 	_thisFrame = {},
 
+	-- private property: _alreadyHandled
+	-- was the key already processed by the user code since it was pressed?
+	-- Useful for handling repeated keys, check <pressed> and then you can see
+	-- if the key was repeated.
+
+	_alreadyHandled = {},
+
 	-- private property: _lastFrame
 	-- what keys were pressed last frame
 	
@@ -44,6 +51,7 @@ Keys = Sprite:extend
 		the.keys = obj
 		love.keypressed = function (key, unicode) obj:keyPressed(key, unicode) end
 		love.keyreleased = function (key, unicode) obj:keyReleased(key, unicode) end
+		love.textinput = function (text) obj:textInput(text) end
 		if obj.onNew then obj:onNew() end
 		return obj
 	end,
@@ -204,6 +212,20 @@ Keys = Sprite:extend
 		return unpack(result)
 	end,
 
+	-- Method: alreadyHandled
+	-- Returns whether this key was already handled since it was pressed.
+	-- Also sets the flag that something was handled, when calling.
+
+	alreadyHandled = function (self, key)
+		if not self._alreadyHandled[key] then
+			-- mark preemptively as handled
+			self._alreadyHandled[key] = true
+			-- return false, because we need to handle it
+			return false
+		end
+		return true
+	end,
+
 	-- Converts a character code to a Unicode string
 	-- see http://stackoverflow.com/questions/7780179/what-is-the-way-to-represent-a-unichar-in-lua/7799843
 
@@ -217,11 +239,13 @@ Keys = Sprite:extend
 
 	-- Connects to the love.keypressed callback
 
-	keyPressed = function (self, key, unicode)
+	keyPressed = function (self, key, isrepeat)
 		self._thisFrame[key] = true
-		if unicode and unicode >= 0x20 and unicode ~= 127 and unicode < 0x3000 then
-			self.typed = self.typed .. self:unicodeChar(unicode)
-		end
+
+		self._alreadyHandled[key] = false
+		--if unicode and unicode >= 0x20 and unicode ~= 127 and unicode < 0x3000 then
+		--	self.typed = self.typed .. self:unicodeChar(unicode)
+		--end
 
 		-- aliases for modifiers
 
@@ -232,6 +256,12 @@ Keys = Sprite:extend
 		   key == 'rsuper' or key == 'lsuper' then
 			self._thisFrame[string.sub(key, 2)] = true
 		end
+	end,
+
+	-- Connects to the love.textinput callback
+
+	textInput = function (self, text)
+		self.typed = self.typed .. text
 	end,
 
 	-- Connects to the love.keyreleased callback

@@ -7,11 +7,12 @@
 -- Event: onEndSequence
 -- Called whenever an animation sequence ends. It is passed the name
 -- of the sequence that just ended.
--- 
+--
 -- Extends:
 --		<Sprite>
 
-Animation = Sprite:extend{
+Animation = Sprite:extend
+{
 	-- Property: paused
 	-- Set this to true to freeze the animation on the current frame.
 	paused = false,
@@ -62,7 +63,7 @@ Animation = Sprite:extend{
 		return obj
 	end,
 
-	-- Method: play 
+	-- Method: play
 	-- Begins playing an animation in the sprite's library.
 	-- If the animation is already playing, this has no effect.
 	--
@@ -76,9 +77,9 @@ Animation = Sprite:extend{
 		if self.currentName == name and not self.paused then
 			return
 		end
-		
+
 		assert(self.sequences[name], 'no animation sequence named "' .. name .. '"')
-		
+
 		self.currentName = name
 		self.currentSequence = self.sequences[name]
 		self.frameIndex = 0
@@ -101,7 +102,7 @@ Animation = Sprite:extend{
 		if self.currentSequence then
 			index = index or self.currentSequence[self.frameIndex]
 		end
-		
+
 		index = index or self.currentFrame or 1
 
 		if self._set.image ~= self.image then
@@ -124,7 +125,7 @@ Animation = Sprite:extend{
 	--		nothing
 
 	updateQuad = function (self)
-		if self.image then 
+		if self.image then
 			self._imageObj = Cached:image(self.image)
 			if not self.width then self.width = self._imageObj:getHeight() end
 			if not self.height then self.height = self.width end
@@ -165,7 +166,7 @@ Animation = Sprite:extend{
 
 		if self.currentSequence and not self.paused then
 			self.frameTimer = self.frameTimer - elapsed
-			
+
 			if self.frameTimer <= 0 then
 				self.frameIndex = self.frameIndex + 1
 
@@ -201,13 +202,13 @@ Animation = Sprite:extend{
 		end
 
 		if not self.visible or not self.image or self.alpha <= 0 then return end
-		
+
 		-- if our image changed, update the quad
-		
+
 		if self._set.image ~= self.image then
 			self:updateQuad()
 		end
-		
+
 		-- set color if needed
 
 		local colored = self.alpha ~= 1 or self.tint[1] ~= 1 or self.tint[2] ~= 1 or self.tint[3] ~= 1
@@ -223,26 +224,29 @@ Animation = Sprite:extend{
 
 		if self.flipX then scaleX = scaleX * -1 end
 		if self.flipY then scaleY = scaleY * -1 end
-			
-		love.graphics.drawq(self._imageObj, self._quad, x + self.width / 2, y + self.height / 2, self.rotation,
-							scaleX, scaleY, self.width / 2, self.height / 2)
-		
+
+		local origX = self.origin.x or (self.width / 2)
+		local origY = self.origin.y or (self.height / 2)
+
+		love.graphics.draw(self._imageObj, self._quad, x + origX, y + origY, self.rotation,
+							scaleX, scaleY, origX, origY)
+
 		-- reset color
-		
+
 		if colored then
 			love.graphics.setColor(255, 255, 255, 255)
 		end
 	end,
 
 	__tostring = function (self)
-		local result = 'Animation (x: ' .. self.x .. ', y: ' .. self.y ..
-					   ', w: ' .. self.width .. ', h: ' .. self.height .. ', '
+		local result = 'Animation (x: ' .. tostring(self.x) .. ', y: ' .. tostring(self.y) ..
+					   ', w: ' .. tostring(self.width) .. ', h: ' .. tostring(self.height) .. ', '
 
 		if self.currentName then
 			result = result .. 'playing ' .. self.currentName .. ', '
 		end
 
-		result = result .. ' frame ' .. self.currentFrame .. ', '
+		result = result .. ' frame ' .. tostring(self.currentFrame) .. ', '
 
 		if self.active then
 			result = result .. 'active, '

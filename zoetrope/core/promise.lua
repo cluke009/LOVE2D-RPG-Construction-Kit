@@ -209,16 +209,25 @@ Promise = Class:extend
 		if results and type(results[1]) == 'table' and results[1].instanceOf and results[1]:instanceOf(Promise) then
 			results[1]:andThen(function(...) self:fulfill(...) end, function(errorMessage) self:fail(errorMessage) end)
 
-		-- if the callback returned a regular value, fulfill the promise
 
 		elseif callback and results then
-			if #results > 1 then
-				self:fulfill(unpack(results))
+			-- fulfill or progress the promise as requested, with the returned value(s)
+			-- (note simulated colon calling syntax)
+
+			if defaultAction ~= 'fail' then
+				if #results > 1 then
+					self[defaultAction](self, unpack(results))
+				else
+					self[defaultAction](self, results[1])
+				end
 			else
-				self:fulfill(results[1])
+				-- force failures to receive the same error message we did
+
+				local args = {...}
+				self:fail(args[1])
 			end
 
-		-- if there was any kind of error, fail
+		-- and if there was any kind of error, force failure
 
 		elseif errorMessage then
 			self:fail(errorMessage)

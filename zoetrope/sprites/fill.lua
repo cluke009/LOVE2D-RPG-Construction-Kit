@@ -37,11 +37,14 @@ Fill = Sprite:extend{
 		local scaleY = self.scale * self.distort.y
 
 		if scaleX ~= 1 or scaleY ~= 1 or self.rotation ~= 0 then
+			local origX = self.origin.x or (self.width / 2)
+			local origY = self.origin.y or (self.height / 2)
+
 			love.graphics.push()
-			love.graphics.translate(x + self.width / 2, y + self.height / 2)
+			love.graphics.translate(x + origX, y + origY)
 			love.graphics.scale(scaleX, scaleY)
 			love.graphics.rotate(self.rotation)
-			love.graphics.translate(- (x + self.width / 2), - (y + self.height / 2))
+			love.graphics.translate(- (x + origX), - (y + origY))
 		end
 		
 		-- draw fill and border
@@ -78,8 +81,8 @@ Fill = Sprite:extend{
 	end,
 
 	__tostring = function (self)
-		local result = 'Fill (x: ' .. self.x .. ', y: ' .. self.y ..
-					   ', w: ' .. self.width .. ', h: ' .. self.height .. ', '
+		local result = 'Fill (x: ' .. tostring(self.x) .. ', y: ' .. tostring(self.y) ..
+					   ', w: ' .. tostring(self.width) .. ', h: ' .. tostring(self.height) .. ', '
 
 		if self.fill then
 			result = result .. 'fill {' .. table.concat(self.fill, ', ') .. '}, '

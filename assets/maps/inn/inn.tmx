@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="24" height="12" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="BlackAndWhite" tilewidth="32" tileheight="32">
+  <image source="../img/BlackAndWhite.png" width="320" height="32"/>
+  <tile id="0">
+   <properties>
+    <property name="solid" value="true"/>
+   </properties>
+  </tile>
+  <tile id="3">
+   <properties>
+    <property name="solid" value="true"/>
+   </properties>
+  </tile>
+  <tile id="6">
+   <properties>
+    <property name="solid" value="false"/>
+   </properties>
+  </tile>
+  <tile id="9">
+   <properties>
+    <property name="solid" value="false"/>
+   </properties>
+  </tile>
+ </tileset>
+ <tileset firstgid="11" name="TileA4" tilewidth="32" tileheight="32">
+  <image source="../img/TileA4.png" trans="ff00ff" width="512" height="480"/>
+ </tileset>
+ <tileset firstgid="251" name="TileA5" tilewidth="32" tileheight="32">
+  <image source="../img/TileA5.png" trans="ff00ff" width="256" height="512"/>
+ </tileset>
+ <tileset firstgid="379" name="TileD" tilewidth="32" tileheight="32">
+  <image source="../img/TileD.png" trans="ff00ff" width="512" height="512"/>
+ </tileset>
+ <tileset firstgid="635" name="expandedAutotile" tilewidth="32" tileheight="32">
+  <image source="../img/expandedAutotile.png" trans="ff00ff" width="256" height="192"/>
+ </tileset>
+ <layer name="map" width="24" height="12">
+  <data encoding="base64" compression="zlib">
+   eJxjZGBgYBzimFaAnuZT6m9scsM1fNDliXXDcA0fctIMLfIWuvnEAAA7kwBz
+  </data>
+ </layer>
+ <layer name="background" width="24" height="12">
+  <data encoding="base64" compression="zlib">
+   eJxjYWBgYKExZqQRppf5sYy0wfQ0P5cMjGwWNrmBcj82NxFjHj7309p8WoYPPuwLxX5QTIpeUvMWC5r5xOgBANfRPqM=
+  </data>
+ </layer>
+ <layer name="Tile Layer 3" width="24" height="12">
+  <data encoding="base64" compression="zlib">
+   eJyrZ2JgmE4j3AzEk4HYkYGBwYmB+nQ31PxAIDuIgfo0zHxaAWTz5zAyMMwlAc9jRDVrDhY5ZPPXAMXWkoDXoZm/BoscsvkvgGIvgfgVkj5sYvgAunpk838AxX4C8S8ks7CJ4QPo6pHN5wDSnEDMhRTf2MTwAXT19Eg/tUDcTySej+SWuUSoryHR7ch+7SZSLwCso1oF
+  </data>
+ </layer>
+ <layer name="foreground" width="24" height="12">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo4By8IKRgeElEL9ixC9GqhmjYHgDADPWCDs=
+  </data>
+ </layer>
+ <objectgroup name="objects" width="24" height="12">
+  <object name="NPC" x="480" y="160" width="32" height="32">
+   <properties>
+    <property name="_the" value="Bartender"/>
+    <property name="id" value="3"/>
+   </properties>
+  </object>
+  <object name="NPC" x="416" y="192" width="32" height="32">
+   <properties>
+    <property name="id" value="8"/>
+   </properties>
+  </object>
+  <object name="Door" x="372" y="374" width="85" height="15">
+   <properties>
+    <property name="to" value="town,18,15"/>
+   </properties>
+  </object>
+  <object name="Obj" x="480" y="160" width="32" height="32">
+   <properties>
+    <property name="event" value="1"/>
+    <property name="id" value="8"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>

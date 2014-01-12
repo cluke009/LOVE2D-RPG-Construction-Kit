@@ -40,7 +40,7 @@ arc_path = string.gsub(arc_path, '%.', '/')
 -- font
 arc.fn = {}
 -- arc.fn.f = lg.newImageFont(arc_path .. '/fonts/font.png', " abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789.,!?-+/():;%&`'*#=[]\"")
-arc.fn.f = lg.newFont(STATE.conf.font[1], STATE.conf.font[2])
+arc.fn.f = lg.newFont('assets/fonts/chary___.ttf', 18)
 arc.fn.h = arc.fn.f:getHeight() + 2
 arc.fn.w = function(s) return arc.fn.f:getWidth(s) end
 lg.setFont(arc.fn.f)

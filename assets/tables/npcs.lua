@@ -23,80 +23,100 @@
 return
 {
     [1] = {
-        name = 'Bartender',
-        image = 'assets/img/barbarian.gif',
-        width = 35,
-        height = 35,
-        portraits = {
-            [1] = 'assets/img/Bartender.png',
-            [2] = '',
-        },
-    },
-    [2] = {
         name = 'Alan',
-        image = 'assets/img/hero.png',
+        image = 'assets/img/Alan.png',
         width = 32,
         height = 32,
         portraits = {
-            [1] = 'assets/img/Alan.png',
+            [1] = 'assets/img/Alan1.png',
             [2] = 'assets/img/Alan2.png',
             [3] = 'assets/img/Alan3.png',
             [4] = 'assets/img/Alan4.png',
         },
     },
-    [3] = {
+    [2] = {
         name = 'Tiffany',
         image = 'assets/img/priest.png',
         width = 32,
         height = 64,
         portraits = {
-            [1] = 'assets/img/Tiffany.png',
+            [1] = 'assets/img/Tiffany1.png',
             [2] = 'assets/img/Tiffany2.png',
             [3] = 'assets/img/Tiffany3.png',
             [4] = 'assets/img/Tiffany4.png',
         },
     },
+    [3] = {
+        name = 'Bartender',
+        image = 'assets/img/barbarian.gif',
+        width = 32,
+        height = 32,
+        portraits = {
+            [1] = 'assets/img/Bartender.png',
+        },
+    },
     [4] = {
+        name = 'Sherman',
+        image = 'assets/img/Sherman.png',
+        width = 32,
+        height = 32,
+        portraits = {
+            [1] = 'assets/img/Sherman1.png',
+            [2] = 'assets/img/Sherman2.png',
+            [3] = 'assets/img/Sherman3.png',
+            [4] = 'assets/img/Sherman4.png',
+        },
+    },
+    [5] = {
+        name = 'Copernicus',
+        image = 'assets/img/Copernicus.png',
+        width = 32,
+        height = 32,
+        portraits = {
+            [1] = 'assets/img/Copernicus1.png',
+            [2] = 'assets/img/Copernicus2.png',
+        },
+    },
+    [6] = {
         name = 'Priestess',
         image = 'assets/img/priestess.png',
         width = 32,
         height = 64
     },
-    [5] = {
+    [7] = {
         name = 'Mayor',
         image = 'assets/img/mayor.png',
         width = 32,
         height = 64
     },
-    [6] = {
-        name = 'Argus',
-        image = 'assets/img/npc.png',
+    [8] = {
+        name = 'WhiskyBill',
+        image = 'assets/img/Bill.png',
         width = 32,
         height = 32
     },
-    [7] = {
+    [9] = {
         name = 'Catarina',
         image = 'assets/img/npc.png',
         width = 32,
         height = 32
     },
-    [8] = {
-        name = 'SouthernGuard',
-        image = 'assets/img/guard.gif',
-        width = 32,
-        height = 32
-    },
-    [9] = {
-        name = 'NorthernGuard',
-        image = 'assets/img/npc.png',
-        width = 32,
-        height = 32
-    },
     [10] = {
+        name = 'SouthernGuard',
+        image = 'assets/img/guardlaxsleep.png',
+        width = 32,
+        height = 32
+    },
+    [11] = {
+        name = 'NorthernGuard',
+        image = 'assets/img/guardlaxsleep.png',
+        width = 32,
+        height = 32
+    },
+    [12] = {
         name = 'earthdragon',
         image = 'assets/img/earth_dragon2.png',
         width = 192,
         height = 128
     },
 }
-
