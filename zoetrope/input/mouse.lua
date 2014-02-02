@@ -7,7 +7,7 @@
 -- Extends:
 --		<Sprite>
 
-ouse = Sprite:extend{
+Mouse = Sprite:extend{
 	visible = false,
 
 	-- private property: _thisFrame

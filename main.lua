@@ -10,7 +10,7 @@ require 'modules.helpers'
 
 -- Tables
 npcs      = require 'assets.tables.npcs'
-objs      = require 'assets.tables.obj'
+objs      = require 'assets.tables.objs'
 items     = require 'assets.tables.items'
 equipment = require 'assets.tables.equipment'
 heroes    = require 'assets.tables.heroes'

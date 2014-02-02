@@ -12,7 +12,7 @@
 -- Extends:
 --		<Sprite>
 
-ap = Sprite:extend
+Map = Sprite:extend
 {
 	-- Constant: NO_SPRITE
 	-- Represents a map entry with no sprite.

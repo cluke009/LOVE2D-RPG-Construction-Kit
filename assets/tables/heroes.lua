@@ -89,7 +89,7 @@ return
         name = 'Anime Guy',
         width = 32,
         height = 32,
-        image = 'assets/img/spritetest.png',
+        image = 'assets/img/heroes/spritetest.png',
         stats = {
             level = 1,
             hp = 1000,
@@ -107,8 +107,7 @@ return
             wis = 24,
         },
         portraits = {
-            [1] = 'assets/img/AnimeGuy.png',
-            [2] = '',
+            [1] = 'assets/img/portraits/AnimeGuy.png',
         },
         sequences = {
             -- Walk
@@ -135,7 +134,7 @@ return
         name = 'The Woodsman',
         width = 64,
         height = 64,
-        image = 'assets/img/goldarmor.png',
+        image = 'assets/img/heroes/Bill.png',
         stats = {
             level = 2,
             hp = 200,
@@ -153,8 +152,7 @@ return
             wis = 24,
         },
         portraits = {
-            [1] = 'assets/img/Woodsman.png',
-            [2] = '',
+            [1] = 'assets/img/portraits/Woodsman.png',
         },
         sequences = {
             -- Walk
@@ -181,7 +179,7 @@ return
         name = 'The Fairy',
         width = 64,
         height = 64,
-        image = 'assets/img/mage.png',
+        image = 'assets/img/heroes/fairy.png',
         stats = {
             level = 1,
             hp = 2000,
@@ -199,10 +197,7 @@ return
             wis = 24,
         },
         portraits = {
-            [1] = 'assets/img/Querina2.png',
-            [2] = 'assets/img/Querina2.png',
-            [3] = 'assets/img/Querina3.png',
-            [4] = 'assets/img/Querina4.png',
+            [1] = 'assets/img/portraits/Querina2.png',
         },
         sequences = {
             -- Walk

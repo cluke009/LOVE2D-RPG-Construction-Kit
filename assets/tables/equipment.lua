@@ -29,7 +29,7 @@
     (begin code)
     [1] = {
         name = 'Speed Boots',
-        image = 'assets/img/sboots.png',
+        image = 'assets/img/equipment/sboots.png',
         width = 64,
         height = 64,
         kind = 'Boots',
@@ -46,7 +46,7 @@ return
 {
     [1] = {
         name = 'ULTIMA WEAP',
-        image = 'assets/img/sweater.png',
+        image = 'assets/img/equipment/sweater.png',
         cost = 50,
         width = 64,
         height = 64,
@@ -59,7 +59,7 @@ return
     },
     [2] = {
         name = 'Rusty Shovel',
-        image = 'assets/img/shovel_icon.jpg',
+        image = 'assets/img/equipment/shovel_icon.jpg',
         cost = 50,
         width = 64,
         height = 64,
@@ -73,7 +73,7 @@ return
     },
     [3] = {
         name = 'Warrior Skirt',
-        image = 'assets/img/sboots.png',
+        image = 'assets/img/equipment/sboots.png',
         cost = 50,
         width = 64,
         height = 64,
@@ -87,7 +87,7 @@ return
     },
     [4] = {
         name = 'AF Ones',
-        image = 'assets/img/rifle.png',
+        image = 'assets/img/equipment/rifle.png',
         cost = 50,
         width = 64,
         height = 64,
@@ -100,7 +100,7 @@ return
     },
     [5] = {
         name = 'Dragon Sphere',
-        image = 'assets/img/machete.png',
+        image = 'assets/img/equipment/machete.png',
         cost = 50,
         width = 64,
         height = 64,
@@ -113,7 +113,7 @@ return
     },
     [6] = {
         name = 'Seashell Bracelet',
-        image = 'assets/img/machete.png',
+        image = 'assets/img/equipment/machete.png',
         cost = 50,
         width = 64,
         height = 64,

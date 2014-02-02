@@ -3,7 +3,7 @@ Hero = Animation:extend
 {
     width = 32,
     height = 32,
-    image = 'assets/img/spritetest.png',
+    image = 'assets/img/heroes/spritetest.png',
     sequences = {
         down = {
             frames ={1,2},

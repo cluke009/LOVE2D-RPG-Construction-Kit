@@ -23,7 +23,7 @@
     (begin code)
     [1] = {
         name = 'Beer',
-        image = 'assets/img/beer.png',
+        image = 'assets/img/items/beer.png',
         width = 64,
         height = 64,
         desc = 'Max HP + 20, HP + 10',
@@ -40,7 +40,7 @@ return
 {
     [1] = {
         name = 'Zu Zoo Beans',
-        image = 'assets/img/beer.png',
+        image = 'assets/img/items/beer.png',
         cost = 25,
         width = 64,
         height = 64,
@@ -52,7 +52,7 @@ return
     },
     [2] = {
         name = 'Nasty Ale',
-        image = 'img/img/coffee.png',
+        image = 'assets/img/items/coffee.png',
         cost = 50,
         width = 64,
         height = 64,
@@ -63,7 +63,7 @@ return
     },
     [3] = {
         name = 'Fairy Dust',
-        image = 'img/assets/shake.png',
+        image = 'assets/img/items/shake.png',
         cost = 50,
         width = 64,
         height = 64,
@@ -74,7 +74,7 @@ return
     },
     [4] = {
         name = 'Potion',
-        image = 'img/dragon.png',
+        image = 'assets/img/items/dragon.png',
         cost = 100,
         width = 64,
         height = 64,
@@ -85,7 +85,7 @@ return
     },
     [5] = {
         name = 'Phoenix Down',
-        image = 'img/dragon.png',
+        image = 'assets/img/items/dragon.png',
         cost = 200,
         width = 64,
         height = 64,
@@ -96,7 +96,7 @@ return
     },
     [6] = {
         name = 'Golden Key',
-        image = 'img/dragon.png',
+        image = 'assets/img/items/dragon.png',
         cost = 200,
         width = 64,
         height = 64,
