@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="34" height="28" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="GoldenTempleTiles3" tilewidth="32" tileheight="32">
+  <image source="../img/GoldenTempleTiles3.png" width="320" height="384"/>
+ </tileset>
+ <tileset firstgid="121" name="rock face front b" tilewidth="32" tileheight="32">
+  <image source="../img/rock face front b.png" width="512" height="32"/>
+ </tileset>
+ <layer name="map" width="34" height="28">
+  <data encoding="base64" compression="zlib">
+   eJztlUsOwCAIRFl7/wN3axoQGOSTtJOwEcSngi4iWozt4vwei+T6OWZxcOL8HRxk8CNCODJUwSHdRwfHnnMKhxZj7ZcJHBlCGU7xyD642uns2U4OqZemcVjefO//kJHzvSf0DLysGodnjtV3sz6s7Oh4lEPKn1EH2jqWeG38hiK9VqGJHKhVrvUVewDyUhHb
+  </data>
+ </layer>
+ <layer name="floor" width="34" height="28">
+  <data encoding="base64" compression="zlib">
+   eJztVDEOwjAM7CN4ROfOzMwFwQKIwv8/QRgiWadzck6KkFCHk5s0sc9nx/MwDPOGDRv+CpMA7+4I6I1f86FwbOHxub8zdzEvBTWOKo9WHb3asBhqTXri1vpC8T8aTSK6RM5HeLD8SjWPcI70SO0dTOSs9bF3cozw8OrNckI9rgD01dN/tX62/VTqTYVDT4/hzPLmiKK/2vPMJ4tha6DmOMK3XR8ETUoaRd4zO+fdPSacjLXvHDVbawax/VvC3ViM2TJPWEysA75d1IPp8Ex4EdvCx/uPerCeOCdcAlbhg5zsftY/+8vrR8ISsFGNELkO6A81Y9p9A2vP6l/hDW7VETg=
+  </data>
+ </layer>
+ <layer name="background" width="34" height="28">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUjIJRMApGATbgC8R+A+2IIQIsgdhqoB1BYyA0wPb7ALE3EEcisQcCOAGxIxD7I7EHA8gF4nQgzgZimwF0RzkSu2LAXIHqjjQ8akBhlgHEmUhsagI3IC4B4lIgjsKhJhWHOLLbaAFgaaYCiV8ExMU0sg8XCIBidD4ovGBhF4BF3yjADgBa/BJZ
+  </data>
+ </layer>
+ <layer name="background2" width="34" height="28">
+  <data encoding="base64" compression="zlib">
+   eJzt1KsOACAMQ9F9Lg81DL9PJQKDaiD3JE3mWrUIAABwkspwj3hEUap7BIArTenuETKN3bnd/Ps/LEyXA+Q=
+  </data>
+ </layer>
+ <layer name="shadow" width="34" height="28">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo4C6wJNEjEsvITuo7V5qAS8K9JGrd7gDasfRQAJy/EFsvqAHINcd+PSQU1aM5pdRMJwBMXmAkFpa1JMDXQ4NBjdQA5BS1g0UoCQNjoJRMNAAAHbsFtY=
+  </data>
+ </layer>
+ <layer name="ceiling" width="34" height="28">
+  <data encoding="base64" compression="zlib">
+   eJzlllEOwiAMhrmDF1HZUPbKDrD7n0aXjKQ2/KUCIxib9GHAXz5Y220yxkzMF/NpPrFG6zWx/pFDio209wE4NsKxzz+U/mSxHJlDDMuh41q+nnOWmsShWf9LHFf2HN6+NubY/ZbwlWnoWMyLWg4LNEjvE2Oa80kaJ2iQPp6f53wNh6Qpzd8gxJDYad1Hd4cG9QrJSu7iDBuBA72T3hy5XEv1BN4bQmZddCnmnOFA90RzMObrN/8CFjBK++W+l9FS9ZP7jmrP3cpacdCzXTpyWIPvo4Sj5p1RDloTresZMaY4PBg/0ySOuSMH/a9A9a3pbxqTemAuhzW9T9NfNXuN4C+bBHZp
+  </data>
+ </layer>
+ <layer name="walls" width="34" height="28">
+  <data encoding="base64" compression="zlib">
+   eJztlUkOwjAMRd1hR2HHsINyBjZwg/b+B8Jf1KoVZRDQNI2UJ32plezGjfMdogIYJuW6fsr6beueWGdWzWpYN1av3jvWnnUw8q4q1kfLujtqSdnHQhxwLtpAzFZ6H6pj98M3kQM/Xb7IGSdtBZtfBfRX5gRmBPz/ZL3oMyf6QH4hT3LxLND+gx+7CHVoz8odKXepzwMVzfemxEu+Dd+/rtmPgdx776pD9n7J/R+NWkzFAD2THtXquTLqScmR5vmLc+U7U4XC0jz+zH8DY08QCg==
+  </data>
+ </layer>
+ <layer name="shadowtwo" width="34" height="28">
+  <data encoding="base64" compression="zlib">
+   eJztzjENAAAMw7DSG39CQ7Cz12wpfxIa5ujrBwAAQNsCU/sDbQ==
+  </data>
+ </layer>
+ <layer name="secondceiling" width="34" height="28">
+  <data encoding="base64" compression="zlib">
+   eJztlEsKwyAQQF32KN0WpMbu2pJ1vUM3KeT+686AQyeixRA/CcyDR8CIPqLEKaWc2o6NjN0y5tPTde64gmZFxx18eR+R97Qed/izHs0ncjqw4Qy+wZO3NI45J+bgvqPvKM3a+1HrO5S+p9JRvgNJ3dHWHb2QjiXS8eMJatZR43+dg2UdE/jZQUcr8AwugbpDh2H7xmzdgtJ59OoIe7iCIByPL6WRGcY=
+  </data>
+ </layer>
+ <layer name="secondwall" width="34" height="28">
+  <data encoding="base64" compression="zlib">
+   eJzt1jsOgCAQRVH8dIK1Hboc978hHwWJDXGi+Im5J7kdQ6YD55A0qq14X1SzWpRXQY2G82d1qr8wb1HaPxpm10K1DWq64V4AAP7A8mY/Jb3Z/u0ldvI+wR3/2wB81wYJHgNM
+  </data>
+ </layer>
+ <layer name="foreground" width="34" height="28">
+  <data encoding="base64" compression="zlib">
+   eJztlkEKwkAMRecWegS3nsCCgp0i6Na197+DLXYghp/JJG2KCz/8hXWsb5KfaVP66JW+lYm96mZfiTVxjoF4S47H6LtiL0dPzMVrPnEcRj8Fe1Q4UI/LZ15z3hdJlswUDtRjqee1fGRwPTP3wIhDy3/h4PUa2HXEibgy4ZD2V+OQ1nhmB3Foas2HRV2ycUwM+2COlnxH1IJztPRV4/Cc7VJOl3B4zvZhAUdt32gu0XdUXo7avvl5gc5G/nsLx/TsuDWutcrCsUsxM2vliFSXfoPjNNuqkvnz6OPsi7K2NkdeDsuzDM3P0vdIrjXekbkQY8T/SPdHPYusIVWtZ1qmtlJ0pv5aV2+IfkNz
+  </data>
+ </layer>
+ <objectgroup name="objects">
+  <object name="Door" x="1056" y="736" width="32" height="64">
+   <properties>
+    <property name="to" value="earth1, 1, 5"/>
+   </properties>
+  </object>
+  <object name="Door" x="192" y="0" width="96" height="32">
+   <properties>
+    <property name="to" value="earth3, 24, 20"/>
+   </properties>
+  </object>
+  <object name="Door" x="800" y="32" width="96" height="32">
+   <properties>
+    <property name="to" value="earth4, 11, 31"/>
+   </properties>
+  </object>
+  <object name="Obj" x="288" y="544" width="160" height="64">
+   <properties>
+    <property name="event" value="2"/>
+    <property name="id" value="25"/>
+   </properties>
+  </object>
+  <object name="Obj" x="352" y="544" width="32" height="32">
+   <properties>
+    <property name="id" value="30"/>
+    <property name="solid" value="false"/>
+   </properties>
+  </object>
+  <object name="Obj" x="352" y="512" width="32" height="32">
+   <properties>
+    <property name="event" value="1"/>
+    <property name="id" value="1"/>
+    <property name="solid" value="false"/>
+   </properties>
+  </object>
+  <object name="Obj" x="320" y="384" width="160" height="3.2">
+   <properties>
+    <property name="id" value="2"/>
+    <property name="solid" value="true"/>
+   </properties>
+  </object>
+  <object name="Obj" x="320" y="320" width="3.2" height="64">
+   <properties>
+    <property name="id" value="2"/>
+    <property name="solid" value="true"/>
+   </properties>
+  </object>
+  <object name="Obj" x="288" y="160" width="3.2" height="160">
+   <properties>
+    <property name="id" value="2"/>
+    <property name="solid" value="true"/>
+   </properties>
+  </object>
+  <object name="Obj" x="448" y="128" width="3.2" height="128">
+   <properties>
+    <property name="id" value="2"/>
+    <property name="solid" value="true"/>
+   </properties>
+  </object>
+  <object name="Obj" x="448" y="256" width="192" height="3.2">
+   <properties>
+    <property name="id" value="2"/>
+    <property name="solid" value="true"/>
+   </properties>
+  </object>
+  <object name="Obj" x="640" y="256" width="3.2" height="128">
+   <properties>
+    <property name="id" value="2"/>
+    <property name="solid" value="true"/>
+   </properties>
+  </object>
+  <object name="Obj" x="544" y="384" width="96" height="3.2">
+   <properties>
+    <property name="id" value="2"/>
+    <property name="solid" value="true"/>
+   </properties>
+  </object>
+  <object name="Obj" x="288" y="320" width="32" height="3.2">
+   <properties>
+    <property name="id" value="2"/>
+    <property name="solid" value="true"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>

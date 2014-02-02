@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="20" height="13" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="BlackAndWhite" tilewidth="32" tileheight="32">
+  <image source="../img/BlackAndWhite.png" width="320" height="32"/>
+  <tile id="0">
+   <properties>
+    <property name="solid" value="true"/>
+   </properties>
+  </tile>
+  <tile id="5">
+   <properties>
+    <property name="solid" value="true"/>
+   </properties>
+  </tile>
+  <tile id="6">
+   <properties>
+    <property name="solid" value="true"/>
+   </properties>
+  </tile>
+  <tile id="7">
+   <properties>
+    <property name="solid" value="true"/>
+   </properties>
+  </tile>
+  <tile id="8">
+   <properties>
+    <property name="solid" value="false"/>
+   </properties>
+  </tile>
+  <tile id="9">
+   <properties>
+    <property name="solid" value="false"/>
+   </properties>
+  </tile>
+ </tileset>
+ <tileset firstgid="11" name="collision" tilewidth="32" tileheight="32">
+  <image source="../img/collision.png" width="32" height="32"/>
+ </tileset>
+ <layer name="map" width="20" height="13" opacity="0.45">
+  <data encoding="base64" compression="zlib">
+   eJxjYKAt4CYRD4R5xAJizeMiEg+UedQOP04i8XAJP3QA00+MWmxq0DGye6iRP0gxDwCtZwUp
+  </data>
+ </layer>
+ <layer name="background" width="20" height="13">
+  <data encoding="base64" compression="zlib">
+   eJxjYKAtYCERE2MeI5F4oMwjFgyUedSODzYi8XAJP2qahy2dESNHK/MAQhYBBQ==
+  </data>
+ </layer>
+ <layer name="foreground" width="20" height="13">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUkAJY0DAh8aEEAB1QACE=
+  </data>
+ </layer>
+ <objectgroup name="objects" width="20" height="13">
+  <object name="Door" x="288" y="384" width="64" height="32">
+   <properties>
+    <property name="to" value="town,3,10"/>
+   </properties>
+  </object>
+  <object name="NPC" x="384" y="160" width="32" height="32">
+   <properties>
+    <property name="id" value="7"/>
+    <property name="solid" value="false"/>
+   </properties>
+  </object>
+  <object name="Obj" x="384" y="224" width="32" height="32">
+   <properties>
+    <property name="event" value="1"/>
+    <property name="id" value="1"/>
+    <property name="solid" value="false"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>

@@ -403,7 +403,7 @@ local Event = {
                     STATE.event.removeObj[the.app.view.mapName][obj.__class__][obj.id] = nil
                 else
                     obj.solid = false
-                    obj.image = 'assets/img/clear.png'
+                    obj.image = 'assets/img/objs/clear.png'
                 end
             end
         end

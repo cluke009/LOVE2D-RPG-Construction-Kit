@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="22" height="22" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="GoldenTempleTiles3" tilewidth="32" tileheight="32">
+  <image source="../img/GoldenTempleTiles3.png" width="320" height="384"/>
+ </tileset>
+ <layer name="map" width="22" height="22">
+  <data encoding="base64" compression="zlib">
+   eJxjYKAN4MKDKTUXnzg+e/HZjc9cYvTiUkPIvcQAUswlBWBzN7XjCle8UAq40GhqgVFzh7651DQbPW+Mmjs0zaUU08ONIAAASSMDZw==
+  </data>
+ </layer>
+ <layer name="floor" width="22" height="22">
+  <data encoding="base64" compression="zlib">
+   eJytldENwyAMRJkpk1CpaaNWatLsP0RcKSdZrs0hk4/7wMDxYptQSylVNBnVIO6tidZGc8zb+no+GL9OMRbmPSkvyO5bRZvoK9oJZ6Sf7yx6iJ6iOxm38q8FZvB9DK8ds9ogzvg83p4aMD6PF/uXwHdO8jLfNcHbW7cR3pZG8tuq22g/RH2X4a3nWUv5v2cjvKh51A/Z/tW8V/UDvtXy2jxkee29QPzm5LznzdDandjbOavnPbjiLWmtQ86j/6Tnw5hQt03NHR0bi+g=
+  </data>
+ </layer>
+ <layer name="background" width="22" height="22">
+  <data encoding="base64" compression="zlib">
+   eJztkTsKgDAQBXM1BbFQ0Nb04jeFWuT6vkCERQwhrgEFBwabZXwQIb5JTozRvGqPcIKz/XK6Eg6Oe/qfkLahDdjlo4O9cO98MwlMI3QLWMPqoT59r8y25QNtdepKIqetT91jL7ft2mv6DSxvdunewrY4vQPlP3lVV/tPxAJXuEXa8ONnB/KAGCM=
+  </data>
+ </layer>
+ <layer name="background2" width="22" height="22">
+  <data encoding="base64" compression="zlib">
+   eJxjYKAtiETCg93cZDS+6yA3FwT8kfBAgzQamVuAxk/FoS6XQnvycYiXU2juKKAdyALibBqYiyuNkQOQ8wWlaRQZIOcLYtNoIRAXAXExCfZgc3MeCfpxAWxurqCCuUMZAACFZQz2
+  </data>
+ </layer>
+ <layer name="shadows" width="22" height="22">
+  <data encoding="base64" compression="zlib">
+   eJxjYBh+wBMHptQ8cuVx6RloQI2wIWQ+LjtHwSgYBaNgFKACAKJvBNo=
+  </data>
+ </layer>
+ <layer name="ceiling" width="22" height="22">
+  <data encoding="base64" compression="zlib">
+   eJwzYWBgsMaCTSjEVgzYgSWSGmz2ErIbn7kgvX445EHAF4/5uMzVx2MeNjcQay4pAJu7qWEusvnIZnNCsRqF5noyIMKEmu5lGDV31Fwc5oKwC43MpaabaWFuIY3MjRpi5oJAKRCXIZltiIb9ScBOQJwBxJlA7ArEGgyY5TwMR5GIkcMCZC4AQ3YnEQ==
+  </data>
+ </layer>
+ <layer name="walls" width="22" height="22">
+  <data encoding="base64" compression="zlib">
+   eJxjYKAdsMaC6QGw2UuJ3SC9fnjkfckwX59851ANkONuUs1HBrB4wBeWo2AUjIKRA0qAuJTOdubRyNwKKpgBAD8VBzI=
+  </data>
+ </layer>
+ <objectgroup name="objects"/>
+ <layer name="foreground" width="22" height="22">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFxAJPHJhS87xwYHLMRzYPFyAkj0sPKW6gJFzwuQEWLtjso9ROdD8ix8UoGAWjYGQCfyQcQEVzk5HYrlAaAOXaC6k=
+  </data>
+ </layer>
+</map>

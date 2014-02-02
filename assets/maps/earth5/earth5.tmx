@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="27" height="37" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="GoldenTempleTiles3" tilewidth="32" tileheight="32">
+  <image source="../img/GoldenTempleTiles3.png" width="320" height="384"/>
+ </tileset>
+ <layer name="map" width="27" height="37">
+  <data encoding="base64" compression="zlib">
+   eJzt07EKACAIBFBn//+Dm1rCpEwhvDtwKn1DpiKiTs14d7KK1v3MitDKN2nFjei/ss5OZ2f0oVuVQbG67kZXqzIo1i+7sfbvZmZY3Hk7KFbkXV7n0PrbGhq2FX0=
+  </data>
+ </layer>
+ <layer name="floor" width="27" height="37">
+  <data encoding="base64" compression="zlib">
+   eJwLZGBgCALiQDrQ0UAcQyeaHv5B91cADfFA+mu4xteovwa/vzSgmB7+gtk16i/KaHr5K3rUX6P+GmH+Gq7lxlD1VxSd/RU1Gl8j2l9GWDCt/IXNruEQX+j+oKW/0OOHlPgCAPUbRfY=
+  </data>
+ </layer>
+ <layer name="background" width="27" height="37">
+  <data encoding="base64" compression="zlib">
+   eJztlkEPgjAMhfebuOrZs1e9o6IiiqL+fNdIk2cpsI2hB3nJi4mQfm3XVY35Tz2sL79OIrK21jvr7NeJTIqmyvpufR0pflnH3lgn4Ftkjoy/BieRWU+FIXnkfCDnbj7r4c+5wnoEMmhH3Uyzd231hbCIUQpGX//4c2mdenAkA3sleyZNrEKJm0ANNMuVyL+tHhmf5qFvh2p5ab3RWKlDfI3V1v+uWnxnoO/MkbG3PtZ1nOrvtHPpY7n0EmeL7zWdcelZH/Y9g7yRhTWcRV6uM65J20e8Y6s6Nr+D+zd0529NszZ2Id4Zup9IspfI5d8v7az5ma+6ZrVrttg+4rnxuR+hLNQeYixaGItILNzLLnsslCX/A7h6CAv7KE3PDua9y3iGQ0R3Nwcm7ReeG23X810P1Qo8tmbgifVd1gsB32rx
+  </data>
+ </layer>
+ <layer name="background2" width="27" height="37">
+  <data encoding="base64" compression="zlib">
+   eJztzbEJACAMRFHX0z1EUcHO+U2hA0RIGv+D396FAPwhnvAuGe0uo10AAADoNKlLw+ErO3xcUypSdfzU2r3yBDc=
+  </data>
+ </layer>
+ <layer name="shadows" width="27" height="37">
+  <data encoding="base64" compression="zlib">
+   eJztl0EKgCAQRT2OB+gQ6ar13P8gISgMQ06N9gciH3wQLR/Ud+ERQjiUpBrtGUuCo6v5JKkztmJ1zSC/ExJPV9u/uDLY1fbv/SsEy7XQIIf9iY2zSEPOa+m9w13os1yIDo7let/Fe6JBIk+hCxey85GtIfE4U39iq/F08aCw9Hek83INyer8Nxm5q/F+zd7x7kgsaHYWCyc56jx6
+  </data>
+ </layer>
+ <layer name="ceiling" width="27" height="37">
+  <data encoding="base64" compression="zlib">
+   eJztlE0KhDAMRnOcboVurCv/lqNr3Xr/O5iigRA6EodphdoPHkJN+qCNtgAwX0C5qtHQISNikIVh2BpFvjOiLtTL17bT5Z82wMpc65caDTXimCtmUrumRC5KcRWXTI8McMyjjezy+7sHXC6yixwpXDQTxfUfV+w5TOmykP995fQtP+Uq//nf8obZyNXl56RSMoh9ekWPnHkt8gy0/b7vgzQ34dH2TMHTzSM7oYs+SQ==
+  </data>
+ </layer>
+ <layer name="walls" width="27" height="37">
+  <data encoding="base64" compression="zlib">
+   eJxjYBh5wAqJbUlFc62xYD8keV8caojBwxWAwt+ETnbBwn8UDC2QAcSZdLZTAw3jEseF8ZmHDqKQcDKSuCuaHC6MT08hEBchyUciYR8kcW80OVwYn55RMDIAMekeXTwPzQxi0y9MPylpHh0MlzSfDcQ5dLZzuANSynlKQQASRk+/AURgfHrQwXBJ86NgFBADiMk/2PIRCBCb/+htFwDMG0Lt
+  </data>
+ </layer>
+ <layer name="ceilingtwo" width="27" height="37">
+  <data encoding="base64" compression="zlib">
+   eJztwTEBAAAAwqD1T20MH6AAAACApwEPnAAB
+  </data>
+ </layer>
+ <layer name="wallstwo" width="27" height="37">
+  <data encoding="base64" compression="zlib">
+   eJztzsEJACAMBMG0ZysK9v/UGgIhKDNw79sIstbd7o543OwOKDI+/QIAAGocjEAB1g==
+  </data>
+ </layer>
+ <layer name="foreground" width="27" height="37">
+  <data encoding="base64" compression="zlib">
+   eJxjYMAP/KGYHiASiqkJsoA4G4hzgDgDiDOh4p5QTAxIR9MLA6lQcwkBUuzCBUB25WExkxY4H4gr6GSXMJo/vWiI0e2iJQDZRWmcD1a7vOhklyUa35CGGB1Y0xAPJgDLG7TQQ8u8PFLAaJqnPhhN84MbjKZ56oPRND8KBjMA5RdOJEzr/IPcBxmsAADYClN0
+  </data>
+ </layer>
+ <objectgroup name="objects" width="0" height="0">
+  <object name="Door" x="416" y="1152" width="96" height="32">
+   <properties>
+    <property name="to" value="earth4, 10, 2"/>
+   </properties>
+  </object>
+  <object name="Door" x="256" y="0" width="64" height="32">
+   <properties>
+    <property name="to" value="earth6,9,20"/>
+   </properties>
+  </object>
+  <object name="Door" x="832" y="224" width="32" height="96">
+   <properties>
+    <property name="to" value="earth7"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>

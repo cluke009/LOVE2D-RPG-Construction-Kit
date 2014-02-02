@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="20" height="26" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="BlackAndWhite" tilewidth="32" tileheight="32">
+  <image source="../../img/BlackAndWhite.png" width="320" height="32"/>
+  <tile id="0">
+   <properties>
+    <property name="solid" value="true"/>
+   </properties>
+  </tile>
+  <tile id="5">
+   <properties>
+    <property name="solid" value="false"/>
+   </properties>
+  </tile>
+  <tile id="9">
+   <properties>
+    <property name="solid" value="false"/>
+   </properties>
+  </tile>
+ </tileset>
+ <tileset firstgid="11" name="config samples" tilewidth="32" tileheight="32">
+  <image source="../img/config samples.png" width="256" height="384"/>
+  <tile id="0">
+   <properties>
+    <property name="solid" value="false"/>
+   </properties>
+  </tile>
+  <tile id="1">
+   <properties>
+    <property name="solid" value="false"/>
+   </properties>
+  </tile>
+  <tile id="2">
+   <properties>
+    <property name="solid" value="false"/>
+   </properties>
+  </tile>
+  <tile id="3">
+   <properties>
+    <property name="solid" value="false"/>
+   </properties>
+  </tile>
+  <tile id="4">
+   <properties>
+    <property name="solid" value="false"/>
+   </properties>
+  </tile>
+  <tile id="5">
+   <properties>
+    <property name="solid" value="false"/>
+   </properties>
+  </tile>
+  <tile id="6">
+   <properties>
+    <property name="solid" value="false"/>
+   </properties>
+  </tile>
+  <tile id="7">
+   <properties>
+    <property name="solid" value="false"/>
+   </properties>
+  </tile>
+  <tile id="8">
+   <properties>
+    <property name="solid" value="false"/>
+   </properties>
+  </tile>
+  <tile id="9">
+   <properties>
+    <property name="solid" value="false"/>
+   </properties>
+  </tile>
+  <tile id="10">
+   <properties>
+    <property name="solid" value="false"/>
+   </properties>
+  </tile>
+  <tile id="11">
+   <properties>
+    <property name="solid" value="false"/>
+   </properties>
+  </tile>
+  <tile id="12">
+   <properties>
+    <property name="solid" value="false"/>
+   </properties>
+  </tile>
+  <tile id="13">
+   <properties>
+    <property name="solid" value="false"/>
+   </properties>
+  </tile>
+  <tile id="14">
+   <properties>
+    <property name="solid" value="false"/>
+   </properties>
+  </tile>
+  <tile id="15">
+   <properties>
+    <property name="solid" value="false"/>
+   </properties>
+  </tile>
+ </tileset>
+ <tileset firstgid="107" name="shadowtiles" tilewidth="32" tileheight="32">
+  <image source="../img/shadowtiles.png" width="128" height="96"/>
+ </tileset>
+ <tileset firstgid="119" name="TownTiles" tilewidth="32" tileheight="32">
+  <image source="../img/TownTiles.png" width="576" height="1120"/>
+ </tileset>
+ <layer name="map" width="20" height="26">
+  <properties>
+   <property name="solid" value="false"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJytld0OgjAMRtdr0cQ/EvfgvhAalKeyi1tSa7+xlF18nAtKOemoUgiBKrlwzpm1OpkXX970z4Uz8P1d+HI2agprHohHzglQ95MeiLI+cm6Cxb3Vz5qT5drqNxkzIuUYwfzuZHsiR4/fkB0fnCf9zjGqdyzAB/Gae6fntBc1eLVQ9mv1qlGe155z6MDSL81jzEQ7Oao6i5Yf6rfmJ2t7+Mla+Z4J/M54/dJ5WXvp9fMS+Xnp9UPn7vVD5z4796P2XXr85H9S+o7W9qP3/m4h2q0t+QCgijMZ
+  </data>
+ </layer>
+ <layer name="foreground" width="20" height="26">
+  <data encoding="base64" compression="zlib">
+   eJxjYMAPShkRmBqAXPNysOBcIG5nROBsHOpyyHRrBiMEZ1LB72mMCPOwmQlzOznug5kXToE7s6FuTIdimLnUAmlUCEdYGOUSUEdIHpfZ5OgbKJCNQ/woEJ9Fw6cpsOcYEJ9Dw2coMO8QEJ9CwycoMI/aoAAHJhcUA3EJGi6l0I2jgDDAlT/oDZDrpKFUvsAAAJd9K+E=
+  </data>
+ </layer>
+ <objectgroup name="objects">
+  <object name="Door" x="608" y="128" width="32" height="96">
+   <properties>
+    <property name="to" value="forest2, 1, 8"/>
+   </properties>
+  </object>
+  <object name="Door" x="256" y="0" width="96" height="32">
+   <properties>
+    <property name="to" value="forestentrance, 18, 33"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>

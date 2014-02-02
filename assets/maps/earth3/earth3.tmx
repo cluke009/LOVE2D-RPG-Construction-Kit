@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="32" height="23" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="GoldenTempleTiles3" tilewidth="32" tileheight="32">
+  <image source="../img/GoldenTempleTiles3.png" width="320" height="384"/>
+ </tileset>
+ <tileset firstgid="121" name="rock face fixed" tilewidth="32" tileheight="32">
+  <image source="../img/rock face fixed.png" width="512" height="32"/>
+ </tileset>
+ <layer name="map" width="32" height="23">
+  <data encoding="base64" compression="zlib">
+   eJzFlFEOwCAIQ/ne/Q+8zxkyoQWqTYzRIA9RMPv0BAOxqQyFX3PzyvE8z96pwmdtUSn4jKJ4EZ9T96/y/3yg/Mx/h8/mYJK/7mVvp+IjcUR/hvnTSL4jfiYlH4lBzUd7C8LfnWP7EqOJO0zxo7hO89mz1bx1+YjvW3zEpvPO0/XP1HS1/9yor2itFsp/AQ8kCac=
+  </data>
+ </layer>
+ <layer name="floor" width="32" height="23">
+  <data encoding="base64" compression="zlib">
+   eJzt0bsJACAQA9AbzNraLwoq7r+FKdxAxBNSvDoJcSLiiOiKDB4CxAf5Exp0GA/yC9S9PSn4g/5kFHSgM1ZBByJNFp7C5jc=
+  </data>
+ </layer>
+ <layer name="background" width="32" height="23">
+  <data encoding="base64" compression="zlib">
+   eJztzjEKACAMwMD+VgUdrP8H8wmpQw6yJ0LSK406DZrFLxUWbUo6xS+SJP3iAtonA2g=
+  </data>
+ </layer>
+ <layer name="background2" width="32" height="23">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AU0ArkQulsIE4bAPvLkdgDYT8yKBhg+0fBKBgFo2AUjILBAgDFVQKM
+  </data>
+ </layer>
+ <layer name="shadow" width="32" height="23">
+  <data encoding="base64" compression="zlib">
+   eJxjYBg8wJMApofdxLqNFvaTopaYMKJHOJJjLq3jchTQBozG2yggVEbTq7ymJhhMbh6qYTgKRsEoIB0AAK3aDow=
+  </data>
+ </layer>
+ <layer name="ceiling" width="32" height="23">
+  <data encoding="base64" compression="zlib">
+   eJzdld0KgCAMhX0lQRC7tfd/phIajIHuzL+iwbkI577DWis458JHhIS1Znw0i18i3ToUf7Vzuh/AXCufardqRuFhN5/nkc6X+WgPspLfy0d6kJ3ud4Sv+eBzQ/W15x5+ka/4SCJH3kHfp8av1UDu/ZkfDVrBnxV8Trnnkb3Yy+dh6eEKPhJlD/mGkF0+wkdmR/Owmm/5/iz/vhV82p2oevaPnBmkxogkH92bu/kXY+lQ3g==
+  </data>
+ </layer>
+ <layer name="walls" width="32" height="23">
+  <data encoding="base64" compression="zlib">
+   eJztkLsOwjAMRQ1CLEgw8RhBsMJvAZ8AodDSH++NVCtWlGaIKF58pKM4bVPfmChQwRP89NaibuCZxuMCj9DBB3z2cs15GnHG11+xxvn8P+dwlfmGecF3Jp/MxdQUZuTXNjrTDpgi13sIOR+uJfzORXVV0OuXOOX+RhmLxLMrvMH7n7MYOkzgFG7gFu7hIbGf6cQrgu+01A4C1hRmuVPOYhjGuHSzvh1d
+  </data>
+ </layer>
+ <layer name="foreground" width="32" height="23">
+  <data encoding="base64" compression="zlib">
+   eJxjYKAMOCDhgQDUtt8TB6aH/SB7vHBgXG6hlv347EbHyHqQ7Ud3G6lhiW4+uji6PIhtj4TR9eILS1z2kwLItZ9Ue6gNBtp+cgG+tDMKRgbwIAHTAhBbRpKSx2jtZkIA2c30CENi3TJUy6lRMAqIBQAOYSFW
+  </data>
+ </layer>
+ <objectgroup name="objects">
+  <object name="Door" x="736" y="704" width="96" height="32">
+   <properties>
+    <property name="to" value="earth2, 7, 2"/>
+   </properties>
+  </object>
+  <object name="Obj" x="512" y="160" width="96" height="64">
+   <properties>
+    <property name="event" value="1"/>
+    <property name="id" value="1"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>

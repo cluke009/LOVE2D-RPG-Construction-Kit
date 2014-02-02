@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="35" height="35" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="BlackAndWhite" tilewidth="32" tileheight="32">
+  <image source="../img/BlackAndWhite.png" width="320" height="32"/>
+  <tile id="0">
+   <properties>
+    <property name="solid" value="true"/>
+   </properties>
+  </tile>
+  <tile id="9">
+   <properties>
+    <property name="solid" value="false"/>
+   </properties>
+  </tile>
+ </tileset>
+ <layer name="map" width="35" height="35">
+  <data encoding="base64" compression="zlib">
+   eJzt1yEOADAIBEGw/f+Da2tqKAlpMmIll7FkRGShdVS574yFheW+OxULCwsLC8u0g4WFhYWFheUPS+f/+7K1AWYxJP4=
+  </data>
+ </layer>
+ <objectgroup name="objects" width="35" height="35">
+  <object name="Door" x="448" y="0" width="96" height="32">
+   <properties>
+    <property name="to" value="woodspath2, 10, 26"/>
+   </properties>
+  </object>
+  <object name="Door" x="512" y="1088" width="128" height="32">
+   <properties>
+    <property name="to" value="forest1"/>
+   </properties>
+  </object>
+  <object name="NPC" x="768" y="288" width="32" height="32">
+   <properties>
+    <property name="_the" value="sherman"/>
+    <property name="id" value="4"/>
+   </properties>
+  </object>
+  <object name="NPC" x="736" y="320" width="32" height="32">
+   <properties>
+    <property name="_the" value="copernicus"/>
+    <property name="id" value="5"/>
+   </properties>
+  </object>
+  <object name="Obj" x="448" y="192" width="96" height="32">
+   <properties>
+    <property name="event" value="1"/>
+    <property name="id" value="21"/>
+    <property name="solid" value="false"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>

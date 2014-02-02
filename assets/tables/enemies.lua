@@ -21,7 +21,7 @@
     (begin code)
     [1] = {
         name = 'Water Dragon',
-        image = 'assets/img/water_dragon.gif',
+        image = 'assets/img/enemies/water_dragon.gif',
         width = 128,
         height = 128,
         stats = {
@@ -43,17 +43,17 @@
         },
         img = {
             idle = {
-                image = 'assets/img/water_dragon.png',
+                image = 'assets/img/enemies/water_dragon.png',
                 frames = { 1, 2, 3, },
                 fps = 5
             },
             attack = {
-                image = 'assets/img/water_dragon.png',
+                image = 'assets/img/enemies/water_dragon.png',
                 frames = { 1, 2, 3, },
                 fps = 5
             },
             dmg = {
-                image = 'assets/img/water_dragon.png',
+                image = 'assets/img/enemies/water_dragon.png',
                 frames = { 1, 2, 3, },
                 fps = 5
             },
@@ -81,17 +81,17 @@ return
             width = 32,
             height = 32,
             idle = {
-                image = 'assets/img/Copernicus.png',
+                image = 'assets/img/enemies/Copernicus.png',
                 frames = { 1,},
                 fps = 7
             },
             dmg = {
-                image = 'assets/img/Copernicus.png',
+                image = 'assets/img/enemies/Copernicus.png',
                 frames = { 1,},
                 fps = 7
             },
             attack = {
-                image = 'assets/img/Copernicus.png',
+                image = 'assets/img/enemies/Copernicus.png',
                 frames = { 1,},
                 fps = 7
             },
@@ -115,57 +115,23 @@ return
             width = 32,
             height = 32,
             idle = {
-                image = 'assets/img/Sherman.png',
+                image = 'assets/img/enemies/Sherman.png',
                 frames = { 1,},
                 fps = 7
             },
             dmg = {
-                image = 'assets/img/Sherman.png',
+                image = 'assets/img/enemies/Sherman.png',
                 frames = { 1,},
                 fps = 7
             },
             attack = {
-                image = 'assets/img/Sherman.png',
+                image = 'assets/img/enemies/Sherman.png',
                 frames = { 1,},
                 fps = 7
             },
         }
     },
     [3] = {
-        name = 'Big Worm',
-        stats = {
-            hp = 200,
-            mp = 60,
-            str = 24,
-            con = 24,
-            int = 24,
-            wis = 14,
-            spd = 22,
-        },
-        exp = 300,
-        gold = 100,
-        group = { 2, 1 },
-        img = {
-            width = 35,
-            height = 50,
-            idle = {
-                image = 'assets/img/big_worm.png',
-                frames = { 1, 2, 3, },
-                fps = 7
-            },
-            dmg = {
-                image = 'assets/img/big_worm.png',
-                frames = { 1, 2, 3,},
-                fps = 7
-            },
-            attack = {
-                image = 'assets/img/big_worm.png',
-                frames = {  7, 8, 9, },
-                fps = 7
-            },
-        }
-    },
-    [4] = {
         name = 'Fire Bat',
         stats = {
             hp = 344,
@@ -183,23 +149,23 @@ return
             width = 64,
             height = 64,
             idle = {
-                image = 'assets/img/fire_bat.png',
+                image = 'assets/img/enemies/fire_bat.png',
                 frames = { 4,5,6 },
                 fps = 7
             },
             dmg = {
-                image = 'assets/img/eyeball.png',
+                image = 'assets/img/enemies/fire_bat.png',
                 frames = { 1, 2, 3,},
                 fps = 7
             },
             attack = {
-                image = 'assets/img/eyeball.png',
+                image = 'assets/img/enemies/fire_bat.png',
                 frames = {  7, 8, 9, },
                 fps = 7
             },
         }
     },
-    [5] = {
+    [4] = {
         name = 'Jungle Bat',
         stats = {
             hp = 344,
@@ -217,193 +183,23 @@ return
             width = 64,
             height = 64,
             idle = {
-                image = 'assets/img/jungle_bat.png',
+                image = 'assets/img/enemies/jungle_bat.png',
                 frames = { 1, 2, 3, },
                 fps = 7
             },
             dmg = {
-                image = 'assets/img/ghost.png',
+                image = 'assets/img/enemies/jungle_bat.png',
                 frames = { 1, 2, 3,},
                 fps = 7
             },
             attack = {
-                image = 'assets/img/ghost.png',
+                image = 'assets/img/enemies/jungle_bat.png',
                 frames = {  7, 8, 9, },
                 fps = 7
             },
         }
     },
-    [6] = {
-        name = 'Flower Power',
-        stats = {
-            hp = 34,
-            mp = 60,
-            str = 24,
-            con = 24,
-            int = 24,
-            wis = 14,
-            spd = 22,
-        },
-        exp = 300,
-        gold = 100,
-        group = { 2, 1 },
-        img = {
-            width = 60,
-            height = 76,
-            idle = {
-                image = 'assets/img/man_eater_flower.png',
-                frames = { 1, 2, 3, },
-                fps = 7
-            },
-            dmg = {
-                image = 'assets/img/man_eater_flower.png',
-                frames = { 1, 2, 3,},
-                fps = 7
-            },
-            attack = {
-                image = 'assets/img/man_eater_flower.png',
-                frames = {  7, 8, 9, },
-                fps = 7
-            },
-        }
-    },
-    [7] = {
-        name = 'PumpKing',
-        stats = {
-            hp = 34,
-        mp = 60,
-            str = 24,
-            con = 24,
-            int = 24,
-            wis = 14,
-            spd = 22,
-        },
-        exp = 300,
-        gold = 100,
-        group = { 2, 1 },
-        img = {
-            width = 46,
-            height = 46,
-            idle = {
-                image = 'assets/img/pumpking.png',
-                frames = { 4,5,6 },
-                fps = 7
-            },
-            dmg = {
-                image = 'assets/img/pumpking.png',
-                frames = { 1, 2, 3,},
-                fps = 7
-            },
-            attack = {
-                image = 'assets/img/pumpking.png',
-                frames = {  7, 8, 9, },
-                fps = 7
-            },
-        }
-    },
-    [8] = {
-        name = 'Slime',
-        stats = {
-            hp = 34,
-            mp = 60,
-            str = 24,
-            con = 24,
-            int = 24,
-            wis = 14,
-            spd = 22,
-        },
-        exp = 300,
-        gold = 100,
-        group = { 2, 1 },
-        img = {
-            width = 32,
-            height = 32,
-            idle = {
-                image = 'assets/img/slime.png',
-                frames = { 1, 2, 3, },
-                fps = 7
-            },
-            dmg = {
-                image = 'assets/img/slime.png',
-                frames = { 1, 2, 3,},
-                fps = 7
-            },
-            attack = {
-                image = 'assets/img/slime.png',
-                frames = {  7, 8, 9, },
-                fps = 7
-            },
-        }
-    },
-    [9] = {
-        name = 'Small Worm',
-        stats = {
-            hp = 34,
-            mp = 60,
-            str = 24,
-            con = 24,
-            int = 24,
-            wis = 14,
-            spd = 22,
-        },
-        exp = 300,
-        gold = 100,
-        group = { 2, 1 },
-        img = {
-            width = 32,
-            height = 32,
-            idle = {
-                image = 'assets/img/small_worm.png',
-                frames = { 1, 2, 3, },
-                fps = 7
-            },
-            dmg = {
-                image = 'assets/img/small_worm.png',
-                frames = { 1, 2, 3,},
-                fps = 7
-            },
-            attack = {
-                image = 'assets/img/small_worm.png',
-                frames = {  7, 8, 9, },
-                fps = 7
-            },
-        }
-    },
-    [10] = {
-        name = 'Snake',
-        stats = {
-            hp = 34,
-            mp = 60,
-            str = 24,
-            con = 24,
-            int = 24,
-            wis = 14,
-            spd = 22,
-        },
-        exp = 300,
-        gold = 100,
-        group = { 2, 1 },
-        img = {
-            width = 32,
-            height = 32,
-            idle = {
-                image = 'assets/img/snake.png',
-                frames = { 4,5,6 },
-                fps = 7
-            },
-            dmg = {
-                image = 'assets/img/snake.png',
-                frames = { 1, 2, 3,},
-                fps = 7
-            },
-            attack = {
-                image = 'assets/img/snake.png',
-                frames = {  7, 8, 9, },
-                fps = 7
-            },
-        }
-    },
-    [11] = {
+    [5] = {
         name = 'GoldenMoonDragon',
         stats = {
             hp = 200,
@@ -421,24 +217,24 @@ return
             width = 192,
             height = 128,
             idle = {
-                image = 'assets/img/earth_dragon2.png',
+                image = 'assets/img/enemies/earth_dragon.png',
                 frames = { 1,},
                 fps = 7
             },
             dmg = {
-                image = 'assets/img/earth_dragon2.png',
+                image = 'assets/img/enemies/earth_dragon.png',
                 frames = { 1,},
                 fps = 7
             },
             attack = {
-                image = 'assets/img/earth_dragon2.png',
+                image = 'assets/img/enemies/earth_dragon.png',
                 frames = { 1,},
                 fps = 7
             },
         }
     },
-    [12] = {
-        name = 'PandaMoonDragon',
+    [6] = {
+        name = 'Emerald Dragon',
         stats = {
             hp = 200,
             mp = 60,
@@ -455,17 +251,17 @@ return
             width = 192,
             height = 128,
             idle = {
-                image = 'assets/img/panda_dragon.png',
+                image = 'assets/img/enemies/emerald_dragon.png',
                 frames = { 1,},
                 fps = 7
             },
             dmg = {
-                image = 'assets/img/panda_dragon.png',
+                image = 'assets/img/enemies/emerald_dragon.png',
                 frames = { 1,},
                 fps = 7
             },
             attack = {
-                image = 'assets/img/panda_dragon.png',
+                image = 'assets/img/enemies/emerald_dragon.png',
                 frames = { 1,},
                 fps = 7
             },

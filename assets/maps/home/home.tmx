@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="20" height="12" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="BlackAndWhite" tilewidth="32" tileheight="32">
+  <image source="../img/BlackAndWhite.png" width="320" height="32"/>
+  <tile id="0">
+   <properties>
+    <property name="solid" value="true"/>
+   </properties>
+  </tile>
+  <tile id="4">
+   <properties>
+    <property name="solid" value="false"/>
+   </properties>
+  </tile>
+  <tile id="7">
+   <properties>
+    <property name="solid" value="false"/>
+   </properties>
+  </tile>
+  <tile id="9">
+   <properties>
+    <property name="solid" value="false"/>
+   </properties>
+  </tile>
+ </tileset>
+ <tileset firstgid="11" name="simple tilwe" tilewidth="32" tileheight="32">
+  <image source="../img/simple tilwe.jpg" width="512" height="32"/>
+ </tileset>
+ <tileset firstgid="27" name="Castle_exterior_TileC" tilewidth="32" tileheight="32">
+  <image source="../img/Castle_exterior_TileC.png" width="512" height="512"/>
+ </tileset>
+ <tileset firstgid="283" name="Castle_exterior_TileD" tilewidth="32" tileheight="32">
+  <image source="../img/Castle_exterior_TileD.png" width="512" height="512"/>
+ </tileset>
+ <tileset firstgid="539" name="Castle_exterior_TileE" tilewidth="32" tileheight="32">
+  <image source="../img/Castle_exterior_TileE.png" width="512" height="512"/>
+ </tileset>
+ <tileset firstgid="795" name="Castle_interior_TileB" tilewidth="32" tileheight="32">
+  <image source="../img/Castle_interior_TileB.png" width="512" height="512"/>
+ </tileset>
+ <tileset firstgid="1051" name="GoldenTempleTiles3" tilewidth="32" tileheight="32">
+  <image source="../img/GoldenTempleTiles3.png" width="320" height="384"/>
+ </tileset>
+ <layer name="map" width="20" height="12">
+  <properties>
+   <property name="solid" value="true"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJxjZGBgYBxhmFqAmuahu48aZg8l/1LbTGLjntppid7mAQD+XAB9
+  </data>
+ </layer>
+ <layer name="background" width="20" height="12">
+  <data encoding="base64" compression="zlib">
+   eJyTYmBgkMKB55OAYXoOUhGDzLtIRYzLn6N4FA9VDACytTgS
+  </data>
+ </layer>
+ <layer name="shadows" width="20" height="12">
+  <data encoding="base64" compression="zlib">
+   eJxjYGBgSGTABNjE8Mmhi91jYmA4CMSHmCBsENBmZmDQAeJGIL+JCcGHqV8IxIuQ1CODd0Cxi0B8iQnCBgFroF4bIJ4I5E9iQvBh6jcC8SYk9dQE1cyo/LdA/jtm7GqJAd1oev8C+f8oMA8d8LIwMPCxkK8f3b+UAnT/UhNI4sDiWNQK4lFPCEgAsRgaFqLQ7brAcNGDYn0iwggAM1MbOg==
+  </data>
+ </layer>
+ <layer name="Tile Layer 6" width="20" height="12">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2B4gSQW3JhUtcksuDEu83CppwUAAFkdC5w=
+  </data>
+ </layer>
+ <layer name="walls" width="20" height="12">
+  <data encoding="base64" compression="zlib">
+   eJxbyMDAYMzIwLCRARVjE8MnBxJbCKQXAbEzkI0OsInhkwOJLaCRecFY5LGJ4ZMLRjKPWmDUvMFp3kQceBIWPRPwqAeZtxAPxuZ2QnoAoSMtww==
+  </data>
+ </layer>
+ <layer name="foreground" width="20" height="12">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgF5IBqZlT+WyD/HTN2tcMBoPt3FAwOAACrggLe
+  </data>
+ </layer>
+ <objectgroup name="objects" width="20" height="12">
+  <object name="NPC" x="384" y="128" width="32" height="32">
+   <properties>
+    <property name="id" value="2"/>
+   </properties>
+  </object>
+  <object name="Door" x="256" y="352" width="128" height="32">
+   <properties>
+    <property name="to" value="town, 11, 8"/>
+   </properties>
+  </object>
+  <object name="NPC" x="384" y="224" width="32" height="32">
+   <properties>
+    <property name="id" value="1"/>
+   </properties>
+  </object>
+  <object name="Obj" x="140" y="153" width="64" height="64">
+   <properties>
+    <property name="event" value="1"/>
+    <property name="id" value="1"/>
+    <property name="solid" value="false"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>
