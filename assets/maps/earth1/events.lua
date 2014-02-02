@@ -11,7 +11,7 @@ local Sherman    = {name = 'Sherman',    face = love.graphics.newImage('assets/i
 local Bartender  = {name = 'Bill Montana',  face = love.graphics.newImage('assets/img/events/murrayfull.png')}
 local Bartender1 = {name = 'Bartender',  face = love.graphics.newImage('assets/img/events/murrayfull.png')}
 
-local Narration =   {x=320, y = 30, alx='m',alxb='m',wbox = 600,box=false,face_pos = {x=0,y=0,z=true}, face=love.graphics.newImage('assets/img/events/events/narratebg.png')}
+local Narration =   {x=320, y = 30, alx='m',alxb='m',wbox = 600,box=false,face_pos = {x=0,y=0,z=true}, face=love.graphics.newImage('assets/img/events/narratebg.png')}
 
 return {
     [1] = {

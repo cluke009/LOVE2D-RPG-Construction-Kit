@@ -8,7 +8,7 @@ local lg = love.graphics
 
 _navi.template  = {face_pos={x=0,y=0,z=true}, x=24, y=256, wbox=608, nrows=4, alxb='l', alyb='t', nrows=4,}
 
-local Narration = {x=320, y=30,        face = lg.newImage('assets/img/events/events/narratebg.png'), wbox=600, alx='m', alxb='m', nrows=2, box=false,}
+local Narration = {x=320, y=30,        face = lg.newImage('assets/img/events/narratebg.png'), wbox=600, alx='m', alxb='m', nrows=2, box=false,}
 local Tiffany   = {name = 'Tiffany',   face = lg.newImage('assets/img/events/nurse.png')}
 local Alan      = {name = 'Alan',      face = lg.newImage('assets/img/events/bradytime.png')}
 local AnimeGuy  = {name = 'Anime Guy', face = lg.newImage('assets/img/events/animeguyfull.png')}

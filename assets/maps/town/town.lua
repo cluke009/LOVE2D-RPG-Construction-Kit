@@ -223,7 +223,7 @@ return {
           visible = true,
           properties = {
             ["solid"] = "false",
-            ["to"] = "west"
+            ["to"] = "west,24,7"
           }
         },
         {

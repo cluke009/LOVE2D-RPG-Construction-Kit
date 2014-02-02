@@ -12,7 +12,7 @@ local Hogan      = {name = 'Cloaked Man',face = love.graphics.newImage('assets/i
 local HoganR     = {name = 'Cloaked Man',face = love.graphics.newImage('assets/img/events/hoganfullr.png')}
 
 local HoganTwo     = {name = 'Cloaked Man',face = {love.graphics.newImage('assets/img/events/hoganfull.png'), love.graphics.newImage('assets/img/events/hoganfullr.png')}}
-local Narration =   {x=320, y = 30, alx='m',alxb='m',wbox = 600,box=false,face_pos = {x=0,y=0,z=true}, face=love.graphics.newImage('assets/img/events/events/narratebg.png')}
+local Narration =   {x=320, y = 30, alx='m',alxb='m',wbox = 600,box=false,face_pos = {x=0,y=0,z=true}, face=love.graphics.newImage('assets/img/events/narratebg.png')}
 
 
 return {

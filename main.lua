@@ -38,7 +38,7 @@ the.app = App:new
         {
             player  = Hero,
             mapDir  = 'assets/maps/',
-            mapName = 'inn',
+            mapName = 'mountainpath2',
             playerX = 5 * 32,
             playerY = 5 * 32
         }

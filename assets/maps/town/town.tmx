@@ -45,7 +45,7 @@
   <object name="Door" x="0" y="384" height="32">
    <properties>
     <property name="solid" value="false"/>
-    <property name="to" value="west"/>
+    <property name="to" value="west,24,7"/>
    </properties>
   </object>
   <object name="Door" x="384" y="640" width="32" height="32">

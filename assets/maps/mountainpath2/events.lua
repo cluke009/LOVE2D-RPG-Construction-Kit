@@ -1,10 +1,10 @@
-local Bill =  		{name='Bill', face=love.graphics.newImage('assets/img/events/Woodsman.png'),
+local Bill =  		{name='Bill', face=love.graphics.newImage('assets/img/events/billfullr.png'),
             		face_border=false, face_pos='r', x=30, y=245, wbox = 600, nrows=4}
 
-local AnimeGuy =    {name='Anime Guy', face=love.graphics.newImage('assets/img/events/AnimeGuy.png'),
+local AnimeGuy =    {name='Anime Guy', face=love.graphics.newImage('assets/img/events/animeguyfull.png'),
                     face_border=false, face_pos='r', x=30, y=245, wbox = 600, nrows=4}
 
-local Querina =     {name='Querina', face=love.graphics.newImage('assets/img/events/Querina1.png'),
+local Querina =     {name='Querina', face=love.graphics.newImage('assets/img/events/querinafullr.png'),
                     face_border=false, face_pos='r', x=30, y=245, wbox = 600, nrows=4}
 
 return {
