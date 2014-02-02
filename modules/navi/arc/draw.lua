@@ -26,7 +26,9 @@ function draw.text(s,x,y,c)
     lg.setColor(c)
     lg.print(s,x,y)
 end
-local dbox = lg.newImage('assets/img/dialogue-box-crop_03.png')
+local arc_path = (...):match("(.-)[^%.]+$")
+arc_path = string.gsub(arc_path, '%.', '/')
+local dbox = lg.newImage(arc_path .. 'pics/dialogue-box-crop_03.png')
 -- local dbox = lg.newImage('assets/img/dialoguebox_03.png')
 
 -- draw window

@@ -24,7 +24,7 @@ Animate = require 'modules.animate'
 Battle  = require 'modules.battle'
 
 -- Views
-apView    = require 'modules.map'
+MapView    = require 'modules.map'
 ShopView   = require 'views.shop'
 BattleView = require 'views.battle'
 
