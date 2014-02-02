@@ -15,7 +15,7 @@ return {
       tileheight = 32,
       spacing = 0,
       margin = 0,
-      image = "../img/BlackAndWhite.png",
+      image = "../../img/tiles/BlackAndWhite.png",
       imagewidth = 320,
       imageheight = 32,
       tileoffset = {
@@ -51,7 +51,7 @@ return {
       tileheight = 32,
       spacing = 0,
       margin = 0,
-      image = "../img/collision.png",
+      image = "../../img/tiles/collision.png",
       imagewidth = 32,
       imageheight = 32,
       tileoffset = {
@@ -75,7 +75,7 @@ return {
       tileheight = 32,
       spacing = 0,
       margin = 0,
-      image = "../img/!BeachE.png",
+      image = "../../img/tiles/!BeachE.png",
       imagewidth = 512,
       imageheight = 512,
       tileoffset = {
@@ -92,7 +92,7 @@ return {
       tileheight = 32,
       spacing = 0,
       margin = 0,
-      image = "../img/Zombie_TileB.png",
+      image = "../../img/tiles/Zombie_TileB.png",
       imagewidth = 512,
       imageheight = 512,
       tileoffset = {
@@ -109,7 +109,7 @@ return {
       tileheight = 32,
       spacing = 0,
       margin = 0,
-      image = "../img/Cave_Dungeon_TileA2.png",
+      image = "../../img/tiles/Cave_Dungeon_TileA2.png",
       imagewidth = 512,
       imageheight = 384,
       tileoffset = {
@@ -126,7 +126,7 @@ return {
       tileheight = 32,
       spacing = 0,
       margin = 0,
-      image = "../img/Cave_Dungeon_TileB.png",
+      image = "../../img/tiles/Cave_Dungeon_TileB.png",
       imagewidth = 512,
       imageheight = 512,
       tileoffset = {

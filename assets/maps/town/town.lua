@@ -15,7 +15,7 @@ return {
       tileheight = 32,
       spacing = 0,
       margin = 0,
-      image = "../img/TownTiles.png",
+      image = "../../img/tiles/TownTiles.png",
       imagewidth = 576,
       imageheight = 1120,
       properties = {},

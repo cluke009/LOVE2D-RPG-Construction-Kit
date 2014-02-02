@@ -15,7 +15,7 @@ return {
       tileheight = 32,
       spacing = 0,
       margin = 0,
-      image = "../img/GoldenTempleTiles3.png",
+      image = "../../img/tiles/GoldenTempleTiles3.png",
       imagewidth = 320,
       imageheight = 384,
       tileoffset = {
@@ -32,7 +32,7 @@ return {
       tileheight = 32,
       spacing = 0,
       margin = 0,
-      image = "../img/rock face front b.png",
+      image = "../../img/tiles/rock face front b.png",
       imagewidth = 512,
       imageheight = 32,
       tileoffset = {

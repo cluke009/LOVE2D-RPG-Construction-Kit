@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" width="20" height="12" tilewidth="32" tileheight="32">
  <tileset firstgid="1" name="BlackAndWhite" tilewidth="32" tileheight="32">
-  <image source="../img/BlackAndWhite.png" width="320" height="32"/>
+  <image source="../../img/tiles/BlackAndWhite.png" width="320" height="32"/>
   <tile id="0">
    <properties>
     <property name="solid" value="true"/>
@@ -34,19 +34,19 @@
   </tile>
  </tileset>
  <tileset firstgid="11" name="Dungeon_C" tilewidth="32" tileheight="32">
-  <image source="../img/Dungeon_C.png" trans="ff00ff" width="512" height="512"/>
+  <image source="../../img/tiles/Dungeon_C.png" trans="ff00ff" width="512" height="512"/>
  </tileset>
  <tileset firstgid="267" name="expandedAutotile" tilewidth="32" tileheight="32">
-  <image source="../img/expandedAutotile.png" trans="ff00ff" width="256" height="192"/>
+  <image source="../../img/tiles/expandedAutotile.png" trans="ff00ff" width="256" height="192"/>
  </tileset>
  <tileset firstgid="315" name="TileD" tilewidth="32" tileheight="32">
-  <image source="../img/TileD.png" trans="ff00ff" width="512" height="512"/>
+  <image source="../../img/tiles/TileD.png" trans="ff00ff" width="512" height="512"/>
  </tileset>
  <tileset firstgid="571" name="TileA4" tilewidth="32" tileheight="32">
-  <image source="../img/TileA4.png" trans="ff00ff" width="512" height="480"/>
+  <image source="../../img/tiles/TileA4.png" trans="ff00ff" width="512" height="480"/>
  </tileset>
  <tileset firstgid="811" name="TileA5" tilewidth="32" tileheight="32">
-  <image source="../img/TileA5.png" trans="ff00ff" width="256" height="512"/>
+  <image source="../../img/tiles/TileA5.png" trans="ff00ff" width="256" height="512"/>
  </tileset>
  <layer name="map" width="20" height="12">
   <data encoding="base64" compression="zlib">

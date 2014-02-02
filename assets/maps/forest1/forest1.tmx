@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" width="20" height="26" tilewidth="32" tileheight="32">
  <tileset firstgid="1" name="BlackAndWhite" tilewidth="32" tileheight="32">
-  <image source="../../img/BlackAndWhite.png" width="320" height="32"/>
+  <image source="../../../img/tiles/BlackAndWhite.png" width="320" height="32"/>
   <tile id="0">
    <properties>
     <property name="solid" value="true"/>
@@ -19,7 +19,7 @@
   </tile>
  </tileset>
  <tileset firstgid="11" name="config samples" tilewidth="32" tileheight="32">
-  <image source="../img/config samples.png" width="256" height="384"/>
+  <image source="../../img/tiles/config samples.png" width="256" height="384"/>
   <tile id="0">
    <properties>
     <property name="solid" value="false"/>
@@ -102,10 +102,10 @@
   </tile>
  </tileset>
  <tileset firstgid="107" name="shadowtiles" tilewidth="32" tileheight="32">
-  <image source="../img/shadowtiles.png" width="128" height="96"/>
+  <image source="../../img/tiles/shadowtiles.png" width="128" height="96"/>
  </tileset>
  <tileset firstgid="119" name="TownTiles" tilewidth="32" tileheight="32">
-  <image source="../img/TownTiles.png" width="576" height="1120"/>
+  <image source="../../img/tiles/TownTiles.png" width="576" height="1120"/>
  </tileset>
  <layer name="map" width="20" height="26">
   <properties>

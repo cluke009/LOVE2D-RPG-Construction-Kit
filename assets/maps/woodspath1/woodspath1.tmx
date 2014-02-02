@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" width="20" height="28" tilewidth="32" tileheight="32">
  <tileset firstgid="1" name="BlackAndWhite" tilewidth="32" tileheight="32">
-  <image source="../img/BlackAndWhite.png" width="320" height="32"/>
+  <image source="../../img/tiles/BlackAndWhite.png" width="320" height="32"/>
   <tile id="0">
    <properties>
     <property name="solid" value="true"/>
@@ -14,13 +14,13 @@
   </tile>
  </tileset>
  <tileset firstgid="11" name="Cave_Dungeon_TileA2" tilewidth="32" tileheight="32">
-  <image source="../img/Cave_Dungeon_TileA2.png" width="512" height="384"/>
+  <image source="../../img/tiles/Cave_Dungeon_TileA2.png" width="512" height="384"/>
  </tileset>
  <tileset firstgid="203" name="!BeachE" tilewidth="32" tileheight="32">
-  <image source="../img/!BeachE.png" width="512" height="512"/>
+  <image source="../../img/tiles/!BeachE.png" width="512" height="512"/>
  </tileset>
  <tileset firstgid="459" name="DSPlus_TileA2_ModernExterior" tilewidth="32" tileheight="32">
-  <image source="../img/DSPlus_TileA2_ModernExterior.png" width="512" height="384"/>
+  <image source="../../img/tiles/DSPlus_TileA2_ModernExterior.png" width="512" height="384"/>
  </tileset>
  <layer name="map" width="20" height="28">
   <data>

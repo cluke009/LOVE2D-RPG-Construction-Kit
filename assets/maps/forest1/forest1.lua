@@ -15,7 +15,7 @@ return {
       tileheight = 32,
       spacing = 0,
       margin = 0,
-      image = "../../img/BlackAndWhite.png",
+      image = "../../../img/tiles/BlackAndWhite.png",
       imagewidth = 320,
       imageheight = 32,
       tileoffset = {
@@ -51,7 +51,7 @@ return {
       tileheight = 32,
       spacing = 0,
       margin = 0,
-      image = "../img/config samples.png",
+      image = "../../img/tiles/config samples.png",
       imagewidth = 256,
       imageheight = 384,
       tileoffset = {
@@ -165,7 +165,7 @@ return {
       tileheight = 32,
       spacing = 0,
       margin = 0,
-      image = "../img/shadowtiles.png",
+      image = "../../img/tiles/shadowtiles.png",
       imagewidth = 128,
       imageheight = 96,
       tileoffset = {
@@ -182,7 +182,7 @@ return {
       tileheight = 32,
       spacing = 0,
       margin = 0,
-      image = "../img/TownTiles.png",
+      image = "../../img/tiles/TownTiles.png",
       imagewidth = 576,
       imageheight = 1120,
       tileoffset = {

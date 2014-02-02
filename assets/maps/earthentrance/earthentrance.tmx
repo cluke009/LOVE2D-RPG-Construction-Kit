@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" width="35" height="35" tilewidth="32" tileheight="32">
  <tileset firstgid="1" name="BlackAndWhite" tilewidth="32" tileheight="32">
-  <image source="../img/BlackAndWhite.png" width="320" height="32"/>
+  <image source="../../img/tiles/BlackAndWhite.png" width="320" height="32"/>
   <tile id="0">
    <properties>
     <property name="solid" value="true"/>
@@ -14,7 +14,7 @@
   </tile>
  </tileset>
  <tileset firstgid="11" name="TileA5" tilewidth="32" tileheight="32">
-  <image source="../img/TileA5.png" trans="ff00ff" width="256" height="512"/>
+  <image source="../../img/tiles/TileA5.png" trans="ff00ff" width="256" height="512"/>
  </tileset>
  <layer name="map" width="35" height="35">
   <data encoding="base64" compression="zlib">

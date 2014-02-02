@@ -15,7 +15,7 @@ return {
       tileheight = 32,
       spacing = 0,
       margin = 0,
-      image = "../../img/BlackAndWhite.png",
+      image = "../../../img/tiles/BlackAndWhite.png",
       imagewidth = 320,
       imageheight = 32,
       tileoffset = {

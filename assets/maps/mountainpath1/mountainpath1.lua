@@ -15,7 +15,7 @@ return {
       tileheight = 32,
       spacing = 0,
       margin = 0,
-      image = "../img/collision.png",
+      image = "../../img/tiles/collision.png",
       imagewidth = 32,
       imageheight = 32,
       tileoffset = {
@@ -32,7 +32,7 @@ return {
       tileheight = 32,
       spacing = 0,
       margin = 0,
-      image = "../img/TileA5.png",
+      image = "../../img/tiles/TileA5.png",
       imagewidth = 256,
       imageheight = 512,
       transparentcolor = "#ff00ff",

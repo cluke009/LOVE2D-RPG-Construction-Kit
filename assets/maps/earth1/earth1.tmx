@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" width="30" height="24" tilewidth="32" tileheight="32">
  <tileset firstgid="1" name="GoldenTempleTiles3" tilewidth="32" tileheight="32">
-  <image source="../img/GoldenTempleTiles3.png" width="320" height="384"/>
+  <image source="../../img/tiles/GoldenTempleTiles3.png" width="320" height="384"/>
  </tileset>
  <tileset firstgid="121" name="GoldenTempleTiles3-20" tilewidth="32" tileheight="32">
-  <image source="../img/GoldenTempleTiles3-20.png" width="320" height="320"/>
+  <image source="../../img/tiles/GoldenTempleTiles3-20.png" width="320" height="320"/>
  </tileset>
  <layer name="map" width="30" height="24">
   <properties>

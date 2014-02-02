@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" width="30" height="40" tilewidth="32" tileheight="32">
  <tileset firstgid="1" name="BlackAndWhite" tilewidth="32" tileheight="32">
-  <image source="../img/BlackAndWhite.png" width="320" height="32"/>
+  <image source="../../img/tiles/BlackAndWhite.png" width="320" height="32"/>
   <tile id="0">
    <properties>
     <property name="solid" value="true"/>
@@ -19,7 +19,7 @@
   </tile>
  </tileset>
  <tileset firstgid="11" name="collision" tilewidth="32" tileheight="32">
-  <image source="../img/collision.png" width="32" height="32"/>
+  <image source="../../img/tiles/collision.png" width="32" height="32"/>
   <tile id="0">
    <properties>
     <property name="solid" value="true"/>
@@ -27,16 +27,16 @@
   </tile>
  </tileset>
  <tileset firstgid="12" name="!BeachE" tilewidth="32" tileheight="32">
-  <image source="../img/!BeachE.png" width="512" height="512"/>
+  <image source="../../img/tiles/!BeachE.png" width="512" height="512"/>
  </tileset>
  <tileset firstgid="268" name="Zombie_TileB" tilewidth="32" tileheight="32">
-  <image source="../img/Zombie_TileB.png" width="512" height="512"/>
+  <image source="../../img/tiles/Zombie_TileB.png" width="512" height="512"/>
  </tileset>
  <tileset firstgid="524" name="Cave_Dungeon_TileA2" tilewidth="32" tileheight="32">
-  <image source="../img/Cave_Dungeon_TileA2.png" width="512" height="384"/>
+  <image source="../../img/tiles/Cave_Dungeon_TileA2.png" width="512" height="384"/>
  </tileset>
  <tileset firstgid="716" name="Cave_Dungeon_TileB" tilewidth="32" tileheight="32">
-  <image source="../img/Cave_Dungeon_TileB.png" width="512" height="512"/>
+  <image source="../../img/tiles/Cave_Dungeon_TileB.png" width="512" height="512"/>
  </tileset>
  <layer name="map" width="30" height="40" opacity="0.45">
   <data>
