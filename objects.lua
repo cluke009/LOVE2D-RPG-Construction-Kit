@@ -1,319 +1,141 @@
---
--- File: Objects
---
-
-local Battle    = require 'view.battle.battle_view'
-local Encounter = require 'assets.tables.encounters'
-
-local Assets    = require 'helpers/asset_helper'
-local Enemies   = Assets.Enemy
-local Items     = Assets.Item
-local Equipment = Assets.Equipment
-local Inventory = Assets.Inventory
-local Event     = Assets.Event
-
-local dialog = require 'assets.tables.dialog'
-local event  = require 'assets.tables.events'
-local obj    = require 'assets.tables.obj'
-local npc    = require 'assets.tables.npcs'
-
---
--- Class: Door
--- Add the property "to" with the value "*mapname*" to load when passing over it.
---
-Door = Tile:extend{
-    onCollide = function(self, other)
-        if other:instanceOf(Hero) then
-            STATE.prevmap = STATE.map
-            STATE.map = self.to
-            the.app.view = MapView:new()
-            if the.app.view.foreground then
-                the.app.view:moveToFront(the.app.view.foreground)
-            end
-            the.app.view:flash({ 0, 0, 0 }, .75)
-        end
-    end
-}
-
---
--- Class: Spawn
--- Add the property "from" with the value "*mapname*" to specify the spawn point when coming from that location.
---
-Spawn = Tile:extend{
-    onNew = function(self)
-        if STATE.prevmap and self.from == STATE.prevmap then
-            STATE.heroStartX = self.x
-            STATE.heroStartY = self.y
-        end
-    end
-}
-
---
--- Class: Hero
--- Player sprite. Grabs data from the first hero in heroes.lua
---
-Hero = Animation:extend{
-    width  = STATE.heroes[1].img.width,
-    height = STATE.heroes[1].img.height,
-    image  = STATE.heroes[1].img.down.image,
+-- Create Hero object
+Hero = Animation:extend
+{
+    width = 32,
+    height = 32,
+    image = 'assets/img/spritetest.png',
     sequences = {
+        down = {
+            frames ={1,2},
+            fps = 5,
+        },
+        left = {
+            frames ={3,4},
+            fps = 5,
+        },
         right = {
-            frames = STATE.heroes[1].img.right.frames,
-            fps = STATE.heroes[1].img.right.fps
+            frames ={7,8},
+            fps = 5,
         },
-        left  = {
-            frames = STATE.heroes[1].img.left.frames,
-            fps = STATE.heroes[1].img.left.fps
-        },
-        up    = {
-            frames = STATE.heroes[1].img.up.frames,
-            fps = STATE.heroes[1].img.up.fps
-        },
-        down  = {
-            frames = STATE.heroes[1].img.down.frames,
-            fps = STATE.heroes[1].img.down.fps
+        up = {
+            frames ={5,6},
+            fps = 5,
         },
     },
     rand = function(self)
         local low = 100
         local high = 175
-        if Encounter[STATE.map] then
-            low = Encounter[STATE.map]['rate'][1]
-            high = Encounter[STATE.map]['rate'][2]
+        if STATE.encounters[STATE.mapName].active then
+            print(STATE.mapName)
+            low, high = unpack(STATE.encounters[STATE.mapName].rate)
         end
         self.encounter = math.random(low, high)
     end,
     onNew = function(self)
+        -- local encounters = require('assets.maps.' .. the.app.view.mapName .. '.config')
+        -- print(the.app.view.mapName )
         self:rand()
     end,
-    onUpdate = function(self)
+    onUpdate = function (self)
         self.velocity.x = 0
         self.velocity.y = 0
-        if the.keys:pressed('up') then
-            self.encounter = self.encounter - 1
-            self.velocity.y = -300
-            self.image = STATE.heroes[1].img.up.image
-            self:play('up')
-        elseif the.keys:pressed('down') then
-            self.encounter = self.encounter - 1
-            self.velocity.y = 300
-            self.image = STATE.heroes[1].img.down.image
-            self:play('down')
-        elseif the.keys:pressed('left') then
-            self.encounter = self.encounter - 1
-            self.velocity.x = -300
-            self.image = STATE.heroes[1].img.left.image
-            self:play('left')
-        elseif the.keys:pressed('right') then
-            self.encounter = self.encounter - 1
-            self.velocity.x = 300
-            self.image = STATE.heroes[1].img.right.image
-            self:play('right')
-        end
-        if self.velocity.x == 0 and self.velocity.y == 0 then
-            self:freeze()
+
+        -- Its time to run
+        local velo = 120
+        if the.keys:pressed('shift') then
+            velo = 300
         end
 
-        if self.encounter == 0 and Encounter[STATE.map] then
-            local a = math.random(1, #Encounter[STATE.map])
-            Battle:activate(Encounter[STATE.map][a])
-            self:rand()
-        end
-    end
-}
+        -- Its time to move
+        if not Event.navi then
+            if the.keys:pressed('up') then
+                self.encounter = self.encounter - 1
+                self.velocity.y = -velo
+                self:play('up')
+            elseif the.keys:pressed('down') then
+                self.encounter = self.encounter - 1
+                self.velocity.y = velo
+                self:play('down')
+            elseif the.keys:pressed('left') then
+                self.encounter = self.encounter - 1
+                self.velocity.x = -velo
+                self:play('left')
+            elseif the.keys:pressed('right') then
+                self.encounter = self.encounter - 1
+                self.velocity.x = velo
+                self:play('right')
+            elseif self.velocity.x == 0 and self.velocity.y == 0 then
+                self:freeze()
+            end
 
---
--- Class: Chest
--- Items and equipment can go in here.
--- Add the property "item" / "equipment" with the "id" from the appropriate config file.
---
-Chest = Tile:extend{
-    onNew = function(self)
-        -- Get item type
-        if self.item then
-            self.kind = 'item'
-        elseif self.equipment then
-            self.kind = 'equipment'
-        end
+            if STATE.encounters[STATE.mapName].active and self.encounter == 0 then
+                local id = math.random(1, #STATE.encounters[STATE.mapName].random)
+                BattleView.config = require('assets.maps.' .. STATE.mapName .. '.config')
+                BattleView.enemyGroup = STATE.encounters[STATE.mapName]['random'][id]
+                BattleView:activate()
+                STATE.encounters[STATE.mapName].max = STATE.encounters[STATE.mapName].max - 1
 
-        -- Add params
-        self.uid        = tonumber(self.x .. self.y)
-        self.item       = tonumber(self.item)
-        self.equipment  = tonumber(self.equipment)
-        self.weapon     = tonumber(self.weapon)
-        self.id         = self[self.kind]
-
-        -- Set state of chest
-        if STATE[STATE.map] == nil then
-            STATE[STATE.map] = {}
-            STATE[STATE.map]['chest'] = {}
-        end
-        -- TODO: add config for image
-        if STATE[STATE.map]['chest'][self.uid] == nil then
-            self.open = 0
-            self.image = 'assets/img/chest.gif'
-        else
-            self.open = 1
-            self.image = 'assets/img/chestopen.gif'
-        end
-    end,
-    onCollide = function(self, other)
-        if other:instanceOf(Hero) then
-            self.other = other
-            self:displace(other)
-        end
-    end,
-    onUpdate = function(self)
-        if self.other then
-            local otherX = self.other.x + (self.other.width / 2)
-            local otherY = self.other.y + (self.other.height / 2)
-
-            local selfX = self.x + (self.width / 2)
-            local selfY = self.y + (self.height / 2)
-
-            local offsetX = (self.width / 2) + (self.other.width / 2)
-            local offsetY = (self.height / 2) + (self.other.height / 2)
-
-            if math.abs(otherX - selfX) <= offsetX and math.abs(otherY - selfY) <= offsetY then
-                if the.keys:justPressed('return') and self.open == 0 then
-                    self.image = 'assets/img/chestopen.gif'
-                    self.open = 1
-
-                    STATE[STATE.map]['chest'][self.uid] = 1
-
-                    -- Save to inventory
-                    Inventory:put(self.kind, self.id)
-
-                    -- Display dialog
-                    local d = ''
-                    if self.dialog then
-                        d = dialog[tonumber(self.dialog)]
-                    else
-                        if self.item then
-                            d = string.gsub(dialog.items, '$item', Items:get(self.id, 'name'))
-                        elseif self.equipment then
-                            d = string.gsub(dialog.items, '$item', Equipment:get(self.id, 'name'))
-                        end
-                        d = { d }
-                    end
-
-                    Dialog:new{ dialog = d }:activate()
+                if STATE.encounters[STATE.mapName].max == 0 then
+                    STATE.encounters[STATE.mapName].active = false
                 end
+
+                self:rand()
             end
         end
     end
 }
-
 --
--- Class: Obj
 -- Anything else that might go on your map.
--- - These can be collideable or not by setting the property "solid" with a value of "false".
--- - Add the property "id" with the "id value" from obj.lua.
---
 Obj = Animation:extend {
+    __class__ = 'Obj',
     onNew = function(self)
         self.id     = tonumber(self.id)
-        self.dialog = tonumber(self.dialog)
-        self.image  = obj[self.id]['image']
-        self.width  = obj[self.id]['width']
-        self.height = obj[self.id]['height']
+        self.image  = objs[self.id].image
+        if objs[self.id].width then self.width  = objs[self.id].width end
+        if objs[self.id].height then self.height = objs[self.id].height end
+        if self.id == 0 then self.solid = false end
+        self.sequences  = objs[self.id].sequences
+        if self.sequences and self.sequences.auto then
+            self:play('auto')
+        end
     end,
     onCollide = function(self, other)
-        self.other = other
-
+        if other:instanceOf(Hero) then self.other = other end
         if other:instanceOf(Hero) and self.solid ~= 'false' then
             self:displace(other)
         end
     end,
-    onUpdate = function(self)
-        if STATE.removeObj[self.id] then
-            self.solid = false
-            self.image = 'assets/maps/img/trans.png'
-        end
+    animate = function(self, elapsed)
+    end,
+    onUpdate = function(self, elapsed)
+        Event:checkObj(self)
+        self:animate(elapsed)
 
         if self.other then
-
             local otherX = self.other.x + (self.other.width / 2)
             local otherY = self.other.y + (self.other.height / 2)
-
             local selfX = self.x + (self.width / 2)
             local selfY = self.y + (self.height / 2)
-
             local offsetX = (self.width / 2) + (self.other.width / 2)
             local offsetY = (self.height / 2) + (self.other.height / 2)
 
             if math.abs(otherX - selfX) <= offsetX and math.abs(otherY - selfY) <= offsetY then
                 if self.event then
-                    self:onEvent()
+                    Event:register(self.event)
                 end
-            end
-        end
-    end,
-    onEvent = function(self)
-        -- Get the currently needed event
-        local e = event[tonumber(self.event)][1]
-        if STATE.event[tonumber(self.event)] then
-            e = event[tonumber(self.event)][STATE.event[tonumber(self.event)]]
-        end
-
-        -- Check replay autoplay logic
-        if e.replay and e.auto then
-            print('replay=true','auto=true')
-            Event:init(self.event)
-        elseif e.replay and not e.auto and the.keys:justPressed('return') then
-            print('replay=true','auto=false')
-            Event:init(self.event)
-        elseif not e.replay and e.auto then
-            print('replay=false','auto=true')
-            if not STATE.event[tonumber(self.event)] then
-                Event:init(self.event)
-            end
-        elseif not e.replay and not e.auto and the.keys:justPressed('return') then
-            print('replay=false','auto=false')
-            if not STATE.event[tonumber(self.event)] then
-                Event:init(self.event)
             end
         end
     end
 }
 
 --
--- Class: NPC
 -- Add the property "id" with the "id value" from npcs.lua.
---
--- Extends:
---      <Obj>
---
 NPC = Obj:extend {
+    __class__ = 'NPC',
     onNew = function(self)
         self.id     = tonumber(self.id)
-        self.dialog = tonumber(self.dialog)
-        self.image  = npc[self.id]['image']
-        self.width  = npc[self.id]['width']
-        self.height = npc[self.id]['height']
-    end,
-}
-
---
--- Class: Enemy
--- Add the property "id" with the "id value" from enemies.lua.
---
--- Extends:
---      <Obj>
---
-Enemy = Obj:extend{
-    onNew = function(self)
-        self.id        = tonumber(self.id)
-        self.dialog    = tonumber(self.dialog)
-        self.image     = Enemies:get(self.id, 'img').idle.image
-        self.width     = Enemies:get(self.id, 'img').width
-        self.height    = Enemies:get(self.id, 'img').height
-        self.sequences = {
-            down = {
-                frames = Enemies:get(self.id, 'img').idle.frames,
-                fps    = Enemies:get(self.id, 'img').idle.fps
-            },
-        }
-        self:play('down')
+        self.image  = npcs[self.id].image
+        self.width  = npcs[self.id].width
+        self.height = npcs[self.id].height
     end,
 }

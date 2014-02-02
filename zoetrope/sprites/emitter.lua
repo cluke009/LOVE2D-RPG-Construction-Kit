@@ -180,7 +180,7 @@ Emitter = Group:extend{
 	--		nothing
 
 	extinguish = function (self)
-		for _, spr in pairs(self.sprites) do
+		for _, spr in self:members() do
 			spr:die()
 		end
 
@@ -208,11 +208,11 @@ Emitter = Group:extend{
 	end,
 
 	__tostring = function (self)
-		local result = 'Emitter (x: ' .. self.x .. ', y: ' .. self.y ..
-					   ', w: ' .. self.width .. ', h: ' .. self.height .. ', '
+		local result = 'Emitter (x: ' .. tostring(self.x) .. ', y: ' .. tostring(self.y) ..
+					   ', w: ' .. tostring(self.width) .. ', h: ' .. tostring(self.height) .. ', '
 
 		if self.emitting then
-			result = result .. 'emitting with period ' .. self.period .. ', '
+			result = result .. 'emitting with period ' .. tostring(self.period) .. ', '
 		else
 			result = result .. 'not emitting, '
 		end

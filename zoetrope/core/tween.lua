@@ -102,21 +102,7 @@ Tween = Sprite:extend{
 			assert(self.easers[ease], 'easer ' .. ease .. ' is not defined')
 		end
 
-		-- check for an existing tween for this target and property
-		
-		for i, existing in ipairs(self.tweens) do
-			if target == existing.target and property == existing.property then
-				if to == existing.to then
-					return existing.promise
-				else
-					table.remove(self.tweens, i)
-				end
-			end
-		end
-		
-		-- add it
-
-		tween = { target = target, property = property, propType = propType, to = to, duration = duration, ease = ease }
+		local tween = { target = target, property = property, propType = propType, to = to, duration = duration, ease = ease }
 		tween.from = self:getTweenValue(tween)
 		tween.type = type(tween.from)
 		
@@ -146,7 +132,20 @@ Tween = Sprite:extend{
 		else
 			error('tweened property must either be a number or a table of numbers, is ' .. tween.type)
 		end
-			
+
+		-- check for an existing tween for this target and property
+		
+		for i, existing in ipairs(self.tweens) do
+			if target == existing.target and property == existing.property then
+				if to == existing.to then
+					return existing.promise
+				else
+					existing.promise:fail('Overridden by a later tween')
+					table.remove(self.tweens, i)
+				end
+			end
+		end
+		
 		tween.elapsed = 0
 		tween.promise = Promise:new()
 		table.insert(self.tweens, tween)
@@ -197,7 +196,7 @@ Tween = Sprite:extend{
 			   (type(tween.property) == 'table' and tween.property[1] == property) or
 			   not property) then
 			   	found = true
-				tween.promise:fail('Tween stopped')
+				tween.promise:fail('Stopped')
 				table.remove(self.tweens, i)
 			end
 		end

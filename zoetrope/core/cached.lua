@@ -99,17 +99,17 @@ Cached = Class:extend
 
 		local realPath = self:_absolutePath(path)
 
-		if not self._library.sound[realPath] then
-			if length == 'short' then
+		if length == 'short' then
+			if not self._library.sound[realPath] then
 				self._library.sound[realPath] = love.sound.newSoundData(realPath)
-			elseif length == 'long' then
-				self._library.sound[realPath] = love.sound.newDecoder(realPath)
-			else
-				error('length must be either "short" or "long"')
 			end
-		end
 
-		return self._library.sound[path]
+			return self._library.sound[path]
+		elseif length == 'long' then
+			return love.sound.newDecoder(realPath)
+		else
+			error('length must be either "short" or "long"')
+		end
 	end,
 
 	-- Method: font

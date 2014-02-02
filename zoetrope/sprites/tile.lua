@@ -88,12 +88,14 @@ Tile = Sprite:extend
 		-- draw the quad
 		local scaleX = self.scale * self.distort.x
 		local scaleY = self.scale * self.distort.y
+		local origX = self.origin.x or (self.width / 2)
+		local origY = self.origin.y or (self.height / 2)
 
 		if self.flipX then scaleX = scaleX * -1 end
 		if self.flipY then scaleY = scaleY * -1 end
 
-		love.graphics.drawq(self._imageObj, self._quad, x + self.width / 2, y + self.height / 2, self.rotation,
-							scaleX, scaleY, self.width / 2, self.height / 2)
+		love.graphics.draw(self._imageObj, self._quad, x + origX, y + origY, self.rotation,
+							scaleX, scaleY, origX, origY)
 		
 		-- reset color
 		
@@ -103,8 +105,8 @@ Tile = Sprite:extend
 	end,
 
 	__tostring = function (self)
-		local result = 'Tile (x: ' .. self.x .. ', y: ' .. self.y ..
-					   ', w: ' .. self.width .. ', h: ' .. self.height .. ', '
+		local result = 'Tile (x: ' .. tostring(self.x) .. ', y: ' .. tostring(self.y) ..
+					   ', w: ' .. tostring(self.width) .. ', h: ' .. tostring(self.height) .. ', '
 
 		result = result .. 'image \'' .. self.image .. '\', '
 

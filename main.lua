@@ -1,32 +1,56 @@
---[[----------------------------------------------------------------------------
---------------------------------------------------------------------------------
-    LOVE2D RPG CONSTRUCTION KIT
---------------------------------------------------------------------------------
-]]------------------------------------------------------------------------------
+-- Debug
 STRICT = true
-DEBUG = true
+DEBUG  = true
 io.stdout:setvbuf("no")
 
+-- Init
 require 'zoetrope'
-require 'helpers.state'
-require 'assets.tables.config'
-
-require 'map'
 require 'objects'
+require 'modules.helpers'
 
-require 'helpers.string_helper'
-require 'helpers.table_helper'
-require 'helpers.dialog_helper'
-require 'view.menu_main.menu_main_view'
+-- Tables
+npcs      = require 'assets.tables.npcs'
+objs      = require 'assets.tables.obj'
+items     = require 'assets.tables.items'
+equipment = require 'assets.tables.equipment'
+heroes    = require 'assets.tables.heroes'
+enemies   = require 'assets.tables.enemies'
 
-the.app = App:new{
-    onRun = function(self)
-    	if STATE.auto_start then
-    		self.view = MapView:new()
-	        self.view:flash({ 0, 0, 0 }, 10)
-    	else
-	        self.view = MenuMainView:new()
-	        self.view:flash({ 0, 0, 0 }, 10)
-	    end
+-- Modules
+STATE   = require 'modules.state'
+Navi    = require 'modules.navi'
+Event   = require 'modules.event'
+Animate = require 'modules.animate'
+Battle  = require 'modules.battle'
+
+-- Views
+apView    = require 'modules.map'
+ShopView   = require 'views.shop'
+BattleView = require 'views.battle'
+
+-- Create new app
+the.app = App:new
+{
+    name = 'RPG Construction Kit V0.1',
+    onRun = function (self)
+        -- Load our map
+        self.view = MapView:new
+        {
+            player  = Hero,
+            mapDir  = 'assets/maps/',
+            mapName = 'inn',
+            playerX = 5 * 32,
+            playerY = 5 * 32
+        }
+        -- Move foreground layer up
+        if the.app.view.foreground then
+            the.app.view:moveToFront(the.app.view.foreground)
+        end
+        the.app.view:flash({0, 0, 0}, .75)
+    end,
+    onUpdate = function (self)
+        if DEBUG and the.keys:justPressed('f5') then
+            table_print(STATE)
+        end
     end,
 }

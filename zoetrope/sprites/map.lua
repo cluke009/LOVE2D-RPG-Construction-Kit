@@ -12,7 +12,7 @@
 -- Extends:
 --		<Sprite>
 
-Map = Sprite:extend
+ap = Sprite:extend
 {
 	-- Constant: NO_SPRITE
 	-- Represents a map entry with no sprite.
@@ -373,7 +373,7 @@ Map = Sprite:extend
 	-- makes sure all sprites receive startFrame messages
 
 	startFrame = function (self, elapsed)
-		for _, spr in pairs(self.sprites) do
+		for _, spr in self:members() do
 			spr:startFrame(elapsed)
 		end
 
@@ -383,7 +383,7 @@ Map = Sprite:extend
 	-- makes sure all sprites receive update messages
 
 	update = function (self, elapsed)
-		for _, spr in pairs(self.sprites) do
+		for _, spr in self:members() do
 			spr:update(elapsed)
 		end
 
@@ -393,16 +393,22 @@ Map = Sprite:extend
 	-- makes sure all sprites receive endFrame messages
 
 	endFrame = function (self, elapsed)
-		for _, spr in pairs(self.sprites) do
+		for _, spr in self:members() do
 			spr:endFrame(elapsed)
 		end
 
 		Sprite.endFrame(self, elapsed)
 	end,
 
+	-- mimic Group's members() method
+
+	members = function (self)
+		return ipairs(self.sprites)
+	end,
+
 	__tostring = function (self)
-		local result = 'Map (x: ' .. self.x .. ', y: ' .. self.y ..
-					   ', w: ' .. self.width .. ', h: ' .. self.height .. ', '
+		local result = 'Map (x: ' .. tostring(self.x) .. ', y: ' .. tostring(self.y) ..
+					   ', w: ' .. tostring(self.width) .. ', h: ' .. tostring(self.height) .. ', '
 
 		if self.active then
 			result = result .. 'active, '

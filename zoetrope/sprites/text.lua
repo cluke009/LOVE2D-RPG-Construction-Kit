@@ -1,5 +1,5 @@
 -- Class: Text
--- Shows text onscreen using an outline (e.g. TrueType) or bitmap font.
+-- Shows text onscreen using an outline (e.g. TrueType) or bitmap font. 
 -- You can control the width of the text but the height is ignored for
 -- display purposes; it will always draw the entirety of its text property.
 -- If you do not specify a height and width, the sprite will size itself
@@ -29,7 +29,7 @@ Text = Sprite:extend{
 	-- Horizontal alignment, see http://love2d.org/wiki/AlignMode.
 	-- This affects how lines wrap relative to each other, not how
 	-- a single line will wrap relative to the sprite's width and height.
-	-- If <wordWrap> is set to false, then this has no effect.
+	-- If <wordWrap> is set to false, then this has no effect. 
 	align = 'left',
 
 	-- Property: wordWrap
@@ -53,10 +53,10 @@ Text = Sprite:extend{
 	--
 	-- Arguments:
 	--		none
-	--
+	-- 
 	-- Returns:
 	--		width, height in pixels
-
+	
 	getSize = function (self)
 		if self.text == '' then return 0, 0 end
 
@@ -89,7 +89,7 @@ Text = Sprite:extend{
 	--		y - center's y coordinate
 	--		centering - can be either 'horizontal', 'vertical', or 'both';
 	--					default 'both'
-
+	
 	centerAround = function (self, x, y, centering)
 		centering = centering or 'both'
 		local width, height = self:getSize()
@@ -166,11 +166,14 @@ Text = Sprite:extend{
 		if self.flipY then scaleY = scaleY * -1 end
 
 		if scaleX ~= 1 or scaleY ~= 1 or self.rotation ~= 0 then
+			local origX = self.origin.x or (self.width / 2)
+			local origY = self.origin.y or (self.height / 2)
+
 			love.graphics.push()
-			love.graphics.translate(x + self.width / 2, y + self.height / 2)
+			love.graphics.translate(x + origX, y + origY)
 			love.graphics.scale(scaleX, scaleY)
 			love.graphics.rotate(self.rotation)
-			love.graphics.translate(- (x + self.width / 2), - (y + self.height / 2))
+			love.graphics.translate(- (x + origX), - (y + origY))
 		end
 
 		-- set color if needed
@@ -180,7 +183,7 @@ Text = Sprite:extend{
 		if colored then
 			love.graphics.setColor(self.tint[1] * 255, self.tint[2] * 255, self.tint[3] * 255, self.alpha * 255)
 		end
-
+		
 		love.graphics.setFont(self._fontObj)
 
 		if self.wordWrap then
@@ -190,7 +193,7 @@ Text = Sprite:extend{
 		end
 
 		-- reset color and rotation
-
+	
 		if colored then love.graphics.setColor(255, 255, 255, 255) end
 
 		if scaleX ~= 1 or scaleY ~= 1 or self.rotation ~= 0 then
@@ -199,8 +202,8 @@ Text = Sprite:extend{
 	end,
 
 	__tostring = function (self)
-		local result = 'Text (x: ' .. self.x .. ', y: ' .. self.y ..
-					   ', w: ' .. self.width .. ', h: ' .. self.height .. ', '
+		local result = 'Text (x: ' .. tostring(self.x) .. ', y: ' .. tostring(self.y) ..
+					   ', w: ' .. tostring(self.width) .. ', h: ' .. tostring(self.height) .. ', '
 
 		result = result .. 'font ' .. dump(self.font) .. ', ' .. string.len(self.text) .. ' chars, '
 

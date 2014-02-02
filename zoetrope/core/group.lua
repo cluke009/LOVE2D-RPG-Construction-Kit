@@ -8,7 +8,7 @@
 -- Event: onUpdate
 -- Called once each frame, with the elapsed time since the last frame in seconds.
 --
--- Event: onBeginFrame
+-- Event: onStartFrame
 -- Called once each frame like onUpdate, but guaranteed to fire before any others' onUpdate handlers.
 --
 -- Event: onEndFrame
@@ -31,7 +31,8 @@ Group = Class:extend
 	solid = true,
 
 	-- Property: sprites
-	-- A table of member sprites, in drawing order.
+	-- A table of member sprites, in drawing order. You can iterate over this
+	-- table with <members()>.
 	sprites = {},
 
 	-- Property: timeScale
@@ -49,6 +50,19 @@ Group = Class:extend
 	-- sprites at their normal position, set both x and y to 1.
 	translateScale = { x = 1, y = 1 },
 
+	-- Property: scale
+	-- Zooms in or out all drawing operations in the group, centering them with
+	-- respect to the <origin> property.
+	scale = 1,
+
+	-- Property: distort
+	-- Distorts the group's scale, similar to <Sprite.distort>.
+	distort = { x = 1, y = 1 },
+
+	-- Property: origin
+	-- Sets the center point for all scaling operations.
+	origin = { x = 0, y = 0 },
+
 	-- Method: add
 	-- Adds a sprite to the group.
 	--
@@ -56,7 +70,8 @@ Group = Class:extend
 	--		sprite - <Sprite> to add
 	--
 	-- Returns:
-	--		nothing
+	--		the sprite added, so you can write things like
+	-- 		self.player = self:add(Player:new())
 
 	add = function (self, sprite)
 		assert(sprite, 'asked to add nil to a group')
@@ -69,6 +84,7 @@ Group = Class:extend
 		end
 
 		table.insert(self.sprites, sprite)
+		return sprite
 	end,
 
 	-- Method: remove
@@ -82,7 +98,7 @@ Group = Class:extend
 	-- 		nothing
 
 	remove = function (self, sprite)
-		for i, spr in ipairs(self.sprites) do
+		for i, spr in self:members() do
 			if spr == sprite then
 				table.remove(self.sprites, i)
 				return
@@ -107,7 +123,7 @@ Group = Class:extend
 	--		nothing
 
 	moveToFront = function (self, sprite)
-		for i, spr in ipairs(self.sprites) do
+		for i, spr in self:members() do
 			if spr == sprite then
 				table.remove(self.sprites, i)
 				table.insert(self.sprites, sprite)
@@ -131,7 +147,7 @@ Group = Class:extend
 	--		nothing
 
 	moveToBack = function (self, sprite)
-		for i, spr in ipairs(self.sprites) do
+		for i, spr in self:members() do
 			if spr == sprite then
 				table.remove(self.sprites, i)
 				table.insert(self.sprites, 1, sprite)
@@ -156,6 +172,19 @@ Group = Class:extend
 
 	sort = function (self, func)
 		table.sort(self.sprites, func)
+	end,
+
+	-- Method: members
+	-- A convenience method that iterates over all member sprites.
+	--
+	-- Arguments:
+	--		none
+	--
+	-- Returns:
+	--		order, sprite
+
+	members = function (self)
+		return ipairs(self.sprites)
 	end,
 
 	-- Method: collide
@@ -215,10 +244,10 @@ Group = Class:extend
 	setEffect = function (self, filename, effectType)
 		effectType = effectType or 'screen'
 
-		if love.graphics.isSupported('pixeleffect') and
+		if love.graphics.isSupported('shader') and
 		   (effectType == 'sprite' or love.graphics.isSupported('canvas'))then
 			if filename then
-				self.effect = love.graphics.newPixelEffect(Cached:text(filename))
+				self.effect = love.graphics.newShader(Cached:text(filename))
 				self.effectType = effectType
 			else
 				self.effect = nil
@@ -243,7 +272,7 @@ Group = Class:extend
 		if subgroups then
 			local count = 0
 
-			for _, spr in pairs(self.sprites) do
+			for _, spr in self:members() do
 				if spr:instanceOf(Group) then
 					count = count + spr:count(true)
 				else
@@ -302,7 +331,7 @@ Group = Class:extend
 	contains = function (self, sprite, recurse)
 		if recurse ~= false then recurse = true end
 
-		for _, spr in pairs(self.sprites) do
+		for _, spr in self:members() do
 			if spr == sprite then return true end
 
 			if recurse and spr:instanceOf(Group) and spr:contains(sprite) then
@@ -331,209 +360,138 @@ Group = Class:extend
 	-- Returns:
 	--		nothing
 
-	loadLayers = function (self, file, tileClass)
-		local ok, data, directory
+    loadLayers = function (self, file, tileClass)
+        local ok, data = pcall(loadstring(Cached:text(file)))
+        local _, _, directory = string.find(file, '^(.*[/\\])')
+        directory = directory or ''
 
-		if type(file) == 'table' then
-			ok, data = true, file
-			directory = ''
-		else
-			ok, data = pcall(loadstring(Cached:text(file)))
-			_, _, directory = string.find(file, '^(.*[/\\])')
-			directory = directory or ''
-		end
+        if ok then
+            -- store tile properties by gid
 
-		if ok then
-			-- store tile properties by gid
+            local tileProtos = {}
 
-			local tileProtos = {}
-			-- !!!!!!!!!! HACKS !!!!!!!!!!!!!!!!!!
-			-- local tk = {}
-			-- -- pretty.dump(layer.data)
-			-- for _, layer in pairs(data.layers) do
-			-- 	if layer.type == 'tilelayer' then
-			-- 		for k,v in pairs(layer.data) do
-			-- 			tk[k] = k
-			-- 		end
-			-- 		for k,v in pairs(tk) do
-			-- 			local t = {
-			-- 		        id = k,
-			-- 		        properties = {
-			-- 		          solid = false
-			-- 		        },
-			-- 		        height = 32,
-			-- 		        width = 32
-			-- 		      }
-			-- 			table.insert(data.tilesets[1].tiles, t)
-			-- 		end
-			-- 	end
-			-- end
+            for _, tileset in pairs(data.tilesets) do
+                for _, tile in pairs(tileset.tiles) do
+                    local id = tileset.firstgid + tile.id
 
-			for _, tileset in pairs(data.tilesets) do
-				for _, tile in pairs(tileset.tiles) do
-					local id = tileset.firstgid + tile.id
+                    for key, value in pairs(tile.properties) do
+                        tile.properties[key] = tovalue(value)
+                    end
 
-					for key, value in pairs(tile.properties) do
-						tile.properties[key] = tovalue(value)
-					end
+                    tileProtos[id] = tile
+                    tileProtos[id].width = tileset.tilewidth
+                    tileProtos[id].height = tileset.tileheight
+                end
+            end
 
-					tileProtos[id] = tile
-					tileProtos[id].width = tileset.tilewidth
-					tileProtos[id].height = tileset.tileheight
-				end
-			end
+            for _, layer in pairs(data.layers) do
+                if self.prototype[layer.name] then
+                    error('The class you are loading layers into reserves the ' .. layer.name .. ' property for its own use; you cannot load a layer with that name')
+                end
 
-			for _, layer in pairs(data.layers) do
-				if self.prototype[layer.name] then
-					error('The class you are loading layers into reserves the ' .. layer.name .. ' property for its own use; you cannot load a layer with that name')
-				end
+                if STRICT and self[layer.name] then
+                    local info = debug.getinfo(2, 'Sl')
+                    print('Warning: a property named ' .. layer.name .. ' already exists in this group (' ..
+                          info.short_src .. ', line ' .. info.currentline .. ')')
+                end
 
-				if STRICT and self[layer.name] then
-					local info = debug.getinfo(2, 'Sl')
-					print('Warning: a property named ' .. layer.name .. ' already exists in this group (' ..
-						  info.short_src .. ', line ' .. info.currentline .. ')')
-				end
+                if layer.type == 'tilelayer' then
+                    local map = Map:new{ spriteWidth = data.tilewidth, spriteHeight = data.tileheight }
+                    map:empty(layer.width, layer.height)
 
-				if layer.type == 'tilelayer' then
-					local map = Map:new{ spriteWidth = data.tilewidth, spriteHeight = data.tileheight }
-					map:empty(layer.width, layer.height)
+                    -- load tiles
 
-					-- load tiles
+                    for _, tiles in pairs(data.tilesets) do
+                        map:loadTiles(directory .. tiles.image, tileClass or Tile, tiles.firstgid)
 
-					for _, tiles in pairs(data.tilesets) do
-						map:loadTiles(directory .. tiles.image, tileClass or Tile, tiles.firstgid)
+                        -- and mix in properties where applicable
 
-						-- and mix in properties where applicable
+                        for id, tile in pairs(tileProtos) do
+                            if map.sprites[id] then
+                                map.sprites[id]:mixin(tile.properties)
+                            end
+                        end
+                    end
 
-						for id, tile in pairs(tileProtos) do
-							if map.sprites[id] then
-								map.sprites[id]:mixin(tile.properties)
-							end
-						end
-					end
+                    -- load tile data
 
-					-- load tile data
+                    local x = 1
+                    local y = 1
 
-					local x = 1
-					local y = 1
+                    for _, val in ipairs(layer.data) do
+                        map.map[x][y] = val
+                        x = x + 1
 
-					for _, val in ipairs(layer.data) do
-						map.map[x][y] = val
-						x = x + 1
+                        if x > layer.width then
+                            x = 1
+                            y = y + 1
+                        end
+                    end
 
-						if x > layer.width then
-							x = 1
-							y = y + 1
-						end
-					end
+                    self[layer.name] = map
+                    self:add(map)
+                elseif layer.type == 'objectgroup' then
+                    local group = Group:new()
 
-					self[layer.name] = map
-					self:add(map)
-				elseif layer.type == 'objectgroup' then
-					local group = Group:new()
+                    for _, obj in pairs(layer.objects) do
+                        -- roll in tile properties if based on a tile
 
-					for _, obj in pairs(layer.objects) do
-						-- roll in tile properties if based on a tile
+                        if obj.gid and tileProtos[obj.gid] then
+                            local tile = tileProtos[obj.gid]
 
-						if obj.gid and tileProtos[obj.gid] then
-							local tile = tileProtos[obj.gid]
+                            obj.name = tile.properties.name
+                            obj.width = tile.width
+                            obj.height = tile.height
 
-							obj.name = tile.properties.name
-							obj.width = tile.width
-							obj.height = tile.height
+                            for key, value in pairs(tile.properties) do
+                                obj.properties[key] = tovalue(value)
+                            end
 
-							for key, value in pairs(tile.properties) do
-								obj.properties[key] = tovalue(value)
-							end
+                            -- Tiled tile-based objects measure their y
+                            -- position at their lower-left corner, instead
+                            -- of their upper-left corner as usual
 
-							-- Tiled tile-based objects measure their y
-							-- position at their lower-left corner, instead
-							-- of their upper-left corner as usual
+                            obj.y = obj.y - obj.height
+                        end
 
-							obj.y = obj.y - obj.height
-						end
+                        -- create a new object if the class does exist
 
-						-- create a new object if the class does exist
+                        local spr
 
-						local spr
+                        if _G[obj.name] then
+                            obj.properties.x = obj.x
+                            obj.properties.y = obj.y
+                            obj.properties.width = obj.width
+                            obj.properties.height = obj.height
 
-						if _G[obj.name] then
-							obj.properties.x = obj.x
-							obj.properties.y = obj.y
-							obj.properties.width = obj.width
-							obj.properties.height = obj.height
+                            spr = _G[obj.name]:new(obj.properties)
+                        else
+                            spr = Fill:new{ x = obj.x, y = obj.y, width = obj.width, height = obj.height, fill = { 128, 128, 128 } }
+                        end
 
-							spr = _G[obj.name]:new(obj.properties)
-						else
-							spr = Fill:new{ x = obj.x, y = obj.y, width = obj.width, height = obj.height, fill = { 128, 128, 128 } }
+                        if obj.properties._the then
+                            the[obj.properties._the] = spr
+                        end
 
--- !!!!!!!!!! HACKS !!!!!!!!!!!!!!!!!!
--- 							print('fill')
--- 							require 'zoetrope.sprites.polygon'
--- local polyline = {
---             { x = 0, y = 0 },
---             { x = -64, y = 0 },
---             { x = -64, y = -64 },
---             { x = -160, y = -64 },
---             { x = -160, y = -96 },
---             { x = -192, y = -96 },
---             { x = -192, y = -64 },
---             { x = -256, y = -64 },
---             { x = -256, y = -96 },
---             { x = -288, y = -96 },
---             { x = -288, y = -128 },
---             { x = -320, y = -160 },
---             { x = -320, y = -192 },
---             { x = -384, y = -192 },
---             { x = -384, y = -160 },
---             { x = -416, y = -160 },
---             { x = -416, y = -224 },
---             { x = 352, y = -224 },
---             { x = 352, y = -128 },
---             { x = 320, y = -128 },
---             { x = 288, y = -96 },
---             { x = 288, y = -64 },
---             { x = 256, y = -32 },
---             { x = 256, y = 0 },
---             { x = 128, y = 0 },
---             { x = 128, y = -32 },
---             { x = 96, y = -32 },
---             { x = 96, y = 0 },
---             { x = 32, y = 0 },
---             { x = 32, y = -32 },
---             { x = 0, y = -32 },
---             { x = 0, y = 0 }
---           }
---     local vertices = {}
---     for k,v in pairs(polyline) do
---         -- print(v['x'], v['y'])
---         table.insert(vertices, v['x'] + 416)
---         table.insert(vertices, v['y'] + 288)
---     end
+                        group:add(spr)
+                    end
 
+                    self[layer.name] = group
+                    self:add(group)
+				elseif layer.type == 'imagelayer' then
+					local img = Tile:new{ image = directory .. layer.image }
 
+					self[layer.name] = img
+					self:add(img)
+                else
+                    error("don't know how to create a " .. layer.type .. " layer from file data")
+                end
+            end
+        else
+            error('could not load layers from file: ' .. data)
+        end
+    end,
 
-
--- 							spr = Polygon:new{416, 255,vertices }
-						end
-
-						if obj.properties._the then
-							the[obj.properties._the] = spr
-						end
-
-						group:add(spr)
-					end
-
-					self[layer.name] = group
-					self:add(group)
-				else
-					error("don't know how to create a " .. layer.type .. " layer from file data")
-				end
-			end
-		else
-			error('could not load layers from file: ' .. data)
-		end
-	end,
 
 	-- passes startFrame events to member sprites
 
@@ -541,7 +499,7 @@ Group = Class:extend
 		if not self.active then return end
 		elapsed = elapsed * self.timeScale
 
-		for _, spr in pairs(self.sprites) do
+		for _, spr in self:members() do
 			if spr.active then spr:startFrame(elapsed) end
 		end
 
@@ -554,7 +512,7 @@ Group = Class:extend
 		if not self.active then return end
 		elapsed = elapsed * self.timeScale
 
-		for _, spr in pairs(self.sprites) do
+		for _, spr in self:members() do
 			if spr.active then spr:update(elapsed) end
 		end
 
@@ -567,7 +525,7 @@ Group = Class:extend
 		if not self.active then return end
 		elapsed = elapsed * self.timeScale
 
-		for _, spr in pairs(self.sprites) do
+		for _, spr in self:members() do
 			if spr.active then spr:endFrame(elapsed) end
 		end
 
@@ -590,6 +548,7 @@ Group = Class:extend
 		local scrollY = y * self.translateScale.y
 		local appWidth = the.app.width
 		local appHeight = the.app.height
+		local scaled = self.scale ~= 1 or self.distort.x ~= 1 or self.distort.y ~= 1
 
 		if self.effect then
 			if self.effectType == 'screen' then
@@ -597,11 +556,21 @@ Group = Class:extend
 				self._canvas:clear()
 				love.graphics.setCanvas(self._canvas)
 			elseif self.effectType == 'sprite' then
-				love.graphics.setPixelEffect(self.effect)
+				love.graphics.setShader(self.effect)
 			end
 		end
 
-		for _, spr in pairs(self.sprites) do
+		if scaled then
+			local scaleX = self.scale * self.distort.x
+			local scaleY = self.scale * self.distort.y
+
+			love.graphics.push()
+			love.graphics.translate(self.origin.x, self.origin.y)
+			love.graphics.scale(scaleX, scaleY)
+			love.graphics.translate(- self.origin.x, - self.origin.y)
+		end
+
+		for _, spr in self:members() do
 			if spr.visible then
 				if spr.translate then
 					spr:draw(spr.translate.x + scrollX, spr.translate.y + scrollY)
@@ -619,14 +588,18 @@ Group = Class:extend
 			end
 		end
 
+		if scaled then
+			love.graphics.pop()
+		end
+
 		if self.effect then
 			if self.effectType == 'screen' then
-				love.graphics.setPixelEffect(self.effect)
+				love.graphics.setShader(self.effect)
 				love.graphics.setCanvas()
 				love.graphics.draw(self._canvas)
 			end
 
-			love.graphics.setPixelEffect()
+			love.graphics.setShader()
 		end
 	end,
 

@@ -22,7 +22,7 @@ Timer = Sprite:extend{
 	--
 	-- Returns:
 	--		A <Promise> that is fulfilled after the function is called
-	
+
 	after = function (self, delay, func)
 		if STRICT then
 			assert(type(func) == 'function', 'func property of timer must be a function')
@@ -30,11 +30,11 @@ Timer = Sprite:extend{
 
 			if delay <= 0 then
 				local info = debug.getinfo(2, 'Sl')
-				print('Warning: timer delay is ' .. delay .. ', will be triggered immediately (' .. 
+				print('Warning: timer delay is ' .. delay .. ', will be triggered immediately (' ..
 					  info.short_src .. ', line ' .. info.currentline .. ')')
 			end
 		end
-		
+
 		self.active = true
 		local promise = Promise:new()
 		table.insert(self.timers, { func = func, timeLeft = delay, promise = promise })
@@ -51,7 +51,7 @@ Timer = Sprite:extend{
 	--
 	-- Returns:
 	--		nothing
-	
+
 	every = function (self, delay, func)
 		if STRICT then
 			assert(type(func) == 'function', 'func property of timer must be a function')
@@ -59,14 +59,14 @@ Timer = Sprite:extend{
 
 			if delay <= 0 then
 				local info = debug.getinfo(2, 'Sl')
-				print('Warning: timer delay is ' .. delay .. ', will be triggered immediately (' .. 
+				print('Warning: timer delay is ' .. delay .. ', will be triggered immediately (' ..
 					  info.short_src .. ', line ' .. info.currentline .. ')')
 			end
 		end
-		
+
 		self.active = true
 		table.insert(self.timers, { func = func, timeLeft = delay, interval = delay })
-	end,
+end,
 
 	-- Method: status
 	-- Returns how much time is left before a function call is scheduled.
@@ -89,9 +89,9 @@ Timer = Sprite:extend{
 
 		return result
 	end,
-	
+
 	-- Method: stop
-	-- Stops a timer from executing. The promise belonging to it is failed. 
+	-- Stops a timer from executing. The promise belonging to it is failed.
 	-- If there is no function associated with this timer, then this has no effect.
 	--
 	-- Arguments:
@@ -124,9 +124,9 @@ Timer = Sprite:extend{
 	update = function (self, elapsed)
 		for i, timer in ipairs(self.timers) do
 			timer.timeLeft = timer.timeLeft - elapsed
-			
+
 			if timer.timeLeft <= 0 then
-				
+
 				if timer.promise then
 					timer.promise:fulfill(timer.func())
 				else
@@ -143,7 +143,7 @@ Timer = Sprite:extend{
 				keepActive = true
 			end
 		end
-		
+
 		self.active = (#self.timers > 0)
 	end,
 
