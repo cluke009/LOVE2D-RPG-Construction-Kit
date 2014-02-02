@@ -1,6 +1,6 @@
 _navi.template = {face_pos={x=0,y=0,z=true}, box_anim=false, x=30, y=245, wbox=600, wbox=600, alxb='l', alyb='t', nrows=4,}
 local lg = love.graphics
-local Narration =   {x=320, y = 30, alx='m',alxb='m',wbox = 600,box=false,face_pos = {x=0,y=0,z=true}, face=love.graphics.newImage('assets/img/narratebg.png')}
+local Narration =   {x=320, y = 30, alx='m',alxb='m',wbox = 600,box=false,face_pos = {x=0,y=0,z=true}, face=love.graphics.newImage('assets/img/events/narratebg.png')}
 local AnimeGuy   = {name = 'Anime Guy',  face = love.graphics.newImage('assets/img/animeguyfull.png')}
 local AnimeGuyR  = {name = 'Anime Guy',  face = love.graphics.newImage('assets/img/animeguyfullr.png')}
 local Bill       = {name = 'Bill',       face = love.graphics.newImage('assets/img/billfull.png')}
@@ -17,7 +17,7 @@ return {
             dialog = {
                 {'NOPE. Not gonna happen.', Guard},
             }
-        },                
+        },
         [2] = {
             replay = false,
             auto = false,

@@ -1,6 +1,6 @@
 return {
     name = 'Earth 1',
-    bg = 'assets/img/narratebg.png',
+    bg = 'assets/img/events/narratebg.png',
     encounters = {
         rate = {50, 150},
         active = false,

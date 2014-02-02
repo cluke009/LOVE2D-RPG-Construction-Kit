@@ -51,7 +51,7 @@ local BillQuerina  = {name = 'Bill',       face = {love.graphics.newImage('asset
 local BillQuerina2  = {name = 'Querina',       face = {love.graphics.newImage('assets/img/billdull.png'), love.graphics.newImage('assets/img/querinafullr.png')}}
 
 
-local Narration =   {x=320, y = 30, alx='m',alxb='m',wbox = 600,box=false,face_pos = {x=0,y=0,z=true}, face=love.graphics.newImage('assets/img/narratebg.png')}
+local Narration =   {x=320, y = 30, alx='m',alxb='m',wbox = 600,box=false,face_pos = {x=0,y=0,z=true}, face=love.graphics.newImage('assets/img/events/narratebg.png')}
 
 return {
     [1] = {

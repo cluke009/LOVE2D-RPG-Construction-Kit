@@ -1,5 +1,5 @@
 return {
     name = 'Home',
-    bg = 'assets/img/narratebg.png',
+    bg = 'assets/img/events/narratebg.png',
     encounters = {}
 }
