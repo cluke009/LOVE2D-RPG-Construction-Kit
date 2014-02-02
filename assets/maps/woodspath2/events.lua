@@ -1,57 +1,57 @@
 _navi.template = {face_pos={x=0,y=0,z=true}, box_anim=false, x=30, y=245, wbox=600, wbox=600, alxb='l', alyb='t', nrows=4,}
 
 
-local AnimeGuy   = {name = 'Anime Guy',  face = love.graphics.newImage('assets/img/animeguyfull.png')}
-local AnimeGuyR  = {name = 'Anime Guy',  face = love.graphics.newImage('assets/img/animeguyfullr.png')}
-local Bill       = {name = 'Bill',       face = love.graphics.newImage('assets/img/billfull.png')}
-local BillR      = {name = 'Bill',       face = love.graphics.newImage('assets/img/billfullr.png')}
-local Querina    = {name = 'Querina',    face = love.graphics.newImage('assets/img/querinafull.png')}
-local QuerinaR   = {name = 'Querina',    face = love.graphics.newImage('assets/img/querinafullr.png')}
-local Copernicus = {name = 'Copernicus', face = love.graphics.newImage('assets/img/Copernicus1.png')}
-local Sherman    = {name = 'Sherman',    face = love.graphics.newImage('assets/img/Sherman1.png')}
-local Hogan      = {name = 'Cloaked Man',face = love.graphics.newImage('assets/img/hoganfull.png')}
-local HoganR     = {name = 'Cloaked Man',face = love.graphics.newImage('assets/img/hoganfullr.png')}
+local AnimeGuy   = {name = 'Anime Guy',  face = love.graphics.newImage('assets/img/events/animeguyfull.png')}
+local AnimeGuyR  = {name = 'Anime Guy',  face = love.graphics.newImage('assets/img/events/animeguyfullr.png')}
+local Bill       = {name = 'Bill',       face = love.graphics.newImage('assets/img/events/billfull.png')}
+local BillR      = {name = 'Bill',       face = love.graphics.newImage('assets/img/events/billfullr.png')}
+local Querina    = {name = 'Querina',    face = love.graphics.newImage('assets/img/events/querinafull.png')}
+local QuerinaR   = {name = 'Querina',    face = love.graphics.newImage('assets/img/events/querinafullr.png')}
+local Copernicus = {name = 'Copernicus', face = love.graphics.newImage('assets/img/events/Copernicus1.png')}
+local Sherman    = {name = 'Sherman',    face = love.graphics.newImage('assets/img/events/Sherman1.png')}
+local Hogan      = {name = 'Cloaked Man',face = love.graphics.newImage('assets/img/events/hoganfull.png')}
+local HoganR     = {name = 'Cloaked Man',face = love.graphics.newImage('assets/img/events/hoganfullr.png')}
 
-local HoganTwo     = {name = 'Cloaked Man',face = {love.graphics.newImage('assets/img/hoganfull.png'), love.graphics.newImage('assets/img/hoganfullr.png')}}
+local HoganTwo     = {name = 'Cloaked Man',face = {love.graphics.newImage('assets/img/events/hoganfull.png'), love.graphics.newImage('assets/img/events/hoganfullr.png')}}
 
 
 -- Anime Guy Left Talk, Bill Right
-local AnimeBill    = {name = 'Anime Guy',   face = {love.graphics.newImage('assets/img/animefull.png'), love.graphics.newImage('assets/img/billdullr.png')}}
+local AnimeBill    = {name = 'Anime Guy',   face = {love.graphics.newImage('assets/img/events/animefull.png'), love.graphics.newImage('assets/img/events/billdullr.png')}}
 -- Anime Guy Left, Bill Right Talk
-local AnimeBill2    = {name = 'Bill',   face = {love.graphics.newImage('assets/img/animedull.png'), love.graphics.newImage('assets/img/billfullr.png')}}
+local AnimeBill2    = {name = 'Bill',   face = {love.graphics.newImage('assets/img/events/animedull.png'), love.graphics.newImage('assets/img/events/billfullr.png')}}
 
 
 -- Bill Left Talking, Anime Guy Right
-local BillAnime    = {name = 'Bill',       face = {love.graphics.newImage('assets/img/billfull.png'), love.graphics.newImage('assets/img/animedullr.png')}}
+local BillAnime    = {name = 'Bill',       face = {love.graphics.newImage('assets/img/events/billfull.png'), love.graphics.newImage('assets/img/events/animedullr.png')}}
 -- Bill Left, Anime Guy Right Talk
-local BillAnime2    = {name = 'Anime',       face = {love.graphics.newImage('assets/img/billdull.png'), love.graphics.newImage('assets/img/animefullr.png')}}
+local BillAnime2    = {name = 'Anime',       face = {love.graphics.newImage('assets/img/events/billdull.png'), love.graphics.newImage('assets/img/events/animefullr.png')}}
 
 
 -- Anime Guy Left Talk, Querina Right
-local AnimeQuerina = {name = 'Anime Guy',   face = {love.graphics.newImage('assets/img/animefull.png'), love.graphics.newImage('assets/img/querinadullr.png')}}
+local AnimeQuerina = {name = 'Anime Guy',   face = {love.graphics.newImage('assets/img/events/animefull.png'), love.graphics.newImage('assets/img/events/querinadullr.png')}}
 -- Anime Guy Left, Querina Right Talk
-local AnimeQuerina2 = {name = 'Querina',   face = {love.graphics.newImage('assets/img/animedull.png'), love.graphics.newImage('assets/img/querinafullr.png')}}
+local AnimeQuerina2 = {name = 'Querina',   face = {love.graphics.newImage('assets/img/events/animedull.png'), love.graphics.newImage('assets/img/events/querinafullr.png')}}
 
 
 -- Querina Left Talk, Anime Guy Right
-local QuerinaAnime = {name = 'Querina',    face = {love.graphics.newImage('assets/img/querinafull.png'), love.graphics.newImage('assets/img/animedullr.png')}}
+local QuerinaAnime = {name = 'Querina',    face = {love.graphics.newImage('assets/img/events/querinafull.png'), love.graphics.newImage('assets/img/events/animedullr.png')}}
 -- Querina Left, Anime Guy Right Talk
-local QuerinaAnime2 = {name = 'Anime Guy',    face = {love.graphics.newImage('assets/img/querinadull.png'), love.graphics.newImage('assets/img/animefullr.png')}}
+local QuerinaAnime2 = {name = 'Anime Guy',    face = {love.graphics.newImage('assets/img/events/querinadull.png'), love.graphics.newImage('assets/img/events/animefullr.png')}}
 
 
 -- Querina Left Talk, Bill Right
-local QuerinaBill  = {name = 'Querina',    face = {love.graphics.newImage('assets/img/querinafull.png'), love.graphics.newImage('assets/img/billdullr.png')}}
+local QuerinaBill  = {name = 'Querina',    face = {love.graphics.newImage('assets/img/events/querinafull.png'), love.graphics.newImage('assets/img/events/billdullr.png')}}
 -- Querina Left, Bill Right Talk
-local QuerinaBill2 = {name = 'Bill',       face = {love.graphics.newImage('assets/img/querinadull.png'), love.graphics.newImage('assets/img/billfullr.png')}}
+local QuerinaBill2 = {name = 'Bill',       face = {love.graphics.newImage('assets/img/events/querinadull.png'), love.graphics.newImage('assets/img/events/billfullr.png')}}
 
 
 -- Bill Left Talk, Querina Right
-local BillQuerina  = {name = 'Bill',       face = {love.graphics.newImage('assets/img/billfull.png'), love.graphics.newImage('assets/img/querinadullr.png')}}
+local BillQuerina  = {name = 'Bill',       face = {love.graphics.newImage('assets/img/events/billfull.png'), love.graphics.newImage('assets/img/events/querinadullr.png')}}
 -- Bill Left, Querina Right Talk
-local BillQuerina2  = {name = 'Querina',       face = {love.graphics.newImage('assets/img/billdull.png'), love.graphics.newImage('assets/img/querinafullr.png')}}
+local BillQuerina2  = {name = 'Querina',       face = {love.graphics.newImage('assets/img/events/billdull.png'), love.graphics.newImage('assets/img/events/querinafullr.png')}}
 
 
-local Narration =   {x=320, y = 30, alx='m',alxb='m',wbox = 600,box=false,face_pos = {x=0,y=0,z=true}, face=love.graphics.newImage('assets/img/events/narratebg.png')}
+local Narration =   {x=320, y = 30, alx='m',alxb='m',wbox = 600,box=false,face_pos = {x=0,y=0,z=true}, face=love.graphics.newImage('assets/img/events/events/narratebg.png')}
 
 return {
     [1] = {

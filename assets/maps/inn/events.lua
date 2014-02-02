@@ -2,16 +2,16 @@ local lg = love.graphics
 
 _navi.template  = {face_pos={x=0,y=0,z=true}, x=24, y=256, wbox=608, nrows=4, alxb='l', alyb='t', nrows=4,}
 
-local Narration  = {x=320, y=30,           face = lg.newImage('assets/img/events/narratebg.png'), wbox=600, alx='m', alxb='m', nrows=2, box=false,}
-local AnimeGuy   = {name = 'Anime Guy',    face = lg.newImage('assets/img/events/animeguyfull.png')}
-local AnimeGuyR  = {name = 'Anime Guy',    face = lg.newImage('assets/img/events/animeguyfullr.png')}
-local Bill       = {name = 'Bill',         face = lg.newImage('assets/img/events/billfull.png')}
-local BillR      = {name = 'Bill',         face = lg.newImage('assets/img/events/billfullr.png')}
-local Querina    = {name = 'Querina',      face = lg.newImage('assets/img/events/querinafull.png')}
-local QuerinaR   = {name = 'Querina',      face = lg.newImage('assets/img/events/querinafullr.png')}
-local Copernicus = {name = 'Copernicus',   face = lg.newImage('assets/img/events/copernicusfull.png')}
-local Sherman    = {name = 'Sherman',      face = lg.newImage('assets/img/events/shermanfullr.png')}
-local Bartender  = {name = 'Bill Montana', face = lg.newImage('assets/img/events/murrayfull.png')}
+local Narration  = {x=320, y=30,           face = lg.newImage('assets/img/events/events/narratebg.png'), wbox=600, alx='m', alxb='m', nrows=2, box=false,}
+local AnimeGuy   = {name = 'Anime Guy',    face = lg.newImage('assets/img/events/events/animeguyfull.png')}
+local AnimeGuyR  = {name = 'Anime Guy',    face = lg.newImage('assets/img/events/events/animeguyfullr.png')}
+local Bill       = {name = 'Bill',         face = lg.newImage('assets/img/events/events/billfull.png')}
+local BillR      = {name = 'Bill',         face = lg.newImage('assets/img/events/events/billfullr.png')}
+local Querina    = {name = 'Querina',      face = lg.newImage('assets/img/events/events/querinafull.png')}
+local QuerinaR   = {name = 'Querina',      face = lg.newImage('assets/img/events/events/querinafullr.png')}
+local Copernicus = {name = 'Copernicus',   face = lg.newImage('assets/img/events/events/copernicusfull.png')}
+local Sherman    = {name = 'Sherman',      face = lg.newImage('assets/img/events/events/shermanfullr.png')}
+local Bartender  = {name = 'Bill Montana', face = lg.newImage('assets/img/events/events/murrayfull.png')}
 
 return {
     [1] = {
@@ -29,7 +29,7 @@ return {
                 {'So, ya thirsty?', Bartender},
                 { '', {
                         name = 'Anime Guy', nrows = 5, nvchs = 3,
-                        face = lg.newImage('assets/img/events/animeguyfullr.png'),
+                        face = lg.newImage('assets/img/events/events/animeguyfullr.png'),
                         choices = { 'Sure!', 'Not really...', '...' }
                     }
                 }

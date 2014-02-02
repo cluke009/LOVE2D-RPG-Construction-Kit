@@ -2,13 +2,13 @@ _navi.template  = {face_pos={x=0,y=0,z=true}, x=24, y=256, wbox=608, nrows=4, al
 
 local lg = love.graphics
 
-local Narration  = {x=320, y=30,         face = lg.newImage('assets/img/events/narratebg.png'), wbox=600, alx='m', alxb='m', nrows=2, box=false,}
-local AnimeGuy   = {name = 'Anime Guy',  face = lg.newImage('assets/img/animeguyfull.png')}
-local AnimeGuyR  = {name = 'Anime Guy',  face = lg.newImage('assets/img/animeguyfullr.png')}
-local Bill       = {name = 'Bill',       face = lg.newImage('assets/img/billfull.png')}
-local BillR      = {name = 'Bill',       face = lg.newImage('assets/img/billfullr.png')}
-local Querina    = {name = 'Querina',    face = lg.newImage('assets/img/querinafull.png')}
-local QuerinaR   = {name = 'Querina',    face = lg.newImage('assets/img/querinafullr.png')}
+local Narration  = {x=320, y=30,         face = lg.newImage('assets/img/events/events/narratebg.png'), wbox=600, alx='m', alxb='m', nrows=2, box=false,}
+local AnimeGuy   = {name = 'Anime Guy',  face = lg.newImage('assets/img/events/animeguyfull.png')}
+local AnimeGuyR  = {name = 'Anime Guy',  face = lg.newImage('assets/img/events/animeguyfullr.png')}
+local Bill       = {name = 'Bill',       face = lg.newImage('assets/img/events/billfull.png')}
+local BillR      = {name = 'Bill',       face = lg.newImage('assets/img/events/billfullr.png')}
+local Querina    = {name = 'Querina',    face = lg.newImage('assets/img/events/querinafull.png')}
+local QuerinaR   = {name = 'Querina',    face = lg.newImage('assets/img/events/querinafullr.png')}
 
 return {
     [1] = {

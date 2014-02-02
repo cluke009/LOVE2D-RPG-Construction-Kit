@@ -2,22 +2,22 @@ _navi.template  = {face_pos={x=0,y=0,z=true}, x=24, y=256, wbox=608, nrows=4, al
 
 local lg = love.graphics
 
-local Narration  = {x=320, y=30,             face = lg.newImage('assets/img/events/narratebg.png'), wbox=600, alx='m', alxb='m', nrows=2, box=false,}
-local AnimeGuy   = {name = 'Anime Guy',      face = lg.newImage('assets/img/animeguyfull.png')}
-local AnimeGuyR  = {name = 'Anime Guy',      face = lg.newImage('assets/img/animeguyfullr.png')}
-local Bill       = {name = 'Bill',           face = lg.newImage('assets/img/billfull.png')}
-local BillR      = {name = 'Bill',           face = lg.newImage('assets/img/billfullr.png')}
-local Querina    = {name = 'Querina',        face = lg.newImage('assets/img/querinafull.png')}
-local QuerinaR   = {name = 'Querina',        face = lg.newImage('assets/img/querinafullr.png')}
-local Copernicus = {name = 'Copernicus',     face = lg.newImage('assets/img/copernicusfull.png')}
-local Sherman    = {name = 'Sherman',        face = lg.newImage('assets/img/shermanfullr.png')}
-local Hogan      = {name = 'Cloaked Man',    face = lg.newImage('assets/img/hoganfull.png')}
-local Guard      = {name = 'Northern Guard', face = lg.newImage('assets/img/guardlaxfull.png')}
-local GuardBeer  = {name = 'Northern Guard', face = lg.newImage('assets/img/guardlaxbeer.png'), box_anim=false,}
-local GuardBeer2 = {name = 'Northern Guard', face = lg.newImage('assets/img/guardlaxbeer2.png'), box_anim=false,}
-local GuardBeer3 = {name = 'Northern Guard', face = lg.newImage('assets/img/guardlaxbeer3.png'), box_anim=false,}
-local GuardBeer4 = {name = 'Northern Guard', face = lg.newImage('assets/img/guardlaxbeer4.png'), box_anim=false,}
-local GuardD     = {name = 'Northern Guard', face = lg.newImage('assets/img/guardlaxd.png')}
+local Narration  = {x=320, y=30,             face = lg.newImage('assets/img/events/events/narratebg.png'), wbox=600, alx='m', alxb='m', nrows=2, box=false,}
+local AnimeGuy   = {name = 'Anime Guy',      face = lg.newImage('assets/img/events/animeguyfull.png')}
+local AnimeGuyR  = {name = 'Anime Guy',      face = lg.newImage('assets/img/events/animeguyfullr.png')}
+local Bill       = {name = 'Bill',           face = lg.newImage('assets/img/events/billfull.png')}
+local BillR      = {name = 'Bill',           face = lg.newImage('assets/img/events/billfullr.png')}
+local Querina    = {name = 'Querina',        face = lg.newImage('assets/img/events/querinafull.png')}
+local QuerinaR   = {name = 'Querina',        face = lg.newImage('assets/img/events/querinafullr.png')}
+local Copernicus = {name = 'Copernicus',     face = lg.newImage('assets/img/events/copernicusfull.png')}
+local Sherman    = {name = 'Sherman',        face = lg.newImage('assets/img/events/shermanfullr.png')}
+local Hogan      = {name = 'Cloaked Man',    face = lg.newImage('assets/img/events/hoganfull.png')}
+local Guard      = {name = 'Northern Guard', face = lg.newImage('assets/img/events/guardlaxfull.png')}
+local GuardBeer  = {name = 'Northern Guard', face = lg.newImage('assets/img/events/guardlaxbeer.png'), box_anim=false,}
+local GuardBeer2 = {name = 'Northern Guard', face = lg.newImage('assets/img/events/guardlaxbeer2.png'), box_anim=false,}
+local GuardBeer3 = {name = 'Northern Guard', face = lg.newImage('assets/img/events/guardlaxbeer3.png'), box_anim=false,}
+local GuardBeer4 = {name = 'Northern Guard', face = lg.newImage('assets/img/events/guardlaxbeer4.png'), box_anim=false,}
+local GuardD     = {name = 'Northern Guard', face = lg.newImage('assets/img/events/guardlaxd.png')}
 
 return {
     [1] = {

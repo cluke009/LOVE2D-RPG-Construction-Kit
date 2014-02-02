@@ -2,19 +2,19 @@ _navi.template  = {face_pos={x=0,y=0,z=true}, x=24, y=256, wbox=608, nrows=4, al
 
 local lg = love.graphics
 
-local Narration   = {x=320, y=30,           face = lg.newImage('assets/img/events/narratebg.png'), wbox=600, alx='m', alxb='m', nrows=2, box=false,}
-local AnimeGuy    = {name = 'Anime Guy',    face = lg.newImage('assets/img/animeguyfull.png')}
-local AnimeGuyR   = {name = 'Anime Guy',    face = lg.newImage('assets/img/animeguyfullr.png')}
-local Bill        = {name = 'Bill',         face = lg.newImage('assets/img/billfull.png')}
-local BillR       = {name = 'Bill',         face = lg.newImage('assets/img/billfullr.png')}
-local Querina     = {name = 'Querina',      face = lg.newImage('assets/img/querinafull.png')}
-local QuerinaR    = {name = 'Querina',      face = lg.newImage('assets/img/querinafullr.png')}
-local Copernicus  = {name = 'Copernicus',   face = lg.newImage('assets/img/copernicusfull.png')}
-local CopernicusR = {name = 'Copernicus',   face = lg.newImage('assets/img/copernicusfullr.png')}
-local CopernicusD = {name = 'First Voice',  face = lg.newImage('assets/img/copernicusdark.png')}
-local Sherman     = {name = 'Sherman',      face = lg.newImage('assets/img/shermanfull.png')}
-local ShermanR    = {name = 'Sherman',      face = lg.newImage('assets/img/shermanfullr.png')}
-local ShermanD    = {name = 'Second Voice', face = lg.newImage('assets/img/shermandark.png')}
+local Narration   = {x=320, y=30,           face = lg.newImage('assets/img/events/events/narratebg.png'), wbox=600, alx='m', alxb='m', nrows=2, box=false,}
+local AnimeGuy    = {name = 'Anime Guy',    face = lg.newImage('assets/img/events/animeguyfull.png')}
+local AnimeGuyR   = {name = 'Anime Guy',    face = lg.newImage('assets/img/events/animeguyfullr.png')}
+local Bill        = {name = 'Bill',         face = lg.newImage('assets/img/events/billfull.png')}
+local BillR       = {name = 'Bill',         face = lg.newImage('assets/img/events/billfullr.png')}
+local Querina     = {name = 'Querina',      face = lg.newImage('assets/img/events/querinafull.png')}
+local QuerinaR    = {name = 'Querina',      face = lg.newImage('assets/img/events/querinafullr.png')}
+local Copernicus  = {name = 'Copernicus',   face = lg.newImage('assets/img/events/copernicusfull.png')}
+local CopernicusR = {name = 'Copernicus',   face = lg.newImage('assets/img/events/copernicusfullr.png')}
+local CopernicusD = {name = 'First Voice',  face = lg.newImage('assets/img/events/copernicusdark.png')}
+local Sherman     = {name = 'Sherman',      face = lg.newImage('assets/img/events/shermanfull.png')}
+local ShermanR    = {name = 'Sherman',      face = lg.newImage('assets/img/events/shermanfullr.png')}
+local ShermanD    = {name = 'Second Voice', face = lg.newImage('assets/img/events/shermandark.png')}
 
 return {
 
@@ -40,7 +40,7 @@ return {
                 {'You hear that? They have a fairy... Maybe we should go help her out.', Bill},
                 { '', {
                         name = 'Anime Guy', nrows = 5, nvchs = 3,
-                        face = lg.newImage('assets/img/animeguyfullr.png'),
+                        face = lg.newImage('assets/img/events/animeguyfullr.png'),
                         choices = { 'YEAH! HEROES TO THE RESCUE!', 'I guess. She can get us into a temple...', 'Nah. Fuck that slut.', }
                     }
                 }
@@ -159,7 +159,7 @@ return {
                 {'What do you think, Ryu?', Bill},
                 {'', {
                         name = 'Anime Guy', nvchs = 2, wait = 1,
-                        face = lg.newImage('assets/img/animeguyfullr.png'),
+                        face = lg.newImage('assets/img/events/animeguyfullr.png'),
                         choices = { 'SURE! Why not!', 'No way Bill. She\'ll just slow us down.', }
                     }
                 },

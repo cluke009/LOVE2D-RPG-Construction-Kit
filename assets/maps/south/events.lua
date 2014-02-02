@@ -1,4 +1,4 @@
-local Guard = {name='Guard', face=love.graphics.newImage('assets/img/guardlax.png'),
+local Guard = {name='Guard', face=love.graphics.newImage('assets/img/events/guardlax.png'),
               x=30, y=245, wbox=600, nrows=4,face_pos='r',}
 
 local Narration = {x=320, y = 30, alx='m',alxb='m',box = false,wbox = 600,}
@@ -11,7 +11,7 @@ return {
             dialog = {
                 {'NOPE. Not gonna happen.', Guard},
             }
-        },                
+        },
         [2] = {
             replay = false,
             auto = false,

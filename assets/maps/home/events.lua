@@ -1,17 +1,17 @@
--- local AlanSmug =    {name='Dr. Alan', face=love.graphics.newImage('assets/img/Alan2.png'),
+-- local AlanSmug =    {name='Dr. Alan', face=love.graphics.newImage('assets/img/events/Alan2.png'),
 --                     face_border=false, face_pos='r', x=30, y=245, wbox = 600, nrows=4}
--- local AlanConfused = {name='Dr. Alan', face=love.graphics.newImage('assets/img/Alan3.png'),
+-- local AlanConfused = {name='Dr. Alan', face=love.graphics.newImage('assets/img/events/Alan3.png'),
 --                     face_border=false, face_pos='r', x=30, y=245, wbox = 600, nrows=4}
--- local AlanDisgusted = {name='Dr. Alan', face=love.graphics.newImage('assets/img/Alan4.png'),
+-- local AlanDisgusted = {name='Dr. Alan', face=love.graphics.newImage('assets/img/events/Alan4.png'),
 --                     face_border=false, face_pos='r', x=30, y=245, wbox = 600, nrows=4}
 local lg = love.graphics
 
 _navi.template  = {face_pos={x=0,y=0,z=true}, x=24, y=256, wbox=608, nrows=4, alxb='l', alyb='t', nrows=4,}
 
-local Narration = {x=320, y=30,        face = lg.newImage('assets/img/events/narratebg.png'), wbox=600, alx='m', alxb='m', nrows=2, box=false,}
-local Tiffany   = {name = 'Tiffany',   face = lg.newImage('assets/img/nurse.png')}
-local Alan      = {name = 'Alan',      face = lg.newImage('assets/img/bradytime.png')}
-local AnimeGuy  = {name = 'Anime Guy', face = lg.newImage('assets/img/animeguyfull.png')}
+local Narration = {x=320, y=30,        face = lg.newImage('assets/img/events/events/narratebg.png'), wbox=600, alx='m', alxb='m', nrows=2, box=false,}
+local Tiffany   = {name = 'Tiffany',   face = lg.newImage('assets/img/events/nurse.png')}
+local Alan      = {name = 'Alan',      face = lg.newImage('assets/img/events/bradytime.png')}
+local AnimeGuy  = {name = 'Anime Guy', face = lg.newImage('assets/img/events/animeguyfull.png')}
 
 return {
     [1] = {
@@ -29,7 +29,7 @@ return {
                 { '', {
                         name = '??????',
                         nrows = 5, nvchs = 3,
-                        face = lg.newImage('assets/img/animeguyfull.png'),
+                        face = lg.newImage('assets/img/events/animeguyfull.png'),
                         choices = { 'Hit on the blonde.', 'Hit on the doctor.', 'Ask where the hell you are.' }
                     }
                 },
@@ -81,7 +81,7 @@ return {
                 {'I guess that\'s a good thing, then...', AnimeGuy},
                 {'', {
                         name = 'Anime Guy', nrows = 5,
-                        face = love.graphics.newImage('assets/img/animeguyfull.png'),
+                        face = love.graphics.newImage('assets/img/events/animeguyfull.png'),
                         choices = { '...How long have I been here?', '...When can I go home?',}
                     }
                 },
@@ -102,7 +102,7 @@ return {
                 {'Yeah, I mean, I AM pretty tough.', AnimeGuy},
                 {'', {
                         name = 'Anime Guy', nrows = 5,
-                        face = love.graphics.newImage('assets/img/animeguyfull.png'),
+                        face = love.graphics.newImage('assets/img/events/animeguyfull.png'),
                         choices = { '...(She\'s into you. Be more forward.)', '...When can I go home?',}
                     }
                 },

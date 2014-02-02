@@ -1,17 +1,17 @@
 _navi.template = {face_pos={x=0,y=0,z=true}, box_anim=false, x=30, y=245, wbox=600, wbox=600, alxb='l', alyb='t', nrows=4,}
 
-local AnimeGuy   = {name = 'Anime Guy',  face = love.graphics.newImage('assets/img/animeguyfull.png')}
-local AnimeGuyR  = {name = 'Anime Guy',  face = love.graphics.newImage('assets/img/animeguyfullr.png')}
-local Bill       = {name = 'Bill',       face = love.graphics.newImage('assets/img/billfull.png')}
-local BillR      = {name = 'Bill',       face = love.graphics.newImage('assets/img/billfullr.png')}
-local Querina    = {name = 'Querina',    face = love.graphics.newImage('assets/img/querinafull.png')}
-local QuerinaR   = {name = 'Querina',    face = love.graphics.newImage('assets/img/querinafullr.png')}
-local Copernicus = {name = 'Copernicus', face = love.graphics.newImage('assets/img/copernicusfull.png')}
-local Sherman    = {name = 'Sherman',    face = love.graphics.newImage('assets/img/shermanfullr.png')}
-local Bartender  = {name = 'Bill Montana',  face = love.graphics.newImage('assets/img/murrayfull.png')}
-local Bartender1 = {name = 'Bartender',  face = love.graphics.newImage('assets/img/murrayfull.png')}
+local AnimeGuy   = {name = 'Anime Guy',  face = love.graphics.newImage('assets/img/events/animeguyfull.png')}
+local AnimeGuyR  = {name = 'Anime Guy',  face = love.graphics.newImage('assets/img/events/animeguyfullr.png')}
+local Bill       = {name = 'Bill',       face = love.graphics.newImage('assets/img/events/billfull.png')}
+local BillR      = {name = 'Bill',       face = love.graphics.newImage('assets/img/events/billfullr.png')}
+local Querina    = {name = 'Querina',    face = love.graphics.newImage('assets/img/events/querinafull.png')}
+local QuerinaR   = {name = 'Querina',    face = love.graphics.newImage('assets/img/events/querinafullr.png')}
+local Copernicus = {name = 'Copernicus', face = love.graphics.newImage('assets/img/events/copernicusfull.png')}
+local Sherman    = {name = 'Sherman',    face = love.graphics.newImage('assets/img/events/shermanfullr.png')}
+local Bartender  = {name = 'Bill Montana',  face = love.graphics.newImage('assets/img/events/murrayfull.png')}
+local Bartender1 = {name = 'Bartender',  face = love.graphics.newImage('assets/img/events/murrayfull.png')}
 
-local Narration =   {x=320, y = 30, alx='m',alxb='m',wbox = 600,box=false,face_pos = {x=0,y=0,z=true}, face=love.graphics.newImage('assets/img/events/narratebg.png')}
+local Narration =   {x=320, y = 30, alx='m',alxb='m',wbox = 600,box=false,face_pos = {x=0,y=0,z=true}, face=love.graphics.newImage('assets/img/events/events/narratebg.png')}
 
 return {
     [1] = {
