@@ -1,14 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" width="32" height="23" tilewidth="32" tileheight="32">
  <tileset firstgid="1" name="GoldenTempleTiles3" tilewidth="32" tileheight="32">
-  <image source="../../img/tiles/GoldenTempleTiles3.png" width="320" height="384"/>
+  <image source="../../img/tiles/GoldenTempleTiles3.png" width="320" height="512"/>
  </tileset>
- <tileset firstgid="121" name="rock face fixed" tilewidth="32" tileheight="32">
+ <tileset firstgid="161" name="rock face fixed" tilewidth="32" tileheight="32">
   <image source="../../img/tiles/rock face fixed.png" width="512" height="32"/>
+ </tileset>
+ <tileset firstgid="177" name="goldenstuff" tilewidth="32" tileheight="32">
+  <image source="../../img/tiles/goldenstuff.png" width="288" height="224"/>
  </tileset>
  <layer name="map" width="32" height="23">
   <data encoding="base64" compression="zlib">
-   eJzFlFEOwCAIQ/ne/Q+8zxkyoQWqTYzRIA9RMPv0BAOxqQyFX3PzyvE8z96pwmdtUSn4jKJ4EZ9T96/y/3yg/Mx/h8/mYJK/7mVvp+IjcUR/hvnTSL4jfiYlH4lBzUd7C8LfnWP7EqOJO0zxo7hO89mz1bx1+YjvW3zEpvPO0/XP1HS1/9yor2itFsp/AQ8kCac=
+   eJzFlEsOgCAMBVl7/wO7lJB+5kErTYhRS6f/MT55gkN0dk6H3bE8Z87KW9mWjqVH+J79SJeIwldypfK9f5nNqvgJ36qpZYPys/hoTr3+p1LNn79lteviEz+inlF6muQ74mfSySc+dPPpbiF87566lxSpiKGKH/n1N1+9u5u3Uz6xfYtPdE7qXD3/ykzv7p8b8xW9dwvlv8D0Cbs=
   </data>
  </layer>
  <layer name="floor" width="32" height="23">
@@ -28,34 +31,38 @@
  </layer>
  <layer name="shadow" width="32" height="23">
   <data encoding="base64" compression="zlib">
-   eJxjYBg8wJMApofdxLqNFvaTopaYMKJHOJJjLq3jchTQBozG2yggVEbTq7ymJhhMbh6qYTgKRsEoIB0AAK3aDow=
+   eJxjYBg8wBOJRsbIcrS2m9pqaQGQw4UYddjCcyDBYHDDKCAdjMbbKBgFo2AUjIJRQB0AAE31BSM=
   </data>
  </layer>
  <layer name="ceiling" width="32" height="23">
   <data encoding="base64" compression="zlib">
-   eJzdld0KgCAMhX0lQRC7tfd/phIajIHuzL+iwbkI577DWis458JHhIS1Znw0i18i3ToUf7Vzuh/AXCufardqRuFhN5/nkc6X+WgPspLfy0d6kJ3ud4Sv+eBzQ/W15x5+ka/4SCJH3kHfp8av1UDu/ZkfDVrBnxV8Trnnkb3Yy+dh6eEKPhJlD/mGkF0+wkdmR/Owmm/5/iz/vhV82p2oevaPnBmkxogkH92bu/kXY+lQ3g==
+   eJzFldEKgCAMRf2Zeg8CsR7rtf7/c0poMETd3cwaXELYdqbobXbOzQodynyNkIh5Aei1PF//CNkDGsRfM+L8Wn0Ac0v1pRrqW+vpf+bzPNL+Mx89g03It/KRM9icPG8LX5qD3xvqL60t/KipMEdIctKa4db4Ar+0B6ROu/+cf3zFJ5/k3kiznJk6r5CFb3mTluB8PnOLL1r5PDRn2IOPRPShqSLEy1v4yBuQZujN17x/zb+vB5+8E5XFf9I7g/RoUcpHffNr/gX2+lKA
   </data>
  </layer>
  <layer name="walls" width="32" height="23">
   <data encoding="base64" compression="zlib">
-   eJztkLsOwjAMRQ1CLEgw8RhBsMJvAZ8AodDSH++NVCtWlGaIKF58pKM4bVPfmChQwRP89NaibuCZxuMCj9DBB3z2cs15GnHG11+xxvn8P+dwlfmGecF3Jp/MxdQUZuTXNjrTDpgi13sIOR+uJfzORXVV0OuXOOX+RhmLxLMrvMH7n7MYOkzgFG7gFu7hIbGf6cQrgu+01A4C1hRmuVPOYhjGuHSzvh1d
+   eJxjYECApUCsAsTNQNwCxcuR2C0MtAN6QKwMxIuBuBeI+6B4IRK7D+o2YkEVDowNLAHiZQTMA7llEQn2t+DA2PxAyG5sYBGSm2BsZNCHA5MShrQAvXS06zgB/iggHnBjEUsH4gwgzqSzWwYrAJVfUgPtCBIBcnlPCDACMRMQiwGxOBArALEiFj4LmfYjs1tJMIMSgFzfDIT9uNzSPwD2j4JRMAroBwAAyiqx
+  </data>
+ </layer>
+ <layer name="second wall" width="32" height="23">
+  <data encoding="base64" compression="zlib">
+   eJxjYMANJIF4NR55WgElIN4LxMuBeAUQ60L5IKBJR3csBuJFQLwMyuemo92jYBSMglEwCkbBKBgFo2B4AgCApAX8
+  </data>
+ </layer>
+ <layer name="decoration" width="32" height="23">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgF9ACbB9j+PQNs/0CBUwT4o2AUjIJRQC1wZKAdMEzA0YF2wCgYBXQAACj/BI0=
   </data>
  </layer>
  <layer name="foreground" width="32" height="23">
   <data encoding="base64" compression="zlib">
-   eJxjYKAMOCDhgQDUtt8TB6aH/SB7vHBgXG6hlv347EbHyHqQ7Ud3G6lhiW4+uji6PIhtj4TR9eILS1z2kwLItZ9Ue6gNBtp+cgG+tDMKRgbwIAHTAhBbRpKSx2jtZkIA2c30CENi3TJUy6lRMAqIBQAOYSFW
+   eJxjYKAMOCDhgQCD3f4dBPi0tv8gAf5Qt98eCQ8EIGT/GQJ8WoOrBPi0BvcI8EfBKBgFo2AUjIKRCACB9Q6t
   </data>
  </layer>
  <objectgroup name="objects">
   <object name="Door" x="736" y="704" width="96" height="32">
    <properties>
     <property name="to" value="earth2, 7, 2"/>
-   </properties>
-  </object>
-  <object name="Obj" x="512" y="160" width="96" height="64">
-   <properties>
-    <property name="event" value="1"/>
-    <property name="id" value="1"/>
    </properties>
   </object>
  </objectgroup>

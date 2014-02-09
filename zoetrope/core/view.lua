@@ -55,7 +55,7 @@ View = Group:extend
 
 		-- set the.view briefly, so that during the onNew() handler
 		-- we appear to be the current view
-	
+
 		local oldView = the.view
 
 		the.view = obj
@@ -83,15 +83,15 @@ View = Group:extend
 
 	clampTo = function (self, sprite)
 		self.minVisible.x = sprite.x
-		
+
 		if sprite.x + sprite.width > the.app.width then
 			self.maxVisible.x = sprite.x + sprite.width
 		else
 			self.maxVisible.x = the.app.width
 		end
-		
+
 		self.minVisible.y = sprite.y
-		
+
 		if sprite.y + sprite.height > the.app.height then
 			self.maxVisible.y = sprite.y + sprite.height
 		else
@@ -134,16 +134,16 @@ View = Group:extend
 
 		local tranX = math.floor(-targetX + the.app.width / 2)
 		local tranY = math.floor(-targetY + the.app.height / 2)
-		
+
 		-- clamp translation to min and max visible
-		
+
 		if tranX > - self.minVisible.x then tranX = - self.minVisible.x end
 		if tranY > - self.minVisible.y then tranY = - self.minVisible.y end
-		
+
 		if tranX < the.app.width - self.maxVisible.x then
 			tranX = the.app.width - self.maxVisible.x
 		end
-		
+
 		if tranY < the.app.height - self.maxVisible.y then
 			tranY = the.app.height - self.maxVisible.y
 		end
@@ -236,7 +236,7 @@ View = Group:extend
 
 		local screenWidth = the.app.width
 		local screenHeight = the.app.height
-		
+
 		if self.focus and self.focus.width < screenWidth
 		   and self.focus.height < screenHeight then
 			self.translate.x = math.floor(- (self.focus.x + self.focusOffset.x) +
@@ -244,9 +244,9 @@ View = Group:extend
 			self.translate.y = math.floor(- (self.focus.y + self.focusOffset.y) +
 							   (screenHeight - self.focus.height) / 2)
 		end
-		
+
 		-- clamp translation to min and max visible
-		
+
 		if self.translate.x > - self.minVisible.x then
 			self.translate.x = - self.minVisible.x
 		end
@@ -254,11 +254,11 @@ View = Group:extend
 		if self.translate.y > - self.minVisible.y then
 			self.translate.y = - self.minVisible.y
 		end
-		
+
 		if self.translate.x < screenWidth - self.maxVisible.x then
 			self.translate.x = screenWidth - self.maxVisible.x
 		end
-		
+
 		if self.translate.y < screenHeight - self.maxVisible.y then
 			self.translate.y = screenHeight - self.maxVisible.y
 		end

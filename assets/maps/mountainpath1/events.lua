@@ -22,22 +22,22 @@ return {
         [1] = {
             -- NOTE:\n Initiated upon entering Mountain Path 1 for the first time.
             replay = false,
-            auto   = true,
+            auto   = false,
             dialog = {
-                {'*Up ahead, voices can be heard amongst boulders...*', Narration},
-                {'No, no, listen to me. She is not Cuban, you can tell from the way she pronounces her \'R\'s.', CopernicusD},
-                {'I understand this, Copernicus, but I don\'t quite think you\'re listening to me.', ShermanD},
-                {'Judging from the designs upon her pancho, which is QUITE OBVIOUSLY native to Cuba, circa 1972, there can be no misgivings here.', ShermanD},
-                {'Well, then Sherman, how do you explain those maracas we found on her person?', Copernicus},
-                {'They\'re fun.', ShermanR},
-                {'FUN! HAR-HAR! You really are a hoot! Anyways, how should we cook her?', Copernicus},
-                {'We can\'t cook her, silly. We need her to enter the temple! Only a fairy can do that...', ShermanR},
-                {'Oh yes, Sherman, I know this. But, we must keep her frightened or she won\'t cooperate with us.', Copernicus},
-                {'Right, right. Ahem, so... WELL THERE MY FELLOW, FEARSOME GOBLIN- HOW SHALL WE COOK THIS DELICIOUS, FRIGHTENED, LITTLE PIXIE?!', ShermanR},
-                {'*Muffled sounds can be heard emanating from a small burlap sack*', Narration},
-                {'WHY, I\'M NOT SURE MY FEROCIOUS ORCLING FRIEND. IF ONLY WE COULD ENTER THE TEMPLE UP YONDER WE COULD LOCATE MORE DELICIOUS THINGS TO EAT WITHIN.', Copernicus},
-                {'High-Pitch Pixie Voice|nOH MY BUENO! SOMEBODY PLEASE HELP MEEE!!!', Narration},
-                {'You hear that? They have a fairy... Maybe we should go help her out.', Bill},
+                -- {'*Up ahead, voices can be heard amongst boulders...*', Narration},
+                -- {'No, no, listen to me. She is not Cuban, you can tell from the way she pronounces her \'R\'s.', CopernicusD},
+                -- {'I understand this, Copernicus, but I don\'t quite think you\'re listening to me.', ShermanD},
+                -- {'Judging from the designs upon her pancho, which is QUITE OBVIOUSLY native to Cuba, circa 1972, there can be no misgivings here.', ShermanD},
+                -- {'Well, then Sherman, how do you explain those maracas we found on her person?', Copernicus},
+                -- {'They\'re fun.', ShermanR},
+                -- {'FUN! HAR-HAR! You really are a hoot! Anyways, how should we cook her?', Copernicus},
+                -- {'We can\'t cook her, silly. We need her to enter the temple! Only a fairy can do that...', ShermanR},
+                -- {'Oh yes, Sherman, I know this. But, we must keep her frightened or she won\'t cooperate with us.', Copernicus},
+                -- {'Right, right. Ahem, so... WELL THERE MY FELLOW, FEARSOME GOBLIN- HOW SHALL WE COOK THIS DELICIOUS, FRIGHTENED, LITTLE PIXIE?!', ShermanR},
+                -- {'*Muffled sounds can be heard emanating from a small burlap sack*', Narration},
+                -- {'WHY, I\'M NOT SURE MY FEROCIOUS ORCLING FRIEND. IF ONLY WE COULD ENTER THE TEMPLE UP YONDER WE COULD LOCATE MORE DELICIOUS THINGS TO EAT WITHIN.', Copernicus},
+                -- {'High-Pitch Pixie Voice|nOH MY BUENO! SOMEBODY PLEASE HELP MEEE!!!', Narration},
+                -- {'You hear that? They have a fairy... Maybe we should go help her out.', Bill},
                 { '', {
                         name = 'Anime Guy', nrows = 5, nvchs = 3,
                         face = lg.newImage('assets/img/events/animeguyfullr.png'),
@@ -46,6 +46,13 @@ return {
                 }
             },
             after = function(choice)
+                Animate:moveCamera({
+                    {{10, 10}, 2, 'linear'},
+                    {'hero', 1, 'linear'},
+                })
+                Animate:moveObject('hero', {
+                    {5, 10, 120},
+                })
                 if choice == 1 then
                     Event:goto('mountainpath1', 1, 2)
                 elseif choice == 2 then

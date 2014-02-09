@@ -1,97 +1,155 @@
---
--- Class: ShopHelper
--- Prepare local data table for modification
---
--- Require:
--- - helpers.asset_helper
---
--- Data Model:
---     [5] => table
---         (
---            [cost] => 50
---            [ikind] => equipment
---            [width] => 64
---            [key] => 2
---            [image] => assets/img/hoody.png
---            [name] => Rusty Shovel
---            [desc] => Trusty Rusty Attack + 10
---            [height] => 64
---            [kind] => Weapon
---            [effect] => table
---                (
---                   [str] => 25
---                   [con] => 25
---                )
---            [use] => table
---                (
---                   [1] => 2
---                )
---         )
---
+-- local Narration = {x=320, y = 30, alx='m',alxb='m',wbox = 600, nrows=3}
+local lg = love.graphics
+
 local ShopHelper = {
-    --
-    -- Method: init
-    -- Set up a temporary data table.
-    --
-    init = function ( self )
-        self.data = {}
-        self:item()
-        self:equipment()
-        -- table_print(self.data)
-        return self.data
+    getShop = function(self, id)
+        self.shops = {}
+        self.shopsId = {}
+        if shops[id].equipment then
+            table.insert(self.shops, 'Equipment')
+            table.insert(self.shopsId, 5)
+        end
+        if shops[id].items then
+            table.insert(self.shops, 'Items')
+            table.insert(self.shopsId, 6)
+        end
+        table.insert(self.shops, 'back')
+        table.insert(self.shopsId, 3)
     end,
-
-    --
-    -- Method: item
-    -- Insert items from shop into data table.
-    --
-    item = function ( self )
-        local map = the.app.view.mapName
-        local conf = require('assets.maps.' .. map  ..'.config')
-        for i,v in ipairs(conf.shop.items) do
-            local items = items[v]
-            items['key'] = v
-            items['ikind'] = 'items'
-            table.insert(self.data, items)
+    getItems = function(self, id)
+        self.shopsItems = {}
+        self.shopsItemsId = {}
+        if shops[id].items then
+            for i,v in ipairs(shops[id].items) do
+                table.insert(self.shopsItems, items[v].name .. ' $' .. items[v].cost)
+                table.insert(self.shopsItemsId, v)
+            end
+            table.insert(self.shopsItems, 'back')
         end
     end,
-
-    --
-    -- Method: equipment
-    -- Insert equipment from shop into data table.
-    --
-    equipment = function ( self )
-        local map = the.app.view.mapName
-        local conf = require('assets.maps.' .. map  ..'.config')
-        for i,v in ipairs(conf.shop.equipment) do
-            local equipment = equipment[v]
-            equipment['key'] = v
-            equipment['ikind'] = 'equipment'
-            table.insert(self.data, equipment)
+    getEquipment = function(self, id)
+        self.shopsEquipment = {}
+        self.shopsEquipmentId = {}
+        if shops[id].equipment then
+            for i,v in ipairs(shops[id].equipment) do
+                table.insert(self.shopsEquipment, equipment[v].name .. ' $' .. equipment[v].cost)
+                table.insert(self.shopsEquipmentId, v)
+            end
+            table.insert(self.shopsEquipment, 'back')
         end
     end,
-
-    --
-    -- Method: buy
-    -- Buy item from shop.
-    --
-    -- Arguments:
-    --      ikind - The type of item/equipment
-    --      ID - ID of item/equipment
-    --
-    buy = function ( self, ikind, ID )
-        if STATE.inventory.gold >= _G[ikind][ID]['cost'] then
-            -- Update inventory
-            Event:putInventory(ikind, ID)
-            -- Update gold
-            STATE.inventory.gold = STATE.inventory.gold - _G[ikind][ID]['cost']
-            -- log:add('purchased ' .. Assets:get(ikind, ID, 'name') .. ' from "' .. STATE.conf.map .. '"')
-        else
-            print('no gold')
-            -- log:add('no gold to purchase ' .. Assets:get(ikind, ID, 'name') .. ' from "' .. STATE.conf.map .. '"')
-            return false
-        end
-    end,
+    getDialog = function(self, id)
+        self:getShop(id)
+        self:getItems(id)
+        self:getEquipment(id)
+        return {
+            [1] = {
+                -- Main
+                [1] = {
+                    replay = true,
+                    auto = true,
+                    dialog = {
+                        { '', {
+                                nrows = 5, nvchs = 3,
+                                choices = {'Buy', 'Sell', 'Leave'}
+                            }
+                        }
+                    },
+                    after = function(choice)
+                        -- local id = self.shopsId[choice]
+                        Event:goto('shop', 1, choice + 1)
+                    end
+                },
+                -- Buy
+                [2] = {
+                    replay = true,
+                    auto = true,
+                    dialog = {
+                        { '', {
+                                nrows = 5, nvchs = #self.shops,
+                                choices = self.shops
+                            }
+                        }
+                    },
+                    after = function(choice)
+                        if choice == #self.shops then
+                            Event:goto('shop', 1, 1)
+                        else
+                            local id = self.shopsId[choice]
+                            Event:goto('shop', 1, id)
+                        end
+                    end
+                },
+                -- Sell
+                [3] = {
+                    replay = true,
+                    auto = true,
+                    dialog = {
+                        { 'Sell stuff', {
+                                nrows = 5, nvchs = #self.shopsItems,
+                                choices = {'back'}
+                            }
+                        }
+                    },
+                    after = function(choice)
+                        if choice == 1 then
+                            Event:goto('shop', 1, 1)
+                        end
+                    end
+                },
+                -- Leave
+                [4] = {
+                    replay = true,
+                    auto = true,
+                    after = function()
+                        Event:goto('shop', 1, 1)
+                        ShopView:deactivate()
+                    end
+                },
+                -- Equipment
+                [5] = {
+                    replay = true,
+                    auto = true,
+                    dialog = {
+                        { '', {
+                                nrows = 5, nvchs = #self.shopsEquipment,
+                                choices = self.shopsEquipment
+                            }
+                        }
+                    },
+                    after = function(choice)
+                        if choice == #self.shopsEquipment then
+                            Event:goto('shop', 1, 2)
+                        else
+                            local equipment = self.shopsEquipmentId[choice]
+                            Event:purchase('equipment', equipment)
+                        end
+                    end
+                },
+                -- Items
+                [6] = {
+                    replay = true,
+                    auto = true,
+                    dialog = {
+                        { '', {
+                                nrows = 5, nvchs = #self.shopsItems,
+                                choices = self.shopsItems
+                            }
+                        }
+                    },
+                    after = function(choice)
+                        if choice == #self.shopsItems then
+                            Event:goto('shop', 1, 2)
+                        else
+                            local items = self.shopsItemsId[choice]
+                            Event:purchase('items', items)
+                        end
+                    end
+                },
+            },
+        }
+    end
 }
+
 
 return ShopHelper

@@ -35,14 +35,15 @@ local MapLoader = View:extend
 
         -- Add player
         self:add(self._player)
-
+        the.hero = self._player
         -- Map stuff
         self.focus = self._player
         self:clampTo(self.map)
 
     end,
 
-    onUpdate = function(self)
+    onUpdate = function(self, elapsed)
+        -- camera(elapsed)
         self.objects:collide(self._player)
         self.map:displace(self._player)
     end

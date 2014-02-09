@@ -3,17 +3,13 @@ return {
     [1] = {
         [1] = {
             -- NOTE: This event is attached to the bartender in the Inn.
-
+            replay = true,
+            auto = false,
             -- dialog = {
-
-            --     { '',
-            --         { x=30, y=245, wbox=300, nrows=5,
-            --         nvchs=4, choices = { 'attack', 'magic', 'defend', 'run'}
-            --         }
-            --     },
+            --     { 'Test' },
             -- },
             after = function()
-                Event:shop()
+                Event:shop(1)
             end
         },
     }

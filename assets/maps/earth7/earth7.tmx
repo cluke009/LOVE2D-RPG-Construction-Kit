@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="22" height="22" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="GoldenTempleTiles3" tilewidth="32" tileheight="32">
+  <image source="../../img/tiles/GoldenTempleTiles3.png" width="320" height="512"/>
+ </tileset>
+ <tileset firstgid="161" name="goldenstuff" tilewidth="32" tileheight="32">
+  <image source="../../img/tiles/goldenstuff.png" width="288" height="224"/>
+ </tileset>
+ <layer name="map" width="22" height="22">
+  <data encoding="base64" compression="zlib">
+   eJxjYMAOuHCIEwu48GBKzcUnjs9efHbjM5cYvbjUEHIvMYCW5qK7m9pxhSteRpK5MPOQaXxqcPHJNZccMJDmUhoO1HQzet4YNXdomksppocbQQAAyoED8w==
+  </data>
+ </layer>
+ <layer name="floor" width="22" height="22">
+  <data encoding="base64" compression="zlib">
+   eJytldENwyAMRJkpk1CpaaNWatLsP0RcKSdZrs0hk4/7wMDxYptQSylVNBnVIO6tidZGc8zb+no+GL9OMRbmPSkvyO5bRZvoK9oJZ6Sf7yx6iJ6iOxm38q8FZvB9DK8ds9ogzvg83p4aMD6PF/uXwHdO8jLfNcHbW7cR3pZG8tuq22g/RH2X4a3nWUv5v2cjvKh51A/Z/tW8V/UDvtXy2jxkee29QPzm5LznzdDandjbOavnPbjiLWmtQ86j/6Tnw5hQt03NHR0bi+g=
+  </data>
+ </layer>
+ <layer name="background" width="22" height="22">
+  <data encoding="base64" compression="zlib">
+   eJztkU0KgCAYRD1O1yiIFgW1zX3066JadP0mUPgQxcyCggYebsbngIx9MxnhCafJPYARTPIM8XLQW/r0HR/3kcZjlyst6Jh955sTg8TzTnSik4MKlBf8ptD/SqWb3+AWmpcTQtyb5lV7Q922vYe/BsVFL92bS1eIT0W4K6/ybu4Km8EC1oc2/HFnB6cvGEs=
+  </data>
+ </layer>
+ <layer name="background2" width="22" height="22">
+  <data encoding="base64" compression="zlib">
+   eJxjYKAtiETCg93cZDS+6yA3FwT8kfBAgzQamVuAxk/FoS6XQnvycYiXU2juKKAdyALibBqYiyuNkQOQ8wWlaRQZIOcLYtNoIRAXAXExCfZgc3MeCfpxAWxurqCCuUMZAACFZQz2
+  </data>
+ </layer>
+ <layer name="shadows" width="22" height="22">
+  <properties>
+   <property name="id" value="35"/>
+   <property name="solid" value="false"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJxjYBi+wBMNU2oOufK49Aw0oEbYEDIfl52jYBSMglEwClABAMwfBEg=
+  </data>
+ </layer>
+ <layer name="ceiling" width="22" height="22">
+  <data encoding="base64" compression="zlib">
+   eJwTZmBgsMaCrYDYhABWBWJOIHYB4hQ0LMyAHQgj6cdmrzWSvDCJ5oL0+uGQBwFfqBpfLO7GZa4+HvPQgSUWd+MylxQAcze1zUU2HxYWID9wQrEaheZ6MiDcTE33MoyaO2ouDnNhaZna5lLbzbQwt5BG5kbR0FxQeQMre6gZvqVAXMaASBOcSNgQiP1JwE5AnAHEmUDsCsQaDJj1Egh7A7ERkTgKipHDAmQuAIHJJ0I=
+  </data>
+ </layer>
+ <layer name="walls" width="22" height="22">
+  <data encoding="base64" compression="zlib">
+   eJxjYGBgsARiEyRsxQABzUDcCsQtWHArA2FgjQUTMrcFSZ5UANPXhwOTY64BEPcCcT8eNTB5UswXJsENpJirT4K5hPxFKbBE46OnL1qZu4uAflzyvmh8WJr1QxNfR4BPLthOgD/YwFAJB3LTwyigPSgB4lI625lHZ/tIAQAeJCNU
+  </data>
+ </layer>
+ <layer name="shadowsss" width="22" height="22">
+  <data encoding="base64" compression="zlib">
+   eJxjYMANvKAYF59cQMhccu2hl7m45KkVPqTaP9jMHQWjYBSMglFAOgAACQYHhQ==
+  </data>
+ </layer>
+ <objectgroup name="objects">
+  <object name="Door" x="576" y="672" width="64" height="32">
+   <properties>
+    <property name="to" value="earth5, 8, 2"/>
+   </properties>
+  </object>
+  <object name="Door" x="64" y="96" width="96" height="64">
+   <properties>
+    <property name="to" value="earth3, 17, 5"/>
+   </properties>
+  </object>
+  <object name="Obj" x="288" y="0" width="64" height="96">
+   <properties>
+    <property name="id" value="35"/>
+    <property name="solid" value="false"/>
+   </properties>
+  </object>
+  <object name="Obj" x="416" y="0" width="64" height="96">
+   <properties>
+    <property name="id" value="35"/>
+    <property name="solid" value="false"/>
+   </properties>
+  </object>
+  <object name="Obj" x="432" y="32" width="32" height="32">
+   <properties>
+    <property name="id" value="34"/>
+   </properties>
+  </object>
+  <object name="Obj" x="304" y="32" width="32" height="32">
+   <properties>
+    <property name="id" value="34"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <layer name="foreground" width="22" height="22">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFowA/WEGhPC6wkUJ5eoM9UHodmvg6NHlSwVEK5XGBc1Aa3V170ORJBbD4xhUOgzU94AoHSs1DD0dc4U4soHV6IFd+pAJ/JBxARXOTkdiuUBoAUtMXyg==
+  </data>
+ </layer>
+</map>

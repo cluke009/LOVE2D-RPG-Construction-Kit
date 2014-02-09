@@ -15,6 +15,7 @@ items     = require 'assets.tables.items'
 equipment = require 'assets.tables.equipment'
 heroes    = require 'assets.tables.heroes'
 enemies   = require 'assets.tables.enemies'
+shops     = require 'assets.tables.shops'
 
 -- Modules
 STATE   = require 'modules.state'
@@ -34,11 +35,12 @@ the.app = App:new
     name = 'RPG Construction Kit V0.1',
     onRun = function (self)
         -- Load our map
+
         self.view = MapView:new
         {
             player  = Hero,
             mapDir  = 'assets/maps/',
-            mapName = 'mountainpath2',
+            mapName = 'itemshop',
             playerX = 5 * 32,
             playerY = 5 * 32
         }
@@ -48,7 +50,10 @@ the.app = App:new
         end
         the.app.view:flash({0, 0, 0}, .75)
     end,
-    onUpdate = function (self)
+    animate = function(self, elapsed)
+    end,
+    onUpdate = function (self, elapsed)
+        self.animate(elapsed)
         if DEBUG and the.keys:justPressed('f5') then
             table_print(STATE)
         end

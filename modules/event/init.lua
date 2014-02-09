@@ -179,6 +179,18 @@ local Event = {
         Cutscene(cutscene, anim)
     end,
     --
+    -- Method: shop
+    -- Opens up a shop with the supplied ID.
+    --
+    -- Require:
+    -- - 'view.shop.shop_view'
+    --
+    shop = function ( self, id )
+        -- ShopView.mapName = the.app.view.mapName
+        ShopView.id = id
+        ShopView:activate()
+    end,
+    --
     -- Method: battle
     -- Manually trigger a battle.
     --
@@ -295,6 +307,21 @@ local Event = {
         return STATE.inventory[kind][ID]
     end,
     --
+    -- Method: purchase
+    -- Remove item or equipment to inventory
+    --
+    purchase = function(self, kind, ID, amount)
+        ID = tonumber(ID)
+        amount = amount or 1
+        if STATE.inventory.gold - (_G[kind][ID]['cost'] * amount) >= 0 then
+            self:putInventory(kind, ID, amount)
+            STATE.inventory.gold = STATE.inventory.gold - (_G[kind][ID]['cost'] * amount)
+            return true
+        else
+            return false
+        end
+    end,
+    --
     -- Method: equipped
     -- Retrieve currently equipped items.
     --
@@ -344,17 +371,6 @@ local Event = {
         for k,v in pairs(effect) do
             STATE.heroes[heroID].stats[k] = STATE.heroes[heroID].stats[k] + v
         end
-    end,
-    --
-    -- Method: shop
-    -- Opens up a shop with the supplied ID.
-    --
-    -- Require:
-    -- - 'view.shop.shop_view'
-    --
-    shop = function ( self )
-        ShopView.mapName = the.app.view.mapName
-        ShopView:activate()
     end,
     --
     -- Method: removeObj

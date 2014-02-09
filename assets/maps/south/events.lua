@@ -24,6 +24,16 @@ return {
             end
         },
         [3] = {
+            replay = false,
+            auto = true,
+            dialog = {
+                {'The Gate is now gone!!!', Narration}
+            },
+            after = function()
+                Event:goto('south', 1, 4)
+            end
+        },
+        [4] = {
             replay = true,
             auto = false,
             dialog = {

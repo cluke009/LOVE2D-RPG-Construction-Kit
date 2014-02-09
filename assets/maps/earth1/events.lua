@@ -17,10 +17,7 @@ return {
     [1] = {
         [1] = {
             replay = false,
-            auto   = false,
-            dialog = {
-                {'You hear a loud rumbling ahead of you?!', Narration},
-            },
+            auto   = true,
             after  = function()
                 Event:removeObj(25, 'Obj', 'earth2')
             end,

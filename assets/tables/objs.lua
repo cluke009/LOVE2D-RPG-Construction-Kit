@@ -102,15 +102,15 @@ return
     },
     [24] = {
         name = 'GoldenDoor',
-        image = 'assets/img/objs/golden_door.png',
+        image = 'assets/img/objs/goldendoor.png',
         width = 96,
-        height = 48
+        height = 64
     },
     [25] = {
         name = 'EarthWall',
         image = 'assets/img/objs/earthwall.png',
         width = 160,
-        height = 64
+        height = 96
     },
     [26] = {
         name = 'Southgate',
@@ -141,5 +141,62 @@ return
         image = 'assets/img/objs/earthswitch.png',
         width = 32,
         height = 32
-    }
+    },
+    [31] = {
+        name = 'GoldenDoorActivated',
+        image = 'assets/img/objs/goldendoor2.png',
+        width = 96,
+        height = 64
+    },
+    [32] = {
+        name = 'TownGrass',
+        image = 'assets/img/objs/towngrass.png',
+        width = 96,
+        height = 96
+    },
+    [33] = {
+        name = 'DoorShadow',
+        image = 'assets/img/objs/doorshadow.png',
+        width = 96,
+        height = 64
+    },
+    [34] = {
+        name = 'Torch',
+        image = 'assets/img/objs/torch.png',
+        width = 32,
+        height = 32,
+        sequences = {
+            auto = {fps = 4,frames = {1, 2, 3, 4}}
+        }
+    },
+    [35] = {
+        name = 'Torchlight',
+        image = 'assets/img/objs/torchlight.png',
+        width = 64,
+        height = 96,
+        sequences = {
+            auto = {fps = 2,frames = {1, 2, 3, 4, 5, 6, 7, 8}}
+        }
+    },
+    [36] = {
+        name = 'TorchlightReverse',
+        image = 'assets/img/objs/torchlight.png',
+        width = 64,
+        height = 96,
+        sequences = {
+            auto = {fps = 2,frames = {8, 7, 6, 5, 4, 3, 2, 1}}
+        }
+    },
+    [37] = {
+        name = 'Coffin',
+        image = 'assets/img/objs/coffin.png',
+        width = 32,
+        height = 64
+    },
+    [38] = {
+        name = 'BossCoffin',
+        image = 'assets/img/objs/bosscoffin.png',
+        width = 32,
+        height = 64
+    },
 }
